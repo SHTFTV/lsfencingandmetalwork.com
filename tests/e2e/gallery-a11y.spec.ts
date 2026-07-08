@@ -62,5 +62,65 @@ test.describe("/gallery accessibility", () => {
     }
     expect(blocking, "critical/serious axe violations in open lightbox").toEqual([]);
   });
+
+  // A visible focus indicator is required by WCAG 2.4.7. We assert it explicitly
+  // because a component that overrides focus:outline-none without a replacement
+  // ring is a common regression axe alone doesn't always flag as critical.
+  test("every tile shows a visible focus ring when keyboard-focused", async ({ page }) => {
+    await page.goto("/gallery");
+    const tiles = page.locator('button[aria-label^="View "]');
+    const count = await tiles.count();
+    expect(count).toBeGreaterThanOrEqual(15);
+
+    for (let i = 0; i < count; i++) {
+      const tile = tiles.nth(i);
+      await tile.scrollIntoViewIfNeeded();
+      await tile.focus();
+      const style = await tile.evaluate((el) => {
+        const s = getComputedStyle(el);
+        return {
+          outlineWidth: s.outlineWidth,
+          outlineStyle: s.outlineStyle,
+          boxShadow: s.boxShadow,
+        };
+      });
+      const hasRing =
+        (style.outlineStyle !== "none" && parseFloat(style.outlineWidth) > 0) ||
+        (style.boxShadow !== "none" && style.boxShadow.length > 0);
+      expect(hasRing, `tile #${i} has no visible focus indicator`).toBe(true);
+    }
+  });
+
+  test("lightbox close/prev/next controls + CTA all show a visible focus ring", async ({ page }) => {
+    await page.goto("/gallery");
+    await page.locator('button[aria-label^="View "]').first().click();
+    const dialog = page.getByRole("dialog");
+    await expect(dialog).toBeVisible();
+
+    const controls = [
+      dialog.getByRole("button", { name: "Close" }),
+      dialog.getByRole("button", { name: "Previous" }),
+      dialog.getByRole("button", { name: "Next" }),
+      dialog.getByTestId("lightbox-quote-cta"),
+    ];
+
+    for (const ctrl of controls) {
+      await ctrl.focus();
+      const style = await ctrl.evaluate((el) => {
+        const s = getComputedStyle(el);
+        return {
+          outlineWidth: s.outlineWidth,
+          outlineStyle: s.outlineStyle,
+          boxShadow: s.boxShadow,
+        };
+      });
+      const label = await ctrl.getAttribute("aria-label") ?? await ctrl.getAttribute("data-testid") ?? "?";
+      const hasRing =
+        (style.outlineStyle !== "none" && parseFloat(style.outlineWidth) > 0) ||
+        (style.boxShadow !== "none" && style.boxShadow.length > 0);
+      expect(hasRing, `${label} has no visible focus indicator`).toBe(true);
+    }
+  });
 });
+
 

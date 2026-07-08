@@ -114,18 +114,24 @@ type Prefill = {
   photo?: string;
 };
 
+// Only slug-safe photo IDs (lowercase a–z, digits, hyphen) up to 80 chars.
+// Anything else is dropped so a hand-tampered URL can't inject junk into
+// notes, analytics payloads, or the admin gallery leads filter.
+const PHOTO_SLUG_RE = /^[a-z0-9](?:[a-z0-9-]{0,79})$/;
+
 function readPrefill(): Prefill {
   if (typeof window === "undefined") return {};
   const p = new URLSearchParams(window.location.search);
   const svc = p.get("service") ?? undefined;
   const src = p.get("source") ?? undefined;
-  const photo = p.get("photo") ?? undefined;
+  const photoRaw = p.get("photo") ?? undefined;
   const service = svc && (SERVICE_OPTIONS as readonly string[]).includes(svc)
     ? (svc as FormValues["service"])
     : undefined;
   const source = src === "gallery-tile" || src === "gallery-lightbox" || src === "contact-form"
     ? src
     : undefined;
+  const photo = photoRaw && PHOTO_SLUG_RE.test(photoRaw) ? photoRaw : undefined;
   return { service, source, photo };
 }
 
