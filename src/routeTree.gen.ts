@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as WeldingServicesRouteImport } from './routes/welding-services'
 import { Route as TestimonialRouteImport } from './routes/testimonial'
 import { Route as SnowRemovalRouteImport } from './routes/snow-removal'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ResidentialChainLinkFencingRouteImport } from './routes/residential-chain-link-fencing'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as OrnamentalFencingRouteImport } from './routes/ornamental-fencing'
@@ -48,6 +49,11 @@ const TestimonialRoute = TestimonialRouteImport.update({
 const SnowRemovalRoute = SnowRemovalRouteImport.update({
   id: '/snow-removal',
   path: '/snow-removal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResidentialChainLinkFencingRoute =
@@ -187,6 +193,7 @@ export interface FileRoutesByFullPath {
   '/ornamental-fencing': typeof OrnamentalFencingRoute
   '/pricing': typeof PricingRoute
   '/residential-chain-link-fencing': typeof ResidentialChainLinkFencingRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/snow-removal': typeof SnowRemovalRoute
   '/testimonial': typeof TestimonialRoute
   '/welding-services': typeof WeldingServicesRoute
@@ -214,6 +221,7 @@ export interface FileRoutesByTo {
   '/ornamental-fencing': typeof OrnamentalFencingRoute
   '/pricing': typeof PricingRoute
   '/residential-chain-link-fencing': typeof ResidentialChainLinkFencingRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/snow-removal': typeof SnowRemovalRoute
   '/testimonial': typeof TestimonialRoute
   '/welding-services': typeof WeldingServicesRoute
@@ -242,6 +250,7 @@ export interface FileRoutesById {
   '/ornamental-fencing': typeof OrnamentalFencingRoute
   '/pricing': typeof PricingRoute
   '/residential-chain-link-fencing': typeof ResidentialChainLinkFencingRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/snow-removal': typeof SnowRemovalRoute
   '/testimonial': typeof TestimonialRoute
   '/welding-services': typeof WeldingServicesRoute
@@ -271,6 +280,7 @@ export interface FileRouteTypes {
     | '/ornamental-fencing'
     | '/pricing'
     | '/residential-chain-link-fencing'
+    | '/sitemap.xml'
     | '/snow-removal'
     | '/testimonial'
     | '/welding-services'
@@ -298,6 +308,7 @@ export interface FileRouteTypes {
     | '/ornamental-fencing'
     | '/pricing'
     | '/residential-chain-link-fencing'
+    | '/sitemap.xml'
     | '/snow-removal'
     | '/testimonial'
     | '/welding-services'
@@ -325,6 +336,7 @@ export interface FileRouteTypes {
     | '/ornamental-fencing'
     | '/pricing'
     | '/residential-chain-link-fencing'
+    | '/sitemap.xml'
     | '/snow-removal'
     | '/testimonial'
     | '/welding-services'
@@ -353,6 +365,7 @@ export interface RootRouteChildren {
   OrnamentalFencingRoute: typeof OrnamentalFencingRoute
   PricingRoute: typeof PricingRoute
   ResidentialChainLinkFencingRoute: typeof ResidentialChainLinkFencingRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SnowRemovalRoute: typeof SnowRemovalRoute
   TestimonialRoute: typeof TestimonialRoute
   WeldingServicesRoute: typeof WeldingServicesRoute
@@ -383,6 +396,13 @@ declare module '@tanstack/react-router' {
       path: '/snow-removal'
       fullPath: '/snow-removal'
       preLoaderRoute: typeof SnowRemovalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/residential-chain-link-fencing': {
@@ -571,6 +591,7 @@ const rootRouteChildren: RootRouteChildren = {
   OrnamentalFencingRoute: OrnamentalFencingRoute,
   PricingRoute: PricingRoute,
   ResidentialChainLinkFencingRoute: ResidentialChainLinkFencingRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   SnowRemovalRoute: SnowRemovalRoute,
   TestimonialRoute: TestimonialRoute,
   WeldingServicesRoute: WeldingServicesRoute,
