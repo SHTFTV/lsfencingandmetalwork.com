@@ -13,7 +13,8 @@
     "format": "prettier --write .",
     "validate:jsonld": "node scripts/validate-jsonld.mjs",
     "test:e2e": "playwright test",
-    "test:e2e:install": "playwright install --with-deps chromium"
+    "test:e2e:install": "playwright install --with-deps chromium",
+    "deploy:s3": "bash scripts/upload-dist-s3.sh"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
