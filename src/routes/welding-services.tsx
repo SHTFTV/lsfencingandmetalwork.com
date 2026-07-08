@@ -1,17 +1,33 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
+import { serviceJsonLd, type FaqItem } from "@/lib/service-schema";
+
+const FAQ: FaqItem[] = [
+  { q: "Can you weld aluminum?", a: "Yes — TIG on aluminum and stainless is available; call ahead so we bring the right rig." },
+  { q: "Do you weld on-site or in shop?", a: "Both. Small fabrications happen in our Chilliwack shop; repairs and installs are mobile." },
+  { q: "Do you supply engineered drawings?", a: "For structural work we work from your engineered drawings, or we can coordinate with an engineer." },
+];
+
+const DESCRIPTION =
+  "Mobile MIG, TIG and stick welding for repairs, fabrication, gates, railings and custom metal work across the Lower Mainland.";
 
 export const Route = createFileRoute("/welding-services")({
   head: () => ({
     meta: [
       { title: "Welding Services — Mobile Welder Fraser Valley | LS Fencing" },
-      { name: "description", content: "Mobile MIG, TIG and stick welding for repairs, fabrication, gates, railings and custom metal work across the Lower Mainland." },
+      { name: "description", content: DESCRIPTION },
       { property: "og:title", content: "Welding Services — Mobile Welder Fraser Valley" },
       { property: "og:description", content: "Repairs, custom fabrication, and on-site welding — CWB-quality workmanship." },
       { property: "og:url", content: "/welding-services" },
     ],
     links: [{ rel: "canonical", href: "/welding-services" }],
+    scripts: serviceJsonLd({
+      name: "Welding & Metal Fabrication",
+      description: DESCRIPTION,
+      path: "/welding-services",
+      faq: FAQ,
+    }),
   }),
   component: Page,
 });
@@ -49,11 +65,7 @@ function Page() {
           { label: "Finish", value: "Painted · Galvanized · Powder-coated" },
           { label: "Insurance", value: "Fully insured — WCB active" },
         ]}
-        faq={[
-          { q: "Can you weld aluminum?", a: "Yes — TIG on aluminum and stainless is available; call ahead so we bring the right rig." },
-          { q: "Do you weld on-site or in shop?", a: "Both. Small fabrications happen in our Chilliwack shop; repairs and installs are mobile." },
-          { q: "Do you supply engineered drawings?", a: "For structural work we work from your engineered drawings, or we can coordinate with an engineer." },
-        ]}
+        faq={FAQ}
         related={[
           { to: "/metal-gates", label: "Custom metal gates" },
           { to: "/barrier-gates-hand-rails", label: "Barrier gates & handrails" },

@@ -1,17 +1,33 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
+import { serviceJsonLd, type FaqItem } from "@/lib/service-schema";
+
+const FAQ: FaqItem[] = [
+  { q: "Do you stain the fence?", a: "By default the cedar is left natural to age silver. We can apply a UV oil or stain on request for an added fee." },
+  { q: "How deep are the posts?", a: "Minimum 3 ft below grade, concrete-set with gravel drainage. Deeper for drive gates and windy sites." },
+  { q: "How long does cedar last here?", a: "A properly-built cedar fence lasts 15–25 years in the Fraser Valley — longer with periodic oiling." },
+];
+
+const DESCRIPTION =
+  "Western red cedar privacy fences, board-on-board, and lattice-top designs built to survive BC weather across the Fraser Valley.";
 
 export const Route = createFileRoute("/cedar-fencing")({
   head: () => ({
     meta: [
       { title: "Cedar Fencing — Custom Wood Fences BC | LS Fencing" },
-      { name: "description", content: "Western red cedar privacy fences, board-on-board, and lattice-top designs built to survive BC weather across the Fraser Valley." },
+      { name: "description", content: DESCRIPTION },
       { property: "og:title", content: "Cedar Fencing — Custom Wood Fences BC" },
       { property: "og:description", content: "Hand-built western red cedar privacy fences with proper post depth and drainage." },
       { property: "og:url", content: "/cedar-fencing" },
     ],
     links: [{ rel: "canonical", href: "/cedar-fencing" }],
+    scripts: serviceJsonLd({
+      name: "Cedar Fencing",
+      description: DESCRIPTION,
+      path: "/cedar-fencing",
+      faq: FAQ,
+    }),
   }),
   component: Page,
 });
@@ -49,11 +65,7 @@ function Page() {
           { label: "Finish", value: "Natural · Stained on request" },
           { label: "Warranty", value: "1-year workmanship" },
         ]}
-        faq={[
-          { q: "Do you stain the fence?", a: "By default the cedar is left natural to age silver. We can apply a UV oil or stain on request for an added fee." },
-          { q: "How deep are the posts?", a: "Minimum 3 ft below grade, concrete-set with gravel drainage. Deeper for drive gates and windy sites." },
-          { q: "How long does cedar last here?", a: "A properly-built cedar fence lasts 15–25 years in the Fraser Valley — longer with periodic oiling." },
-        ]}
+        faq={FAQ}
         related={[
           { to: "/ornamental-fencing", label: "Ornamental steel fencing" },
           { to: "/chain-link-fencing", label: "Chain link fencing" },

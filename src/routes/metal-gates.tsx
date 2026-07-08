@@ -1,17 +1,33 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
+import { serviceJsonLd, type FaqItem } from "@/lib/service-schema";
+
+const FAQ: FaqItem[] = [
+  { q: "Do you install the gate operator too?", a: "We can supply and install popular residential and commercial operators, or coordinate with your preferred automation company." },
+  { q: "How wide can a cantilever gate be?", a: "Standard hardware handles up to 40 ft clear opening. Wider spans are engineered case-by-case." },
+  { q: "How long does fabrication take?", a: "Most drive gates are ready to install within 2–3 weeks of quote approval." },
+];
+
+const DESCRIPTION =
+  "In-house fabricated metal gates: cantilever slide, double swing, and single drive gates for residential, commercial and industrial sites.";
 
 export const Route = createFileRoute("/metal-gates")({
   head: () => ({
     meta: [
       { title: "Custom Metal Gates — Driveway, Cantilever & Swing | LS Fencing" },
-      { name: "description", content: "In-house fabricated metal gates: cantilever slide, double swing, and single drive gates for residential, commercial and industrial sites." },
+      { name: "description", content: DESCRIPTION },
       { property: "og:title", content: "Custom Metal Gates — Driveway, Cantilever & Swing" },
       { property: "og:description", content: "Fabricated in our Chilliwack shop and installed across BC." },
       { property: "og:url", content: "/metal-gates" },
     ],
     links: [{ rel: "canonical", href: "/metal-gates" }],
+    scripts: serviceJsonLd({
+      name: "Custom Metal Gates",
+      description: DESCRIPTION,
+      path: "/metal-gates",
+      faq: FAQ,
+    }),
   }),
   component: Page,
 });
@@ -49,11 +65,7 @@ function Page() {
           { label: "Automation", value: "Operator-ready or turn-key" },
           { label: "Service area", value: "Fraser Valley & Lower Mainland" },
         ]}
-        faq={[
-          { q: "Do you install the gate operator too?", a: "We can supply and install popular residential and commercial operators, or coordinate with your preferred automation company." },
-          { q: "How wide can a cantilever gate be?", a: "Standard hardware handles up to 40 ft clear opening. Wider spans are engineered case-by-case." },
-          { q: "How long does fabrication take?", a: "Most drive gates are ready to install within 2–3 weeks of quote approval." },
-        ]}
+        faq={FAQ}
         related={[
           { to: "/barrier-gates", label: "Barrier gates" },
           { to: "/chain-link-fencing", label: "Chain link fencing" },

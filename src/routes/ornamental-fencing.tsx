@@ -1,17 +1,33 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
+import { serviceJsonLd, type FaqItem } from "@/lib/service-schema";
+
+const FAQ: FaqItem[] = [
+  { q: "Can it follow slope?", a: "Yes — our panels rack up to 20° without cutting, keeping picket tops level with grade." },
+  { q: "Custom colours?", a: "Bronze, white, and green are commonly available. Any RAL colour can be quoted on custom orders." },
+  { q: "Do you install automatic gates?", a: "Yes. We rough in conduit, gate posts, and can coordinate with your gate operator installer." },
+];
+
+const DESCRIPTION =
+  "Powder-coated ornamental steel fencing and matching gates — architectural look with commercial durability.";
 
 export const Route = createFileRoute("/ornamental-fencing")({
   head: () => ({
     meta: [
       { title: "Ornamental Iron Fencing — Steel Panels & Gates | LS Fencing" },
-      { name: "description", content: "Powder-coated ornamental steel fencing and matching gates — architectural look with commercial durability." },
+      { name: "description", content: DESCRIPTION },
       { property: "og:title", content: "Ornamental Iron Fencing — Steel Panels & Gates" },
       { property: "og:description", content: "Powder-coated ornamental steel panels for pools, estates, commercial frontages and pump houses." },
       { property: "og:url", content: "/ornamental-fencing" },
     ],
     links: [{ rel: "canonical", href: "/ornamental-fencing" }],
+    scripts: serviceJsonLd({
+      name: "Ornamental Iron Fencing",
+      description: DESCRIPTION,
+      path: "/ornamental-fencing",
+      faq: FAQ,
+    }),
   }),
   component: Page,
 });
@@ -49,11 +65,7 @@ function Page() {
           { label: "Post spec", value: "2\" or 2.5\" steel, concrete-set" },
           { label: "Warranty", value: "Manufacturer coating warranty" },
         ]}
-        faq={[
-          { q: "Can it follow slope?", a: "Yes — our panels rack up to 20° without cutting, keeping picket tops level with grade." },
-          { q: "Custom colours?", a: "Bronze, white, and green are commonly available. Any RAL colour can be quoted on custom orders." },
-          { q: "Do you install automatic gates?", a: "Yes. We rough in conduit, gate posts, and can coordinate with your gate operator installer." },
-        ]}
+        faq={FAQ}
         related={[
           { to: "/metal-gates", label: "Custom metal gates" },
           { to: "/cedar-fencing", label: "Cedar privacy fencing" },
