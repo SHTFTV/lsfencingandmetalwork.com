@@ -120,23 +120,115 @@ function Page() {
           </Link>
         </div>
       </section>
+
+      {open && openIndex !== null && (
+        <Lightbox
+          item={ITEMS[openIndex]}
+          index={openIndex}
+          total={ITEMS.length}
+          onClose={() => setOpenIndex(null)}
+          onPrev={() => setOpenIndex((i) => (i === null ? i : (i - 1 + ITEMS.length) % ITEMS.length))}
+          onNext={() => setOpenIndex((i) => (i === null ? i : (i + 1) % ITEMS.length))}
+        />
+      )}
       <CtaStrip />
     </PageShell>
   );
 }
 
-function GalleryTile({ item }: { item: Item }) {
+function GalleryTile({ item, onClick }: { item: Item; onClick: () => void }) {
   return (
-    <figure className={`group relative aspect-[4/3] rounded-sm overflow-hidden border border-border bg-gradient-to-br ${item.swatch}`}>
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={`View ${item.title}`}
+      className={`group relative aspect-[4/3] rounded-sm overflow-hidden border border-border bg-gradient-to-br ${item.swatch} text-left focus:outline-none focus:ring-2 focus:ring-primary`}
+    >
       <PatternLayer pattern={item.pattern} />
-      <figcaption className="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
+      <div className="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
         <div className="text-[10px] uppercase tracking-[0.3em] text-primary">{item.category}</div>
         <div className="font-display uppercase text-white text-base leading-tight mt-1">{item.title}</div>
         <div className="text-xs text-white/70 mt-1">{item.location}</div>
-      </figcaption>
-    </figure>
+      </div>
+      <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition text-[10px] uppercase tracking-widest bg-primary text-primary-foreground px-2 py-1 rounded-sm">
+        View
+      </div>
+    </button>
   );
 }
+
+function Lightbox({
+  item, index, total, onClose, onPrev, onNext,
+}: {
+  item: Item; index: number; total: number;
+  onClose: () => void; onPrev: () => void; onNext: () => void;
+}) {
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={item.title}
+      onClick={onClose}
+      className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
+    >
+      <button
+        type="button"
+        onClick={(e) => { e.stopPropagation(); onClose(); }}
+        aria-label="Close"
+        className="absolute top-4 right-4 h-10 w-10 flex items-center justify-center rounded-sm border border-white/20 text-white/80 hover:text-white hover:border-white transition"
+      >
+        <X className="h-5 w-5" />
+      </button>
+      <button
+        type="button"
+        onClick={(e) => { e.stopPropagation(); onPrev(); }}
+        aria-label="Previous"
+        className="absolute left-4 top-1/2 -translate-y-1/2 h-12 w-12 flex items-center justify-center rounded-sm border border-white/20 text-white/80 hover:text-white hover:border-white transition"
+      >
+        <ChevronLeft className="h-6 w-6" />
+      </button>
+      <button
+        type="button"
+        onClick={(e) => { e.stopPropagation(); onNext(); }}
+        aria-label="Next"
+        className="absolute right-4 top-1/2 -translate-y-1/2 h-12 w-12 flex items-center justify-center rounded-sm border border-white/20 text-white/80 hover:text-white hover:border-white transition"
+      >
+        <ChevronRight className="h-6 w-6" />
+      </button>
+
+      <figure
+        onClick={(e) => e.stopPropagation()}
+        className="w-full max-w-5xl"
+      >
+        <div className={`relative aspect-video rounded-sm overflow-hidden border border-white/10 bg-gradient-to-br ${item.swatch}`}>
+          <PatternLayer pattern={item.pattern} />
+          {/* Larger proof-of-work grid overlay: 6 pattern tiles */}
+          <div className="absolute inset-0 grid grid-cols-3 grid-rows-2 gap-1 p-2 opacity-90">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className={`relative overflow-hidden rounded-sm bg-gradient-to-br ${item.swatch} border border-white/10`}>
+                <PatternLayer pattern={item.pattern} />
+              </div>
+            ))}
+          </div>
+          <div className="absolute bottom-3 left-4 text-[10px] uppercase tracking-[0.3em] text-white/70">
+            Placeholder proof-of-work grid
+          </div>
+        </div>
+        <figcaption className="mt-4 flex items-end justify-between gap-4 text-white">
+          <div>
+            <div className="text-[10px] uppercase tracking-[0.3em] text-primary">{item.category}</div>
+            <div className="font-display uppercase text-xl md:text-2xl mt-1">{item.title}</div>
+            <div className="text-sm text-white/70 mt-1">{item.location}</div>
+          </div>
+          <div className="text-xs uppercase tracking-widest text-white/60 shrink-0">
+            {index + 1} / {total}
+          </div>
+        </figcaption>
+      </figure>
+    </div>
+  );
+}
+
 
 function PatternLayer({ pattern }: { pattern: Item["pattern"] }) {
   const base = "absolute inset-0 opacity-30 mix-blend-screen";
