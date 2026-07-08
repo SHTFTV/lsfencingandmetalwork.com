@@ -142,7 +142,7 @@ function Page() {
           item={ITEMS[openIndex]}
           index={openIndex}
           total={ITEMS.length}
-          onClose={() => setOpenIndex(null)}
+          onClose={close}
           onPrev={() => setOpenIndex((i) => (i === null ? i : (i - 1 + ITEMS.length) % ITEMS.length))}
           onNext={() => setOpenIndex((i) => (i === null ? i : (i + 1) % ITEMS.length))}
         />
@@ -152,9 +152,12 @@ function Page() {
   );
 }
 
-function GalleryTile({ item, onClick }: { item: Item; onClick: () => void }) {
+function GalleryTile({
+  item, onClick, refCallback,
+}: { item: Item; onClick: () => void; refCallback?: (el: HTMLButtonElement | null) => void }) {
   return (
     <button
+      ref={refCallback}
       type="button"
       onClick={onClick}
       aria-label={`View ${item.title}`}
@@ -172,6 +175,7 @@ function GalleryTile({ item, onClick }: { item: Item; onClick: () => void }) {
     </button>
   );
 }
+
 
 function Lightbox({
   item, index, total, onClose, onPrev, onNext,
