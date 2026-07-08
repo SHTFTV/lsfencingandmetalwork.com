@@ -19,6 +19,10 @@ import imgHighSecurityFarm from "@/assets/gallery/high-security-cantilever-gate-
 import imgCooperRentals from "@/assets/gallery/cooper-rentals-cantilever-langley.png.asset.json";
 import imgUtilityEnclosure from "@/assets/gallery/utility-equipment-enclosure.jpeg.asset.json";
 import imgTruckSkidsteer from "@/assets/gallery/ls-fencing-truck-skidsteer.jpeg.asset.json";
+import imgCustomCedar from "@/assets/gallery/custom-cedar-horizontal-slat.jpg.asset.json";
+import imgShopWelding from "@/assets/gallery/shop-welding-kubota-fabrication.jpg.asset.json";
+import imgBlackSlatMapleRidge from "@/assets/gallery/black-privacy-slat-chainlink-maple-ridge.jpg.asset.json";
+import imgOrnamentalStorefront from "@/assets/gallery/ornamental-storefront-gate-abbotsford.jpg.asset.json";
 
 
 
@@ -51,6 +55,7 @@ type Item = {
 const CATEGORIES = [
   "All",
   "Chain Link",
+  "Cedar",
   "Ornamental",
   "Gates",
   "Welding",
@@ -61,6 +66,7 @@ const CATEGORIES = [
 // so the CTA can pre-select it via ?service=…
 const CATEGORY_TO_SERVICE: Record<string, string> = {
   "Chain Link": "Chain Link Fencing",
+  "Cedar": "Cedar Fencing",
   "Ornamental": "Ornamental Fencing",
   "Gates": "Metal / Driveway Gate",
   "Welding": "Welding / Repair",
@@ -97,6 +103,10 @@ const ITEMS: Item[] = [
   { title: "MMCD-spec galvanized handrail", location: "Maple Ridge, BC", category: "Welding", src: imgHandrail.url, alt: "Galvanized pipe MMCD-spec handrail installed along an accessible ramp" },
   { title: "Post-hole drilling with skid steer", location: "Fraser Valley, BC", category: "Excavation", src: imgExcavation.url, alt: "Kubota skid steer with hydraulic auger drilling fence post holes on a commercial lot" },
   { title: "LS crew truck & Kubota skid steer", location: "Chilliwack, BC", category: "Excavation", src: imgTruckSkidsteer.url, alt: "LS Fencing service truck loaded with fence pipe towing a trailer with a Kubota skid steer in Chilliwack" },
+  { title: "Custom cedar horizontal-slat privacy fence", location: "Fraser Valley, BC", category: "Cedar", src: imgCustomCedar.url, alt: "Custom-built cedar privacy fence with horizontal slats and vertical posts running along a stone-paver garden path" },
+  { title: "Black privacy-slat chain link screen", location: "Maple Ridge, BC", category: "Chain Link", src: imgBlackSlatMapleRidge.url, alt: "6-foot black vinyl-coated chain link fence with full-height privacy slats screening an apartment complex in Maple Ridge" },
+  { title: "Ornamental storefront fence & swing gate", location: "Abbotsford, BC", category: "Ornamental", src: imgOrnamentalStorefront.url, alt: "Black powder-coated ornamental steel storefront fence with matching pedestrian swing gate outside an Abbotsford commercial building" },
+  { title: "In-shop welding & Kubota attachment fabrication", location: "Chilliwack, BC", category: "Welding", src: imgShopWelding.url, alt: "LS Fencing welder MIG welding a custom steel attachment on the arm of an orange Kubota skid steer inside the fabrication shop" },
 ];
 
 
