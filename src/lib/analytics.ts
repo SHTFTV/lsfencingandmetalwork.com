@@ -20,11 +20,25 @@ export type QuoteAnalyticsEvent =
   | { name: "quote_submit_success"; service?: string }
   | { name: "quote_submit_error"; service?: string; message?: string };
 
+export type GalleryAnalyticsEvent =
+  | { name: "gallery_tile_click"; index: number; title: string; category: string }
+  | { name: "gallery_lightbox_open"; index: number; title: string; category: string }
+  | { name: "gallery_lightbox_close"; index: number; title: string }
+  | { name: "gallery_lightbox_navigate"; direction: "prev" | "next"; index: number; title: string };
+
 type DataLayerWindow = Window & {
   dataLayer?: Record<string, unknown>[];
 };
 
 export function trackQuoteEvent(event: QuoteAnalyticsEvent) {
+  emit(event);
+}
+
+export function trackGalleryEvent(event: GalleryAnalyticsEvent) {
+  emit(event);
+}
+
+function emit(event: QuoteAnalyticsEvent | GalleryAnalyticsEvent) {
   if (typeof window === "undefined") return;
   const payload = { ...event, event: event.name, ts: Date.now() };
   try {

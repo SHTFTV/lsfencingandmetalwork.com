@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ArrowRight, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { trackGalleryEvent } from "@/lib/analytics";
 
 import img4ftGalv from "@/assets/gallery/4ft-galv-residential.jpeg.asset.json";
 import img6ftBarb from "@/assets/gallery/6ft-galv-barb-abbotsford.jpeg.asset.json";
@@ -83,10 +84,19 @@ function Page() {
 
   const openAt = useCallback((i: number) => {
     lastOpenerIndex.current = i;
+    const it = ITEMS[i];
+    trackGalleryEvent({ name: "gallery_tile_click", index: i, title: it.title, category: it.category });
+    trackGalleryEvent({ name: "gallery_lightbox_open", index: i, title: it.title, category: it.category });
     setOpenIndex(i);
   }, []);
   const close = useCallback(() => {
-    setOpenIndex(null);
+    setOpenIndex((idx) => {
+      if (idx !== null) {
+        const it = ITEMS[idx];
+        trackGalleryEvent({ name: "gallery_lightbox_close", index: idx, title: it.title });
+      }
+      return null;
+    });
     // Return focus to the tile that opened the modal
     requestAnimationFrame(() => {
       const idx = lastOpenerIndex.current;
@@ -164,8 +174,18 @@ function Page() {
           index={openIndex}
           total={ITEMS.length}
           onClose={close}
-          onPrev={() => setOpenIndex((i) => (i === null ? i : (i - 1 + ITEMS.length) % ITEMS.length))}
-          onNext={() => setOpenIndex((i) => (i === null ? i : (i + 1) % ITEMS.length))}
+          onPrev={() => setOpenIndex((i) => {
+            if (i === null) return i;
+            const next = (i - 1 + ITEMS.length) % ITEMS.length;
+            trackGalleryEvent({ name: "gallery_lightbox_navigate", direction: "prev", index: next, title: ITEMS[next].title });
+            return next;
+          })}
+          onNext={() => setOpenIndex((i) => {
+            if (i === null) return i;
+            const next = (i + 1) % ITEMS.length;
+            trackGalleryEvent({ name: "gallery_lightbox_navigate", direction: "next", index: next, title: ITEMS[next].title });
+            return next;
+          })}
         />
       )}
       <CtaStrip />
