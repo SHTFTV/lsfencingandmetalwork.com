@@ -25,6 +25,7 @@ export const POSTS: BlogPost[] = [
       "A working contractor's rundown of the four fencing materials that actually earn their keep in BC weather — chain link, cedar, ornamental steel, and vinyl.",
     date: "2016-06-07",
     readMinutes: 6,
+    ogImage: "/og/blog-best-fencing-options.jpg",
     tags: ["Guides", "Materials"],
     body: [
       { type: "p", text: "Picking a fence isn't only about how it looks on install day. It's about how it looks in year seven, after a decade of Fraser Valley rain, wind, snow load, and UV. Here's how the four common options actually hold up." },
@@ -57,6 +58,7 @@ export const POSTS: BlogPost[] = [
       "Five reasons homeowners and businesses in the Lower Mainland install fencing — from resale value to insurance premiums to keeping the dog out of the tulips.",
     date: "2016-06-07",
     readMinutes: 4,
+    ogImage: "__PLACEHOLDER__",
     tags: ["Guides"],
     body: [
       { type: "p", text: "A fence isn't just a boundary marker. It's an investment that pays back in security, property value, and everyday quality of life. Here's what people rarely think about until they install one." },
@@ -79,6 +81,7 @@ export const POSTS: BlogPost[] = [
       "Head-to-head comparison of chain link and cedar fencing across cost, lifespan, maintenance, security, and curb appeal.",
     date: "2016-06-07",
     readMinutes: 5,
+    ogImage: "/og/blog-chain-link-vs-wood.jpg",
     tags: ["Guides", "Comparison"],
     body: [
       { type: "p", text: "Nine times out of ten a homeowner asks us the same question at the first walk-through: chain link or wood? Both are excellent. They just solve different problems." },
@@ -104,6 +107,7 @@ export const POSTS: BlogPost[] = [
       "Where barrier gates make sense — municipal access roads, parking lots, private driveways — and what to spec for a gate that lasts.",
     date: "2017-03-14",
     readMinutes: 4,
+    ogImage: "__PLACEHOLDER__",
     tags: ["Gates", "Commercial"],
     body: [
       { type: "p", text: "Barrier gates are the quiet workhorses of access control. They aren't glamorous, but they solve a specific problem cheaply and reliably: keep unauthorized vehicles out without building a full perimeter." },
