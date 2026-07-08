@@ -71,12 +71,14 @@ const GATE_OPTIONS = [
 const HEIGHT_OPTIONS = ["3 ft","4 ft","5 ft","6 ft","7 ft","8 ft","10 ft+","Not sure"] as const;
 const TIMELINE_OPTIONS = ["ASAP","Within 2 weeks","1–2 months","Just planning"] as const;
 
+const emptyToUndef = (v: unknown) => (v === "" || v == null ? undefined : v);
+
 const schema = z
   .object({
     service: z.enum(SERVICE_OPTIONS, { message: "Pick a service" }),
-    linearFeet: z.union([z.coerce.number().min(1).max(100000), z.literal("").transform(() => undefined)]).optional(),
-    fenceHeight: z.enum(HEIGHT_OPTIONS).optional().or(z.literal("").transform(() => undefined)),
-    gate: z.enum(GATE_OPTIONS).optional().or(z.literal("").transform(() => undefined)),
+    linearFeet: z.preprocess(emptyToUndef, z.coerce.number().min(1).max(100000).optional()),
+    fenceHeight: z.preprocess(emptyToUndef, z.enum(HEIGHT_OPTIONS).optional()),
+    gate: z.preprocess(emptyToUndef, z.enum(GATE_OPTIONS).optional()),
     city: z.string().trim().min(2, "Enter your city").max(60),
     postal: z.string().trim().max(10).optional().or(z.literal("")),
     timeline: z.enum(TIMELINE_OPTIONS, { message: "Pick a timeline" }),
