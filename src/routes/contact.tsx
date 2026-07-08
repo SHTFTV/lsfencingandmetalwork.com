@@ -268,7 +268,7 @@ function Contact() {
       </section>
 
       <section className="container-industrial py-14 grid lg:grid-cols-3 gap-8">
-        <form onSubmit={handleSubmit(onSubmit)} className="lg:col-span-2 border border-border rounded-sm bg-card p-6 md:p-10">
+        <form onSubmit={handleSubmit(onSubmit, onInvalid)} className="lg:col-span-2 border border-border rounded-sm bg-card p-6 md:p-10">
           <Stepper step={step} progress={progress} />
 
           {step === 0 && <StepService register={register} errors={errors} />}
