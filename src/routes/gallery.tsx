@@ -343,15 +343,8 @@ function Lightbox({
             <div className="text-sm text-white/70 mt-1">{item.location}</div>
           </div>
           <div className="flex items-center gap-4">
-            <Link
-              to="/contact"
-              search={{
-                source: "gallery-lightbox",
-                photo: slugify(item.title),
-                ...(CATEGORY_TO_SERVICE[item.category]
-                  ? { service: CATEGORY_TO_SERVICE[item.category] }
-                  : {}),
-              }}
+            <a
+              href={quoteHrefFor(item)}
               onClick={(e) => {
                 e.stopPropagation();
                 trackGalleryEvent({
@@ -367,7 +360,7 @@ function Lightbox({
               className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2.5 text-xs md:text-sm font-semibold uppercase tracking-wide rounded-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-black"
             >
               Request quote for this <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
+            </a>
             <div className="text-xs uppercase tracking-widest text-white/60 shrink-0" aria-label={`Image ${index + 1} of ${total}`}>
               {index + 1} / {total}
             </div>
