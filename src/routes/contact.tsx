@@ -83,7 +83,6 @@ function Contact() {
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
-  const [webhookDelivered, setWebhookDelivered] = useState(false);
   const submit = useServerFn(submitLead);
 
   const form = useForm<FormValues>({
