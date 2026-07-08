@@ -183,8 +183,60 @@ function Lightbox({
   item: Item; index: number; total: number;
   onClose: () => void; onPrev: () => void; onNext: () => void;
 }) {
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
+
+  // Autofocus close button on open
+  useEffect(() => {
+    closeBtnRef.current?.focus();
+  }, []);
+
+  // Keyboard: Escape closes, arrows navigate, Tab is trapped inside dialog
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        onClose();
+        return;
+      }
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        onNext();
+        return;
+      }
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        onPrev();
+        return;
+      }
+      if (e.key === "Tab") {
+        const root = dialogRef.current;
+        if (!root) return;
+        const focusables = root.querySelectorAll<HTMLElement>(
+          'button, [href], input, [tabindex]:not([tabindex="-1"])',
+        );
+        if (focusables.length === 0) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        const active = document.activeElement as HTMLElement | null;
+        if (e.shiftKey) {
+          if (active === first || !root.contains(active)) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else if (active === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [onClose, onNext, onPrev]);
+
   return (
     <div
+      ref={dialogRef}
       role="dialog"
       aria-modal="true"
       aria-label={item.title}
@@ -192,10 +244,11 @@ function Lightbox({
       className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
     >
       <button
+        ref={closeBtnRef}
         type="button"
         onClick={(e) => { e.stopPropagation(); onClose(); }}
         aria-label="Close"
-        className="absolute top-4 right-4 h-10 w-10 flex items-center justify-center rounded-sm border border-white/20 text-white/80 hover:text-white hover:border-white transition"
+        className="absolute top-4 right-4 h-10 w-10 flex items-center justify-center rounded-sm border border-white/20 text-white/80 hover:text-white hover:border-white focus:outline-none focus:ring-2 focus:ring-primary transition"
       >
         <X className="h-5 w-5" />
       </button>
@@ -203,7 +256,7 @@ function Lightbox({
         type="button"
         onClick={(e) => { e.stopPropagation(); onPrev(); }}
         aria-label="Previous"
-        className="absolute left-4 top-1/2 -translate-y-1/2 h-12 w-12 flex items-center justify-center rounded-sm border border-white/20 text-white/80 hover:text-white hover:border-white transition"
+        className="absolute left-4 top-1/2 -translate-y-1/2 h-12 w-12 flex items-center justify-center rounded-sm border border-white/20 text-white/80 hover:text-white hover:border-white focus:outline-none focus:ring-2 focus:ring-primary transition"
       >
         <ChevronLeft className="h-6 w-6" />
       </button>
@@ -211,7 +264,7 @@ function Lightbox({
         type="button"
         onClick={(e) => { e.stopPropagation(); onNext(); }}
         aria-label="Next"
-        className="absolute right-4 top-1/2 -translate-y-1/2 h-12 w-12 flex items-center justify-center rounded-sm border border-white/20 text-white/80 hover:text-white hover:border-white transition"
+        className="absolute right-4 top-1/2 -translate-y-1/2 h-12 w-12 flex items-center justify-center rounded-sm border border-white/20 text-white/80 hover:text-white hover:border-white focus:outline-none focus:ring-2 focus:ring-primary transition"
       >
         <ChevronRight className="h-6 w-6" />
       </button>
@@ -248,6 +301,7 @@ function Lightbox({
     </div>
   );
 }
+
 
 
 function PatternLayer({ pattern }: { pattern: Item["pattern"] }) {
