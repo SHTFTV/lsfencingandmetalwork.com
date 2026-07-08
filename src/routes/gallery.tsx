@@ -173,13 +173,18 @@ function GalleryTile({
       type="button"
       onClick={onClick}
       aria-label={`View ${item.title}`}
-      className={`group relative aspect-[4/3] rounded-sm overflow-hidden border border-border bg-gradient-to-br ${item.swatch} text-left focus:outline-none focus:ring-2 focus:ring-primary`}
+      className="group relative aspect-[4/3] rounded-sm overflow-hidden border border-border bg-muted text-left focus:outline-none focus:ring-2 focus:ring-primary"
     >
-      <PatternLayer pattern={item.pattern} />
-      <div className="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
+      <img
+        src={item.src}
+        alt={item.alt}
+        loading="lazy"
+        className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
+      />
+      <div className="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/85 via-black/25 to-transparent">
         <div className="text-[10px] uppercase tracking-[0.3em] text-primary">{item.category}</div>
         <div className="font-display uppercase text-white text-base leading-tight mt-1">{item.title}</div>
-        <div className="text-xs text-white/70 mt-1">{item.location}</div>
+        <div className="text-xs text-white/80 mt-1">{item.location}</div>
       </div>
       <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition text-[10px] uppercase tracking-widest bg-primary text-primary-foreground px-2 py-1 rounded-sm">
         View
@@ -198,29 +203,15 @@ function Lightbox({
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
 
-  // Autofocus close button on open
   useEffect(() => {
     closeBtnRef.current?.focus();
   }, []);
 
-  // Keyboard: Escape closes, arrows navigate, Tab is trapped inside dialog
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        e.preventDefault();
-        onClose();
-        return;
-      }
-      if (e.key === "ArrowRight") {
-        e.preventDefault();
-        onNext();
-        return;
-      }
-      if (e.key === "ArrowLeft") {
-        e.preventDefault();
-        onPrev();
-        return;
-      }
+      if (e.key === "Escape") { e.preventDefault(); onClose(); return; }
+      if (e.key === "ArrowRight") { e.preventDefault(); onNext(); return; }
+      if (e.key === "ArrowLeft") { e.preventDefault(); onPrev(); return; }
       if (e.key === "Tab") {
         const root = dialogRef.current;
         if (!root) return;
@@ -285,19 +276,12 @@ function Lightbox({
         onClick={(e) => e.stopPropagation()}
         className="w-full max-w-5xl"
       >
-        <div className={`relative aspect-video rounded-sm overflow-hidden border border-white/10 bg-gradient-to-br ${item.swatch}`}>
-          <PatternLayer pattern={item.pattern} />
-          {/* Larger proof-of-work grid overlay: 6 pattern tiles */}
-          <div className="absolute inset-0 grid grid-cols-3 grid-rows-2 gap-1 p-2 opacity-90">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className={`relative overflow-hidden rounded-sm bg-gradient-to-br ${item.swatch} border border-white/10`}>
-                <PatternLayer pattern={item.pattern} />
-              </div>
-            ))}
-          </div>
-          <div className="absolute bottom-3 left-4 text-[10px] uppercase tracking-[0.3em] text-white/70">
-            Placeholder proof-of-work grid
-          </div>
+        <div className="relative rounded-sm overflow-hidden border border-white/10 bg-black flex items-center justify-center max-h-[75vh]">
+          <img
+            src={item.src}
+            alt={item.alt}
+            className="max-h-[75vh] w-auto max-w-full object-contain"
+          />
         </div>
         <figcaption className="mt-4 flex items-end justify-between gap-4 text-white">
           <div>
@@ -313,6 +297,7 @@ function Lightbox({
     </div>
   );
 }
+
 
 
 
