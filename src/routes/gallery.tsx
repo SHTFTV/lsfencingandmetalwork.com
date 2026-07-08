@@ -124,11 +124,8 @@ function Page() {
 
 
 
-        <div className="mt-10 border border-dashed border-border rounded-sm bg-card/50 p-6 text-sm text-muted-foreground">
-          These tiles are placeholders styled with the site palette. Drop real photos into
-          <code className="mx-1 text-foreground">public/gallery/</code> and swap the tile <code className="mx-1 text-foreground">pattern</code>
-          for an <code className="mx-1 text-foreground">&lt;img&gt;</code> when project photography is ready.
-        </div>
+
+
 
         <div className="mt-10 grid md:grid-cols-3 gap-4">
           <Link to="/projects/heatherbrae-builders-surrey" className="group border border-border rounded-sm bg-card p-5 hover:border-primary transition">
