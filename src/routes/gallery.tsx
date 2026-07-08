@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ArrowRight, X, ChevronLeft, ChevronRight } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+
 
 
 export const Route = createFileRoute("/gallery")({
@@ -53,22 +54,31 @@ const ITEMS: Item[] = [
 function Page() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const open = openIndex !== null;
+  const tileRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const lastOpenerIndex = useRef<number | null>(null);
+
+  const openAt = useCallback((i: number) => {
+    lastOpenerIndex.current = i;
+    setOpenIndex(i);
+  }, []);
+  const close = useCallback(() => {
+    setOpenIndex(null);
+    // Return focus to the tile that opened the modal
+    requestAnimationFrame(() => {
+      const idx = lastOpenerIndex.current;
+      if (idx !== null) tileRefs.current[idx]?.focus();
+    });
+  }, []);
 
   useEffect(() => {
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpenIndex(null);
-      if (e.key === "ArrowRight") setOpenIndex((i) => (i === null ? i : (i + 1) % ITEMS.length));
-      if (e.key === "ArrowLeft") setOpenIndex((i) => (i === null ? i : (i - 1 + ITEMS.length) % ITEMS.length));
-    };
-    document.addEventListener("keydown", onKey);
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
-      document.removeEventListener("keydown", onKey);
       document.body.style.overflow = prev;
     };
   }, [open]);
+
 
   return (
     <PageShell>
