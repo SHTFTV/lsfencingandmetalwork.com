@@ -57,6 +57,30 @@ const CATEGORIES = [
   "Excavation",
 ] as const;
 
+// Map a gallery category to the matching value in the contact form's SERVICE_OPTIONS
+// so the CTA can pre-select it via ?service=…
+const CATEGORY_TO_SERVICE: Record<string, string> = {
+  "Chain Link": "Chain Link Fencing",
+  "Ornamental": "Ornamental Fencing",
+  "Gates": "Metal / Driveway Gate",
+  "Welding": "Welding / Repair",
+  "Excavation": "Excavation",
+};
+
+function slugify(s: string) {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+
+function quoteHrefFor(item: Item) {
+  const service = CATEGORY_TO_SERVICE[item.category];
+  const params = new URLSearchParams({
+    source: "gallery-lightbox",
+    photo: slugify(item.title),
+  });
+  if (service) params.set("service", service);
+  return `/contact?${params.toString()}`;
+}
+
 const ITEMS: Item[] = [
   { title: "Black vinyl-coated school perimeter", location: "Surrey, BC", category: "Chain Link", src: imgBlackSchool.url, alt: "Completed black vinyl-coated chain link perimeter fence at a school in Surrey BC" },
   { title: "10-ft galvanized security fence with barb", location: "Vancouver, BC", category: "Chain Link", src: imgPerimeterBarb.url, alt: "Tall galvanized chain link perimeter fence with three-strand barbed wire" },
@@ -312,14 +336,34 @@ function Lightbox({
             className="max-h-[75vh] w-auto max-w-full object-contain"
           />
         </div>
-        <figcaption className="mt-4 flex items-end justify-between gap-4 text-white">
+        <figcaption className="mt-4 flex flex-wrap items-end justify-between gap-4 text-white">
           <div>
             <div className="text-[10px] uppercase tracking-[0.3em] text-primary">{item.category}</div>
             <div className="font-display uppercase text-xl md:text-2xl mt-1">{item.title}</div>
             <div className="text-sm text-white/70 mt-1">{item.location}</div>
           </div>
-          <div className="text-xs uppercase tracking-widest text-white/60 shrink-0">
-            {index + 1} / {total}
+          <div className="flex items-center gap-4">
+            <a
+              href={quoteHrefFor(item)}
+              onClick={(e) => {
+                e.stopPropagation();
+                trackGalleryEvent({
+                  name: "gallery_quote_cta_click",
+                  index,
+                  title: item.title,
+                  category: item.category,
+                  service: CATEGORY_TO_SERVICE[item.category] ?? "Other",
+                  surface: "lightbox",
+                });
+              }}
+              data-testid="lightbox-quote-cta"
+              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2.5 text-xs md:text-sm font-semibold uppercase tracking-wide rounded-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-black"
+            >
+              Request quote for this <ArrowRight className="h-3.5 w-3.5" />
+            </a>
+            <div className="text-xs uppercase tracking-widest text-white/60 shrink-0" aria-label={`Image ${index + 1} of ${total}`}>
+              {index + 1} / {total}
+            </div>
           </div>
         </figcaption>
       </figure>
