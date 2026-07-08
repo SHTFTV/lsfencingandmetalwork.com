@@ -14,20 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
+      email_settings: {
+        Row: {
+          footer: string
+          id: number
+          intro: string
+          subject: string
+          updated_at: string
+        }
+        Insert: {
+          footer?: string
+          id?: number
+          intro?: string
+          subject?: string
+          updated_at?: string
+        }
+        Update: {
+          footer?: string
+          id?: number
+          intro?: string
+          subject?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       leads: {
         Row: {
           city: string
           created_at: string
+          delivered_at: string | null
+          delivery_status: string
           email: string
           fence_height: string | null
           gate: string | null
           id: string
           ip: string | null
+          last_delivery_error: string | null
           linear_feet: number | null
           name: string
           notes: string | null
           phone: string
           postal: string | null
+          retry_count: number
           service: string
           source: string | null
           status: string
@@ -37,16 +65,20 @@ export type Database = {
         Insert: {
           city: string
           created_at?: string
+          delivered_at?: string | null
+          delivery_status?: string
           email: string
           fence_height?: string | null
           gate?: string | null
           id?: string
           ip?: string | null
+          last_delivery_error?: string | null
           linear_feet?: number | null
           name: string
           notes?: string | null
           phone: string
           postal?: string | null
+          retry_count?: number
           service: string
           source?: string | null
           status?: string
@@ -56,16 +88,20 @@ export type Database = {
         Update: {
           city?: string
           created_at?: string
+          delivered_at?: string | null
+          delivery_status?: string
           email?: string
           fence_height?: string | null
           gate?: string | null
           id?: string
           ip?: string | null
+          last_delivery_error?: string | null
           linear_feet?: number | null
           name?: string
           notes?: string | null
           phone?: string
           postal?: string | null
+          retry_count?: number
           service?: string
           source?: string | null
           status?: string

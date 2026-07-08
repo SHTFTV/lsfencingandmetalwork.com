@@ -2,6 +2,13 @@ import { createServerFn } from "@tanstack/react-start";
 import { getRequestHeader } from "@tanstack/react-start/server";
 import { z } from "zod";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import {
+  SAMPLE_LEAD,
+  sendLeadNotification,
+  renderLeadEmail,
+  type EmailTemplate,
+  type LeadEmailData,
+} from "./leads.server";
 
 const leadSchema = z.object({
   service: z.string().min(1).max(80),
@@ -19,6 +26,31 @@ const leadSchema = z.object({
 });
 
 export type LeadInput = z.infer<typeof leadSchema>;
+
+const DEFAULT_TEMPLATE: EmailTemplate = {
+  subject: "New lead: {{name}} — {{service}} ({{city}})",
+  intro: "You have a new fencing inquiry from the LS Fencing website.",
+  footer: "Reply to this email or call the customer directly.",
+};
+
+async function loadTemplate(): Promise<EmailTemplate> {
+  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+  const { data } = await supabaseAdmin
+    .from("email_settings")
+    .select("subject, intro, footer")
+    .eq("id", 1)
+    .maybeSingle();
+  if (!data) return DEFAULT_TEMPLATE;
+  return { subject: data.subject, intro: data.intro, footer: data.footer };
+}
+
+async function requireAdmin(context: { supabase: { rpc: Function }; userId: string }) {
+  const isAdmin = await context.supabase.rpc("has_role", {
+    _user_id: context.userId,
+    _role: "admin",
+  });
+  if (isAdmin.error || !isAdmin.data) throw new Error("Forbidden");
+}
 
 export const submitLead = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => leadSchema.parse(data))
@@ -46,6 +78,8 @@ export const submitLead = createServerFn({ method: "POST" })
       source: data.source ?? "contact-form",
       user_agent: userAgent,
       ip,
+      delivery_status: "pending",
+      retry_count: 0,
     };
 
     const { data: inserted, error } = await supabaseAdmin
@@ -59,57 +93,49 @@ export const submitLead = createServerFn({ method: "POST" })
       throw new Error("Could not save request. Please call us instead.");
     }
 
-    // Fire-and-forget email notification via Formsubmit (no domain / no API key).
-    // First-ever submission triggers a one-time confirmation email to the inbox
-    // owner — after they click it, all future submissions arrive automatically.
-    try {
-      const payload = {
-        _subject: `New lead: ${data.name} — ${data.service} (${data.city})`,
-        _template: "table",
-        _captcha: "false",
-        name: data.name,
-        phone: data.phone,
-        email: data.email,
-        service: data.service,
-        linear_feet: data.linearFeet ?? "",
-        fence_height: data.fenceHeight ?? "",
-        gate: data.gate ?? "",
-        city: data.city,
-        postal: data.postal ?? "",
-        timeline: data.timeline ?? "",
-        notes: data.notes ?? "",
-        source: data.source ?? "contact-form",
-        submitted_at: new Date().toISOString(),
-      };
-      const res = await fetch(
-        "https://formsubmit.co/ajax/lsfencingandmetalwork@gmail.com",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify(payload),
-        },
-      );
-      if (!res.ok) {
-        console.error("[submitLead] formsubmit non-ok", res.status, await res.text());
-      }
-    } catch (e) {
-      // Never fail the request over the notification hop — DB row is the source of truth.
-      console.error("[submitLead] formsubmit failed", e);
-    }
+    // Send notification (up to 3 attempts, exponential backoff) and record outcome.
+    const tpl = await loadTemplate();
+    const leadForEmail: LeadEmailData = {
+      name: data.name,
+      phone: data.phone,
+      email: data.email,
+      service: data.service,
+      linearFeet: data.linearFeet ?? null,
+      fenceHeight: data.fenceHeight ?? null,
+      gate: data.gate ?? null,
+      city: data.city,
+      postal: data.postal ?? null,
+      timeline: data.timeline ?? null,
+      notes: data.notes ?? null,
+      source: data.source ?? "contact-form",
+    };
+    const result = await sendLeadNotification(tpl, leadForEmail, { maxAttempts: 3 });
 
-    return { ok: true as const, id: inserted.id };
+    await supabaseAdmin
+      .from("leads")
+      .update(
+        result.ok
+          ? {
+              delivery_status: "sent",
+              retry_count: result.attempts - 1,
+              delivered_at: new Date().toISOString(),
+              last_delivery_error: null,
+            }
+          : {
+              delivery_status: "failed",
+              retry_count: result.attempts,
+              last_delivery_error: result.error.slice(0, 500),
+            },
+      )
+      .eq("id", inserted.id);
+
+    return { ok: true as const, id: inserted.id, delivered: result.ok };
   });
 
 export const listLeads = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    const isAdmin = await context.supabase.rpc("has_role", {
-      _user_id: context.userId,
-      _role: "admin",
-    });
-    if (isAdmin.error) throw new Error("Could not verify permissions");
-    if (!isAdmin.data) throw new Error("Forbidden");
-
+    await requireAdmin(context);
     const { data, error } = await context.supabase
       .from("leads")
       .select("*")
@@ -128,16 +154,47 @@ export const updateLeadStatus = createServerFn({ method: "POST" })
     }).parse(data),
   )
   .handler(async ({ data, context }) => {
-    const isAdmin = await context.supabase.rpc("has_role", {
-      _user_id: context.userId,
-      _role: "admin",
-    });
-    if (isAdmin.error || !isAdmin.data) throw new Error("Forbidden");
-
+    await requireAdmin(context);
     const { error } = await context.supabase
       .from("leads")
       .update({ status: data.status })
       .eq("id", data.id);
     if (error) throw error;
     return { ok: true };
+  });
+
+export const getEmailTemplate = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    await requireAdmin(context);
+    const tpl = await loadTemplate();
+    return { template: tpl, sample: SAMPLE_LEAD, preview: renderLeadEmail(tpl, SAMPLE_LEAD) };
+  });
+
+const templateSchema = z.object({
+  subject: z.string().trim().min(3).max(200),
+  intro: z.string().trim().min(1).max(1000),
+  footer: z.string().trim().min(1).max(1000),
+});
+
+export const saveEmailTemplate = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((data: unknown) => templateSchema.parse(data))
+  .handler(async ({ data, context }) => {
+    await requireAdmin(context);
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { error } = await supabaseAdmin
+      .from("email_settings")
+      .upsert({ id: 1, ...data, updated_at: new Date().toISOString() });
+    if (error) throw error;
+    return { ok: true, template: data, preview: renderLeadEmail(data, SAMPLE_LEAD) };
+  });
+
+export const sendTestEmail = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    await requireAdmin(context);
+    const tpl = await loadTemplate();
+    const result = await sendLeadNotification(tpl, SAMPLE_LEAD, { maxAttempts: 3 });
+    return result;
   });
