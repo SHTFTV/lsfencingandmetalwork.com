@@ -336,14 +336,41 @@ function Lightbox({
             className="max-h-[75vh] w-auto max-w-full object-contain"
           />
         </div>
-        <figcaption className="mt-4 flex items-end justify-between gap-4 text-white">
+        <figcaption className="mt-4 flex flex-wrap items-end justify-between gap-4 text-white">
           <div>
             <div className="text-[10px] uppercase tracking-[0.3em] text-primary">{item.category}</div>
             <div className="font-display uppercase text-xl md:text-2xl mt-1">{item.title}</div>
             <div className="text-sm text-white/70 mt-1">{item.location}</div>
           </div>
-          <div className="text-xs uppercase tracking-widest text-white/60 shrink-0">
-            {index + 1} / {total}
+          <div className="flex items-center gap-4">
+            <Link
+              to="/contact"
+              search={{
+                source: "gallery-lightbox",
+                photo: slugify(item.title),
+                ...(CATEGORY_TO_SERVICE[item.category]
+                  ? { service: CATEGORY_TO_SERVICE[item.category] }
+                  : {}),
+              }}
+              onClick={(e) => {
+                e.stopPropagation();
+                trackGalleryEvent({
+                  name: "gallery_quote_cta_click",
+                  index,
+                  title: item.title,
+                  category: item.category,
+                  service: CATEGORY_TO_SERVICE[item.category] ?? "Other",
+                  surface: "lightbox",
+                });
+              }}
+              data-testid="lightbox-quote-cta"
+              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2.5 text-xs md:text-sm font-semibold uppercase tracking-wide rounded-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-black"
+            >
+              Request quote for this <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+            <div className="text-xs uppercase tracking-widest text-white/60 shrink-0" aria-label={`Image ${index + 1} of ${total}`}>
+              {index + 1} / {total}
+            </div>
           </div>
         </figcaption>
       </figure>
