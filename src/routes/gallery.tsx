@@ -51,6 +51,25 @@ const ITEMS: Item[] = [
 ];
 
 function Page() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const open = openIndex !== null;
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpenIndex(null);
+      if (e.key === "ArrowRight") setOpenIndex((i) => (i === null ? i : (i + 1) % ITEMS.length));
+      if (e.key === "ArrowLeft") setOpenIndex((i) => (i === null ? i : (i - 1 + ITEMS.length) % ITEMS.length));
+    };
+    document.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
+
   return (
     <PageShell>
       <PageHero
@@ -58,6 +77,7 @@ function Page() {
         title="Proof of Work"
         intro="Recent installs across the Fraser Valley & Lower Mainland. Photos are being updated — swap any tile for a real project shot when ready."
       />
+
 
       <section className="container-industrial py-10">
         <div className="flex flex-wrap gap-2 mb-8">
