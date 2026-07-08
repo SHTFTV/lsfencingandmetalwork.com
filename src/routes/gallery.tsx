@@ -110,6 +110,9 @@ const ITEMS: Item[] = [
   { title: "Black privacy-slat chain link screen", location: "Maple Ridge, BC", category: "Chain Link", src: imgBlackSlatMapleRidge.url, alt: "6-foot black vinyl-coated chain link fence with full-height privacy slats screening an apartment complex in Maple Ridge" },
   { title: "Ornamental storefront fence & swing gate", location: "Abbotsford, BC", category: "Ornamental", src: imgOrnamentalStorefront.url, alt: "Black powder-coated ornamental steel storefront fence with matching pedestrian swing gate outside an Abbotsford commercial building" },
   { title: "In-shop welding & Kubota attachment fabrication", location: "Chilliwack, BC", category: "Welding", src: imgShopWelding.url, alt: "LS Fencing welder MIG welding a custom steel attachment on the arm of an orange Kubota skid steer inside the fabrication shop" },
+  { title: "Kubota KX033 mini excavator on post line", location: "Fraser Valley, BC", category: "Excavation", src: imgKubotaExcavator.url, alt: "Operator running an orange Kubota KX033-4 mini excavator digging a fence post line in a rural pasture" },
+  { title: "Black chain link on hillside acreage", location: "Chilliwack, BC", category: "Chain Link", src: imgBlackHillside.url, alt: "Black vinyl-coated chain link fence installed along a rock-wall hillside acreage with Chilliwack mountain views" },
+  { title: "8×16 cantilever slat gate", location: "Abbotsford, BC", category: "Gates", src: imgCantileverSlatGate.url, alt: "8-foot by 16-foot galvanized cantilever slide gate with grey privacy slats securing an Abbotsford industrial yard" },
 ];
 
 
