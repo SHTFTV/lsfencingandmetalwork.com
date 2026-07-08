@@ -9,38 +9,482 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WeldingServicesRouteImport } from './routes/welding-services'
+import { Route as TestimonialRouteImport } from './routes/testimonial'
+import { Route as SnowRemovalRouteImport } from './routes/snow-removal'
+import { Route as ResidentialChainLinkFencingRouteImport } from './routes/residential-chain-link-fencing'
+import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as OrnamentalFencingRouteImport } from './routes/ornamental-fencing'
+import { Route as MetalGatesRouteImport } from './routes/metal-gates'
+import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as ExcavationServicesRouteImport } from './routes/excavation-services'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CommercialChainLinkFencingRouteImport } from './routes/commercial-chain-link-fencing'
+import { Route as ChilliwackChainLinkFenceCompanyRouteImport } from './routes/chilliwack-chain-link-fence-company'
+import { Route as ChainLinkFencingRouteImport } from './routes/chain-link-fencing'
+import { Route as CedarFencingRouteImport } from './routes/cedar-fencing'
+import { Route as CareerRouteImport } from './routes/career'
+import { Route as BlogRouteImport } from './routes/blog'
+import { Route as BarrierGatesRouteImport } from './routes/barrier-gates'
+import { Route as AboutUsRouteImport } from './routes/about-us'
+import { Route as AbbotsfordChainLinkFenceContractorRouteImport } from './routes/abbotsford-chain-link-fence-contractor'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProjectsRailingInstallationMapleRidgeRouteImport } from './routes/projects/railing-installation-maple-ridge'
+import { Route as ProjectsHeatherbraeBuildersSurreyRouteImport } from './routes/projects/heatherbrae-builders-surrey'
+import { Route as ProjectsCooperRentalsLangleyRouteImport } from './routes/projects/cooper-rentals-langley'
+import { Route as ProjectsCantileverGatesChilliwackRouteImport } from './routes/projects/cantilever-gates-chilliwack'
 
+const WeldingServicesRoute = WeldingServicesRouteImport.update({
+  id: '/welding-services',
+  path: '/welding-services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TestimonialRoute = TestimonialRouteImport.update({
+  id: '/testimonial',
+  path: '/testimonial',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SnowRemovalRoute = SnowRemovalRouteImport.update({
+  id: '/snow-removal',
+  path: '/snow-removal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResidentialChainLinkFencingRoute =
+  ResidentialChainLinkFencingRouteImport.update({
+    id: '/residential-chain-link-fencing',
+    path: '/residential-chain-link-fencing',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrnamentalFencingRoute = OrnamentalFencingRouteImport.update({
+  id: '/ornamental-fencing',
+  path: '/ornamental-fencing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MetalGatesRoute = MetalGatesRouteImport.update({
+  id: '/metal-gates',
+  path: '/metal-gates',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExcavationServicesRoute = ExcavationServicesRouteImport.update({
+  id: '/excavation-services',
+  path: '/excavation-services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommercialChainLinkFencingRoute =
+  CommercialChainLinkFencingRouteImport.update({
+    id: '/commercial-chain-link-fencing',
+    path: '/commercial-chain-link-fencing',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ChilliwackChainLinkFenceCompanyRoute =
+  ChilliwackChainLinkFenceCompanyRouteImport.update({
+    id: '/chilliwack-chain-link-fence-company',
+    path: '/chilliwack-chain-link-fence-company',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ChainLinkFencingRoute = ChainLinkFencingRouteImport.update({
+  id: '/chain-link-fencing',
+  path: '/chain-link-fencing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CedarFencingRoute = CedarFencingRouteImport.update({
+  id: '/cedar-fencing',
+  path: '/cedar-fencing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CareerRoute = CareerRouteImport.update({
+  id: '/career',
+  path: '/career',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BarrierGatesRoute = BarrierGatesRouteImport.update({
+  id: '/barrier-gates',
+  path: '/barrier-gates',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutUsRoute = AboutUsRouteImport.update({
+  id: '/about-us',
+  path: '/about-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AbbotsfordChainLinkFenceContractorRoute =
+  AbbotsfordChainLinkFenceContractorRouteImport.update({
+    id: '/abbotsford-chain-link-fence-contractor',
+    path: '/abbotsford-chain-link-fence-contractor',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectsRailingInstallationMapleRidgeRoute =
+  ProjectsRailingInstallationMapleRidgeRouteImport.update({
+    id: '/projects/railing-installation-maple-ridge',
+    path: '/projects/railing-installation-maple-ridge',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ProjectsHeatherbraeBuildersSurreyRoute =
+  ProjectsHeatherbraeBuildersSurreyRouteImport.update({
+    id: '/projects/heatherbrae-builders-surrey',
+    path: '/projects/heatherbrae-builders-surrey',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ProjectsCooperRentalsLangleyRoute =
+  ProjectsCooperRentalsLangleyRouteImport.update({
+    id: '/projects/cooper-rentals-langley',
+    path: '/projects/cooper-rentals-langley',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ProjectsCantileverGatesChilliwackRoute =
+  ProjectsCantileverGatesChilliwackRouteImport.update({
+    id: '/projects/cantilever-gates-chilliwack',
+    path: '/projects/cantilever-gates-chilliwack',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/abbotsford-chain-link-fence-contractor': typeof AbbotsfordChainLinkFenceContractorRoute
+  '/about-us': typeof AboutUsRoute
+  '/barrier-gates': typeof BarrierGatesRoute
+  '/blog': typeof BlogRoute
+  '/career': typeof CareerRoute
+  '/cedar-fencing': typeof CedarFencingRoute
+  '/chain-link-fencing': typeof ChainLinkFencingRoute
+  '/chilliwack-chain-link-fence-company': typeof ChilliwackChainLinkFenceCompanyRoute
+  '/commercial-chain-link-fencing': typeof CommercialChainLinkFencingRoute
+  '/contact': typeof ContactRoute
+  '/excavation-services': typeof ExcavationServicesRoute
+  '/gallery': typeof GalleryRoute
+  '/metal-gates': typeof MetalGatesRoute
+  '/ornamental-fencing': typeof OrnamentalFencingRoute
+  '/pricing': typeof PricingRoute
+  '/residential-chain-link-fencing': typeof ResidentialChainLinkFencingRoute
+  '/snow-removal': typeof SnowRemovalRoute
+  '/testimonial': typeof TestimonialRoute
+  '/welding-services': typeof WeldingServicesRoute
+  '/projects/cantilever-gates-chilliwack': typeof ProjectsCantileverGatesChilliwackRoute
+  '/projects/cooper-rentals-langley': typeof ProjectsCooperRentalsLangleyRoute
+  '/projects/heatherbrae-builders-surrey': typeof ProjectsHeatherbraeBuildersSurreyRoute
+  '/projects/railing-installation-maple-ridge': typeof ProjectsRailingInstallationMapleRidgeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/abbotsford-chain-link-fence-contractor': typeof AbbotsfordChainLinkFenceContractorRoute
+  '/about-us': typeof AboutUsRoute
+  '/barrier-gates': typeof BarrierGatesRoute
+  '/blog': typeof BlogRoute
+  '/career': typeof CareerRoute
+  '/cedar-fencing': typeof CedarFencingRoute
+  '/chain-link-fencing': typeof ChainLinkFencingRoute
+  '/chilliwack-chain-link-fence-company': typeof ChilliwackChainLinkFenceCompanyRoute
+  '/commercial-chain-link-fencing': typeof CommercialChainLinkFencingRoute
+  '/contact': typeof ContactRoute
+  '/excavation-services': typeof ExcavationServicesRoute
+  '/gallery': typeof GalleryRoute
+  '/metal-gates': typeof MetalGatesRoute
+  '/ornamental-fencing': typeof OrnamentalFencingRoute
+  '/pricing': typeof PricingRoute
+  '/residential-chain-link-fencing': typeof ResidentialChainLinkFencingRoute
+  '/snow-removal': typeof SnowRemovalRoute
+  '/testimonial': typeof TestimonialRoute
+  '/welding-services': typeof WeldingServicesRoute
+  '/projects/cantilever-gates-chilliwack': typeof ProjectsCantileverGatesChilliwackRoute
+  '/projects/cooper-rentals-langley': typeof ProjectsCooperRentalsLangleyRoute
+  '/projects/heatherbrae-builders-surrey': typeof ProjectsHeatherbraeBuildersSurreyRoute
+  '/projects/railing-installation-maple-ridge': typeof ProjectsRailingInstallationMapleRidgeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/abbotsford-chain-link-fence-contractor': typeof AbbotsfordChainLinkFenceContractorRoute
+  '/about-us': typeof AboutUsRoute
+  '/barrier-gates': typeof BarrierGatesRoute
+  '/blog': typeof BlogRoute
+  '/career': typeof CareerRoute
+  '/cedar-fencing': typeof CedarFencingRoute
+  '/chain-link-fencing': typeof ChainLinkFencingRoute
+  '/chilliwack-chain-link-fence-company': typeof ChilliwackChainLinkFenceCompanyRoute
+  '/commercial-chain-link-fencing': typeof CommercialChainLinkFencingRoute
+  '/contact': typeof ContactRoute
+  '/excavation-services': typeof ExcavationServicesRoute
+  '/gallery': typeof GalleryRoute
+  '/metal-gates': typeof MetalGatesRoute
+  '/ornamental-fencing': typeof OrnamentalFencingRoute
+  '/pricing': typeof PricingRoute
+  '/residential-chain-link-fencing': typeof ResidentialChainLinkFencingRoute
+  '/snow-removal': typeof SnowRemovalRoute
+  '/testimonial': typeof TestimonialRoute
+  '/welding-services': typeof WeldingServicesRoute
+  '/projects/cantilever-gates-chilliwack': typeof ProjectsCantileverGatesChilliwackRoute
+  '/projects/cooper-rentals-langley': typeof ProjectsCooperRentalsLangleyRoute
+  '/projects/heatherbrae-builders-surrey': typeof ProjectsHeatherbraeBuildersSurreyRoute
+  '/projects/railing-installation-maple-ridge': typeof ProjectsRailingInstallationMapleRidgeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/abbotsford-chain-link-fence-contractor'
+    | '/about-us'
+    | '/barrier-gates'
+    | '/blog'
+    | '/career'
+    | '/cedar-fencing'
+    | '/chain-link-fencing'
+    | '/chilliwack-chain-link-fence-company'
+    | '/commercial-chain-link-fencing'
+    | '/contact'
+    | '/excavation-services'
+    | '/gallery'
+    | '/metal-gates'
+    | '/ornamental-fencing'
+    | '/pricing'
+    | '/residential-chain-link-fencing'
+    | '/snow-removal'
+    | '/testimonial'
+    | '/welding-services'
+    | '/projects/cantilever-gates-chilliwack'
+    | '/projects/cooper-rentals-langley'
+    | '/projects/heatherbrae-builders-surrey'
+    | '/projects/railing-installation-maple-ridge'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/abbotsford-chain-link-fence-contractor'
+    | '/about-us'
+    | '/barrier-gates'
+    | '/blog'
+    | '/career'
+    | '/cedar-fencing'
+    | '/chain-link-fencing'
+    | '/chilliwack-chain-link-fence-company'
+    | '/commercial-chain-link-fencing'
+    | '/contact'
+    | '/excavation-services'
+    | '/gallery'
+    | '/metal-gates'
+    | '/ornamental-fencing'
+    | '/pricing'
+    | '/residential-chain-link-fencing'
+    | '/snow-removal'
+    | '/testimonial'
+    | '/welding-services'
+    | '/projects/cantilever-gates-chilliwack'
+    | '/projects/cooper-rentals-langley'
+    | '/projects/heatherbrae-builders-surrey'
+    | '/projects/railing-installation-maple-ridge'
+  id:
+    | '__root__'
+    | '/'
+    | '/abbotsford-chain-link-fence-contractor'
+    | '/about-us'
+    | '/barrier-gates'
+    | '/blog'
+    | '/career'
+    | '/cedar-fencing'
+    | '/chain-link-fencing'
+    | '/chilliwack-chain-link-fence-company'
+    | '/commercial-chain-link-fencing'
+    | '/contact'
+    | '/excavation-services'
+    | '/gallery'
+    | '/metal-gates'
+    | '/ornamental-fencing'
+    | '/pricing'
+    | '/residential-chain-link-fencing'
+    | '/snow-removal'
+    | '/testimonial'
+    | '/welding-services'
+    | '/projects/cantilever-gates-chilliwack'
+    | '/projects/cooper-rentals-langley'
+    | '/projects/heatherbrae-builders-surrey'
+    | '/projects/railing-installation-maple-ridge'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AbbotsfordChainLinkFenceContractorRoute: typeof AbbotsfordChainLinkFenceContractorRoute
+  AboutUsRoute: typeof AboutUsRoute
+  BarrierGatesRoute: typeof BarrierGatesRoute
+  BlogRoute: typeof BlogRoute
+  CareerRoute: typeof CareerRoute
+  CedarFencingRoute: typeof CedarFencingRoute
+  ChainLinkFencingRoute: typeof ChainLinkFencingRoute
+  ChilliwackChainLinkFenceCompanyRoute: typeof ChilliwackChainLinkFenceCompanyRoute
+  CommercialChainLinkFencingRoute: typeof CommercialChainLinkFencingRoute
+  ContactRoute: typeof ContactRoute
+  ExcavationServicesRoute: typeof ExcavationServicesRoute
+  GalleryRoute: typeof GalleryRoute
+  MetalGatesRoute: typeof MetalGatesRoute
+  OrnamentalFencingRoute: typeof OrnamentalFencingRoute
+  PricingRoute: typeof PricingRoute
+  ResidentialChainLinkFencingRoute: typeof ResidentialChainLinkFencingRoute
+  SnowRemovalRoute: typeof SnowRemovalRoute
+  TestimonialRoute: typeof TestimonialRoute
+  WeldingServicesRoute: typeof WeldingServicesRoute
+  ProjectsCantileverGatesChilliwackRoute: typeof ProjectsCantileverGatesChilliwackRoute
+  ProjectsCooperRentalsLangleyRoute: typeof ProjectsCooperRentalsLangleyRoute
+  ProjectsHeatherbraeBuildersSurreyRoute: typeof ProjectsHeatherbraeBuildersSurreyRoute
+  ProjectsRailingInstallationMapleRidgeRoute: typeof ProjectsRailingInstallationMapleRidgeRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/welding-services': {
+      id: '/welding-services'
+      path: '/welding-services'
+      fullPath: '/welding-services'
+      preLoaderRoute: typeof WeldingServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/testimonial': {
+      id: '/testimonial'
+      path: '/testimonial'
+      fullPath: '/testimonial'
+      preLoaderRoute: typeof TestimonialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/snow-removal': {
+      id: '/snow-removal'
+      path: '/snow-removal'
+      fullPath: '/snow-removal'
+      preLoaderRoute: typeof SnowRemovalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/residential-chain-link-fencing': {
+      id: '/residential-chain-link-fencing'
+      path: '/residential-chain-link-fencing'
+      fullPath: '/residential-chain-link-fencing'
+      preLoaderRoute: typeof ResidentialChainLinkFencingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ornamental-fencing': {
+      id: '/ornamental-fencing'
+      path: '/ornamental-fencing'
+      fullPath: '/ornamental-fencing'
+      preLoaderRoute: typeof OrnamentalFencingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/metal-gates': {
+      id: '/metal-gates'
+      path: '/metal-gates'
+      fullPath: '/metal-gates'
+      preLoaderRoute: typeof MetalGatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/excavation-services': {
+      id: '/excavation-services'
+      path: '/excavation-services'
+      fullPath: '/excavation-services'
+      preLoaderRoute: typeof ExcavationServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/commercial-chain-link-fencing': {
+      id: '/commercial-chain-link-fencing'
+      path: '/commercial-chain-link-fencing'
+      fullPath: '/commercial-chain-link-fencing'
+      preLoaderRoute: typeof CommercialChainLinkFencingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chilliwack-chain-link-fence-company': {
+      id: '/chilliwack-chain-link-fence-company'
+      path: '/chilliwack-chain-link-fence-company'
+      fullPath: '/chilliwack-chain-link-fence-company'
+      preLoaderRoute: typeof ChilliwackChainLinkFenceCompanyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chain-link-fencing': {
+      id: '/chain-link-fencing'
+      path: '/chain-link-fencing'
+      fullPath: '/chain-link-fencing'
+      preLoaderRoute: typeof ChainLinkFencingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cedar-fencing': {
+      id: '/cedar-fencing'
+      path: '/cedar-fencing'
+      fullPath: '/cedar-fencing'
+      preLoaderRoute: typeof CedarFencingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/career': {
+      id: '/career'
+      path: '/career'
+      fullPath: '/career'
+      preLoaderRoute: typeof CareerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/barrier-gates': {
+      id: '/barrier-gates'
+      path: '/barrier-gates'
+      fullPath: '/barrier-gates'
+      preLoaderRoute: typeof BarrierGatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about-us': {
+      id: '/about-us'
+      path: '/about-us'
+      fullPath: '/about-us'
+      preLoaderRoute: typeof AboutUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/abbotsford-chain-link-fence-contractor': {
+      id: '/abbotsford-chain-link-fence-contractor'
+      path: '/abbotsford-chain-link-fence-contractor'
+      fullPath: '/abbotsford-chain-link-fence-contractor'
+      preLoaderRoute: typeof AbbotsfordChainLinkFenceContractorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +492,66 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projects/railing-installation-maple-ridge': {
+      id: '/projects/railing-installation-maple-ridge'
+      path: '/projects/railing-installation-maple-ridge'
+      fullPath: '/projects/railing-installation-maple-ridge'
+      preLoaderRoute: typeof ProjectsRailingInstallationMapleRidgeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/heatherbrae-builders-surrey': {
+      id: '/projects/heatherbrae-builders-surrey'
+      path: '/projects/heatherbrae-builders-surrey'
+      fullPath: '/projects/heatherbrae-builders-surrey'
+      preLoaderRoute: typeof ProjectsHeatherbraeBuildersSurreyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/cooper-rentals-langley': {
+      id: '/projects/cooper-rentals-langley'
+      path: '/projects/cooper-rentals-langley'
+      fullPath: '/projects/cooper-rentals-langley'
+      preLoaderRoute: typeof ProjectsCooperRentalsLangleyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/cantilever-gates-chilliwack': {
+      id: '/projects/cantilever-gates-chilliwack'
+      path: '/projects/cantilever-gates-chilliwack'
+      fullPath: '/projects/cantilever-gates-chilliwack'
+      preLoaderRoute: typeof ProjectsCantileverGatesChilliwackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AbbotsfordChainLinkFenceContractorRoute:
+    AbbotsfordChainLinkFenceContractorRoute,
+  AboutUsRoute: AboutUsRoute,
+  BarrierGatesRoute: BarrierGatesRoute,
+  BlogRoute: BlogRoute,
+  CareerRoute: CareerRoute,
+  CedarFencingRoute: CedarFencingRoute,
+  ChainLinkFencingRoute: ChainLinkFencingRoute,
+  ChilliwackChainLinkFenceCompanyRoute: ChilliwackChainLinkFenceCompanyRoute,
+  CommercialChainLinkFencingRoute: CommercialChainLinkFencingRoute,
+  ContactRoute: ContactRoute,
+  ExcavationServicesRoute: ExcavationServicesRoute,
+  GalleryRoute: GalleryRoute,
+  MetalGatesRoute: MetalGatesRoute,
+  OrnamentalFencingRoute: OrnamentalFencingRoute,
+  PricingRoute: PricingRoute,
+  ResidentialChainLinkFencingRoute: ResidentialChainLinkFencingRoute,
+  SnowRemovalRoute: SnowRemovalRoute,
+  TestimonialRoute: TestimonialRoute,
+  WeldingServicesRoute: WeldingServicesRoute,
+  ProjectsCantileverGatesChilliwackRoute:
+    ProjectsCantileverGatesChilliwackRoute,
+  ProjectsCooperRentalsLangleyRoute: ProjectsCooperRentalsLangleyRoute,
+  ProjectsHeatherbraeBuildersSurreyRoute:
+    ProjectsHeatherbraeBuildersSurreyRoute,
+  ProjectsRailingInstallationMapleRidgeRoute:
+    ProjectsRailingInstallationMapleRidgeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
