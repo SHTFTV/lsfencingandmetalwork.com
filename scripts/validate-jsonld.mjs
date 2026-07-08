@@ -80,8 +80,11 @@ function extract(file) {
   const body = call[1];
 
   const field = (key) => {
-    const re = new RegExp(`${key}\\s*:\\s*([^,\\n]+?)(?=,\\s*(?:\\w+\\s*:)|\\s*\\}$)`, "s");
-    const m = re.exec(body + "}");
+    const re = new RegExp(
+      `${key}\\s*:\\s*(.+?)\\s*(?:,\\s*\\w+\\s*:|,?\\s*$)`,
+      "s",
+    );
+    const m = re.exec(body);
     return m ? m[1].trim().replace(/,\s*$/, "") : null;
   };
 
