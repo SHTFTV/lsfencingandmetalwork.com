@@ -91,9 +91,10 @@ function Page() {
 
         <div id="all" className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {ITEMS.map((it, i) => (
-            <GalleryTile key={i} item={it} />
+            <GalleryTile key={i} item={it} onClick={() => setOpenIndex(i)} />
           ))}
         </div>
+
 
         <div className="mt-10 border border-dashed border-border rounded-sm bg-card/50 p-6 text-sm text-muted-foreground">
           These tiles are placeholders styled with the site palette. Drop real photos into
