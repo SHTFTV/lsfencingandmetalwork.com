@@ -1,6 +1,6 @@
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 import { PageShell, CtaStrip } from "@/components/PageShell";
-import { POSTS, getPost } from "@/lib/blog";
+import { POSTS, getPost, type BlogPost } from "@/lib/blog";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 
 export const Route = createFileRoute("/blog/$slug")({
@@ -42,7 +42,7 @@ export const Route = createFileRoute("/blog/$slug")({
 });
 
 function Post() {
-  const { post } = Route.useLoaderData();
+  const { post } = Route.useLoaderData() as { post: BlogPost };
   return (
     <PageShell>
       <article>

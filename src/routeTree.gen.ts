@@ -33,6 +33,7 @@ import { Route as ProjectsRailingInstallationMapleRidgeRouteImport } from './rou
 import { Route as ProjectsHeatherbraeBuildersSurreyRouteImport } from './routes/projects/heatherbrae-builders-surrey'
 import { Route as ProjectsCooperRentalsLangleyRouteImport } from './routes/projects/cooper-rentals-langley'
 import { Route as ProjectsCantileverGatesChilliwackRouteImport } from './routes/projects/cantilever-gates-chilliwack'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
 const WeldingServicesRoute = WeldingServicesRouteImport.update({
   id: '/welding-services',
@@ -162,13 +163,18 @@ const ProjectsCantileverGatesChilliwackRoute =
     path: '/projects/cantilever-gates-chilliwack',
     getParentRoute: () => rootRouteImport,
   } as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => BlogRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/abbotsford-chain-link-fence-contractor': typeof AbbotsfordChainLinkFenceContractorRoute
   '/about-us': typeof AboutUsRoute
   '/barrier-gates': typeof BarrierGatesRoute
-  '/blog': typeof BlogRoute
+  '/blog': typeof BlogRouteWithChildren
   '/career': typeof CareerRoute
   '/cedar-fencing': typeof CedarFencingRoute
   '/chain-link-fencing': typeof ChainLinkFencingRoute
@@ -184,6 +190,7 @@ export interface FileRoutesByFullPath {
   '/snow-removal': typeof SnowRemovalRoute
   '/testimonial': typeof TestimonialRoute
   '/welding-services': typeof WeldingServicesRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/projects/cantilever-gates-chilliwack': typeof ProjectsCantileverGatesChilliwackRoute
   '/projects/cooper-rentals-langley': typeof ProjectsCooperRentalsLangleyRoute
   '/projects/heatherbrae-builders-surrey': typeof ProjectsHeatherbraeBuildersSurreyRoute
@@ -194,7 +201,7 @@ export interface FileRoutesByTo {
   '/abbotsford-chain-link-fence-contractor': typeof AbbotsfordChainLinkFenceContractorRoute
   '/about-us': typeof AboutUsRoute
   '/barrier-gates': typeof BarrierGatesRoute
-  '/blog': typeof BlogRoute
+  '/blog': typeof BlogRouteWithChildren
   '/career': typeof CareerRoute
   '/cedar-fencing': typeof CedarFencingRoute
   '/chain-link-fencing': typeof ChainLinkFencingRoute
@@ -210,6 +217,7 @@ export interface FileRoutesByTo {
   '/snow-removal': typeof SnowRemovalRoute
   '/testimonial': typeof TestimonialRoute
   '/welding-services': typeof WeldingServicesRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/projects/cantilever-gates-chilliwack': typeof ProjectsCantileverGatesChilliwackRoute
   '/projects/cooper-rentals-langley': typeof ProjectsCooperRentalsLangleyRoute
   '/projects/heatherbrae-builders-surrey': typeof ProjectsHeatherbraeBuildersSurreyRoute
@@ -221,7 +229,7 @@ export interface FileRoutesById {
   '/abbotsford-chain-link-fence-contractor': typeof AbbotsfordChainLinkFenceContractorRoute
   '/about-us': typeof AboutUsRoute
   '/barrier-gates': typeof BarrierGatesRoute
-  '/blog': typeof BlogRoute
+  '/blog': typeof BlogRouteWithChildren
   '/career': typeof CareerRoute
   '/cedar-fencing': typeof CedarFencingRoute
   '/chain-link-fencing': typeof ChainLinkFencingRoute
@@ -237,6 +245,7 @@ export interface FileRoutesById {
   '/snow-removal': typeof SnowRemovalRoute
   '/testimonial': typeof TestimonialRoute
   '/welding-services': typeof WeldingServicesRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/projects/cantilever-gates-chilliwack': typeof ProjectsCantileverGatesChilliwackRoute
   '/projects/cooper-rentals-langley': typeof ProjectsCooperRentalsLangleyRoute
   '/projects/heatherbrae-builders-surrey': typeof ProjectsHeatherbraeBuildersSurreyRoute
@@ -265,6 +274,7 @@ export interface FileRouteTypes {
     | '/snow-removal'
     | '/testimonial'
     | '/welding-services'
+    | '/blog/$slug'
     | '/projects/cantilever-gates-chilliwack'
     | '/projects/cooper-rentals-langley'
     | '/projects/heatherbrae-builders-surrey'
@@ -291,6 +301,7 @@ export interface FileRouteTypes {
     | '/snow-removal'
     | '/testimonial'
     | '/welding-services'
+    | '/blog/$slug'
     | '/projects/cantilever-gates-chilliwack'
     | '/projects/cooper-rentals-langley'
     | '/projects/heatherbrae-builders-surrey'
@@ -317,6 +328,7 @@ export interface FileRouteTypes {
     | '/snow-removal'
     | '/testimonial'
     | '/welding-services'
+    | '/blog/$slug'
     | '/projects/cantilever-gates-chilliwack'
     | '/projects/cooper-rentals-langley'
     | '/projects/heatherbrae-builders-surrey'
@@ -328,7 +340,7 @@ export interface RootRouteChildren {
   AbbotsfordChainLinkFenceContractorRoute: typeof AbbotsfordChainLinkFenceContractorRoute
   AboutUsRoute: typeof AboutUsRoute
   BarrierGatesRoute: typeof BarrierGatesRoute
-  BlogRoute: typeof BlogRoute
+  BlogRoute: typeof BlogRouteWithChildren
   CareerRoute: typeof CareerRoute
   CedarFencingRoute: typeof CedarFencingRoute
   ChainLinkFencingRoute: typeof ChainLinkFencingRoute
@@ -520,8 +532,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsCantileverGatesChilliwackRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof BlogRoute
+    }
   }
 }
+
+interface BlogRouteChildren {
+  BlogSlugRoute: typeof BlogSlugRoute
+}
+
+const BlogRouteChildren: BlogRouteChildren = {
+  BlogSlugRoute: BlogSlugRoute,
+}
+
+const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -529,7 +558,7 @@ const rootRouteChildren: RootRouteChildren = {
     AbbotsfordChainLinkFenceContractorRoute,
   AboutUsRoute: AboutUsRoute,
   BarrierGatesRoute: BarrierGatesRoute,
-  BlogRoute: BlogRoute,
+  BlogRoute: BlogRouteWithChildren,
   CareerRoute: CareerRoute,
   CedarFencingRoute: CedarFencingRoute,
   ChainLinkFencingRoute: ChainLinkFencingRoute,
@@ -556,13 +585,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
