@@ -179,6 +179,13 @@ function Contact() {
     }
   }, [service, step]);
 
+  // Common context appended to every quote analytics event so we can
+  // attribute drop-off to specific gallery photos / lightbox sessions.
+  const attribution = {
+    source: prefill.source,
+    photo: prefill.photo,
+  };
+
   // Fire quote_step_enter on every step transition (plus initial mount for step 0).
   const enteredSteps = useRef<Set<number>>(new Set());
   useEffect(() => {
@@ -189,9 +196,10 @@ function Contact() {
       step,
       step_label: STEPS[step].label,
       service,
+      ...attribution,
     });
     if (step === 2) {
-      trackQuoteEvent({ name: "quote_review_view", service });
+      trackQuoteEvent({ name: "quote_review_view", service, ...attribution });
     }
   }, [step, service]);
 
@@ -213,6 +221,7 @@ function Contact() {
         step: currentStep,
         step_label: STEPS[currentStep].label,
         service,
+        ...attribution,
       });
       setStep((s) => (s + 1) as 0 | 1 | 2);
     } else {
@@ -223,6 +232,7 @@ function Contact() {
         step_label: STEPS[currentStep].label,
         service,
         fields: badFields.length > 0 ? (badFields as string[]) : (fields as string[]),
+        ...attribution,
       });
     }
   };
@@ -231,8 +241,11 @@ function Contact() {
   const onSubmit = async (values: FormValues) => {
     setSubmitting(true);
     setSubmitError(null);
-    trackQuoteEvent({ name: "quote_submit_attempt", service: values.service });
+    trackQuoteEvent({ name: "quote_submit_attempt", service: values.service, ...attribution });
     try {
+      const noteWithAttribution = prefill.photo
+        ? `${values.notes ? values.notes + "\n\n" : ""}[from gallery photo: ${prefill.photo}]`
+        : values.notes || null;
       await submit({
         data: {
           service: values.service,
@@ -245,11 +258,11 @@ function Contact() {
           name: values.name,
           phone: values.phone,
           email: values.email,
-          notes: values.notes || null,
-          source: "contact-form",
+          notes: noteWithAttribution,
+          source: prefill.source ?? "contact-form",
         },
       });
-      trackQuoteEvent({ name: "quote_submit_success", service: values.service });
+      trackQuoteEvent({ name: "quote_submit_success", service: values.service, ...attribution });
       setDone(true);
     } catch (e) {
       const message =
@@ -260,6 +273,7 @@ function Contact() {
         name: "quote_submit_error",
         service: values.service,
         message,
+        ...attribution,
       });
     } finally {
       setSubmitting(false);
