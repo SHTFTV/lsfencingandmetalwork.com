@@ -59,6 +59,44 @@ export const submitLead = createServerFn({ method: "POST" })
       throw new Error("Could not save request. Please call us instead.");
     }
 
+    // Fire-and-forget email notification via Formsubmit (no domain / no API key).
+    // First-ever submission triggers a one-time confirmation email to the inbox
+    // owner — after they click it, all future submissions arrive automatically.
+    try {
+      const payload = {
+        _subject: `New lead: ${data.name} — ${data.service} (${data.city})`,
+        _template: "table",
+        _captcha: "false",
+        name: data.name,
+        phone: data.phone,
+        email: data.email,
+        service: data.service,
+        linear_feet: data.linearFeet ?? "",
+        fence_height: data.fenceHeight ?? "",
+        gate: data.gate ?? "",
+        city: data.city,
+        postal: data.postal ?? "",
+        timeline: data.timeline ?? "",
+        notes: data.notes ?? "",
+        source: data.source ?? "contact-form",
+        submitted_at: new Date().toISOString(),
+      };
+      const res = await fetch(
+        "https://formsubmit.co/ajax/lsfencingandmetalwork@gmail.com",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(payload),
+        },
+      );
+      if (!res.ok) {
+        console.error("[submitLead] formsubmit non-ok", res.status, await res.text());
+      }
+    } catch (e) {
+      // Never fail the request over the notification hop — DB row is the source of truth.
+      console.error("[submitLead] formsubmit failed", e);
+    }
+
     return { ok: true as const, id: inserted.id };
   });
 
