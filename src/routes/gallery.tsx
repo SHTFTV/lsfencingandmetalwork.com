@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useState } from "react";
+
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
