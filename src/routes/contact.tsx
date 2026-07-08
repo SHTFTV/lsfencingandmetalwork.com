@@ -134,7 +134,6 @@ function Contact() {
           source: "contact-form",
         },
       });
-      setWebhookDelivered(Boolean(res?.webhookDelivered));
       setDone(true);
     } catch (e) {
       setSubmitError(
@@ -146,7 +145,7 @@ function Contact() {
     }
   };
 
-  if (done) return <ThankYou values={getValues()} webhookDelivered={webhookDelivered} />;
+  if (done) return <ThankYou values={getValues()} />;
 
   return (
     <PageShell>
