@@ -186,6 +186,11 @@ function Contact() {
               </button>
             )}
           </div>
+          {submitError && (
+            <div className="mt-4 flex items-start gap-2 border border-destructive/40 bg-destructive/10 text-destructive rounded-sm p-3 text-sm">
+              <AlertTriangle className="h-4 w-4 mt-0.5" /> {submitError}
+            </div>
+          )}
         </form>
 
         <aside className="space-y-4">
