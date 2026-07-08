@@ -57,6 +57,30 @@ const CATEGORIES = [
   "Excavation",
 ] as const;
 
+// Map a gallery category to the matching value in the contact form's SERVICE_OPTIONS
+// so the CTA can pre-select it via ?service=…
+const CATEGORY_TO_SERVICE: Record<string, string> = {
+  "Chain Link": "Chain Link Fencing",
+  "Ornamental": "Ornamental Fencing",
+  "Gates": "Metal / Driveway Gate",
+  "Welding": "Welding / Repair",
+  "Excavation": "Excavation",
+};
+
+function slugify(s: string) {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+
+function quoteHrefFor(item: Item) {
+  const service = CATEGORY_TO_SERVICE[item.category];
+  const params = new URLSearchParams({
+    source: "gallery-lightbox",
+    photo: slugify(item.title),
+  });
+  if (service) params.set("service", service);
+  return `/contact?${params.toString()}`;
+}
+
 const ITEMS: Item[] = [
   { title: "Black vinyl-coated school perimeter", location: "Surrey, BC", category: "Chain Link", src: imgBlackSchool.url, alt: "Completed black vinyl-coated chain link perimeter fence at a school in Surrey BC" },
   { title: "10-ft galvanized security fence with barb", location: "Vancouver, BC", category: "Chain Link", src: imgPerimeterBarb.url, alt: "Tall galvanized chain link perimeter fence with three-strand barbed wire" },
