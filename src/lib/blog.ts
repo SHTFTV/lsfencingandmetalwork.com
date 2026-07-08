@@ -58,7 +58,7 @@ export const POSTS: BlogPost[] = [
       "Five reasons homeowners and businesses in the Lower Mainland install fencing — from resale value to insurance premiums to keeping the dog out of the tulips.",
     date: "2016-06-07",
     readMinutes: 4,
-    ogImage: "__PLACEHOLDER__",
+    ogImage: "/og/blog-why-consider-fencing.jpg",
     tags: ["Guides"],
     body: [
       { type: "p", text: "A fence isn't just a boundary marker. It's an investment that pays back in security, property value, and everyday quality of life. Here's what people rarely think about until they install one." },
@@ -107,7 +107,7 @@ export const POSTS: BlogPost[] = [
       "Where barrier gates make sense — municipal access roads, parking lots, private driveways — and what to spec for a gate that lasts.",
     date: "2017-03-14",
     readMinutes: 4,
-    ogImage: "__PLACEHOLDER__",
+    ogImage: "/og/blog-barrier-gates.jpg",
     tags: ["Gates", "Commercial"],
     body: [
       { type: "p", text: "Barrier gates are the quiet workhorses of access control. They aren't glamorous, but they solve a specific problem cheaply and reliably: keep unauthorized vehicles out without building a full perimeter." },
