@@ -101,9 +101,15 @@ function Page() {
 
         <div id="all" className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {ITEMS.map((it, i) => (
-            <GalleryTile key={i} item={it} onClick={() => setOpenIndex(i)} />
+            <GalleryTile
+              key={i}
+              item={it}
+              onClick={() => openAt(i)}
+              refCallback={(el) => { tileRefs.current[i] = el; }}
+            />
           ))}
         </div>
+
 
 
         <div className="mt-10 border border-dashed border-border rounded-sm bg-card/50 p-6 text-sm text-muted-foreground">
