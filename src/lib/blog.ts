@@ -5,6 +5,8 @@ export interface BlogPost {
   date: string; // ISO
   readMinutes: number;
   tags: string[];
+  /** Absolute path (from /public) to the OpenGraph image, e.g. /og/foo.jpg */
+  ogImage: string;
   /** Structured body rendered by <BlogArticle /> */
   body: Array<
     | { type: "p"; text: string }
