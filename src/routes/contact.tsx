@@ -108,6 +108,27 @@ const schema = z
 
 type FormValues = z.infer<typeof schema>;
 
+type Prefill = {
+  service?: FormValues["service"];
+  source?: "gallery-tile" | "gallery-lightbox" | "contact-form";
+  photo?: string;
+};
+
+function readPrefill(): Prefill {
+  if (typeof window === "undefined") return {};
+  const p = new URLSearchParams(window.location.search);
+  const svc = p.get("service") ?? undefined;
+  const src = p.get("source") ?? undefined;
+  const photo = p.get("photo") ?? undefined;
+  const service = svc && (SERVICE_OPTIONS as readonly string[]).includes(svc)
+    ? (svc as FormValues["service"])
+    : undefined;
+  const source = src === "gallery-tile" || src === "gallery-lightbox" || src === "contact-form"
+    ? src
+    : undefined;
+  return { service, source, photo };
+}
+
 const STEPS = [
   { id: 0, label: "Service" },
   { id: 1, label: "Project" },
