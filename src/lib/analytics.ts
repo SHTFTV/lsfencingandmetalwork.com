@@ -5,26 +5,33 @@
 //
 // No PII should ever be passed in. Only shape/step metadata + selected service.
 
+export type QuoteSource = {
+  source?: "contact-form" | "gallery-tile" | "gallery-lightbox";
+  photo?: string;
+  category?: string;
+};
+
 export type QuoteAnalyticsEvent =
-  | { name: "quote_step_enter"; step: number; step_label: string; service?: string }
-  | { name: "quote_step_complete"; step: number; step_label: string; service?: string }
-  | {
+  | ({ name: "quote_step_enter"; step: number; step_label: string; service?: string } & QuoteSource)
+  | ({ name: "quote_step_complete"; step: number; step_label: string; service?: string } & QuoteSource)
+  | ({
       name: "quote_validation_error";
       step: number;
       step_label: string;
       service?: string;
       fields: string[];
-    }
-  | { name: "quote_review_view"; service?: string }
-  | { name: "quote_submit_attempt"; service?: string }
-  | { name: "quote_submit_success"; service?: string }
-  | { name: "quote_submit_error"; service?: string; message?: string };
+    } & QuoteSource)
+  | ({ name: "quote_review_view"; service?: string } & QuoteSource)
+  | ({ name: "quote_submit_attempt"; service?: string } & QuoteSource)
+  | ({ name: "quote_submit_success"; service?: string } & QuoteSource)
+  | ({ name: "quote_submit_error"; service?: string; message?: string } & QuoteSource);
 
 export type GalleryAnalyticsEvent =
   | { name: "gallery_tile_click"; index: number; title: string; category: string }
   | { name: "gallery_lightbox_open"; index: number; title: string; category: string }
   | { name: "gallery_lightbox_close"; index: number; title: string }
-  | { name: "gallery_lightbox_navigate"; direction: "prev" | "next"; index: number; title: string };
+  | { name: "gallery_lightbox_navigate"; direction: "prev" | "next"; index: number; title: string }
+  | { name: "gallery_quote_cta_click"; index: number; title: string; category: string; service: string; surface: "lightbox" | "tile" };
 
 type DataLayerWindow = Window & {
   dataLayer?: Record<string, unknown>[];
