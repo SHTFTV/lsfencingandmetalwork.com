@@ -2,7 +2,6 @@ import { test, expect, type Page } from "@playwright/test";
 
 const TILE_SELECTOR = 'button[aria-label^="View "]';
 
-// Fence services need extra fields; gate-only need gate; others just city+timeline.
 const FENCE_SERVICES = new Set([
   "Chain Link Fencing",
   "Cedar Fencing",
@@ -12,31 +11,6 @@ const GATE_ONLY_SERVICES = new Set([
   "Metal / Driveway Gate",
   "Barrier Gates & Railings",
 ]);
-
-async function installAnalyticsCapture(page: Page) {
-  await page.addInitScript(() => {
-    // @ts-expect-error attach for the test
-    window.__quoteEvents = [];
-    window.addEventListener("lovable:analytics", (e) => {
-      // @ts-expect-error attach for the test
-      window.__quoteEvents.push((e as CustomEvent).detail);
-    });
-  });
-}
-
-async function stubSubmit(page: Page): Promise<{ bodies: string[] }> {
-  const bodies: string[] = [];
-  await page.route(/_serverFn|_server-fn|__serverFn/i, async (route) => {
-    const body = route.request().postData();
-    if (body) bodies.push(body);
-    await route.fulfill({
-      status: 200,
-      contentType: "application/json",
-      body: JSON.stringify({ result: { ok: true, id: "stub", delivered: true } }),
-    });
-  });
-  return { bodies };
-}
 
 async function fillAndSubmit(page: Page, service: string) {
   await expect(page.getByPlaceholder("e.g. Chilliwack")).toBeVisible();
@@ -59,18 +33,41 @@ async function fillAndSubmit(page: Page, service: string) {
   await page.getByLabel("Email").fill("qa+gallery@example.com");
 
   await page.getByRole("button", { name: /Send request/i }).click();
-  await expect(page.getByRole("heading", { name: "Request received" })).toBeVisible({ timeout: 15_000 });
+  await expect(page.getByRole("heading", { name: "Request received" })).toBeVisible({
+    timeout: 15_000,
+  });
 }
 
 test.describe("/gallery lightbox CTA → /contact submit attribution", () => {
-  test("every tile carries service + source + photo attribution through submit", async ({ page }) => {
-    await installAnalyticsCapture(page);
-    await page.goto("/gallery");
+  test("every tile carries service + source + photo attribution through submit", async ({ page, context }) => {
+    // Capture analytics events fired on every navigation via a context-scoped init script.
+    await context.addInitScript(() => {
+      // @ts-expect-error test-only global
+      window.__quoteEvents = [];
+      window.addEventListener("lovable:analytics", (e) => {
+        // @ts-expect-error test-only global
+        window.__quoteEvents.push((e as CustomEvent).detail);
+      });
+    });
 
+    // Intercept the server function POST once for the whole test and stub OK.
+    const submitBodies: string[] = [];
+    await context.route(/_serverFn|_server-fn|__serverFn/i, async (route) => {
+      const body = route.request().postData();
+      if (body) submitBodies.push(body);
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ result: { ok: true, id: "stub", delivered: true } }),
+      });
+    });
+
+    await page.goto("/gallery");
     const tileCount = await page.locator(TILE_SELECTOR).count();
     expect(tileCount).toBeGreaterThanOrEqual(15);
 
     for (let i = 0; i < tileCount; i++) {
+      const beforeBodies = submitBodies.length;
       const tile = page.locator(TILE_SELECTOR).nth(i);
       await tile.scrollIntoViewIfNeeded();
       await tile.click();
@@ -84,15 +81,12 @@ test.describe("/gallery lightbox CTA → /contact submit attribution", () => {
       expect(href!).toContain("source=gallery-lightbox");
       expect(href!).toMatch(/photo=[a-z0-9-]+/);
 
-      // Parse expected service (if the category maps to one).
       const url = new URL(href!, page.url());
       const expectedService = url.searchParams.get("service");
       const expectedPhoto = url.searchParams.get("photo")!;
 
-      const { bodies } = await stubSubmit(page);
       await Promise.all([page.waitForURL("**/contact*"), cta.click()]);
 
-      // URL retains attribution
       const finalUrl = new URL(page.url());
       expect(finalUrl.searchParams.get("source")).toBe("gallery-lightbox");
       expect(finalUrl.searchParams.get("photo")).toBe(expectedPhoto);
@@ -100,12 +94,11 @@ test.describe("/gallery lightbox CTA → /contact submit attribution", () => {
         expect(finalUrl.searchParams.get("service")).toBe(expectedService);
         await fillAndSubmit(page, expectedService);
       } else {
-        // No mapped service — user picks one manually.
         await page.getByRole("radio", { name: "Welding / Repair" }).check();
         await fillAndSubmit(page, "Welding / Repair");
       }
 
-      // Analytics: quote_submit_attempt + quote_submit_success both fired with attribution.
+      // Analytics
       const events = await page.evaluate(
         // @ts-expect-error test-only global
         () => (window.__quoteEvents ?? []).slice(),
@@ -118,16 +111,19 @@ test.describe("/gallery lightbox CTA → /contact submit attribution", () => {
       expect(last.source, `tile #${i} attribution.source missing`).toBe("gallery-lightbox");
       expect(last.photo, `tile #${i} attribution.photo missing`).toBe(expectedPhoto);
 
-      // Payload sent to the server includes the photo tag in notes.
-      if (bodies.length > 0) {
-        expect(bodies.some((b) => b.includes(expectedPhoto))).toBe(true);
-        expect(bodies.some((b) => b.includes("gallery-lightbox"))).toBe(true);
+      // Payload — at least one new body captured since iteration start includes attribution.
+      const newBodies = submitBodies.slice(beforeBodies);
+      if (newBodies.length > 0) {
+        expect(newBodies.some((b) => b.includes(expectedPhoto))).toBe(true);
+        expect(newBodies.some((b) => b.includes("gallery-lightbox"))).toBe(true);
       }
 
-      await page.unroute(/_serverFn|_server-fn|__serverFn/i);
-      // Reset for next tile
+      // Reset analytics + return to gallery for next tile
+      await page.evaluate(() => {
+        // @ts-expect-error test-only global
+        window.__quoteEvents = [];
+      });
       await page.goto("/gallery");
-      await installAnalyticsCapture(page);
     }
   });
 });
