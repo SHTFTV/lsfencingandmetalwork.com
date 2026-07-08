@@ -3,7 +3,8 @@ import { useServerFn } from "@tanstack/react-start";
 import { PageShell, CtaStrip } from "@/components/PageShell";
 import { SITE } from "@/lib/site";
 import { submitLead } from "@/lib/leads.functions";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { trackQuoteEvent } from "@/lib/analytics";
 import { useForm, type UseFormRegister, type FieldErrors, type UseFormWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -154,6 +155,22 @@ function Contact() {
     }
   }, [service, step]);
 
+  // Fire quote_step_enter on every step transition (plus initial mount for step 0).
+  const enteredSteps = useRef<Set<number>>(new Set());
+  useEffect(() => {
+    if (enteredSteps.current.has(step)) return;
+    enteredSteps.current.add(step);
+    trackQuoteEvent({
+      name: "quote_step_enter",
+      step,
+      step_label: STEPS[step].label,
+      service,
+    });
+    if (step === 2) {
+      trackQuoteEvent({ name: "quote_review_view", service });
+    }
+  }, [step, service]);
+
   const stepFields: Record<0 | 1, (keyof FormValues)[]> = {
     0: ["service"],
     1: (["city", "timeline"] as (keyof FormValues)[])
@@ -163,14 +180,34 @@ function Contact() {
 
   const next = async () => {
     if (step === 2) return;
-    const ok = await trigger(stepFields[step as 0 | 1]);
-    if (ok) setStep((s) => (s + 1) as 0 | 1 | 2);
+    const currentStep = step as 0 | 1;
+    const fields = stepFields[currentStep];
+    const ok = await trigger(fields);
+    if (ok) {
+      trackQuoteEvent({
+        name: "quote_step_complete",
+        step: currentStep,
+        step_label: STEPS[currentStep].label,
+        service,
+      });
+      setStep((s) => (s + 1) as 0 | 1 | 2);
+    } else {
+      const badFields = fields.filter((f) => Boolean((errors as Record<string, unknown>)[f]));
+      trackQuoteEvent({
+        name: "quote_validation_error",
+        step: currentStep,
+        step_label: STEPS[currentStep].label,
+        service,
+        fields: badFields.length > 0 ? (badFields as string[]) : (fields as string[]),
+      });
+    }
   };
   const back = () => setStep((s) => (s > 0 ? ((s - 1) as 0 | 1 | 2) : s));
 
   const onSubmit = async (values: FormValues) => {
     setSubmitting(true);
     setSubmitError(null);
+    trackQuoteEvent({ name: "quote_submit_attempt", service: values.service });
     try {
       await submit({
         data: {
@@ -188,15 +225,32 @@ function Contact() {
           source: "contact-form",
         },
       });
+      trackQuoteEvent({ name: "quote_submit_success", service: values.service });
       setDone(true);
     } catch (e) {
-      setSubmitError(
+      const message =
         (e as Error)?.message ||
-          "Something went wrong sending your request. Please call us directly.",
-      );
+        "Something went wrong sending your request. Please call us directly.";
+      setSubmitError(message);
+      trackQuoteEvent({
+        name: "quote_submit_error",
+        service: values.service,
+        message,
+      });
     } finally {
       setSubmitting(false);
     }
+  };
+
+  const onInvalid = (errs: FieldErrors<FormValues>) => {
+    const fields = Object.keys(errs);
+    trackQuoteEvent({
+      name: "quote_validation_error",
+      step: 2,
+      step_label: STEPS[2].label,
+      service,
+      fields,
+    });
   };
 
   if (done) return <ThankYou values={getValues()} />;
@@ -214,7 +268,7 @@ function Contact() {
       </section>
 
       <section className="container-industrial py-14 grid lg:grid-cols-3 gap-8">
-        <form onSubmit={handleSubmit(onSubmit)} className="lg:col-span-2 border border-border rounded-sm bg-card p-6 md:p-10">
+        <form onSubmit={handleSubmit(onSubmit, onInvalid)} className="lg:col-span-2 border border-border rounded-sm bg-card p-6 md:p-10">
           <Stepper step={step} progress={progress} />
 
           {step === 0 && <StepService register={register} errors={errors} />}
