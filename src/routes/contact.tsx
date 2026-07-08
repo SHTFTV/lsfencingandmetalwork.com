@@ -1,11 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { PageShell, CtaStrip } from "@/components/PageShell";
 import { SITE } from "@/lib/site";
+import { submitLead } from "@/lib/leads.functions";
 import { useState } from "react";
 import { useForm, type UseFormRegister, type FieldErrors } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Phone, Mail, MapPin, Check, ArrowRight, ArrowLeft, Loader2 } from "lucide-react";
+import { Phone, Mail, MapPin, Check, ArrowRight, ArrowLeft, Loader2, AlertTriangle } from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
