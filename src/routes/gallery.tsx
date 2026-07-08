@@ -174,8 +174,18 @@ function Page() {
           index={openIndex}
           total={ITEMS.length}
           onClose={close}
-          onPrev={() => setOpenIndex((i) => (i === null ? i : (i - 1 + ITEMS.length) % ITEMS.length))}
-          onNext={() => setOpenIndex((i) => (i === null ? i : (i + 1) % ITEMS.length))}
+          onPrev={() => setOpenIndex((i) => {
+            if (i === null) return i;
+            const next = (i - 1 + ITEMS.length) % ITEMS.length;
+            trackGalleryEvent({ name: "gallery_lightbox_navigate", direction: "prev", index: next, title: ITEMS[next].title });
+            return next;
+          })}
+          onNext={() => setOpenIndex((i) => {
+            if (i === null) return i;
+            const next = (i + 1) % ITEMS.length;
+            trackGalleryEvent({ name: "gallery_lightbox_navigate", direction: "next", index: next, title: ITEMS[next].title });
+            return next;
+          })}
         />
       )}
       <CtaStrip />
