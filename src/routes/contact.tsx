@@ -121,7 +121,10 @@ function Contact() {
   const submit = useServerFn(submitLead);
 
   const form = useForm<FormValues>({
-    resolver: zodResolver(schema),
+    // Cast is needed only to bridge the schema's preprocess-derived input type
+    // (unknown for coerced number/enum fields) with useForm's inferred generic.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resolver: zodResolver(schema) as any,
     mode: "onTouched",
     defaultValues: {
       service: undefined as unknown as FormValues["service"],
