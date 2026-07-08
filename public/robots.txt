@@ -1,2 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /auth
+Disallow: /admin
+Disallow: /_authenticated
+
+Sitemap: https://project--593453aa-81d0-4624-a72c-181966a7cb9f.lovable.app/sitemap.xml

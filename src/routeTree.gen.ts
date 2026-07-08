@@ -37,16 +37,19 @@ import { Route as BestFencingOptionsAndTheirQualitiesRouteImport } from './route
 import { Route as BenefitsOfBarrierGatesRouteImport } from './routes/benefits-of-barrier-gates'
 import { Route as BarrierGatesHandRailsRouteImport } from './routes/barrier-gates-hand-rails'
 import { Route as BarrierGatesRouteImport } from './routes/barrier-gates'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as AbbotsfordChainLinkFenceContractorRouteImport } from './routes/abbotsford-chain-link-fence-contractor'
 import { Route as Wood_FencingDotphpRouteImport } from './routes/Wood_Fencing[.]php'
 import { Route as R10HighGalvanizedChainLinkFenceInstalledForHeatherbraeBuildersSurreyBcRouteImport } from './routes/10-high-galvanized-chain-link-fence-installed-for-heatherbrae-builders-surrey-bc'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProjectsRailingInstallationMapleRidgeRouteImport } from './routes/projects/railing-installation-maple-ridge'
 import { Route as ProjectsHeatherbraeBuildersSurreyRouteImport } from './routes/projects/heatherbrae-builders-surrey'
 import { Route as ProjectsCooperRentalsLangleyRouteImport } from './routes/projects/cooper-rentals-langley'
 import { Route as ProjectsCantileverGatesChilliwackRouteImport } from './routes/projects/cantilever-gates-chilliwack'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as AuthenticatedAdminLeadsRouteImport } from './routes/_authenticated/admin.leads'
 import { Route as R20170314BarrierGatesRouteImport } from './routes/2017/03/14/barrier-gates'
 import { Route as R20160607DifferencesChainLinkFenceWoodenFenceRouteImport } from './routes/2016/06/07/differences-chain-link-fence-wooden-fence'
 import { Route as R20160607ConsiderFencingOptionRouteImport } from './routes/2016/06/07/consider-fencing-option'
@@ -201,6 +204,11 @@ const BarrierGatesRoute = BarrierGatesRouteImport.update({
   path: '/barrier-gates',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutUsRoute = AboutUsRouteImport.update({
   id: '/about-us',
   path: '/about-us',
@@ -225,6 +233,10 @@ const R10HighGalvanizedChainLinkFenceInstalledForHeatherbraeBuildersSurreyBcRout
       getParentRoute: () => rootRouteImport,
     } as any,
   )
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -259,6 +271,11 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => BlogRoute,
 } as any)
+const AuthenticatedAdminLeadsRoute = AuthenticatedAdminLeadsRouteImport.update({
+  id: '/admin/leads',
+  path: '/admin/leads',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const R20170314BarrierGatesRoute = R20170314BarrierGatesRouteImport.update({
   id: '/2017/03/14/barrier-gates',
   path: '/2017/03/14/barrier-gates',
@@ -289,6 +306,7 @@ export interface FileRoutesByFullPath {
   '/Wood_Fencing.php': typeof Wood_FencingDotphpRoute
   '/abbotsford-chain-link-fence-contractor': typeof AbbotsfordChainLinkFenceContractorRoute
   '/about-us': typeof AboutUsRoute
+  '/auth': typeof AuthRoute
   '/barrier-gates': typeof BarrierGatesRoute
   '/barrier-gates-hand-rails': typeof BarrierGatesHandRailsRoute
   '/benefits-of-barrier-gates': typeof BenefitsOfBarrierGatesRoute
@@ -322,6 +340,7 @@ export interface FileRoutesByFullPath {
   '/projects/cooper-rentals-langley': typeof ProjectsCooperRentalsLangleyRoute
   '/projects/heatherbrae-builders-surrey': typeof ProjectsHeatherbraeBuildersSurreyRoute
   '/projects/railing-installation-maple-ridge': typeof ProjectsRailingInstallationMapleRidgeRoute
+  '/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/2016/06/07/best-fencing-options-qualities': typeof R20160607BestFencingOptionsQualitiesRoute
   '/2016/06/07/consider-fencing-option': typeof R20160607ConsiderFencingOptionRoute
   '/2016/06/07/differences-chain-link-fence-wooden-fence': typeof R20160607DifferencesChainLinkFenceWoodenFenceRoute
@@ -333,6 +352,7 @@ export interface FileRoutesByTo {
   '/Wood_Fencing.php': typeof Wood_FencingDotphpRoute
   '/abbotsford-chain-link-fence-contractor': typeof AbbotsfordChainLinkFenceContractorRoute
   '/about-us': typeof AboutUsRoute
+  '/auth': typeof AuthRoute
   '/barrier-gates': typeof BarrierGatesRoute
   '/barrier-gates-hand-rails': typeof BarrierGatesHandRailsRoute
   '/benefits-of-barrier-gates': typeof BenefitsOfBarrierGatesRoute
@@ -366,6 +386,7 @@ export interface FileRoutesByTo {
   '/projects/cooper-rentals-langley': typeof ProjectsCooperRentalsLangleyRoute
   '/projects/heatherbrae-builders-surrey': typeof ProjectsHeatherbraeBuildersSurreyRoute
   '/projects/railing-installation-maple-ridge': typeof ProjectsRailingInstallationMapleRidgeRoute
+  '/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/2016/06/07/best-fencing-options-qualities': typeof R20160607BestFencingOptionsQualitiesRoute
   '/2016/06/07/consider-fencing-option': typeof R20160607ConsiderFencingOptionRoute
   '/2016/06/07/differences-chain-link-fence-wooden-fence': typeof R20160607DifferencesChainLinkFenceWoodenFenceRoute
@@ -374,10 +395,12 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/10-high-galvanized-chain-link-fence-installed-for-heatherbrae-builders-surrey-bc': typeof R10HighGalvanizedChainLinkFenceInstalledForHeatherbraeBuildersSurreyBcRoute
   '/Wood_Fencing.php': typeof Wood_FencingDotphpRoute
   '/abbotsford-chain-link-fence-contractor': typeof AbbotsfordChainLinkFenceContractorRoute
   '/about-us': typeof AboutUsRoute
+  '/auth': typeof AuthRoute
   '/barrier-gates': typeof BarrierGatesRoute
   '/barrier-gates-hand-rails': typeof BarrierGatesHandRailsRoute
   '/benefits-of-barrier-gates': typeof BenefitsOfBarrierGatesRoute
@@ -411,6 +434,7 @@ export interface FileRoutesById {
   '/projects/cooper-rentals-langley': typeof ProjectsCooperRentalsLangleyRoute
   '/projects/heatherbrae-builders-surrey': typeof ProjectsHeatherbraeBuildersSurreyRoute
   '/projects/railing-installation-maple-ridge': typeof ProjectsRailingInstallationMapleRidgeRoute
+  '/_authenticated/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/2016/06/07/best-fencing-options-qualities': typeof R20160607BestFencingOptionsQualitiesRoute
   '/2016/06/07/consider-fencing-option': typeof R20160607ConsiderFencingOptionRoute
   '/2016/06/07/differences-chain-link-fence-wooden-fence': typeof R20160607DifferencesChainLinkFenceWoodenFenceRoute
@@ -424,6 +448,7 @@ export interface FileRouteTypes {
     | '/Wood_Fencing.php'
     | '/abbotsford-chain-link-fence-contractor'
     | '/about-us'
+    | '/auth'
     | '/barrier-gates'
     | '/barrier-gates-hand-rails'
     | '/benefits-of-barrier-gates'
@@ -457,6 +482,7 @@ export interface FileRouteTypes {
     | '/projects/cooper-rentals-langley'
     | '/projects/heatherbrae-builders-surrey'
     | '/projects/railing-installation-maple-ridge'
+    | '/admin/leads'
     | '/2016/06/07/best-fencing-options-qualities'
     | '/2016/06/07/consider-fencing-option'
     | '/2016/06/07/differences-chain-link-fence-wooden-fence'
@@ -468,6 +494,7 @@ export interface FileRouteTypes {
     | '/Wood_Fencing.php'
     | '/abbotsford-chain-link-fence-contractor'
     | '/about-us'
+    | '/auth'
     | '/barrier-gates'
     | '/barrier-gates-hand-rails'
     | '/benefits-of-barrier-gates'
@@ -501,6 +528,7 @@ export interface FileRouteTypes {
     | '/projects/cooper-rentals-langley'
     | '/projects/heatherbrae-builders-surrey'
     | '/projects/railing-installation-maple-ridge'
+    | '/admin/leads'
     | '/2016/06/07/best-fencing-options-qualities'
     | '/2016/06/07/consider-fencing-option'
     | '/2016/06/07/differences-chain-link-fence-wooden-fence'
@@ -508,10 +536,12 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
     | '/10-high-galvanized-chain-link-fence-installed-for-heatherbrae-builders-surrey-bc'
     | '/Wood_Fencing.php'
     | '/abbotsford-chain-link-fence-contractor'
     | '/about-us'
+    | '/auth'
     | '/barrier-gates'
     | '/barrier-gates-hand-rails'
     | '/benefits-of-barrier-gates'
@@ -545,6 +575,7 @@ export interface FileRouteTypes {
     | '/projects/cooper-rentals-langley'
     | '/projects/heatherbrae-builders-surrey'
     | '/projects/railing-installation-maple-ridge'
+    | '/_authenticated/admin/leads'
     | '/2016/06/07/best-fencing-options-qualities'
     | '/2016/06/07/consider-fencing-option'
     | '/2016/06/07/differences-chain-link-fence-wooden-fence'
@@ -553,10 +584,12 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   R10HighGalvanizedChainLinkFenceInstalledForHeatherbraeBuildersSurreyBcRoute: typeof R10HighGalvanizedChainLinkFenceInstalledForHeatherbraeBuildersSurreyBcRoute
   Wood_FencingDotphpRoute: typeof Wood_FencingDotphpRoute
   AbbotsfordChainLinkFenceContractorRoute: typeof AbbotsfordChainLinkFenceContractorRoute
   AboutUsRoute: typeof AboutUsRoute
+  AuthRoute: typeof AuthRoute
   BarrierGatesRoute: typeof BarrierGatesRoute
   BarrierGatesHandRailsRoute: typeof BarrierGatesHandRailsRoute
   BenefitsOfBarrierGatesRoute: typeof BenefitsOfBarrierGatesRoute
@@ -793,6 +826,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BarrierGatesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about-us': {
       id: '/about-us'
       path: '/about-us'
@@ -819,6 +859,13 @@ declare module '@tanstack/react-router' {
       path: '/10-high-galvanized-chain-link-fence-installed-for-heatherbrae-builders-surrey-bc'
       fullPath: '/10-high-galvanized-chain-link-fence-installed-for-heatherbrae-builders-surrey-bc'
       preLoaderRoute: typeof R10HighGalvanizedChainLinkFenceInstalledForHeatherbraeBuildersSurreyBcRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -863,6 +910,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof BlogRoute
     }
+    '/_authenticated/admin/leads': {
+      id: '/_authenticated/admin/leads'
+      path: '/admin/leads'
+      fullPath: '/admin/leads'
+      preLoaderRoute: typeof AuthenticatedAdminLeadsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/2017/03/14/barrier-gates': {
       id: '/2017/03/14/barrier-gates'
       path: '/2017/03/14/barrier-gates'
@@ -894,6 +948,17 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminLeadsRoute: typeof AuthenticatedAdminLeadsRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminLeadsRoute: AuthenticatedAdminLeadsRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 interface BlogRouteChildren {
   BlogSlugRoute: typeof BlogSlugRoute
 }
@@ -906,12 +971,14 @@ const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   R10HighGalvanizedChainLinkFenceInstalledForHeatherbraeBuildersSurreyBcRoute:
     R10HighGalvanizedChainLinkFenceInstalledForHeatherbraeBuildersSurreyBcRoute,
   Wood_FencingDotphpRoute: Wood_FencingDotphpRoute,
   AbbotsfordChainLinkFenceContractorRoute:
     AbbotsfordChainLinkFenceContractorRoute,
   AboutUsRoute: AboutUsRoute,
+  AuthRoute: AuthRoute,
   BarrierGatesRoute: BarrierGatesRoute,
   BarrierGatesHandRailsRoute: BarrierGatesHandRailsRoute,
   BenefitsOfBarrierGatesRoute: BenefitsOfBarrierGatesRoute,
@@ -963,13 +1030,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

@@ -1,6 +1,7 @@
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 import { PageShell, CtaStrip } from "@/components/PageShell";
 import { POSTS, getPost, type BlogPost } from "@/lib/blog";
+import { absoluteUrl } from "@/lib/site";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 
 export const Route = createFileRoute("/blog/$slug")({
@@ -14,6 +15,8 @@ export const Route = createFileRoute("/blog/$slug")({
     if (!post) {
       return { meta: [{ title: "Post not found" }, { name: "robots", content: "noindex" }] };
     }
+    const url = absoluteUrl(`/blog/${params.slug}`);
+    const image = absoluteUrl(post.ogImage);
     return {
       meta: [
         { title: `${post.title} | LS Fencing Blog` },
@@ -21,10 +24,17 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:title", content: post.title },
         { property: "og:description", content: post.description },
         { property: "og:type", content: "article" },
-        { property: "og:url", content: `/blog/${params.slug}` },
+        { property: "og:url", content: url },
+        { property: "og:image", content: image },
+        { property: "og:image:width", content: "1200" },
+        { property: "og:image:height", content: "630" },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: post.title },
+        { name: "twitter:description", content: post.description },
+        { name: "twitter:image", content: image },
         { property: "article:published_time", content: post.date },
       ],
-      links: [{ rel: "canonical", href: `/blog/${params.slug}` }],
+      links: [{ rel: "canonical", href: url }],
       scripts: [{
         type: "application/ld+json",
         children: JSON.stringify({
@@ -32,8 +42,10 @@ export const Route = createFileRoute("/blog/$slug")({
           "@type": "BlogPosting",
           headline: post.title,
           description: post.description,
+          image: [image],
           datePublished: post.date,
           author: { "@type": "Organization", name: "LS Fencing & Metal Work" },
+          mainEntityOfPage: url,
         }),
       }],
     };

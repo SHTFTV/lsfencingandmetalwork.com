@@ -1,3 +1,11 @@
+// Stable Lovable-published origin (unchanged on rename). Swap once a custom
+// domain is connected. Used for absolute canonical / og:url / sitemap URLs.
+export const BASE_URL = "https://project--593453aa-81d0-4624-a72c-181966a7cb9f.lovable.app";
+
+/** Build an absolute URL for canonical/og:url/sitemap entries. */
+export const absoluteUrl = (path: string) =>
+  `${BASE_URL}${path.startsWith("/") ? path : `/${path}`}`;
+
 export const SITE = {
   name: "LS Fencing & Metal Work",
   short: "LS Fencing",
@@ -7,6 +15,7 @@ export const SITE = {
   emailHref: "mailto:Lsfencingandmetalwork@gmail.com",
   territory: "Fraser Valley & Lower Mainland, BC",
   tagline: "Chain link, ornamental, cedar, gates & custom metal work — built to last.",
+  defaultOgImage: absoluteUrl("/og/blog-best-fencing-options.jpg"),
 };
 
 export const NAV_PRIMARY = [

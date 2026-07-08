@@ -1,11 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { PageShell, CtaStrip } from "@/components/PageShell";
 import { SITE } from "@/lib/site";
+import { submitLead } from "@/lib/leads.functions";
 import { useState } from "react";
 import { useForm, type UseFormRegister, type FieldErrors } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Phone, Mail, MapPin, Check, ArrowRight, ArrowLeft, Loader2 } from "lucide-react";
+import { Phone, Mail, MapPin, Check, ArrowRight, ArrowLeft, Loader2, AlertTriangle } from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -80,6 +82,9 @@ function Contact() {
   const [step, setStep] = useState<0 | 1 | 2>(0);
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [webhookDelivered, setWebhookDelivered] = useState(false);
+  const submit = useServerFn(submitLead);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
@@ -110,15 +115,39 @@ function Contact() {
   };
   const back = () => setStep((s) => (s > 0 ? ((s - 1) as 0 | 1 | 2) : s));
 
-  const onSubmit = async (_values: FormValues) => {
+  const onSubmit = async (values: FormValues) => {
     setSubmitting(true);
-    // Simulated fast submit — swap for real backend when Lovable Cloud is enabled.
-    await new Promise((r) => setTimeout(r, 500));
-    setSubmitting(false);
-    setDone(true);
+    setSubmitError(null);
+    try {
+      const res = await submit({
+        data: {
+          service: values.service,
+          linearFeet: Number.isFinite(values.linearFeet) ? Number(values.linearFeet) : null,
+          fenceHeight: values.fenceHeight,
+          gate: values.gate,
+          city: values.city,
+          postal: values.postal || null,
+          timeline: values.timeline,
+          name: values.name,
+          phone: values.phone,
+          email: values.email,
+          notes: values.notes || null,
+          source: "contact-form",
+        },
+      });
+      setWebhookDelivered(Boolean(res?.webhookDelivered));
+      setDone(true);
+    } catch (e) {
+      setSubmitError(
+        (e as Error)?.message ||
+          "Something went wrong sending your request. Please call us directly.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
-  if (done) return <ThankYou values={getValues()} />;
+  if (done) return <ThankYou values={getValues()} webhookDelivered={webhookDelivered} />;
 
   return (
     <PageShell>
@@ -157,6 +186,11 @@ function Contact() {
               </button>
             )}
           </div>
+          {submitError && (
+            <div className="mt-4 flex items-start gap-2 border border-destructive/40 bg-destructive/10 text-destructive rounded-sm p-3 text-sm">
+              <AlertTriangle className="h-4 w-4 mt-0.5" /> {submitError}
+            </div>
+          )}
         </form>
 
         <aside className="space-y-4">
