@@ -121,6 +121,9 @@ function Contact() {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const submit = useServerFn(submitLead);
 
+  // Read prefill hints from the URL (e.g. deep links from /gallery lightbox CTA)
+  const prefill = readPrefill();
+
   const form = useForm<FormValues>({
     // Cast is needed only to bridge the schema's preprocess-derived input type
     // (unknown for coerced number/enum fields) with useForm's inferred generic.
@@ -128,7 +131,7 @@ function Contact() {
     resolver: zodResolver(schema) as any,
     mode: "onTouched",
     defaultValues: {
-      service: undefined as unknown as FormValues["service"],
+      service: prefill.service ?? (undefined as unknown as FormValues["service"]),
       linearFeet: undefined,
       fenceHeight: undefined,
       gate: undefined,
