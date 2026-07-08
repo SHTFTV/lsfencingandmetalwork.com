@@ -97,7 +97,7 @@ function Page() {
       <PageHero
         eyebrow="Gallery"
         title="Proof of Work"
-        intro="Recent installs across the Fraser Valley & Lower Mainland. Photos are being updated — swap any tile for a real project shot when ready."
+        intro="Recent chain link, ornamental, gate, welding and excavation work across the Fraser Valley & Lower Mainland. Tap any photo to view it full-size."
       />
 
 
