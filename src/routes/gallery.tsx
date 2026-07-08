@@ -3,6 +3,16 @@ import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ArrowRight, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import img4ftGalv from "@/assets/gallery/4ft-galv-residential.jpeg.asset.json";
+import img6ftBarb from "@/assets/gallery/6ft-galv-barb-abbotsford.jpeg.asset.json";
+import img8ftSecurity from "@/assets/gallery/8ft-galv-commercial-security.jpeg.asset.json";
+import imgBlackSchool from "@/assets/gallery/black-vinyl-school-surrey.png.asset.json";
+import imgHandrail from "@/assets/gallery/galvanized-handrail-driveway.jpeg.asset.json";
+import imgOrnamental from "@/assets/gallery/ornamental-powdercoat-chilliwack.jpeg.asset.json";
+import imgExcavation from "@/assets/gallery/excavation-post-drilling.jpeg.asset.json";
+import imgBlackPlayground from "@/assets/gallery/black-chainlink-playground.jpeg.asset.json";
+import imgPerimeterBarb from "@/assets/gallery/galv-perimeter-barbwire.jpeg.asset.json";
+import imgCommercialGate from "@/assets/gallery/commercial-double-swing-gate.jpeg.asset.json";
 
 
 export const Route = createFileRoute("/gallery")({
@@ -13,6 +23,9 @@ export const Route = createFileRoute("/gallery")({
       { property: "og:title", content: "Project Gallery — Fences, Gates & Metal Work" },
       { property: "og:description", content: "Proof of work across chain link, cedar, ornamental, gates and welding." },
       { property: "og:url", content: "/gallery" },
+      { property: "og:image", content: imgBlackSchool.url },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: imgBlackSchool.url },
     ],
     links: [{ rel: "canonical", href: "/gallery" }],
   }),
@@ -23,33 +36,32 @@ type Item = {
   title: string;
   location: string;
   category: string;
-  swatch: string; // gradient
-  pattern: "chain" | "planks" | "spindles" | "plates" | "sparks" | "cantilever";
+  src: string;
+  alt: string;
 };
 
 const CATEGORIES = [
   "All",
   "Chain Link",
-  "Cedar",
   "Ornamental",
   "Gates",
   "Welding",
+  "Excavation",
 ] as const;
 
 const ITEMS: Item[] = [
-  { title: "10-ft galvanized site fence", location: "Surrey, BC", category: "Chain Link", swatch: "from-slate-700 via-slate-800 to-black", pattern: "chain" },
-  { title: "6×24 cantilever slide gate", location: "Chilliwack, BC", category: "Gates", swatch: "from-zinc-800 via-zinc-900 to-black", pattern: "cantilever" },
-  { title: "Cedar privacy fence with lattice", location: "Abbotsford, BC", category: "Cedar", swatch: "from-amber-900 via-amber-950 to-stone-950", pattern: "planks" },
-  { title: "Ornamental steel panels", location: "Langley, BC", category: "Ornamental", swatch: "from-neutral-800 via-neutral-900 to-black", pattern: "spindles" },
-  { title: "Black vinyl coated chain link", location: "Maple Ridge, BC", category: "Chain Link", swatch: "from-zinc-900 via-black to-zinc-800", pattern: "chain" },
-  { title: "MMCD-spec handrail install", location: "Maple Ridge, BC", category: "Welding", swatch: "from-orange-900 via-red-950 to-black", pattern: "sparks" },
-  { title: "Double swing driveway gate", location: "Cooper Rentals, Langley", category: "Gates", swatch: "from-stone-800 via-stone-900 to-black", pattern: "plates" },
-  { title: "Cedar board-on-board", location: "Mission, BC", category: "Cedar", swatch: "from-amber-800 via-yellow-950 to-stone-950", pattern: "planks" },
-  { title: "Powder-coated iron fence", location: "White Rock, BC", category: "Ornamental", swatch: "from-slate-800 via-neutral-900 to-black", pattern: "spindles" },
-  { title: "Industrial security fencing", location: "Port Kells, BC", category: "Chain Link", swatch: "from-gray-700 via-gray-900 to-black", pattern: "chain" },
-  { title: "Custom truck-bed rack (MIG)", location: "Chilliwack, BC", category: "Welding", swatch: "from-orange-800 via-red-900 to-black", pattern: "sparks" },
-  { title: "Barrier gate — parking lot", location: "Abbotsford, BC", category: "Gates", swatch: "from-yellow-900 via-neutral-900 to-black", pattern: "plates" },
+  { title: "Black vinyl-coated school perimeter", location: "Surrey, BC", category: "Chain Link", src: imgBlackSchool.url, alt: "Completed black vinyl-coated chain link perimeter fence at a school in Surrey BC" },
+  { title: "10-ft galvanized security fence with barb", location: "Vancouver, BC", category: "Chain Link", src: imgPerimeterBarb.url, alt: "Tall galvanized chain link perimeter fence with three-strand barbed wire" },
+  { title: "8-ft galvanized enclosure with roof", location: "Fraser Valley, BC", category: "Chain Link", src: img8ftSecurity.url, alt: "Tall galvanized chain link commercial security enclosure with covered top" },
+  { title: "6-ft galvanized with 3-strand barb wire", location: "Abbotsford, BC", category: "Chain Link", src: img6ftBarb.url, alt: "6-foot galvanized chain link fence with three-strand barbed wire in Abbotsford" },
+  { title: "Black chain link playground enclosure", location: "Chilliwack, BC", category: "Chain Link", src: imgBlackPlayground.url, alt: "Black vinyl-coated chain link fence enclosing a raised playground area" },
+  { title: "4-ft residential galvanized run", location: "Fraser Valley, BC", category: "Chain Link", src: img4ftGalv.url, alt: "4-foot galvanized chain link residential yard fence with top rail" },
+  { title: "Commercial double-swing chain link gate", location: "Abbotsford, BC", category: "Gates", src: imgCommercialGate.url, alt: "Commercial grade galvanized chain link double swing driveway gate with barrier arms" },
+  { title: "Powder-coated ornamental steel", location: "Chilliwack, BC", category: "Ornamental", src: imgOrnamental.url, alt: "Black powder-coated ornamental steel fence panels next to a stone column" },
+  { title: "MMCD-spec galvanized handrail", location: "Maple Ridge, BC", category: "Welding", src: imgHandrail.url, alt: "Galvanized pipe MMCD-spec handrail installed along an accessible ramp" },
+  { title: "Post-hole drilling with skid steer", location: "Fraser Valley, BC", category: "Excavation", src: imgExcavation.url, alt: "Kubota skid steer with hydraulic auger drilling fence post holes on a commercial lot" },
 ];
+
 
 function Page() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
