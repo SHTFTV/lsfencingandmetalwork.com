@@ -3,8 +3,8 @@ import { useServerFn } from "@tanstack/react-start";
 import { PageShell, CtaStrip } from "@/components/PageShell";
 import { SITE } from "@/lib/site";
 import { submitLead } from "@/lib/leads.functions";
-import { useState } from "react";
-import { useForm, type UseFormRegister, type FieldErrors } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { useForm, type UseFormRegister, type FieldErrors, type UseFormWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Phone, Mail, MapPin, Check, ArrowRight, ArrowLeft, Loader2, AlertTriangle } from "lucide-react";
@@ -46,6 +46,18 @@ const SERVICE_OPTIONS = [
   "Other",
 ] as const;
 
+// Services that involve a linear fence run (needs feet + height + gate spec)
+const FENCE_SERVICES = new Set([
+  "Chain Link Fencing",
+  "Cedar Fencing",
+  "Ornamental Fencing",
+]);
+// Services that involve a gate (only) — needs gate spec but not linear feet / height
+const GATE_ONLY_SERVICES = new Set([
+  "Metal / Driveway Gate",
+  "Barrier Gates & Railings",
+]);
+
 const GATE_OPTIONS = [
   "No gate needed",
   "Single walk gate",
@@ -56,19 +68,40 @@ const GATE_OPTIONS = [
   "Automated / motorized gate",
 ] as const;
 
-const schema = z.object({
-  service: z.enum(SERVICE_OPTIONS, { message: "Pick a service" }),
-  linearFeet: z.coerce.number({ message: "Enter a number" }).min(1, "Enter linear feet").max(100000, "Too large"),
-  fenceHeight: z.enum(["3 ft","4 ft","5 ft","6 ft","7 ft","8 ft","10 ft+","Not sure"], { message: "Pick a height" }),
-  gate: z.enum(GATE_OPTIONS, { message: "Pick a gate option" }),
-  city: z.string().trim().min(2, "Enter your city").max(60),
-  postal: z.string().trim().max(10).optional().or(z.literal("")),
-  timeline: z.enum(["ASAP","Within 2 weeks","1–2 months","Just planning"], { message: "Pick a timeline" }),
-  name: z.string().trim().min(2, "Enter your name").max(80),
-  phone: z.string().trim().min(7, "Enter a phone number").max(30),
-  email: z.string().trim().email("Invalid email").max(120),
-  notes: z.string().trim().max(1000).optional().or(z.literal("")),
-});
+const HEIGHT_OPTIONS = ["3 ft","4 ft","5 ft","6 ft","7 ft","8 ft","10 ft+","Not sure"] as const;
+const TIMELINE_OPTIONS = ["ASAP","Within 2 weeks","1–2 months","Just planning"] as const;
+
+const schema = z
+  .object({
+    service: z.enum(SERVICE_OPTIONS, { message: "Pick a service" }),
+    linearFeet: z.union([z.coerce.number().min(1).max(100000), z.literal("").transform(() => undefined)]).optional(),
+    fenceHeight: z.enum(HEIGHT_OPTIONS).optional().or(z.literal("").transform(() => undefined)),
+    gate: z.enum(GATE_OPTIONS).optional().or(z.literal("").transform(() => undefined)),
+    city: z.string().trim().min(2, "Enter your city").max(60),
+    postal: z.string().trim().max(10).optional().or(z.literal("")),
+    timeline: z.enum(TIMELINE_OPTIONS, { message: "Pick a timeline" }),
+    name: z.string().trim().min(2, "Enter your name").max(80),
+    phone: z.string().trim().min(7, "Enter a phone number").max(30),
+    email: z.string().trim().email("Invalid email").max(120),
+    notes: z.string().trim().max(1000).optional().or(z.literal("")),
+  })
+  .superRefine((v, ctx) => {
+    if (FENCE_SERVICES.has(v.service)) {
+      if (!v.linearFeet || !Number.isFinite(v.linearFeet) || v.linearFeet < 1) {
+        ctx.addIssue({ code: "custom", path: ["linearFeet"], message: "Enter approximate linear feet" });
+      }
+      if (!v.fenceHeight) {
+        ctx.addIssue({ code: "custom", path: ["fenceHeight"], message: "Pick a fence height" });
+      }
+      if (!v.gate) {
+        ctx.addIssue({ code: "custom", path: ["gate"], message: "Pick a gate option" });
+      }
+    } else if (GATE_ONLY_SERVICES.has(v.service)) {
+      if (!v.gate) {
+        ctx.addIssue({ code: "custom", path: ["gate"], message: "Pick a gate type" });
+      }
+    }
+  });
 
 type FormValues = z.infer<typeof schema>;
 
@@ -90,9 +123,9 @@ function Contact() {
     mode: "onTouched",
     defaultValues: {
       service: undefined as unknown as FormValues["service"],
-      linearFeet: undefined as unknown as number,
-      fenceHeight: undefined as unknown as FormValues["fenceHeight"],
-      gate: undefined as unknown as FormValues["gate"],
+      linearFeet: undefined,
+      fenceHeight: undefined,
+      gate: undefined,
       city: "",
       postal: "",
       timeline: undefined as unknown as FormValues["timeline"],
@@ -103,13 +136,29 @@ function Contact() {
     },
   });
 
-  const { register, handleSubmit, trigger, formState: { errors }, getValues } = form;
+  const { register, handleSubmit, trigger, watch, formState: { errors }, getValues } = form;
+  const service = watch("service");
+  const isFence = service ? FENCE_SERVICES.has(service) : false;
+  const needsGate = service ? isFence || GATE_ONLY_SERVICES.has(service) : false;
+
+  // Auto-advance step 0 → step 1 the moment a service is selected
+  useEffect(() => {
+    if (step === 0 && service) {
+      const t = setTimeout(() => setStep(1), 220);
+      return () => clearTimeout(t);
+    }
+  }, [service, step]);
+
+  const stepFields: Record<0 | 1, (keyof FormValues)[]> = {
+    0: ["service"],
+    1: (["city", "timeline"] as (keyof FormValues)[])
+      .concat(isFence ? (["linearFeet", "fenceHeight", "gate"] as (keyof FormValues)[]) : [])
+      .concat(!isFence && needsGate ? (["gate"] as (keyof FormValues)[]) : []),
+  };
 
   const next = async () => {
-    const fields: (keyof FormValues)[] =
-      step === 0 ? ["service"] :
-      step === 1 ? ["linearFeet", "fenceHeight", "gate", "city", "timeline"] : [];
-    const ok = await trigger(fields);
+    if (step === 2) return;
+    const ok = await trigger(stepFields[step as 0 | 1]);
     if (ok) setStep((s) => (s + 1) as 0 | 1 | 2);
   };
   const back = () => setStep((s) => (s > 0 ? ((s - 1) as 0 | 1 | 2) : s));
@@ -118,12 +167,12 @@ function Contact() {
     setSubmitting(true);
     setSubmitError(null);
     try {
-      const res = await submit({
+      await submit({
         data: {
           service: values.service,
-          linearFeet: Number.isFinite(values.linearFeet) ? Number(values.linearFeet) : null,
-          fenceHeight: values.fenceHeight,
-          gate: values.gate,
+          linearFeet: Number.isFinite(values.linearFeet as number) ? Number(values.linearFeet) : null,
+          fenceHeight: values.fenceHeight ?? null,
+          gate: values.gate ?? null,
           city: values.city,
           postal: values.postal || null,
           timeline: values.timeline,
@@ -147,6 +196,8 @@ function Contact() {
 
   if (done) return <ThankYou values={getValues()} />;
 
+  const progress = Math.round(((step + 1) / STEPS.length) * 100);
+
   return (
     <PageShell>
       <section className="border-b border-border grid-lines">
@@ -159,11 +210,24 @@ function Contact() {
 
       <section className="container-industrial py-14 grid lg:grid-cols-3 gap-8">
         <form onSubmit={handleSubmit(onSubmit)} className="lg:col-span-2 border border-border rounded-sm bg-card p-6 md:p-10">
-          <Stepper step={step} />
+          <Stepper step={step} progress={progress} />
 
           {step === 0 && <StepService register={register} errors={errors} />}
-          {step === 1 && <StepProject register={register} errors={errors} />}
-          {step === 2 && <StepContact register={register} errors={errors} />}
+          {step === 1 && (
+            <StepProject
+              register={register}
+              errors={errors}
+              watch={watch}
+              isFence={isFence}
+              needsGate={needsGate}
+            />
+          )}
+          {step === 2 && (
+            <>
+              <ReviewCard values={getValues()} isFence={isFence} needsGate={needsGate} onEdit={() => setStep(1)} />
+              <StepContact register={register} errors={errors} />
+            </>
+          )}
 
           <div className="mt-8 flex items-center justify-between">
             <button
@@ -217,26 +281,31 @@ function Contact() {
   );
 }
 
-function Stepper({ step }: { step: number }) {
+function Stepper({ step, progress }: { step: number; progress: number }) {
   return (
-    <ol className="grid grid-cols-3 gap-2 mb-8">
-      {STEPS.map((s) => {
-        const state = step === s.id ? "current" : step > s.id ? "done" : "pending";
-        return (
-          <li key={s.id} className="flex items-center gap-3">
-            <span className={
-              "h-8 w-8 rounded-full flex items-center justify-center text-xs font-semibold border " +
-              (state === "current" ? "bg-primary text-primary-foreground border-primary" :
-               state === "done" ? "bg-primary/20 text-primary border-primary" :
-               "bg-background text-muted-foreground border-border")
-            }>
-              {state === "done" ? <Check className="h-4 w-4" /> : s.id + 1}
-            </span>
-            <span className={"text-xs uppercase tracking-widest " + (state === "pending" ? "text-muted-foreground" : "text-foreground")}>{s.label}</span>
-          </li>
-        );
-      })}
-    </ol>
+    <div className="mb-8">
+      <ol className="grid grid-cols-3 gap-2 mb-4">
+        {STEPS.map((s) => {
+          const state = step === s.id ? "current" : step > s.id ? "done" : "pending";
+          return (
+            <li key={s.id} className="flex items-center gap-3">
+              <span className={
+                "h-8 w-8 rounded-full flex items-center justify-center text-xs font-semibold border " +
+                (state === "current" ? "bg-primary text-primary-foreground border-primary" :
+                 state === "done" ? "bg-primary/20 text-primary border-primary" :
+                 "bg-background text-muted-foreground border-border")
+              }>
+                {state === "done" ? <Check className="h-4 w-4" /> : s.id + 1}
+              </span>
+              <span className={"text-xs uppercase tracking-widest " + (state === "pending" ? "text-muted-foreground" : "text-foreground")}>{s.label}</span>
+            </li>
+          );
+        })}
+      </ol>
+      <div className="h-1 w-full bg-border/60 rounded-sm overflow-hidden">
+        <div className="h-full bg-primary transition-all duration-300" style={{ width: `${progress}%` }} />
+      </div>
+    </div>
   );
 }
 
@@ -255,40 +324,52 @@ function StepService({ register, errors }: StepProps) {
         ))}
       </div>
       <FieldError msg={errors.service?.message} />
+      <p className="text-xs text-muted-foreground">Selecting a service takes you to the next step automatically.</p>
     </div>
   );
 }
 
-function StepProject({ register, errors }: StepProps) {
+function StepProject({
+  register, errors, watch: _watch, isFence, needsGate,
+}: StepProps & { watch: UseFormWatch<FormValues>; isFence: boolean; needsGate: boolean }) {
   return (
     <div className="space-y-6">
-      <div className="grid md:grid-cols-2 gap-4">
+      {isFence && (
+        <div className="grid md:grid-cols-2 gap-4">
+          <div>
+            <FieldLabel>Approximate linear feet</FieldLabel>
+            <input type="number" inputMode="numeric" min={1} placeholder="e.g. 120" {...register("linearFeet")} className={inputCls} />
+            <FieldError msg={errors.linearFeet?.message} />
+          </div>
+          <div>
+            <FieldLabel>Fence height</FieldLabel>
+            <select {...register("fenceHeight")} className={inputCls}>
+              <option value="">Choose…</option>
+              {HEIGHT_OPTIONS.map((h) => <option key={h} value={h}>{h}</option>)}
+            </select>
+            <FieldError msg={errors.fenceHeight?.message} />
+          </div>
+        </div>
+      )}
+      {needsGate && (
         <div>
-          <FieldLabel>Approximate linear feet</FieldLabel>
-          <input type="number" inputMode="numeric" min={1} placeholder="e.g. 120" {...register("linearFeet")} className={inputCls} />
-          <FieldError msg={errors.linearFeet?.message} />
+          <FieldLabel>{isFence ? "Gate requirements" : "Gate type"}</FieldLabel>
+          <div className="grid sm:grid-cols-2 gap-2">
+            {GATE_OPTIONS.map((opt) => (
+              <label key={opt} className="flex items-center gap-3 border border-border rounded-sm px-4 py-3 cursor-pointer hover:border-primary has-[:checked]:border-primary has-[:checked]:bg-primary/10 transition">
+                <input type="radio" value={opt} {...register("gate")} className="accent-primary" />
+                <span className="text-sm">{opt}</span>
+              </label>
+            ))}
+          </div>
+          <FieldError msg={errors.gate?.message} />
         </div>
-        <div>
-          <FieldLabel>Fence height</FieldLabel>
-          <select {...register("fenceHeight")} className={inputCls}>
-            <option value="">Choose…</option>
-            {["3 ft","4 ft","5 ft","6 ft","7 ft","8 ft","10 ft+","Not sure"].map((h) => <option key={h} value={h}>{h}</option>)}
-          </select>
-          <FieldError msg={errors.fenceHeight?.message} />
+      )}
+      {!isFence && !needsGate && (
+        <div className="border border-dashed border-border rounded-sm bg-background/50 p-4 text-sm text-muted-foreground">
+          No linear-feet or gate details needed for this service — just where and when.
         </div>
-      </div>
-      <div>
-        <FieldLabel>Gate requirements</FieldLabel>
-        <div className="grid sm:grid-cols-2 gap-2">
-          {GATE_OPTIONS.map((opt) => (
-            <label key={opt} className="flex items-center gap-3 border border-border rounded-sm px-4 py-3 cursor-pointer hover:border-primary has-[:checked]:border-primary has-[:checked]:bg-primary/10 transition">
-              <input type="radio" value={opt} {...register("gate")} className="accent-primary" />
-              <span className="text-sm">{opt}</span>
-            </label>
-          ))}
-        </div>
-        <FieldError msg={errors.gate?.message} />
-      </div>
+      )}
       <div className="grid md:grid-cols-3 gap-4">
         <div className="md:col-span-2">
           <FieldLabel>City / neighbourhood</FieldLabel>
@@ -304,7 +385,7 @@ function StepProject({ register, errors }: StepProps) {
         <FieldLabel>Timeline</FieldLabel>
         <select {...register("timeline")} className={inputCls}>
           <option value="">Choose…</option>
-          {["ASAP","Within 2 weeks","1–2 months","Just planning"].map((t) => <option key={t} value={t}>{t}</option>)}
+          {TIMELINE_OPTIONS.map((t) => <option key={t} value={t}>{t}</option>)}
         </select>
         <FieldError msg={errors.timeline?.message} />
       </div>
@@ -340,6 +421,36 @@ function StepContact({ register, errors }: StepProps) {
   );
 }
 
+function ReviewCard({
+  values, isFence, needsGate, onEdit,
+}: { values: FormValues; isFence: boolean; needsGate: boolean; onEdit: () => void }) {
+  return (
+    <div className="mb-8 border border-border rounded-sm bg-background/50 p-5">
+      <div className="flex items-center justify-between mb-3">
+        <div className="text-xs uppercase tracking-widest text-primary">Review project</div>
+        <button type="button" onClick={onEdit} className="text-xs uppercase tracking-widest text-muted-foreground hover:text-primary">Edit</button>
+      </div>
+      <dl className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+        <ReviewCell label="Service" value={values.service} />
+        {isFence && <ReviewCell label="Linear ft" value={values.linearFeet ? `${values.linearFeet} ft` : "—"} />}
+        {isFence && <ReviewCell label="Height" value={values.fenceHeight ?? "—"} />}
+        {needsGate && <ReviewCell label="Gate" value={values.gate ?? "—"} />}
+        <ReviewCell label="City" value={values.city + (values.postal ? `, ${values.postal}` : "")} />
+        <ReviewCell label="Timeline" value={values.timeline} />
+      </dl>
+    </div>
+  );
+}
+
+function ReviewCell({ label, value }: { label: string; value?: string }) {
+  return (
+    <div>
+      <div className="text-[10px] uppercase tracking-widest text-muted-foreground">{label}</div>
+      <div className="text-foreground">{value || "—"}</div>
+    </div>
+  );
+}
+
 const inputCls =
   "w-full bg-background border border-border rounded-sm px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary";
 
@@ -352,6 +463,8 @@ function FieldError({ msg }: { msg?: string }) {
 }
 
 function ThankYou({ values }: { values: FormValues }) {
+  const isFence = values.service ? FENCE_SERVICES.has(values.service) : false;
+  const needsGate = values.service ? isFence || GATE_ONLY_SERVICES.has(values.service) : false;
   return (
     <PageShell>
       <section className="border-b border-border grid-lines">
@@ -366,8 +479,8 @@ function ThankYou({ values }: { values: FormValues }) {
           </p>
           <div className="mt-8 border border-border rounded-sm bg-card p-6 text-sm space-y-2">
             <SummaryRow label="Service" value={values.service} />
-            <SummaryRow label="Approx." value={`${values.linearFeet} ft @ ${values.fenceHeight}`} />
-            <SummaryRow label="Gate" value={values.gate} />
+            {isFence && <SummaryRow label="Approx." value={`${values.linearFeet ?? "—"} ft @ ${values.fenceHeight ?? "—"}`} />}
+            {needsGate && <SummaryRow label="Gate" value={values.gate} />}
             <SummaryRow label="Timeline" value={values.timeline} />
           </div>
           <div className="mt-8 flex flex-wrap gap-3">
