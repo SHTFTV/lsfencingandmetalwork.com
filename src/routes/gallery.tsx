@@ -13,6 +13,13 @@ import imgExcavation from "@/assets/gallery/excavation-post-drilling.jpeg.asset.
 import imgBlackPlayground from "@/assets/gallery/black-chainlink-playground.jpeg.asset.json";
 import imgPerimeterBarb from "@/assets/gallery/galv-perimeter-barbwire.jpeg.asset.json";
 import imgCommercialGate from "@/assets/gallery/commercial-double-swing-gate.jpeg.asset.json";
+import imgBaseballBackstop from "@/assets/gallery/baseball-backstop-fraser-valley.jpeg.asset.json";
+import imgHighSecurityFarm from "@/assets/gallery/high-security-cantilever-gate-farm.jpeg.asset.json";
+import imgCooperRentals from "@/assets/gallery/cooper-rentals-cantilever-langley.png.asset.json";
+import imgUtilityEnclosure from "@/assets/gallery/utility-equipment-enclosure.jpeg.asset.json";
+import imgTruckSkidsteer from "@/assets/gallery/ls-fencing-truck-skidsteer.jpeg.asset.json";
+
+
 
 
 export const Route = createFileRoute("/gallery")({
@@ -53,13 +60,18 @@ const ITEMS: Item[] = [
   { title: "Black vinyl-coated school perimeter", location: "Surrey, BC", category: "Chain Link", src: imgBlackSchool.url, alt: "Completed black vinyl-coated chain link perimeter fence at a school in Surrey BC" },
   { title: "10-ft galvanized security fence with barb", location: "Vancouver, BC", category: "Chain Link", src: imgPerimeterBarb.url, alt: "Tall galvanized chain link perimeter fence with three-strand barbed wire" },
   { title: "8-ft galvanized enclosure with roof", location: "Fraser Valley, BC", category: "Chain Link", src: img8ftSecurity.url, alt: "Tall galvanized chain link commercial security enclosure with covered top" },
+  { title: "Heavy-duty ball field backstop", location: "Fraser Valley, BC", category: "Chain Link", src: imgBaseballBackstop.url, alt: "Tall galvanized chain link baseball backstop with overhang and cedar kickboard next to bleachers" },
   { title: "6-ft galvanized with 3-strand barb wire", location: "Abbotsford, BC", category: "Chain Link", src: img6ftBarb.url, alt: "6-foot galvanized chain link fence with three-strand barbed wire in Abbotsford" },
   { title: "Black chain link playground enclosure", location: "Chilliwack, BC", category: "Chain Link", src: imgBlackPlayground.url, alt: "Black vinyl-coated chain link fence enclosing a raised playground area" },
   { title: "4-ft residential galvanized run", location: "Fraser Valley, BC", category: "Chain Link", src: img4ftGalv.url, alt: "4-foot galvanized chain link residential yard fence with top rail" },
+  { title: "Utility equipment security enclosure", location: "Fraser Valley, BC", category: "Chain Link", src: imgUtilityEnclosure.url, alt: "Galvanized chain link security cage protecting utility equipment on a concrete pad" },
   { title: "Commercial double-swing chain link gate", location: "Abbotsford, BC", category: "Gates", src: imgCommercialGate.url, alt: "Commercial grade galvanized chain link double swing driveway gate with barrier arms" },
+  { title: "Cooper Rentals double cantilever gate", location: "Langley, BC", category: "Gates", src: imgCooperRentals.url, alt: "Custom galvanized double cantilever chain link gate installed for Cooper Rentals in Langley BC" },
+  { title: "High-security farm cantilever gate", location: "Fraser Valley, BC", category: "Gates", src: imgHighSecurityFarm.url, alt: "Galvanized cantilever driveway gate securing an industrial farm yard with mountain backdrop" },
   { title: "Powder-coated ornamental steel", location: "Chilliwack, BC", category: "Ornamental", src: imgOrnamental.url, alt: "Black powder-coated ornamental steel fence panels next to a stone column" },
   { title: "MMCD-spec galvanized handrail", location: "Maple Ridge, BC", category: "Welding", src: imgHandrail.url, alt: "Galvanized pipe MMCD-spec handrail installed along an accessible ramp" },
   { title: "Post-hole drilling with skid steer", location: "Fraser Valley, BC", category: "Excavation", src: imgExcavation.url, alt: "Kubota skid steer with hydraulic auger drilling fence post holes on a commercial lot" },
+  { title: "LS crew truck & Kubota skid steer", location: "Chilliwack, BC", category: "Excavation", src: imgTruckSkidsteer.url, alt: "LS Fencing service truck loaded with fence pipe towing a trailer with a Kubota skid steer in Chilliwack" },
 ];
 
 
