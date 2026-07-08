@@ -1,17 +1,33 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
+import { serviceJsonLd, type FaqItem } from "@/lib/service-schema";
+
+const FAQ: FaqItem[] = [
+  { q: "Do you do excavation-only work?", a: "Yes — we're happy to price small excavation jobs that aren't tied to a fence install." },
+  { q: "Do you locate utilities?", a: "We always call for a BC 1 Call locate before digging, and we work around marked lines." },
+  { q: "Can you haul away the spoils?", a: "Yes, dump-run haul-away is quoted per load." },
+];
+
+const DESCRIPTION =
+  "Small-scale excavation for fence lines, post holes, drainage trenching and site prep across the Fraser Valley.";
 
 export const Route = createFileRoute("/excavation-services")({
   head: () => ({
     meta: [
       { title: "Excavation Services — Post Holes, Trenching, Grading | LS Fencing" },
-      { name: "description", content: "Small-scale excavation for fence lines, post holes, drainage trenching and site prep across the Fraser Valley." },
+      { name: "description", content: DESCRIPTION },
       { property: "og:title", content: "Excavation Services — Post Holes, Trenching, Grading" },
       { property: "og:description", content: "Mini-excavator work for fencing, drainage and site prep — Fraser Valley & Lower Mainland." },
       { property: "og:url", content: "/excavation-services" },
     ],
     links: [{ rel: "canonical", href: "/excavation-services" }],
+    scripts: serviceJsonLd({
+      name: "Excavation Services",
+      description: DESCRIPTION,
+      path: "/excavation-services",
+      faq: FAQ,
+    }),
   }),
   component: Page,
 });
@@ -49,11 +65,7 @@ function Page() {
           { label: "Coverage", value: "Fraser Valley & Lower Mainland" },
           { label: "Insurance", value: "Fully insured — WCB active" },
         ]}
-        faq={[
-          { q: "Do you do excavation-only work?", a: "Yes — we're happy to price small excavation jobs that aren't tied to a fence install." },
-          { q: "Do you locate utilities?", a: "We always call for a BC 1 Call locate before digging, and we work around marked lines." },
-          { q: "Can you haul away the spoils?", a: "Yes, dump-run haul-away is quoted per load." },
-        ]}
+        faq={FAQ}
         related={[
           { to: "/chain-link-fencing", label: "Chain link fencing" },
           { to: "/cedar-fencing", label: "Cedar fencing" },

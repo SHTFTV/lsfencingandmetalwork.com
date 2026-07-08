@@ -1,17 +1,33 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
+import { serviceJsonLd, type FaqItem } from "@/lib/service-schema";
+
+const FAQ: FaqItem[] = [
+  { q: "How long does a typical residential install take?", a: "Most 100–200 ft residential runs are installed in 1–2 days after posts have cured." },
+  { q: "Do you install on rocky or sloped lots?", a: "Yes. We rack fabric to follow grade and can core-drill or rock-anchor where digging isn't possible." },
+  { q: "Can I add barbed wire later?", a: "Yes — we install fence with top rail and arms rated for future barbed-wire additions." },
+];
+
+const DESCRIPTION =
+  "Galvanized and black vinyl-coated chain link fencing for commercial, industrial and residential sites across the Fraser Valley & Lower Mainland.";
 
 export const Route = createFileRoute("/chain-link-fencing")({
   head: () => ({
     meta: [
       { title: "Chain Link Fencing — Fraser Valley Installers | LS Fencing" },
-      { name: "description", content: "Galvanized and black vinyl-coated chain link fencing for commercial, industrial and residential sites across the Fraser Valley & Lower Mainland." },
+      { name: "description", content: DESCRIPTION },
       { property: "og:title", content: "Chain Link Fencing — Fraser Valley Installers" },
       { property: "og:description", content: "Site security, sports fields, storage yards and residential perimeters — installed to spec." },
       { property: "og:url", content: "/chain-link-fencing" },
     ],
     links: [{ rel: "canonical", href: "/chain-link-fencing" }],
+    scripts: serviceJsonLd({
+      name: "Chain Link Fencing",
+      description: DESCRIPTION,
+      path: "/chain-link-fencing",
+      faq: FAQ,
+    }),
   }),
   component: Page,
 });
@@ -49,11 +65,7 @@ function Page() {
           { label: "Gates", value: "Walk · Double · Cantilever slide" },
           { label: "Service area", value: "Fraser Valley & Lower Mainland" },
         ]}
-        faq={[
-          { q: "How long does a typical residential install take?", a: "Most 100–200 ft residential runs are installed in 1–2 days after posts have cured." },
-          { q: "Do you install on rocky or sloped lots?", a: "Yes. We rack fabric to follow grade and can core-drill or rock-anchor where digging isn't possible." },
-          { q: "Can I add barbed wire later?", a: "Yes — we install fence with top rail and arms rated for future barbed-wire additions." },
-        ]}
+        faq={FAQ}
         related={[
           { to: "/commercial-chain-link-fencing", label: "Commercial chain link" },
           { to: "/residential-chain-link-fencing", label: "Residential chain link" },
