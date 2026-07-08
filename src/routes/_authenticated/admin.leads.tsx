@@ -4,8 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { PageShell } from "@/components/PageShell";
 import { listLeads, updateLeadStatus } from "@/lib/leads.functions";
 import { supabase } from "@/integrations/supabase/client";
-import { Loader2, LogOut, RefreshCw, Mail, Phone, MapPin } from "lucide-react";
-import { useState } from "react";
+import { Loader2, LogOut, RefreshCw, Mail, Phone, MapPin, Download, Search } from "lucide-react";
+import { useMemo, useState } from "react";
 
 export const Route = createFileRoute("/_authenticated/admin/leads")({
   head: () => ({
@@ -48,6 +48,29 @@ function LeadsAdmin() {
   });
 
   const [busyId, setBusyId] = useState<string | null>(null);
+  const [query, setQuery] = useState("");
+  const [serviceFilter, setServiceFilter] = useState("all");
+  const [statusFilter, setStatusFilter] = useState("all");
+
+  const leads = (data?.leads ?? []) as Lead[];
+
+  const services = useMemo(
+    () => Array.from(new Set(leads.map((l) => l.service).filter(Boolean))).sort(),
+    [leads],
+  );
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return leads.filter((l) => {
+      if (serviceFilter !== "all" && l.service !== serviceFilter) return false;
+      if (statusFilter !== "all" && l.status !== statusFilter) return false;
+      if (!q) return true;
+      const hay = [
+        l.name, l.email, l.phone, l.city, l.postal, l.service, l.notes, l.gate,
+      ].filter(Boolean).join(" ").toLowerCase();
+      return hay.includes(q);
+    });
+  }, [leads, query, serviceFilter, statusFilter]);
 
   const signOut = async () => {
     await supabase.auth.signOut();
@@ -64,6 +87,29 @@ function LeadsAdmin() {
     }
   };
 
+  const exportCsv = () => {
+    const cols: (keyof Lead)[] = [
+      "created_at","name","phone","email","service","linear_feet","fence_height",
+      "gate","city","postal","timeline","status","source","notes","id",
+    ];
+    const esc = (v: unknown) => {
+      const s = v == null ? "" : String(v);
+      return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+    };
+    const rows = [cols.join(",")].concat(
+      filtered.map((l) => cols.map((c) => esc(l[c])).join(",")),
+    );
+    const blob = new Blob(["\uFEFF" + rows.join("\n")], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `leads-${new Date().toISOString().slice(0, 10)}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <PageShell>
       <section className="container-industrial py-10">
@@ -72,10 +118,17 @@ function LeadsAdmin() {
             <div className="text-xs uppercase tracking-[0.3em] text-primary mb-2">Admin</div>
             <h1 className="font-display uppercase text-3xl md:text-4xl">Leads inbox</h1>
             <p className="text-sm text-muted-foreground mt-1">
-              Most recent contact submissions ({data?.leads.length ?? 0}).
+              Showing {filtered.length} of {leads.length} submissions.
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={exportCsv}
+              disabled={filtered.length === 0}
+              className="inline-flex items-center gap-2 bg-primary text-primary-foreground rounded-sm px-4 py-2 text-xs uppercase tracking-wider disabled:opacity-50"
+            >
+              <Download className="h-3.5 w-3.5" /> Export CSV
+            </button>
             <button
               onClick={() => refetch()}
               className="inline-flex items-center gap-2 border border-border rounded-sm px-4 py-2 text-xs uppercase tracking-wider"
@@ -89,6 +142,34 @@ function LeadsAdmin() {
               <LogOut className="h-3.5 w-3.5" /> Sign out
             </button>
           </div>
+        </div>
+
+        <div className="grid gap-3 md:grid-cols-[1fr_auto_auto] mb-6">
+          <label className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search name, city, email, notes…"
+              className="w-full bg-background border border-border rounded-sm pl-10 pr-3 py-2.5 text-sm focus:outline-none focus:border-primary"
+            />
+          </label>
+          <select
+            value={serviceFilter}
+            onChange={(e) => setServiceFilter(e.target.value)}
+            className="bg-background border border-border rounded-sm px-3 py-2.5 text-xs uppercase tracking-widest"
+          >
+            <option value="all">All services</option>
+            {services.map((s) => <option key={s} value={s}>{s}</option>)}
+          </select>
+          <select
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+            className="bg-background border border-border rounded-sm px-3 py-2.5 text-xs uppercase tracking-widest"
+          >
+            <option value="all">All statuses</option>
+            {STATUSES.map((s) => <option key={s} value={s}>{s}</option>)}
+          </select>
         </div>
 
         {isLoading && (
@@ -106,14 +187,16 @@ function LeadsAdmin() {
           </div>
         )}
 
-        {data && data.leads.length === 0 && (
+        {data && filtered.length === 0 && !isLoading && (
           <div className="border border-border rounded-sm bg-card p-10 text-sm text-muted-foreground">
-            No leads yet. New submissions from the contact form will land here.
+            {leads.length === 0
+              ? "No leads yet. New submissions from the contact form will land here."
+              : "No leads match your filters."}
           </div>
         )}
 
         <div className="grid gap-4">
-          {(data?.leads ?? []).map((l: Lead) => (
+          {filtered.map((l) => (
             <article key={l.id} className="border border-border rounded-sm bg-card p-5">
               <header className="flex flex-wrap items-start justify-between gap-3">
                 <div>
