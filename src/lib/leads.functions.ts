@@ -59,30 +59,7 @@ export const submitLead = createServerFn({ method: "POST" })
       throw new Error("Could not save request. Please call us instead.");
     }
 
-    let webhookDelivered = false;
-    const webhookUrl = process.env.LEAD_WEBHOOK_URL;
-    if (webhookUrl) {
-      try {
-        const res = await fetch(webhookUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            event: "lead.created",
-            lead_id: inserted.id,
-            created_at: inserted.created_at,
-            ...row,
-          }),
-        });
-        webhookDelivered = res.ok;
-        if (!res.ok) {
-          console.error("[submitLead] webhook non-2xx", res.status, await res.text());
-        }
-      } catch (e) {
-        console.error("[submitLead] webhook error", e);
-      }
-    }
-
-    return { ok: true as const, id: inserted.id, webhookDelivered };
+    return { ok: true as const, id: inserted.id };
   });
 
 export const listLeads = createServerFn({ method: "GET" })

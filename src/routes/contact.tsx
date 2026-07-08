@@ -83,7 +83,6 @@ function Contact() {
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
-  const [webhookDelivered, setWebhookDelivered] = useState(false);
   const submit = useServerFn(submitLead);
 
   const form = useForm<FormValues>({
@@ -135,7 +134,6 @@ function Contact() {
           source: "contact-form",
         },
       });
-      setWebhookDelivered(Boolean(res?.webhookDelivered));
       setDone(true);
     } catch (e) {
       setSubmitError(
@@ -147,7 +145,7 @@ function Contact() {
     }
   };
 
-  if (done) return <ThankYou values={getValues()} webhookDelivered={webhookDelivered} />;
+  if (done) return <ThankYou values={getValues()} />;
 
   return (
     <PageShell>
