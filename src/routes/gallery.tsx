@@ -3,6 +3,16 @@ import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ArrowRight, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import img4ftGalv from "@/assets/gallery/4ft-galv-residential.jpeg.asset.json";
+import img6ftBarb from "@/assets/gallery/6ft-galv-barb-abbotsford.jpeg.asset.json";
+import img8ftSecurity from "@/assets/gallery/8ft-galv-commercial-security.jpeg.asset.json";
+import imgBlackSchool from "@/assets/gallery/black-vinyl-school-surrey.png.asset.json";
+import imgHandrail from "@/assets/gallery/galvanized-handrail-driveway.jpeg.asset.json";
+import imgOrnamental from "@/assets/gallery/ornamental-powdercoat-chilliwack.jpeg.asset.json";
+import imgExcavation from "@/assets/gallery/excavation-post-drilling.jpeg.asset.json";
+import imgBlackPlayground from "@/assets/gallery/black-chainlink-playground.jpeg.asset.json";
+import imgPerimeterBarb from "@/assets/gallery/galv-perimeter-barbwire.jpeg.asset.json";
+import imgCommercialGate from "@/assets/gallery/commercial-double-swing-gate.jpeg.asset.json";
 
 
 export const Route = createFileRoute("/gallery")({
@@ -13,6 +23,9 @@ export const Route = createFileRoute("/gallery")({
       { property: "og:title", content: "Project Gallery — Fences, Gates & Metal Work" },
       { property: "og:description", content: "Proof of work across chain link, cedar, ornamental, gates and welding." },
       { property: "og:url", content: "/gallery" },
+      { property: "og:image", content: imgBlackSchool.url },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: imgBlackSchool.url },
     ],
     links: [{ rel: "canonical", href: "/gallery" }],
   }),
@@ -23,33 +36,32 @@ type Item = {
   title: string;
   location: string;
   category: string;
-  swatch: string; // gradient
-  pattern: "chain" | "planks" | "spindles" | "plates" | "sparks" | "cantilever";
+  src: string;
+  alt: string;
 };
 
 const CATEGORIES = [
   "All",
   "Chain Link",
-  "Cedar",
   "Ornamental",
   "Gates",
   "Welding",
+  "Excavation",
 ] as const;
 
 const ITEMS: Item[] = [
-  { title: "10-ft galvanized site fence", location: "Surrey, BC", category: "Chain Link", swatch: "from-slate-700 via-slate-800 to-black", pattern: "chain" },
-  { title: "6×24 cantilever slide gate", location: "Chilliwack, BC", category: "Gates", swatch: "from-zinc-800 via-zinc-900 to-black", pattern: "cantilever" },
-  { title: "Cedar privacy fence with lattice", location: "Abbotsford, BC", category: "Cedar", swatch: "from-amber-900 via-amber-950 to-stone-950", pattern: "planks" },
-  { title: "Ornamental steel panels", location: "Langley, BC", category: "Ornamental", swatch: "from-neutral-800 via-neutral-900 to-black", pattern: "spindles" },
-  { title: "Black vinyl coated chain link", location: "Maple Ridge, BC", category: "Chain Link", swatch: "from-zinc-900 via-black to-zinc-800", pattern: "chain" },
-  { title: "MMCD-spec handrail install", location: "Maple Ridge, BC", category: "Welding", swatch: "from-orange-900 via-red-950 to-black", pattern: "sparks" },
-  { title: "Double swing driveway gate", location: "Cooper Rentals, Langley", category: "Gates", swatch: "from-stone-800 via-stone-900 to-black", pattern: "plates" },
-  { title: "Cedar board-on-board", location: "Mission, BC", category: "Cedar", swatch: "from-amber-800 via-yellow-950 to-stone-950", pattern: "planks" },
-  { title: "Powder-coated iron fence", location: "White Rock, BC", category: "Ornamental", swatch: "from-slate-800 via-neutral-900 to-black", pattern: "spindles" },
-  { title: "Industrial security fencing", location: "Port Kells, BC", category: "Chain Link", swatch: "from-gray-700 via-gray-900 to-black", pattern: "chain" },
-  { title: "Custom truck-bed rack (MIG)", location: "Chilliwack, BC", category: "Welding", swatch: "from-orange-800 via-red-900 to-black", pattern: "sparks" },
-  { title: "Barrier gate — parking lot", location: "Abbotsford, BC", category: "Gates", swatch: "from-yellow-900 via-neutral-900 to-black", pattern: "plates" },
+  { title: "Black vinyl-coated school perimeter", location: "Surrey, BC", category: "Chain Link", src: imgBlackSchool.url, alt: "Completed black vinyl-coated chain link perimeter fence at a school in Surrey BC" },
+  { title: "10-ft galvanized security fence with barb", location: "Vancouver, BC", category: "Chain Link", src: imgPerimeterBarb.url, alt: "Tall galvanized chain link perimeter fence with three-strand barbed wire" },
+  { title: "8-ft galvanized enclosure with roof", location: "Fraser Valley, BC", category: "Chain Link", src: img8ftSecurity.url, alt: "Tall galvanized chain link commercial security enclosure with covered top" },
+  { title: "6-ft galvanized with 3-strand barb wire", location: "Abbotsford, BC", category: "Chain Link", src: img6ftBarb.url, alt: "6-foot galvanized chain link fence with three-strand barbed wire in Abbotsford" },
+  { title: "Black chain link playground enclosure", location: "Chilliwack, BC", category: "Chain Link", src: imgBlackPlayground.url, alt: "Black vinyl-coated chain link fence enclosing a raised playground area" },
+  { title: "4-ft residential galvanized run", location: "Fraser Valley, BC", category: "Chain Link", src: img4ftGalv.url, alt: "4-foot galvanized chain link residential yard fence with top rail" },
+  { title: "Commercial double-swing chain link gate", location: "Abbotsford, BC", category: "Gates", src: imgCommercialGate.url, alt: "Commercial grade galvanized chain link double swing driveway gate with barrier arms" },
+  { title: "Powder-coated ornamental steel", location: "Chilliwack, BC", category: "Ornamental", src: imgOrnamental.url, alt: "Black powder-coated ornamental steel fence panels next to a stone column" },
+  { title: "MMCD-spec galvanized handrail", location: "Maple Ridge, BC", category: "Welding", src: imgHandrail.url, alt: "Galvanized pipe MMCD-spec handrail installed along an accessible ramp" },
+  { title: "Post-hole drilling with skid steer", location: "Fraser Valley, BC", category: "Excavation", src: imgExcavation.url, alt: "Kubota skid steer with hydraulic auger drilling fence post holes on a commercial lot" },
 ];
+
 
 function Page() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -85,7 +97,7 @@ function Page() {
       <PageHero
         eyebrow="Gallery"
         title="Proof of Work"
-        intro="Recent installs across the Fraser Valley & Lower Mainland. Photos are being updated — swap any tile for a real project shot when ready."
+        intro="Recent chain link, ornamental, gate, welding and excavation work across the Fraser Valley & Lower Mainland. Tap any photo to view it full-size."
       />
 
 
@@ -112,11 +124,8 @@ function Page() {
 
 
 
-        <div className="mt-10 border border-dashed border-border rounded-sm bg-card/50 p-6 text-sm text-muted-foreground">
-          These tiles are placeholders styled with the site palette. Drop real photos into
-          <code className="mx-1 text-foreground">public/gallery/</code> and swap the tile <code className="mx-1 text-foreground">pattern</code>
-          for an <code className="mx-1 text-foreground">&lt;img&gt;</code> when project photography is ready.
-        </div>
+
+
 
         <div className="mt-10 grid md:grid-cols-3 gap-4">
           <Link to="/projects/heatherbrae-builders-surrey" className="group border border-border rounded-sm bg-card p-5 hover:border-primary transition">
@@ -161,13 +170,18 @@ function GalleryTile({
       type="button"
       onClick={onClick}
       aria-label={`View ${item.title}`}
-      className={`group relative aspect-[4/3] rounded-sm overflow-hidden border border-border bg-gradient-to-br ${item.swatch} text-left focus:outline-none focus:ring-2 focus:ring-primary`}
+      className="group relative aspect-[4/3] rounded-sm overflow-hidden border border-border bg-muted text-left focus:outline-none focus:ring-2 focus:ring-primary"
     >
-      <PatternLayer pattern={item.pattern} />
-      <div className="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
+      <img
+        src={item.src}
+        alt={item.alt}
+        loading="lazy"
+        className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
+      />
+      <div className="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/85 via-black/25 to-transparent">
         <div className="text-[10px] uppercase tracking-[0.3em] text-primary">{item.category}</div>
         <div className="font-display uppercase text-white text-base leading-tight mt-1">{item.title}</div>
-        <div className="text-xs text-white/70 mt-1">{item.location}</div>
+        <div className="text-xs text-white/80 mt-1">{item.location}</div>
       </div>
       <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition text-[10px] uppercase tracking-widest bg-primary text-primary-foreground px-2 py-1 rounded-sm">
         View
@@ -186,29 +200,15 @@ function Lightbox({
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
 
-  // Autofocus close button on open
   useEffect(() => {
     closeBtnRef.current?.focus();
   }, []);
 
-  // Keyboard: Escape closes, arrows navigate, Tab is trapped inside dialog
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        e.preventDefault();
-        onClose();
-        return;
-      }
-      if (e.key === "ArrowRight") {
-        e.preventDefault();
-        onNext();
-        return;
-      }
-      if (e.key === "ArrowLeft") {
-        e.preventDefault();
-        onPrev();
-        return;
-      }
+      if (e.key === "Escape") { e.preventDefault(); onClose(); return; }
+      if (e.key === "ArrowRight") { e.preventDefault(); onNext(); return; }
+      if (e.key === "ArrowLeft") { e.preventDefault(); onPrev(); return; }
       if (e.key === "Tab") {
         const root = dialogRef.current;
         if (!root) return;
@@ -273,19 +273,12 @@ function Lightbox({
         onClick={(e) => e.stopPropagation()}
         className="w-full max-w-5xl"
       >
-        <div className={`relative aspect-video rounded-sm overflow-hidden border border-white/10 bg-gradient-to-br ${item.swatch}`}>
-          <PatternLayer pattern={item.pattern} />
-          {/* Larger proof-of-work grid overlay: 6 pattern tiles */}
-          <div className="absolute inset-0 grid grid-cols-3 grid-rows-2 gap-1 p-2 opacity-90">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className={`relative overflow-hidden rounded-sm bg-gradient-to-br ${item.swatch} border border-white/10`}>
-                <PatternLayer pattern={item.pattern} />
-              </div>
-            ))}
-          </div>
-          <div className="absolute bottom-3 left-4 text-[10px] uppercase tracking-[0.3em] text-white/70">
-            Placeholder proof-of-work grid
-          </div>
+        <div className="relative rounded-sm overflow-hidden border border-white/10 bg-black flex items-center justify-center max-h-[75vh]">
+          <img
+            src={item.src}
+            alt={item.alt}
+            className="max-h-[75vh] w-auto max-w-full object-contain"
+          />
         </div>
         <figcaption className="mt-4 flex items-end justify-between gap-4 text-white">
           <div>
@@ -302,57 +295,3 @@ function Lightbox({
   );
 }
 
-
-
-function PatternLayer({ pattern }: { pattern: Item["pattern"] }) {
-  const base = "absolute inset-0 opacity-30 mix-blend-screen";
-  switch (pattern) {
-    case "chain":
-      return (
-        <div className={base} style={{
-          backgroundImage:
-            "repeating-linear-gradient(45deg, rgba(255,255,255,.18) 0 2px, transparent 2px 14px), repeating-linear-gradient(-45deg, rgba(255,255,255,.18) 0 2px, transparent 2px 14px)",
-        }} />
-      );
-    case "planks":
-      return (
-        <div className={base} style={{
-          backgroundImage:
-            "repeating-linear-gradient(90deg, rgba(255,255,255,.12) 0 40px, rgba(0,0,0,.35) 40px 42px)",
-        }} />
-      );
-    case "spindles":
-      return (
-        <div className={base} style={{
-          backgroundImage:
-            "repeating-linear-gradient(90deg, rgba(255,255,255,.25) 0 3px, transparent 3px 20px)",
-        }} />
-      );
-    case "plates":
-      return (
-        <div className={base} style={{
-          backgroundImage:
-            "radial-gradient(circle at 20% 30%, rgba(255,255,255,.35) 2px, transparent 3px), radial-gradient(circle at 80% 70%, rgba(255,255,255,.35) 2px, transparent 3px)",
-          backgroundSize: "40px 40px",
-        }} />
-      );
-    case "sparks":
-      return (
-        <div className={base} style={{
-          backgroundImage:
-            "radial-gradient(circle at 30% 40%, rgba(255,180,80,.7) 1.5px, transparent 2px), radial-gradient(circle at 70% 60%, rgba(255,200,120,.6) 1.5px, transparent 2px), radial-gradient(circle at 50% 20%, rgba(255,240,180,.5) 1px, transparent 2px)",
-          backgroundSize: "60px 60px, 80px 80px, 40px 40px",
-        }} />
-      );
-    case "cantilever":
-      return (
-        <div className={base} style={{
-          backgroundImage:
-            "linear-gradient(180deg, rgba(255,255,255,.15) 0 4px, transparent 4px), repeating-linear-gradient(90deg, rgba(255,255,255,.15) 0 3px, transparent 3px 22px)",
-          backgroundSize: "100% 100%, 100% 60%",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "top, bottom",
-        }} />
-      );
-  }
-}
