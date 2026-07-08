@@ -50,6 +50,7 @@ import { Route as ProjectsCooperRentalsLangleyRouteImport } from './routes/proje
 import { Route as ProjectsCantileverGatesChilliwackRouteImport } from './routes/projects/cantilever-gates-chilliwack'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AuthenticatedAdminLeadsRouteImport } from './routes/_authenticated/admin.leads'
+import { Route as AuthenticatedAdminGalleryLeadsRouteImport } from './routes/_authenticated/admin.gallery-leads'
 import { Route as R20170314BarrierGatesRouteImport } from './routes/2017/03/14/barrier-gates'
 import { Route as R20160607DifferencesChainLinkFenceWoodenFenceRouteImport } from './routes/2016/06/07/differences-chain-link-fence-wooden-fence'
 import { Route as R20160607ConsiderFencingOptionRouteImport } from './routes/2016/06/07/consider-fencing-option'
@@ -276,6 +277,12 @@ const AuthenticatedAdminLeadsRoute = AuthenticatedAdminLeadsRouteImport.update({
   path: '/admin/leads',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedAdminGalleryLeadsRoute =
+  AuthenticatedAdminGalleryLeadsRouteImport.update({
+    id: '/admin/gallery-leads',
+    path: '/admin/gallery-leads',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const R20170314BarrierGatesRoute = R20170314BarrierGatesRouteImport.update({
   id: '/2017/03/14/barrier-gates',
   path: '/2017/03/14/barrier-gates',
@@ -340,6 +347,7 @@ export interface FileRoutesByFullPath {
   '/projects/cooper-rentals-langley': typeof ProjectsCooperRentalsLangleyRoute
   '/projects/heatherbrae-builders-surrey': typeof ProjectsHeatherbraeBuildersSurreyRoute
   '/projects/railing-installation-maple-ridge': typeof ProjectsRailingInstallationMapleRidgeRoute
+  '/admin/gallery-leads': typeof AuthenticatedAdminGalleryLeadsRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/2016/06/07/best-fencing-options-qualities': typeof R20160607BestFencingOptionsQualitiesRoute
   '/2016/06/07/consider-fencing-option': typeof R20160607ConsiderFencingOptionRoute
@@ -386,6 +394,7 @@ export interface FileRoutesByTo {
   '/projects/cooper-rentals-langley': typeof ProjectsCooperRentalsLangleyRoute
   '/projects/heatherbrae-builders-surrey': typeof ProjectsHeatherbraeBuildersSurreyRoute
   '/projects/railing-installation-maple-ridge': typeof ProjectsRailingInstallationMapleRidgeRoute
+  '/admin/gallery-leads': typeof AuthenticatedAdminGalleryLeadsRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/2016/06/07/best-fencing-options-qualities': typeof R20160607BestFencingOptionsQualitiesRoute
   '/2016/06/07/consider-fencing-option': typeof R20160607ConsiderFencingOptionRoute
@@ -434,6 +443,7 @@ export interface FileRoutesById {
   '/projects/cooper-rentals-langley': typeof ProjectsCooperRentalsLangleyRoute
   '/projects/heatherbrae-builders-surrey': typeof ProjectsHeatherbraeBuildersSurreyRoute
   '/projects/railing-installation-maple-ridge': typeof ProjectsRailingInstallationMapleRidgeRoute
+  '/_authenticated/admin/gallery-leads': typeof AuthenticatedAdminGalleryLeadsRoute
   '/_authenticated/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/2016/06/07/best-fencing-options-qualities': typeof R20160607BestFencingOptionsQualitiesRoute
   '/2016/06/07/consider-fencing-option': typeof R20160607ConsiderFencingOptionRoute
@@ -482,6 +492,7 @@ export interface FileRouteTypes {
     | '/projects/cooper-rentals-langley'
     | '/projects/heatherbrae-builders-surrey'
     | '/projects/railing-installation-maple-ridge'
+    | '/admin/gallery-leads'
     | '/admin/leads'
     | '/2016/06/07/best-fencing-options-qualities'
     | '/2016/06/07/consider-fencing-option'
@@ -528,6 +539,7 @@ export interface FileRouteTypes {
     | '/projects/cooper-rentals-langley'
     | '/projects/heatherbrae-builders-surrey'
     | '/projects/railing-installation-maple-ridge'
+    | '/admin/gallery-leads'
     | '/admin/leads'
     | '/2016/06/07/best-fencing-options-qualities'
     | '/2016/06/07/consider-fencing-option'
@@ -575,6 +587,7 @@ export interface FileRouteTypes {
     | '/projects/cooper-rentals-langley'
     | '/projects/heatherbrae-builders-surrey'
     | '/projects/railing-installation-maple-ridge'
+    | '/_authenticated/admin/gallery-leads'
     | '/_authenticated/admin/leads'
     | '/2016/06/07/best-fencing-options-qualities'
     | '/2016/06/07/consider-fencing-option'
@@ -917,6 +930,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminLeadsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/admin/gallery-leads': {
+      id: '/_authenticated/admin/gallery-leads'
+      path: '/admin/gallery-leads'
+      fullPath: '/admin/gallery-leads'
+      preLoaderRoute: typeof AuthenticatedAdminGalleryLeadsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/2017/03/14/barrier-gates': {
       id: '/2017/03/14/barrier-gates'
       path: '/2017/03/14/barrier-gates'
@@ -949,10 +969,12 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminGalleryLeadsRoute: typeof AuthenticatedAdminGalleryLeadsRoute
   AuthenticatedAdminLeadsRoute: typeof AuthenticatedAdminLeadsRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminGalleryLeadsRoute: AuthenticatedAdminGalleryLeadsRoute,
   AuthenticatedAdminLeadsRoute: AuthenticatedAdminLeadsRoute,
 }
 
