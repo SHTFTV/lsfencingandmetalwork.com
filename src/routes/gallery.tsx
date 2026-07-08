@@ -23,6 +23,9 @@ import imgCustomCedar from "@/assets/gallery/custom-cedar-horizontal-slat.jpg.as
 import imgShopWelding from "@/assets/gallery/shop-welding-kubota-fabrication.jpg.asset.json";
 import imgBlackSlatMapleRidge from "@/assets/gallery/black-privacy-slat-chainlink-maple-ridge.jpg.asset.json";
 import imgOrnamentalStorefront from "@/assets/gallery/ornamental-storefront-gate-abbotsford.jpg.asset.json";
+import imgKubotaExcavator from "@/assets/gallery/kubota-kx033-excavator-post-line.jpg.asset.json";
+import imgBlackHillside from "@/assets/gallery/black-chainlink-hillside-chilliwack.jpg.asset.json";
+import imgCantileverSlatGate from "@/assets/gallery/8x16-cantilever-slat-gate-abbotsford.jpg.asset.json";
 
 
 
