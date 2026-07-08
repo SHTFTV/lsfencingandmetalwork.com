@@ -128,8 +128,11 @@ test.describe("/gallery lightbox keyboard + focus trap", () => {
     expect(href).toMatch(/photo=[^&]+/);
 
     await Promise.all([page.waitForURL("**/contact*"), cta.click()]);
-    // The service radio should be pre-checked from the URL param.
-    const radio = page.getByRole("radio", { name: "Chain Link Fencing" });
-    await expect(radio).toBeChecked();
+    // Prefilled service auto-advances step 0 → step 1, so the "City / neighbourhood"
+    // input from step 1 should be visible without the user touching the service radios.
+    await expect(page.getByPlaceholder("e.g. Chilliwack")).toBeVisible();
+    // And the URL retained the attribution params for downstream analytics.
+    expect(page.url()).toContain("source=gallery-lightbox");
+    expect(page.url()).toContain("service=Chain+Link+Fencing");
   });
 });
