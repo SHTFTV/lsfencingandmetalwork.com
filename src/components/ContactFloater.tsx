@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Phone, MessageSquare, Mail, X } from "lucide-react";
+import { Phone, MessageSquare, Mail, X, Star } from "lucide-react";
 import { SITE } from "@/lib/site";
 
 /**
@@ -78,7 +78,34 @@ export function ContactFloater() {
             <span className="truncate">{SITE.email}</span>
           </span>
         </a>
+
+        <a
+          href="https://www.google.com/search?q=ls+fencing+%26+metal+work"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="See our 4.9 star rating from 55 Google reviews"
+          className="group mt-1 inline-flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-2 hover:bg-muted"
+        >
+          <div className="flex flex-col leading-tight min-w-0">
+            <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+              Google Reviews
+            </span>
+            <span className="flex items-center gap-1">
+              <span className="text-sm font-semibold text-foreground">4.9</span>
+              <span className="flex" aria-hidden="true">
+                {[0, 1, 2, 3, 4].map((i) => (
+                  <Star
+                    key={i}
+                    className="h-3 w-3 fill-yellow-400 text-yellow-400"
+                  />
+                ))}
+              </span>
+              <span className="text-[11px] text-muted-foreground">· 55</span>
+            </span>
+          </div>
+        </a>
       </div>
+
     </aside>
   );
 }
