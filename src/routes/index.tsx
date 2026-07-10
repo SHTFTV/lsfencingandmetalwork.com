@@ -154,6 +154,7 @@ function Home() {
   const rotating = SERVICES.map((s) => s.label);
   const [idx, setIdx] = useState(0);
   const [featureStart, setFeatureStart] = useState(0);
+  const [lightbox, setLightbox] = useState<Feature | null>(null);
   useEffect(() => {
     const id = setInterval(() => setIdx((i) => (i + 1) % rotating.length), 2200);
     return () => clearInterval(id);
@@ -163,6 +164,23 @@ function Home() {
     return () => clearInterval(id);
   }, []);
   const visibleFeatures = Array.from({ length: 3 }, (_, i) => FEATURES[(featureStart + i) % FEATURES.length]);
+
+  const openLightbox = useCallback((f: Feature) => setLightbox(f), []);
+  const closeLightbox = useCallback(() => setLightbox(null), []);
+  useEffect(() => {
+    if (!lightbox) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeLightbox();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [lightbox, closeLightbox]);
+
 
 
   return (
