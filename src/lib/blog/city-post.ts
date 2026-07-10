@@ -311,7 +311,7 @@ function buildCommercialPost(city: CityFact): BlogPost {
     ]},
 
     { type: "h2", text: `Materials and specs we default to in ${name}` },
-    { type: "p", text: `${city.materialNotes} For commercial perimeters that translates into a small number of specs we default to unless a site condition forces something different.` },
+    { type: "p", text: `Our default ${name} commercial spec starts with hot-dip galvanized hardware end-to-end and adjusts up from there for site conditions. The bullets below are the specs we default to unless a site walk forces something different.` },
     { type: "ul", items: [
       "Chain link fabric: 9-gauge, hot-dip galvanized after weaving, black vinyl-coated where aesthetics matter (strata, storefronts).",
       "Posts: schedule 40 pipe, hot-dip galvanized, 3\" line posts and 4\" terminal posts standard; heavier on gate posts and cantilever gate opposite-side rollers.",
