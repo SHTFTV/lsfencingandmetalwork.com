@@ -142,7 +142,7 @@ function main() {
   }
 
   if (found.length === 0) {
-    console.error("[jsonld] No serviceJsonLd() calls found — nothing to validate.");
+    console.error("[jsonld] No serviceHead()/serviceJsonLd() calls found — nothing to validate.");
     process.exit(1);
   }
 
