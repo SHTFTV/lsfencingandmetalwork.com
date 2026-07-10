@@ -348,7 +348,74 @@ function buildCommercialPost(city: CityFact): BlogPost {
   };
 }
 
-export function buildCityPosts(): BlogPost[] {
-  return CITIES.map((c) => (c.commercialFocus ? buildCommercialPost(c) : buildPost(c)));
+/**
+ * Commercial city post keyword checklist. Every commercial-focus city post
+ * MUST mention every term below (case-insensitive substring match) or the
+ * build fails. Keeps the copy aligned to the commercial positioning even if
+ * the template drifts.
+ */
+export const COMMERCIAL_REQUIRED_KEYWORDS = [
+  "strata perimeter",
+  "high-security",
+  "cantilever",
+  "bollard",
+  "mmcd",
+  "hand rail",
+  "welded",
+  "chain link",
+  "galvanized",
+  "property manager",
+] as const;
+
+/**
+ * Phrases that must NEVER appear in a commercial-focus city post. Anything
+ * that positions the page as residential/backyard work breaks positioning
+ * for the Metro Vancouver market and fails the build.
+ */
+export const COMMERCIAL_BANNED_PHRASES = [
+  "backyard",
+  "rear-yard",
+  "rear yard",
+  "homeowner",
+  "fence for homeowners",
+  "residential backyard",
+  "family home",
+  "backyard privacy",
+  "back yard",
+  "your backyard",
+] as const;
+
+function collectPostText(post: BlogPost): string {
+  const parts: string[] = [post.title, post.description, ...post.keyTakeaways];
+  for (const block of post.body) {
+    if ("text" in block && typeof block.text === "string") parts.push(block.text);
+    if ("items" in block && Array.isArray(block.items)) parts.push(...block.items);
+  }
+  for (const f of post.faq) parts.push(f.q, f.a);
+  return parts.join("\n").toLowerCase();
 }
+
+export function validateCommercialPost(post: BlogPost): void {
+  const text = collectPostText(post);
+  const missing = COMMERCIAL_REQUIRED_KEYWORDS.filter((k) => !text.includes(k.toLowerCase()));
+  const banned = COMMERCIAL_BANNED_PHRASES.filter((p) => text.includes(p.toLowerCase()));
+  if (missing.length || banned.length) {
+    const msgs: string[] = [];
+    if (missing.length) msgs.push(`missing required commercial keywords: ${missing.join(", ")}`);
+    if (banned.length) msgs.push(`contains banned residential phrases: ${banned.join(", ")}`);
+    throw new Error(`Commercial city post "${post.slug}" failed validation — ${msgs.join("; ")}`);
+  }
+}
+
+export function buildCityPosts(): BlogPost[] {
+  return CITIES.map((c) => {
+    if (c.commercialFocus) {
+      const post = buildCommercialPost(c);
+      validateCommercialPost(post);
+      return post;
+    }
+    return buildPost(c);
+  });
+}
+
 
