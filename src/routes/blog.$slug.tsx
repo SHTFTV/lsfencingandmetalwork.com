@@ -1,8 +1,10 @@
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 import { PageShell, CtaStrip } from "@/components/PageShell";
-import { POSTS, getPost, type BlogPost } from "@/lib/blog";
+import { BlogImage } from "@/components/BlogImage";
+import { POSTS, getPost, getPostImage, getPostImageAlt, type BlogPost } from "@/lib/blog";
 import { absoluteUrl, SITE } from "@/lib/site";
 import { ArrowLeft, Calendar, Clock, CheckCircle2, ExternalLink } from "lucide-react";
+
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
