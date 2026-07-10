@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell, CtaStrip } from "@/components/PageShell";
-import { SERVICES, GEO_PAGES, SITE } from "@/lib/site";
+import { SERVICES, GEO_PAGES, SITE, absoluteUrl } from "@/lib/site";
+import { localBusinessScript } from "@/lib/service-schema";
 import { ArrowRight, Phone, ShieldCheck, Hammer, MapPin, X, ZoomIn } from "lucide-react";
 import cantileverImg from "@/assets/gallery/8x16-cantilever-slat-gate-abbotsford.jpg.asset.json";
 import commercialImg from "@/assets/gallery/8ft-galv-commercial-security.jpeg.asset.json";
@@ -131,19 +132,34 @@ export const Route = createFileRoute("/")({
       },
       { name: "robots", content: "index, follow, max-image-preview:large" },
       { name: "googlebot", content: "index, follow, max-image-preview:large" },
+      { property: "og:site_name", content: SITE.name },
       { property: "og:title", content: "LS Fencing & Metal Work — Fence, Gate & Welding Contractor" },
       { property: "og:description", content: "Fence, gate & metal fabrication crew serving the Fraser Valley & Lower Mainland, BC." },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: absoluteUrl("/") },
       { property: "og:type", content: "website" },
       { property: "og:image", content: commercialImg.url },
+      { property: "og:image:alt", content: "8-foot galvanized chain link commercial security enclosure by LS Fencing in the Fraser Valley" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "LS Fencing & Metal Work" },
       { name: "twitter:description", content: "Fence, gate & metal fabrication crew serving the Fraser Valley." },
       { name: "twitter:image", content: commercialImg.url },
+      { name: "twitter:image:alt", content: "LS Fencing crew commercial chain link project" },
     ],
     links: [
-      { rel: "canonical", href: "/" },
+      { rel: "canonical", href: absoluteUrl("/") },
       { rel: "preload", as: "image", href: FEATURES[0].src, fetchpriority: "high" },
+    ],
+    scripts: [
+      localBusinessScript(),
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: SITE.name,
+          url: absoluteUrl("/"),
+        }),
+      },
     ],
   }),
   component: Home,

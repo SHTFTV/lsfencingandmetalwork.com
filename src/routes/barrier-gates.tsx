@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
-import { serviceJsonLd, type FaqItem } from "@/lib/service-schema";
+import { serviceHead, type FaqItem } from "@/lib/service-schema";
 import heroImg from "@/assets/gallery/galvanized-handrail-driveway.jpeg.asset.json";
+
+const IMAGE = { src: heroImg.url, alt: "Galvanized pipe MMCD-spec handrail installed along an accessible driveway ramp in Maple Ridge BC", title: "MMCD-spec galvanized handrail install — Maple Ridge, BC", caption: "MMCD-Spec Handrail · Maple Ridge, BC" };
 
 const FAQ: FaqItem[] = [
   { q: "Do you supply MMCD-spec drawings?", a: "Yes — our barrier gates and handrails are fabricated to MMCD standards and we can supply shop drawings on request." },
@@ -14,21 +16,15 @@ const DESCRIPTION =
   "Galvanized pipe barrier gates, guard rails and MMCD-spec hand rails for municipal, commercial and industrial sites across the Fraser Valley.";
 
 export const Route = createFileRoute("/barrier-gates")({
-  head: () => ({
-    meta: [
-      { title: "Barrier Gates & Hand Rails — MMCD Spec BC | LS Fencing" },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: "Barrier Gates & Hand Rails — MMCD Spec BC" },
-      { property: "og:description", content: "Galvanized pipe barrier gates, guard rails and MMCD-spec hand rails — Fraser Valley & Lower Mainland." },
-      { property: "og:url", content: "/barrier-gates" },
-    ],
-    links: [{ rel: "canonical", href: "/barrier-gates" }],
-    scripts: serviceJsonLd({
-      name: "Barrier Gates & Hand Rails",
-      description: DESCRIPTION,
-      path: "/barrier-gates",
-      faq: FAQ,
-    }),
+  head: () => serviceHead({
+    title: "Barrier Gates & Hand Rails — MMCD Spec BC | LS Fencing",
+    ogTitle: "Barrier Gates & Hand Rails — MMCD Spec BC",
+    description: DESCRIPTION,
+    ogDescription: "Galvanized pipe barrier gates, guard rails and MMCD-spec hand rails — Fraser Valley & Lower Mainland.",
+    serviceName: "Barrier Gates & Hand Rails",
+    path: "/barrier-gates",
+    image: { src: IMAGE.src, alt: IMAGE.alt, title: IMAGE.title },
+    faq: FAQ,
   }),
   component: Page,
 });
@@ -42,7 +38,7 @@ function Page() {
         intro="Hot-dip galvanized pipe barrier gates, guard rails, and MMCD-spec hand rails — built for municipal parks, parking lots, and commercial sites."
       />
       <ServiceContent
-        image={{ src: heroImg.url, alt: "Galvanized pipe MMCD-spec handrail installed along an accessible driveway ramp in Maple Ridge BC", title: "MMCD-spec galvanized handrail install — Maple Ridge, BC", caption: "MMCD-Spec Handrail · Maple Ridge, BC" }}
+        image={IMAGE}
         intro="Whether you're closing off a service road, protecting a utility yard, or meeting MMCD handrail requirements on a civic project, we fabricate and install galvanized pipe barriers to spec. Every gate is welded in our Chilliwack shop, hot-dip galvanized, and installed on concrete-set posts sized for the span."
         highlights={[
           "Hot-dip galvanized pipe construction",

@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
-import { serviceJsonLd, type FaqItem } from "@/lib/service-schema";
+import { serviceHead, type FaqItem } from "@/lib/service-schema";
 import heroImg from "@/assets/gallery/kubota-kx033-excavator-post-line.jpg.asset.json";
+
+const IMAGE = { src: heroImg.url, alt: "Operator running an orange Kubota KX033-4 mini excavator digging a fence post line in a rural Fraser Valley pasture", title: "Excavation and post-line digging — Fraser Valley, BC", caption: "Kubota KX033 · Fraser Valley, BC" };
 
 const FAQ: FaqItem[] = [
   { q: "Do you do excavation-only work?", a: "Yes — we're happy to price small excavation jobs that aren't tied to a fence install." },
@@ -14,21 +16,15 @@ const DESCRIPTION =
   "Small-scale excavation for fence lines, post holes, drainage trenching and site prep across the Fraser Valley.";
 
 export const Route = createFileRoute("/excavation-services")({
-  head: () => ({
-    meta: [
-      { title: "Excavation Services — Post Holes, Trenching, Grading | LS Fencing" },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: "Excavation Services — Post Holes, Trenching, Grading" },
-      { property: "og:description", content: "Mini-excavator work for fencing, drainage and site prep — Fraser Valley & Lower Mainland." },
-      { property: "og:url", content: "/excavation-services" },
-    ],
-    links: [{ rel: "canonical", href: "/excavation-services" }],
-    scripts: serviceJsonLd({
-      name: "Excavation Services",
-      description: DESCRIPTION,
-      path: "/excavation-services",
-      faq: FAQ,
-    }),
+  head: () => serviceHead({
+    title: "Excavation Services — Post Holes, Trenching, Grading | LS Fencing",
+    ogTitle: "Excavation Services — Post Holes, Trenching, Grading",
+    description: DESCRIPTION,
+    ogDescription: "Mini-excavator work for fencing, drainage and site prep — Fraser Valley & Lower Mainland.",
+    serviceName: "Excavation Services",
+    path: "/excavation-services",
+    image: { src: IMAGE.src, alt: IMAGE.alt, title: IMAGE.title },
+    faq: FAQ,
   }),
   component: Page,
 });
@@ -42,7 +38,7 @@ function Page() {
         intro="Mini-excavator work for fence lines, post holes, drainage trenching, and site prep across the Fraser Valley."
       />
       <ServiceContent
-        image={{ src: heroImg.url, alt: "Operator running an orange Kubota KX033-4 mini excavator digging a fence post line in a rural Fraser Valley pasture", title: "Excavation and post-line digging — Fraser Valley, BC", caption: "Kubota KX033 · Fraser Valley, BC" }}
+        image={IMAGE}
         intro="Fencing usually starts with digging. We run a compact excavator so we can get onto tight residential lots, dig clean post holes on rocky ground, trench in drainage, and grade the fence line before the crew shows up."
         highlights={[
           "Mini-excavator (fits through 4-ft gates)",

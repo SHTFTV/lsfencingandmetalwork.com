@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
-import { serviceJsonLd, type FaqItem } from "@/lib/service-schema";
+import { serviceHead, type FaqItem } from "@/lib/service-schema";
 import heroImg from "@/assets/gallery/black-chainlink-hillside-chilliwack.jpg.asset.json";
+
+const IMAGE = { src: heroImg.url, alt: "Black vinyl-coated chain link fence installed along a rock-wall hillside acreage in Chilliwack BC by LS Fencing", title: "Chain link fencing installation — Chilliwack, BC", caption: "Vinyl-Coated Chain Link · Chilliwack, BC" };
 
 const FAQ: FaqItem[] = [
   { q: "How long does a typical residential install take?", a: "Most 100–200 ft residential runs are installed in 1–2 days after posts have cured." },
@@ -14,21 +16,15 @@ const DESCRIPTION =
   "Galvanized and black vinyl-coated chain link fencing for commercial, industrial and residential sites across the Fraser Valley & Lower Mainland.";
 
 export const Route = createFileRoute("/chain-link-fencing")({
-  head: () => ({
-    meta: [
-      { title: "Chain Link Fencing — Fraser Valley Installers | LS Fencing" },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: "Chain Link Fencing — Fraser Valley Installers" },
-      { property: "og:description", content: "Site security, sports fields, storage yards and residential perimeters — installed to spec." },
-      { property: "og:url", content: "/chain-link-fencing" },
-    ],
-    links: [{ rel: "canonical", href: "/chain-link-fencing" }],
-    scripts: serviceJsonLd({
-      name: "Chain Link Fencing",
-      description: DESCRIPTION,
-      path: "/chain-link-fencing",
-      faq: FAQ,
-    }),
+  head: () => serviceHead({
+    title: "Chain Link Fencing — Fraser Valley Installers | LS Fencing",
+    ogTitle: "Chain Link Fencing — Fraser Valley Installers",
+    description: DESCRIPTION,
+    ogDescription: "Site security, sports fields, storage yards and residential perimeters — installed to spec.",
+    serviceName: "Chain Link Fencing",
+    path: "/chain-link-fencing",
+    image: { src: IMAGE.src, alt: IMAGE.alt, title: IMAGE.title },
+    faq: FAQ,
   }),
   component: Page,
 });
@@ -42,7 +38,7 @@ function Page() {
         intro="From 4-ft residential enclosures to 10-ft security perimeters, we install galvanized and black vinyl-coated chain link across the Fraser Valley — quickly, straight, and to spec."
       />
       <ServiceContent
-        image={{ src: heroImg.url, alt: "Black vinyl-coated chain link fence installed along a rock-wall hillside acreage in Chilliwack BC by LS Fencing", title: "Chain link fencing installation — Chilliwack, BC", caption: "Vinyl-Coated Chain Link · Chilliwack, BC" }}
+        image={IMAGE}
         intro="Chain link is still the fastest, most cost-effective way to secure a property. We source Canadian-made fabric, use schedule-40 posts on commercial jobs, and set every corner and end post in concrete so your fence stays plumb through the freeze-thaw cycle."
         highlights={[
           "Galvanized & black vinyl-coated fabric",

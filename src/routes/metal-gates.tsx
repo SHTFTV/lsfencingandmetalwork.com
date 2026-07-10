@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
-import { serviceJsonLd, type FaqItem } from "@/lib/service-schema";
+import { serviceHead, type FaqItem } from "@/lib/service-schema";
 import heroImg from "@/assets/gallery/ornamental-storefront-gate-abbotsford.jpg.asset.json";
+
+const IMAGE = { src: heroImg.url, alt: "Black powder-coated ornamental steel storefront swing gate outside an Abbotsford commercial building", title: "Custom ornamental storefront metal gate — Abbotsford, BC", caption: "Custom Storefront Gate · Abbotsford, BC" };
 
 const FAQ: FaqItem[] = [
   { q: "Do you install the gate operator too?", a: "We can supply and install popular residential and commercial operators, or coordinate with your preferred automation company." },
@@ -14,21 +16,15 @@ const DESCRIPTION =
   "In-house fabricated metal gates: cantilever slide, double swing, and single drive gates for residential, commercial and industrial sites.";
 
 export const Route = createFileRoute("/metal-gates")({
-  head: () => ({
-    meta: [
-      { title: "Custom Metal Gates — Driveway, Cantilever & Swing | LS Fencing" },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: "Custom Metal Gates — Driveway, Cantilever & Swing" },
-      { property: "og:description", content: "Fabricated in our Chilliwack shop and installed across BC." },
-      { property: "og:url", content: "/metal-gates" },
-    ],
-    links: [{ rel: "canonical", href: "/metal-gates" }],
-    scripts: serviceJsonLd({
-      name: "Custom Metal Gates",
-      description: DESCRIPTION,
-      path: "/metal-gates",
-      faq: FAQ,
-    }),
+  head: () => serviceHead({
+    title: "Custom Metal Gates — Driveway, Cantilever & Swing | LS Fencing",
+    ogTitle: "Custom Metal Gates — Driveway, Cantilever & Swing",
+    description: DESCRIPTION,
+    ogDescription: "Fabricated in our Chilliwack shop and installed across BC.",
+    serviceName: "Custom Metal Gates",
+    path: "/metal-gates",
+    image: { src: IMAGE.src, alt: IMAGE.alt, title: IMAGE.title },
+    faq: FAQ,
   }),
   component: Page,
 });
@@ -42,7 +38,7 @@ function Page() {
         intro="Cantilever, swing, and slide driveway gates fabricated in-house — from privacy louvered panels to heavy industrial spans."
       />
       <ServiceContent
-        image={{ src: heroImg.url, alt: "Black powder-coated ornamental steel storefront swing gate outside an Abbotsford commercial building", title: "Custom ornamental storefront metal gate — Abbotsford, BC", caption: "Custom Storefront Gate · Abbotsford, BC" }}
+        image={IMAGE}
         intro="Every gate is welded to spec in our Chilliwack shop, then set on concrete-poured posts sized for the span. Whether you need a 6×24 cantilever for a truck yard or a matched double-swing for a rural driveway, we design the frame, order the fabric or infill, and install it as one turn-key job."
         highlights={[
           "Cantilever slide gates up to 40+ ft",
