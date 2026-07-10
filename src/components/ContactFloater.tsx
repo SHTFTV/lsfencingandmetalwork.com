@@ -1,15 +1,34 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { Phone, MessageSquare, Mail, X, Star, ExternalLink } from "lucide-react";
+import {
+  Phone,
+  MessageSquare,
+  Mail,
+  X,
+  Star,
+  ExternalLink,
+  AlertTriangle,
+} from "lucide-react";
 import { SITE } from "@/lib/site";
-import { getGoogleReviews } from "@/lib/google-reviews.functions";
+import {
+  getGoogleReviews,
+  type GoogleReviewsSummary,
+  type StarBreakdown,
+} from "@/lib/google-reviews.functions";
+
+const INITIAL: GoogleReviewsSummary = {
+  rating: 4.9,
+  total: 55,
+  url: "https://www.google.com/search?q=L.S+Fencing+%26+Metal+Work+Abbotsford",
+  status: "missing_config",
+};
 
 /**
  * Persistent right-side contact floater. Visible on every page load.
  * Clicking X hides it for the current session only — it returns on refresh.
- * Google reviews rating/count is fetched live (with a static fallback) so
- * the number stays accurate automatically.
+ * Google review data is fetched live (Places API v1) when secrets are set,
+ * otherwise the static fallback 4.9 / 55 is shown.
  */
 export function ContactFloater() {
   const [visible, setVisible] = useState(true);
@@ -20,10 +39,23 @@ export function ContactFloater() {
     queryKey: ["google-reviews"],
     queryFn: () => fetchReviews(),
     staleTime: 1000 * 60 * 60, // 1 hour
-    initialData: { rating: 4.9, total: 55, url: "https://www.google.com/search?q=L.S+Fencing+%26+Metal+Work+Abbotsford", live: false },
+    initialData: INITIAL,
   });
 
-  // Show as a bottom sheet on mobile, side panel on md+.
+  // Dev-only console warning so devs know why the number isn't updating.
+  useEffect(() => {
+    if (!import.meta.env.DEV) return;
+    if (reviews.status === "missing_config") {
+      // eslint-disable-next-line no-console
+      console.warn(
+        `[ContactFloater] Google reviews are showing the static fallback. ${reviews.message ?? ""} Set GOOGLE_PLACES_API_KEY and GOOGLE_PLACE_ID to enable live data.`,
+      );
+    } else if (reviews.status === "error") {
+      // eslint-disable-next-line no-console
+      console.warn(`[ContactFloater] Google Places fetch failed: ${reviews.message ?? "unknown error"}. Showing fallback.`);
+    }
+  }, [reviews.status, reviews.message]);
+
   useEffect(() => {
     if (typeof window === "undefined") return;
     const mq = window.matchMedia("(min-width: 768px)");
@@ -36,12 +68,8 @@ export function ContactFloater() {
 
   const dismiss = () => setVisible(false);
   const smsHref = `sms:${SITE.phoneHref.replace("tel:", "")}`;
-
   const rating = reviews.rating.toFixed(1);
-  const total = reviews.total;
-  const reviewsUrl = reviews.url;
 
-  // Stars: full/half/empty based on rating.
   const stars = Array.from({ length: 5 }, (_, i) => {
     const diff = reviews.rating - i;
     if (diff >= 1) return "full" as const;
@@ -49,40 +77,48 @@ export function ContactFloater() {
     return "empty" as const;
   });
 
+  const body = (dismissFn: () => void) => (
+    <FloaterBody
+      dismiss={dismissFn}
+      smsHref={smsHref}
+      rating={rating}
+      total={reviews.total}
+      stars={stars}
+      reviewsUrl={reviews.url}
+      status={reviews.status}
+      message={reviews.message}
+      breakdown={reviews.breakdown}
+    />
+  );
+
   return (
     <>
       <aside
         aria-label="Contact LS Fencing"
-        className="fixed right-2 top-1/2 z-40 hidden -translate-y-1/2 w-[230px] rounded-2xl border border-border bg-background/95 shadow-2xl backdrop-blur supports-[backdrop-filter]:bg-background/80 md:block"
+        data-testid="contact-floater"
+        className="fixed right-2 top-1/2 z-40 hidden -translate-y-1/2 w-[240px] rounded-2xl border border-border bg-background/95 shadow-2xl backdrop-blur supports-[backdrop-filter]:bg-background/80 md:block"
       >
-        <FloaterBody
-          dismiss={dismiss}
-          smsHref={smsHref}
-          rating={rating}
-          total={total}
-          stars={stars}
-          reviewsUrl={reviewsUrl}
-        />
+        {body(dismiss)}
       </aside>
       <MobileTrigger open={mobileOpen} setOpen={setMobileOpen} />
       {mobileOpen && (
-        <MobileSheet
-          onClose={() => setMobileOpen(false)}
-          smsHref={smsHref}
-          rating={rating}
-          total={total}
-          stars={stars}
-          reviewsUrl={reviewsUrl}
-        />
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Contact LS Fencing"
+          className="fixed inset-x-0 bottom-0 z-50 rounded-t-2xl border-t border-border bg-background shadow-2xl md:hidden"
+          data-testid="contact-floater-sheet"
+        >
+          {body(() => setMobileOpen(false))}
+        </div>
       )}
     </>
   );
 }
 
+type StarKind = "full" | "half" | "empty";
 
-type Star = "full" | "half" | "empty";
-
-function StarRow({ stars }: { stars: Star[] }) {
+function StarRow({ stars }: { stars: StarKind[] }) {
   return (
     <span className="flex shrink-0" aria-hidden="true">
       {stars.map((s, i) => (
@@ -102,6 +138,23 @@ function StarRow({ stars }: { stars: Star[] }) {
   );
 }
 
+function BreakdownBar({ label, count, max }: { label: string; count: number; max: number }) {
+  const pct = max > 0 ? Math.round((count / max) * 100) : 0;
+  return (
+    <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground">
+      <span className="w-4 shrink-0 text-right tabular-nums">{label}</span>
+      <Star className="h-2.5 w-2.5 shrink-0 fill-yellow-400 text-yellow-400" aria-hidden="true" />
+      <span className="relative h-1.5 min-w-0 flex-1 overflow-hidden rounded-full bg-muted">
+        <span
+          className="absolute inset-y-0 left-0 rounded-full bg-yellow-400"
+          style={{ width: `${pct}%` }}
+        />
+      </span>
+      <span className="w-4 shrink-0 text-right tabular-nums">{count}</span>
+    </div>
+  );
+}
+
 function FloaterBody({
   dismiss,
   smsHref,
@@ -109,16 +162,26 @@ function FloaterBody({
   total,
   stars,
   reviewsUrl,
+  status,
+  message,
+  breakdown,
 }: {
   dismiss: () => void;
   smsHref: string;
   rating: string;
   total: number;
-  stars: Star[];
+  stars: StarKind[];
   reviewsUrl: string;
+  status: GoogleReviewsSummary["status"];
+  message?: string;
+  breakdown?: StarBreakdown;
 }) {
   const focusRing =
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background";
+
+  const maxCount = breakdown
+    ? Math.max(breakdown.five, breakdown.four, breakdown.three, breakdown.two, breakdown.one, 1)
+    : 1;
 
   return (
     <>
@@ -177,7 +240,6 @@ function FloaterBody({
           </span>
         </a>
 
-        {/* Google reviews summary + CTA */}
         <div className="mt-1 rounded-lg border border-border bg-muted/30 p-2.5">
           <div
             className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-2"
@@ -197,6 +259,50 @@ function FloaterBody({
               {total}
             </span>
           </div>
+
+          {/* Dev-only debug hint when live data is unavailable */}
+          {import.meta.env.DEV && status === "missing_config" && (
+            <p
+              role="status"
+              className="mt-2 flex items-start gap-1.5 rounded-md border border-dashed border-amber-500/50 bg-amber-500/10 p-1.5 text-[10px] leading-tight text-amber-700 dark:text-amber-300"
+            >
+              <AlertTriangle className="mt-px h-3 w-3 shrink-0" aria-hidden="true" />
+              <span className="min-w-0">
+                Live data off — set <code className="font-mono">GOOGLE_PLACES_API_KEY</code> &{" "}
+                <code className="font-mono">GOOGLE_PLACE_ID</code>.
+              </span>
+            </p>
+          )}
+
+          {status === "error" && (
+            <p
+              role="status"
+              className="mt-2 flex items-start gap-1.5 rounded-md border border-dashed border-border bg-background/60 p-1.5 text-[10px] leading-tight text-muted-foreground"
+            >
+              <AlertTriangle className="mt-px h-3 w-3 shrink-0 text-muted-foreground" aria-hidden="true" />
+              <span className="min-w-0">
+                Live rating unavailable — showing recent snapshot.
+                {import.meta.env.DEV && message ? <span className="block opacity-70">{message}</span> : null}
+              </span>
+            </p>
+          )}
+
+          {status === "ok" && breakdown && breakdown.sampleSize > 0 && (
+            <div
+              className="mt-2 space-y-0.5"
+              aria-label={`Star breakdown from ${breakdown.sampleSize} recent reviews`}
+            >
+              <BreakdownBar label="5" count={breakdown.five} max={maxCount} />
+              <BreakdownBar label="4" count={breakdown.four} max={maxCount} />
+              <BreakdownBar label="3" count={breakdown.three} max={maxCount} />
+              <BreakdownBar label="2" count={breakdown.two} max={maxCount} />
+              <BreakdownBar label="1" count={breakdown.one} max={maxCount} />
+              <p className="pt-0.5 text-[9px] italic text-muted-foreground">
+                Based on {breakdown.sampleSize} recent reviews
+              </p>
+            </div>
+          )}
+
           <a
             href={reviewsUrl}
             target="_blank"
@@ -225,39 +331,5 @@ function MobileTrigger({ open, setOpen }: { open: boolean; setOpen: (v: boolean)
     >
       <Phone className="h-6 w-6" aria-hidden="true" />
     </button>
-  );
-}
-
-function MobileSheet({
-  onClose,
-  smsHref,
-  rating,
-  total,
-  stars,
-  reviewsUrl,
-}: {
-  onClose: () => void;
-  smsHref: string;
-  rating: string;
-  total: number;
-  stars: Star[];
-  reviewsUrl: string;
-}) {
-  return (
-    <div
-      role="dialog"
-      aria-modal="true"
-      aria-label="Contact LS Fencing"
-      className="fixed inset-x-0 bottom-0 z-50 rounded-t-2xl border-t border-border bg-background shadow-2xl md:hidden"
-    >
-      <FloaterBody
-        dismiss={onClose}
-        smsHref={smsHref}
-        rating={rating}
-        total={total}
-        stars={stars}
-        reviewsUrl={reviewsUrl}
-      />
-    </div>
   );
 }
