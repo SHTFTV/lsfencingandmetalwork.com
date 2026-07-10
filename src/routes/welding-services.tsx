@@ -42,7 +42,7 @@ function Page() {
         intro="MIG, TIG and stick welding — mobile or in-shop. Structural repairs, custom fabrication, railings, and one-off metal work anywhere in the Lower Mainland."
       />
       <ServiceContent
-        swatch="from-orange-900 via-red-950 to-black"
+        image={{ src: heroImg.url, alt: "LS Fencing welder MIG welding a custom steel attachment on a Kubota skid steer inside the fabrication shop in Chilliwack", title: "Custom in-shop welding and fabrication — Chilliwack, BC", caption: "In-Shop Fabrication · Chilliwack, BC" }}
         intro="If it's steel and it needs to hold together, we can help. From cracked equipment brackets to full MMCD-spec handrail installs, our welders come with mobile power and can quote on-site or from your drawings."
         highlights={[
           "MIG · TIG · stick processes",
