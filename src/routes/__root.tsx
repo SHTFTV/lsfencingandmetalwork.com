@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SchemaDebugPanel } from "../components/SchemaDebugPanel";
+import { ContactFloater } from "../components/ContactFloater";
 import { SITE, BASE_URL, absoluteUrl } from "../lib/site";
 
 
@@ -179,6 +180,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
+      <ContactFloater />
       <SchemaDebugPanel />
     </QueryClientProvider>
   );
