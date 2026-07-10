@@ -25,6 +25,7 @@ type Feature = {
   sub: string;
   alt: string;
   title: string;
+  desc: string;
 };
 
 // Each service card image is verified against the linked service page.
@@ -36,6 +37,7 @@ const FEATURES: Feature[] = [
     sub: "Chilliwack, BC",
     alt: "Black vinyl-coated chain link fence installed along a rock-wall hillside acreage in Chilliwack BC by LS Fencing",
     title: "Chain link fencing installation — Chilliwack, BC",
+    desc: "Galvanized & vinyl-coated chain link for acreages, farms and yards across the Fraser Valley.",
   },
   {
     to: "/commercial-chain-link-fencing",
@@ -44,6 +46,7 @@ const FEATURES: Feature[] = [
     sub: "8ft Galvanized",
     alt: "8-foot galvanized chain link commercial security enclosure with covered top installed in the Fraser Valley",
     title: "Commercial chain link security enclosure — Fraser Valley, BC",
+    desc: "8ft commercial-grade perimeter security with barbed top and heavy-duty posts.",
   },
   {
     to: "/residential-chain-link-fencing",
@@ -52,6 +55,7 @@ const FEATURES: Feature[] = [
     sub: "4ft Galvanized",
     alt: "4-foot galvanized chain link residential yard fence with top rail installed in the Fraser Valley",
     title: "Residential chain link fence — Fraser Valley, BC",
+    desc: "4ft & 5ft galvanized yard fencing with top rail — clean, pet-safe, and built to last.",
   },
   {
     to: "/cedar-fencing",
@@ -60,6 +64,7 @@ const FEATURES: Feature[] = [
     sub: "Horizontal Slat",
     alt: "Custom cedar privacy fence with horizontal slats along a stone-paver garden path in the Fraser Valley",
     title: "Custom horizontal-slat cedar privacy fence — Fraser Valley, BC",
+    desc: "Custom western red cedar privacy fences — horizontal slat, board-on-board and lattice-top.",
   },
   {
     to: "/ornamental-fencing",
@@ -68,6 +73,7 @@ const FEATURES: Feature[] = [
     sub: "Chilliwack, BC",
     alt: "Black powder-coated ornamental steel fence panels next to a stone column in Chilliwack BC",
     title: "Powder-coated ornamental steel fence — Chilliwack, BC",
+    desc: "Powder-coated ornamental steel panels for estates, front yards and commercial entries.",
   },
   {
     to: "/barrier-gates",
@@ -76,6 +82,7 @@ const FEATURES: Feature[] = [
     sub: "Maple Ridge, BC",
     alt: "Galvanized pipe MMCD-spec handrail installed along an accessible driveway ramp in Maple Ridge BC",
     title: "MMCD-spec galvanized handrail install — Maple Ridge, BC",
+    desc: "MMCD-spec galvanized handrails, bollards and barrier gates for municipal & site work.",
   },
   {
     to: "/metal-gates",
@@ -84,6 +91,7 @@ const FEATURES: Feature[] = [
     sub: "Abbotsford, BC",
     alt: "Black powder-coated ornamental steel storefront swing gate outside an Abbotsford commercial building",
     title: "Custom ornamental storefront metal gate — Abbotsford, BC",
+    desc: "Custom fabricated swing, slide and storefront metal gates — designed and built in-shop.",
   },
   {
     to: "/welding-services",
@@ -92,6 +100,7 @@ const FEATURES: Feature[] = [
     sub: "Shop & On-Site",
     alt: "LS Fencing welder MIG welding a custom steel attachment on a Kubota skid steer inside the fabrication shop in Chilliwack",
     title: "Custom in-shop welding and fabrication — Chilliwack, BC",
+    desc: "In-shop and mobile MIG/TIG welding for steel repair, fabrication and equipment attachments.",
   },
   {
     to: "/excavation-services",
@@ -100,6 +109,7 @@ const FEATURES: Feature[] = [
     sub: "Kubota KX033",
     alt: "Operator running an orange Kubota KX033-4 mini excavator digging a fence post line in a rural Fraser Valley pasture",
     title: "Excavation and post-line digging with Kubota KX033 — Fraser Valley, BC",
+    desc: "Kubota mini-excavator work — post-line trenching, site prep and small-lot digging.",
   },
   {
     to: "/snow-removal",
@@ -108,6 +118,7 @@ const FEATURES: Feature[] = [
     sub: "Fraser Valley",
     alt: "LS Fencing service truck towing a trailer with a Kubota skid steer used for commercial snow removal in the Fraser Valley",
     title: "Commercial snow removal fleet — Fraser Valley, BC",
+    desc: "Commercial snow clearing & salting with skid-steer fleet across the Fraser Valley.",
   },
   {
     to: "/gallery",
@@ -116,6 +127,7 @@ const FEATURES: Feature[] = [
     sub: "Abbotsford, BC",
     alt: "8-foot by 16-foot galvanized cantilever slide gate with grey privacy slats securing an Abbotsford industrial yard",
     title: "8×16 cantilever slat gate install — Abbotsford, BC",
+    desc: "Heavy-duty cantilever slide gates with privacy slats for industrial and storage yards.",
   },
 ];
 
@@ -245,10 +257,11 @@ function Home() {
                   loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/40 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-4">
                   <div className="text-xs uppercase tracking-[0.3em] text-primary">{img.sub}</div>
-                  <div className="font-display uppercase text-lg mt-1">{img.label}</div>
+                  <div className="font-display uppercase text-lg mt-1 leading-tight">{img.label}</div>
+                  <p className="mt-1.5 text-xs text-muted-foreground leading-snug line-clamp-2">{img.desc}</p>
                 </div>
 
               </Link>
