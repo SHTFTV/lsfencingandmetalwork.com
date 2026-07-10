@@ -428,9 +428,9 @@ const LocationsSlugRoute = LocationsSlugRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => BlogRoute,
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAdminLeadsRoute = AuthenticatedAdminLeadsRouteImport.update({
   id: '/admin/leads',
@@ -971,6 +971,7 @@ export interface RootRouteChildren {
   WeldingServicesRoute: typeof WeldingServicesRoute
   WereHiringApplyNowRoute: typeof WereHiringApplyNowRoute
   WhyYouShouldConsiderFencingAsAnOptionRoute: typeof WhyYouShouldConsiderFencingAsAnOptionRoute
+  BlogSlugRoute: typeof BlogSlugRoute
   LocationsSlugRoute: typeof LocationsSlugRoute
   ProjectsCantileverGatesChilliwackRoute: typeof ProjectsCantileverGatesChilliwackRoute
   ProjectsCooperRentalsLangleyRoute: typeof ProjectsCooperRentalsLangleyRoute
@@ -1442,10 +1443,10 @@ declare module '@tanstack/react-router' {
     }
     '/blog/$slug': {
       id: '/blog/$slug'
-      path: '/$slug'
+      path: '/blog/$slug'
       fullPath: '/blog/$slug'
       preLoaderRoute: typeof BlogSlugRouteImport
-      parentRoute: typeof BlogRoute
+      parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin/leads': {
       id: '/_authenticated/admin/leads'
@@ -1573,6 +1574,7 @@ const rootRouteChildren: RootRouteChildren = {
   WereHiringApplyNowRoute: WereHiringApplyNowRoute,
   WhyYouShouldConsiderFencingAsAnOptionRoute:
     WhyYouShouldConsiderFencingAsAnOptionRoute,
+  BlogSlugRoute: BlogSlugRoute,
   LocationsSlugRoute: LocationsSlugRoute,
   ProjectsCantileverGatesChilliwackRoute:
     ProjectsCantileverGatesChilliwackRoute,
