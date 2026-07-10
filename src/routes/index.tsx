@@ -98,12 +98,12 @@ function Home() {
           </div>
 
           <div className="mt-14 grid sm:grid-cols-3 gap-4">
-            {[
-              { src: cantileverImg.url, label: "Cantilever Gates", sub: "Abbotsford, BC" },
-              { src: commercialImg.url, label: "Commercial Security", sub: "8ft Galvanized" },
-              { src: ornamentalImg.url, label: "Ornamental Steel", sub: "Chilliwack, BC" },
-            ].map((img) => (
-              <figure key={img.label} className="group relative overflow-hidden border border-border rounded-sm bg-card aspect-[4/3]">
+            {visibleFeatures.map((img, i) => (
+              <Link
+                key={`${featureStart}-${i}`}
+                to={img.to}
+                className="group relative block overflow-hidden border border-border rounded-sm bg-card aspect-[4/3] animate-in fade-in duration-700"
+              >
                 <img
                   src={img.src}
                   alt={`${img.label} — ${img.sub}`}
@@ -115,9 +115,10 @@ function Home() {
                   <div className="text-xs uppercase tracking-[0.3em] text-primary">{img.sub}</div>
                   <div className="font-display uppercase text-lg mt-1">{img.label}</div>
                 </figcaption>
-              </figure>
+              </Link>
             ))}
           </div>
+
 
           <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl">
             {[
