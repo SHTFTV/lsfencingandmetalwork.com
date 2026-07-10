@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
-import { serviceJsonLd, type FaqItem } from "@/lib/service-schema";
+import { serviceHead, type FaqItem } from "@/lib/service-schema";
 import heroImg from "@/assets/gallery/shop-welding-kubota-fabrication.jpg.asset.json";
+
+const IMAGE = { src: heroImg.url, alt: "LS Fencing welder MIG welding a custom steel attachment on a Kubota skid steer inside the fabrication shop in Chilliwack", title: "Custom in-shop welding and fabrication — Chilliwack, BC", caption: "In-Shop Fabrication · Chilliwack, BC" };
 
 const FAQ: FaqItem[] = [
   { q: "Can you weld aluminum?", a: "Yes — TIG on aluminum and stainless is available; call ahead so we bring the right rig." },
@@ -14,21 +16,15 @@ const DESCRIPTION =
   "Mobile MIG, TIG and stick welding for repairs, fabrication, gates, railings and custom metal work across the Lower Mainland.";
 
 export const Route = createFileRoute("/welding-services")({
-  head: () => ({
-    meta: [
-      { title: "Welding Services — Mobile Welder Fraser Valley | LS Fencing" },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: "Welding Services — Mobile Welder Fraser Valley" },
-      { property: "og:description", content: "Repairs, custom fabrication, and on-site welding — CWB-quality workmanship." },
-      { property: "og:url", content: "/welding-services" },
-    ],
-    links: [{ rel: "canonical", href: "/welding-services" }],
-    scripts: serviceJsonLd({
-      name: "Welding & Metal Fabrication",
-      description: DESCRIPTION,
-      path: "/welding-services",
-      faq: FAQ,
-    }),
+  head: () => serviceHead({
+    title: "Welding Services — Mobile Welder Fraser Valley | LS Fencing",
+    ogTitle: "Welding Services — Mobile Welder Fraser Valley",
+    description: DESCRIPTION,
+    ogDescription: "Repairs, custom fabrication, and on-site welding — CWB-quality workmanship.",
+    serviceName: "Welding & Metal Fabrication",
+    path: "/welding-services",
+    image: { src: IMAGE.src, alt: IMAGE.alt, title: IMAGE.title },
+    faq: FAQ,
   }),
   component: Page,
 });
@@ -42,7 +38,7 @@ function Page() {
         intro="MIG, TIG and stick welding — mobile or in-shop. Structural repairs, custom fabrication, railings, and one-off metal work anywhere in the Lower Mainland."
       />
       <ServiceContent
-        image={{ src: heroImg.url, alt: "LS Fencing welder MIG welding a custom steel attachment on a Kubota skid steer inside the fabrication shop in Chilliwack", title: "Custom in-shop welding and fabrication — Chilliwack, BC", caption: "In-Shop Fabrication · Chilliwack, BC" }}
+        image={IMAGE}
         intro="If it's steel and it needs to hold together, we can help. From cracked equipment brackets to full MMCD-spec handrail installs, our welders come with mobile power and can quote on-site or from your drawings."
         highlights={[
           "MIG · TIG · stick processes",

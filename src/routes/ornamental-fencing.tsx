@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
-import { serviceJsonLd, type FaqItem } from "@/lib/service-schema";
+import { serviceHead, type FaqItem } from "@/lib/service-schema";
 import heroImg from "@/assets/gallery/ornamental-powdercoat-chilliwack.jpeg.asset.json";
+
+const IMAGE = { src: heroImg.url, alt: "Black powder-coated ornamental steel fence panels next to a stone column in Chilliwack BC", title: "Powder-coated ornamental steel fence — Chilliwack, BC", caption: "Powder-Coated Steel · Chilliwack, BC" };
 
 const FAQ: FaqItem[] = [
   { q: "Can it follow slope?", a: "Yes — our panels rack up to 20° without cutting, keeping picket tops level with grade." },
@@ -14,21 +16,15 @@ const DESCRIPTION =
   "Powder-coated ornamental steel fencing and matching gates — architectural look with commercial durability.";
 
 export const Route = createFileRoute("/ornamental-fencing")({
-  head: () => ({
-    meta: [
-      { title: "Ornamental Iron Fencing — Steel Panels & Gates | LS Fencing" },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: "Ornamental Iron Fencing — Steel Panels & Gates" },
-      { property: "og:description", content: "Powder-coated ornamental steel panels for pools, estates, commercial frontages and pump houses." },
-      { property: "og:url", content: "/ornamental-fencing" },
-    ],
-    links: [{ rel: "canonical", href: "/ornamental-fencing" }],
-    scripts: serviceJsonLd({
-      name: "Ornamental Iron Fencing",
-      description: DESCRIPTION,
-      path: "/ornamental-fencing",
-      faq: FAQ,
-    }),
+  head: () => serviceHead({
+    title: "Ornamental Iron Fencing — Steel Panels & Gates | LS Fencing",
+    ogTitle: "Ornamental Iron Fencing — Steel Panels & Gates",
+    description: DESCRIPTION,
+    ogDescription: "Powder-coated ornamental steel panels for pools, estates, commercial frontages and pump houses.",
+    serviceName: "Ornamental Iron Fencing",
+    path: "/ornamental-fencing",
+    image: { src: IMAGE.src, alt: IMAGE.alt, title: IMAGE.title },
+    faq: FAQ,
   }),
   component: Page,
 });
@@ -42,7 +38,7 @@ function Page() {
         intro="Powder-coated steel panels with clean vertical pickets — the architectural upgrade from chain link, without the maintenance cost of cedar."
       />
       <ServiceContent
-        image={{ src: heroImg.url, alt: "Black powder-coated ornamental steel fence panels next to a stone column in Chilliwack BC", title: "Powder-coated ornamental steel fence — Chilliwack, BC", caption: "Powder-Coated Steel · Chilliwack, BC" }}
+        image={IMAGE}
         intro="Ornamental steel fencing gives you a permanent, low-maintenance perimeter that still looks intentional. Pre-fab panels install fast; posts are set in concrete with adjustable brackets to handle any grade."
         highlights={[
           "Pre-fab powder-coated steel panels",

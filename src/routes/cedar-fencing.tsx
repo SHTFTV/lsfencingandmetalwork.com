@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
-import { serviceJsonLd, type FaqItem } from "@/lib/service-schema";
+import { serviceHead, type FaqItem } from "@/lib/service-schema";
 import heroImg from "@/assets/gallery/custom-cedar-horizontal-slat.jpg.asset.json";
+
+const IMAGE = { src: heroImg.url, alt: "Custom cedar privacy fence with horizontal slats along a stone-paver garden path in the Fraser Valley", title: "Custom horizontal-slat cedar privacy fence — Fraser Valley, BC", caption: "Horizontal Slat Cedar · Fraser Valley, BC" };
 
 const FAQ: FaqItem[] = [
   { q: "Do you stain the fence?", a: "By default the cedar is left natural to age silver. We can apply a UV oil or stain on request for an added fee." },
@@ -14,21 +16,15 @@ const DESCRIPTION =
   "Western red cedar privacy fences, board-on-board, and lattice-top designs built to survive BC weather across the Fraser Valley.";
 
 export const Route = createFileRoute("/cedar-fencing")({
-  head: () => ({
-    meta: [
-      { title: "Cedar Fencing — Custom Wood Fences BC | LS Fencing" },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: "Cedar Fencing — Custom Wood Fences BC" },
-      { property: "og:description", content: "Hand-built western red cedar privacy fences with proper post depth and drainage." },
-      { property: "og:url", content: "/cedar-fencing" },
-    ],
-    links: [{ rel: "canonical", href: "/cedar-fencing" }],
-    scripts: serviceJsonLd({
-      name: "Cedar Fencing",
-      description: DESCRIPTION,
-      path: "/cedar-fencing",
-      faq: FAQ,
-    }),
+  head: () => serviceHead({
+    title: "Cedar Fencing — Custom Wood Fences BC | LS Fencing",
+    ogTitle: "Cedar Fencing — Custom Wood Fences BC",
+    description: DESCRIPTION,
+    ogDescription: "Hand-built western red cedar privacy fences with proper post depth and drainage.",
+    serviceName: "Cedar Fencing",
+    path: "/cedar-fencing",
+    image: { src: IMAGE.src, alt: IMAGE.alt, title: IMAGE.title },
+    faq: FAQ,
   }),
   component: Page,
 });
@@ -42,7 +38,7 @@ function Page() {
         intro="Premium western red cedar — cut on-site, spaced for airflow, and set on pressure-treated posts. Built to age gracefully in Fraser Valley rain."
       />
       <ServiceContent
-        image={{ src: heroImg.url, alt: "Custom cedar privacy fence with horizontal slats along a stone-paver garden path in the Fraser Valley", title: "Custom horizontal-slat cedar privacy fence — Fraser Valley, BC", caption: "Horizontal Slat Cedar · Fraser Valley, BC" }}
+        image={IMAGE}
         intro="Cedar is the classic BC privacy fence for good reason: naturally rot-resistant, dimensionally stable, and beautiful once it silvers. We build every panel with proper gap spacing, gravel drainage below the posts, and hidden or exposed fasteners depending on the look you want."
         highlights={[
           "1×6 rough or S4S western red cedar",
