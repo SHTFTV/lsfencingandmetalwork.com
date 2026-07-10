@@ -1,5 +1,5 @@
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
-import { PageShell, CtaStrip } from "@/components/PageShell";
+import { PageShell } from "@/components/PageShell";
 import { BlogImage } from "@/components/BlogImage";
 import { POSTS, getPost, getPostImage, getPostImageAlt, type BlogPost } from "@/lib/blog";
 import { absoluteUrl, SITE } from "@/lib/site";
