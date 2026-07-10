@@ -8,8 +8,8 @@ export const absoluteUrl = (path: string) =>
 export const SITE = {
   name: "LS Fencing & Metal Work",
   short: "LS Fencing",
-  phone: "604-808-7496",
-  phoneHref: "tel:+16048087496",
+  phone: "604-758-0014",
+  phoneHref: "tel:+16047580014",
   email: "Lsfencingandmetalwork@gmail.com",
   emailHref: "mailto:Lsfencingandmetalwork@gmail.com",
   territory: "Fraser Valley & Lower Mainland, BC",

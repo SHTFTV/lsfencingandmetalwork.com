@@ -14,7 +14,7 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact LS Fencing & Metal Work — Free On-Site Quote" },
-      { name: "description", content: "Call 604-808-7496 or request a fast quote for fencing, gates, welding or excavation across the Fraser Valley & Lower Mainland." },
+      { name: "description", content: "Call 604-758-0014 or request a fast quote for fencing, gates, welding or excavation across the Fraser Valley & Lower Mainland." },
       { property: "og:title", content: "Contact LS Fencing & Metal Work" },
       { property: "og:description", content: "Fast, free on-site quotes across the Fraser Valley." },
       { property: "og:url", content: "/contact" },
