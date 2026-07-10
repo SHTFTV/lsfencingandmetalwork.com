@@ -222,19 +222,26 @@ function buildCommercialPost(city: CityFact): BlogPost {
     { to: "https://www.worksafebc.com/en", label: "WorkSafeBC — worksite safety standards", external: true },
   ];
 
-  const faq: FaqItem[] = city.faq;
+  // Commercial-only FAQ — not reused from CityFact (which is residential-toned).
+  const faq: FaqItem[] = [
+    { q: `Do you take on small residential jobs in ${name}?`, a: `No. Our ${name} work is strictly commercial, industrial, strata, and high-security — perimeter chain link, welded cantilever and swing gates, bollards, and MMCD-spec hand rails. Small residential work stays in our Fraser Valley home service area.` },
+    { q: `What commercial chain link spec do you install in ${name}?`, a: `9-gauge hot-dip galvanized (or black vinyl-coated) chain link fabric, schedule 40 galvanized pipe posts, top and bottom rails, and either single or triple-strand barbed wire on 45° extension arms for high-security perimeters. Heights typically 8 ft or 10 ft on industrial ${name} sites, 6 ft on strata perimeters.` },
+    { q: `Do you fabricate cantilever gates for ${name} sites?`, a: `Yes — every cantilever slide gate, swing gate, barrier gate, and set of bollards we install in ${name} is welded in our own shop to the measured opening, then hot-dip galvanized or powder-coated. Spans from 12 ft up to 40+ ft, with keypad, card-reader, or LTE operator integration.` },
+    { q: `Can you install MMCD-spec hand rails on ${name} public and loading-dock work?`, a: `Yes. MMCD-spec galvanized pipe hand rails and guard rails for public walkways, ramps, and loading-dock edges are a standard scope for us across ${name} — fabricated in-shop, installed with our own excavation crew, WCB-covered.` },
+    { q: `Do you work with property managers and general contractors in ${name}?`, a: `Yes — property management firms, general contractors, strata councils, industrial and warehouse operators, and public-sector clients make up the majority of our ${name} work. Phased scopes, written itemized quotes, and clean turnover documentation are standard.` },
+  ];
 
   const keyTakeaways: string[] = [
-    `${name} is a commercial and strata focus for us — high-security perimeters, industrial chain link, welded gates, and hand rails. We don't chase small residential work here.`,
+    `${name} is a commercial and strata focus for us — high-security perimeters, industrial chain link, welded cantilever gates, bollards, and MMCD hand rails. We don't chase small residential work here.`,
     `In-house welding shop: cantilever slide gates, swing gates, bollards, and MMCD-spec hand rails fabricated to drawing, not ordered in.`,
     `Own excavation kit and crew — we mobilize into ${name} for full site perimeters, tenant improvements, and shut-down/turnover work on our own timeline.`,
     `Written scope, WCB coverage, COR-track safety practices, and a single point of contact from quote through turnover.`,
   ];
 
   const body: BlogPost["body"] = [
-    { type: "p", text: `LS Fencing & Metal Work is a Fraser Valley commercial fencing and metal-fabrication contractor. We install high-security chain link, welded metal gates, ornamental strata perimeters, hand rails, and bollards across ${name} and the surrounding ${region.toLowerCase()}. This page is a straight commercial brief — what we build in ${name}, who we build it for, and how we structure a scope from site walk-through to turnover.` },
-    { type: "p", text: `We are not a residential backyard shop in ${name}. Our ${name} work is property managers, general contractors, strata councils, industrial and warehouse operators, and public-sector projects that need a real commercial spec — 9-gauge galvanized mesh, top and bottom rails, welded cantilever gates, engineered hand rails, and a crew that can hold a schedule on a live site.` },
-    { type: "p", text: city.uniqueParagraphs[0] },
+    { type: "p", text: `LS Fencing & Metal Work is a Fraser Valley commercial fencing and metal-fabrication contractor. We install high-security chain link, welded metal gates, ornamental strata perimeters, MMCD hand rails, and bollards across ${name} and the surrounding ${region.toLowerCase()}. This page is a straight commercial brief — what we build in ${name}, who we build it for, and how we structure a scope from site walk-through to turnover.` },
+    { type: "p", text: `Our ${name} work is property managers, general contractors, strata councils, industrial and warehouse operators, and public-sector projects that need a real commercial spec — 9-gauge galvanized mesh, top and bottom rails, welded cantilever gates, engineered hand rails, and a crew that can hold a schedule on a live site. ${city.climate}` },
+    { type: "p", text: `${city.terrain} On a commercial perimeter that dictates post depth, hardware spec, and how we mobilize the excavation kit.` },
 
     { type: "h2", text: `Commercial fencing we install in ${name}` },
     { type: "p", text: `Almost every ${name} job we bid falls into one of five buckets. The spec, gauge, gate hardware, and site logistics change per bucket, and getting the right bucket picked at the site walk is what keeps the project on budget.` },
@@ -248,7 +255,7 @@ function buildCommercialPost(city: CityFact): BlogPost {
     { type: "p", text: `Powder-coated steel picket for strata entries, commercial storefronts, amenity building perimeters, and any pool or amenity enclosure that has to meet BC Building Code Part 9. Self-closing, self-latching gate hardware; no climbable horizontal rails on pool sides.` },
     { type: "h3", text: "5. Metal hand rails, guard rails, and bollards" },
     { type: "p", text: `MMCD-spec galvanized hand rails for public walkways, ramps, and loading-dock access. Bollards — fixed, removable, and retractable — for parking-lot protection, storefront ram-raid mitigation, and access control at strata visitor entries. Fabricated in the shop, installed on our own excavation kit.` },
-    { type: "p", text: city.uniqueParagraphs[1] },
+    { type: "p", text: `Materials-wise, a commercial ${name} spec pushes us to hot-dip galvanized hardware end-to-end, 9-gauge fabric on high-security perimeters, black vinyl-coated chain link where aesthetics matter (strata, storefronts), and heavier gate posts than a residential catalogue would default to.` },
 
     { type: "h2", text: `Who we work for in ${name}` },
     { type: "ul", items: [
@@ -304,7 +311,7 @@ function buildCommercialPost(city: CityFact): BlogPost {
     ]},
 
     { type: "h2", text: `Materials and specs we default to in ${name}` },
-    { type: "p", text: `${city.materialNotes} For commercial perimeters that translates into a small number of specs we default to unless a site condition forces something different.` },
+    { type: "p", text: `Our default ${name} commercial spec starts with hot-dip galvanized hardware end-to-end and adjusts up from there for site conditions. The bullets below are the specs we default to unless a site walk forces something different.` },
     { type: "ul", items: [
       "Chain link fabric: 9-gauge, hot-dip galvanized after weaving, black vinyl-coated where aesthetics matter (strata, storefronts).",
       "Posts: schedule 40 pipe, hot-dip galvanized, 3\" line posts and 4\" terminal posts standard; heavier on gate posts and cantilever gate opposite-side rollers.",
@@ -341,7 +348,74 @@ function buildCommercialPost(city: CityFact): BlogPost {
   };
 }
 
-export function buildCityPosts(): BlogPost[] {
-  return CITIES.map((c) => (c.commercialFocus ? buildCommercialPost(c) : buildPost(c)));
+/**
+ * Commercial city post keyword checklist. Every commercial-focus city post
+ * MUST mention every term below (case-insensitive substring match) or the
+ * build fails. Keeps the copy aligned to the commercial positioning even if
+ * the template drifts.
+ */
+export const COMMERCIAL_REQUIRED_KEYWORDS = [
+  "strata perimeter",
+  "high-security",
+  "cantilever",
+  "bollard",
+  "mmcd",
+  "hand rail",
+  "welded",
+  "chain link",
+  "galvanized",
+  "property manager",
+] as const;
+
+/**
+ * Phrases that must NEVER appear in a commercial-focus city post. Anything
+ * that positions the page as residential/backyard work breaks positioning
+ * for the Metro Vancouver market and fails the build.
+ */
+export const COMMERCIAL_BANNED_PHRASES = [
+  "backyard",
+  "rear-yard",
+  "rear yard",
+  "homeowner",
+  "fence for homeowners",
+  "residential backyard",
+  "family home",
+  "backyard privacy",
+  "back yard",
+  "your backyard",
+] as const;
+
+function collectPostText(post: BlogPost): string {
+  const parts: string[] = [post.title, post.description, ...(post.keyTakeaways ?? [])];
+  for (const block of post.body) {
+    if ("text" in block && typeof block.text === "string") parts.push(block.text);
+    if ("items" in block && Array.isArray(block.items)) parts.push(...block.items);
+  }
+  for (const f of post.faq ?? []) parts.push(f.q, f.a);
+  return parts.join("\n").toLowerCase();
 }
+
+export function validateCommercialPost(post: BlogPost): void {
+  const text = collectPostText(post);
+  const missing = COMMERCIAL_REQUIRED_KEYWORDS.filter((k) => !text.includes(k.toLowerCase()));
+  const banned = COMMERCIAL_BANNED_PHRASES.filter((p) => text.includes(p.toLowerCase()));
+  if (missing.length || banned.length) {
+    const msgs: string[] = [];
+    if (missing.length) msgs.push(`missing required commercial keywords: ${missing.join(", ")}`);
+    if (banned.length) msgs.push(`contains banned residential phrases: ${banned.join(", ")}`);
+    throw new Error(`Commercial city post "${post.slug}" failed validation — ${msgs.join("; ")}`);
+  }
+}
+
+export function buildCityPosts(): BlogPost[] {
+  return CITIES.map((c) => {
+    if (c.commercialFocus) {
+      const post = buildCommercialPost(c);
+      validateCommercialPost(post);
+      return post;
+    }
+    return buildPost(c);
+  });
+}
+
 
