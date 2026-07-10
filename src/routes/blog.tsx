@@ -2,20 +2,71 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero } from "@/components/PageShell";
 import { BlogImage } from "@/components/BlogImage";
 import { POSTS } from "@/lib/blog";
+import { absoluteUrl, SITE } from "@/lib/site";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
 
 
 export const Route = createFileRoute("/blog")({
-  head: () => ({
-    meta: [
-      { title: "Fencing Blog — Guides, Comparisons & Field Notes | LS Fencing" },
-      { name: "description", content: "Practical fencing guides from a working Fraser Valley contractor: material comparisons, gate specs, and job-site lessons." },
-      { property: "og:title", content: "Fencing Blog — LS Fencing & Metal Work" },
-      { property: "og:description", content: "Practical fencing guides from a working Fraser Valley contractor." },
-      { property: "og:url", content: "/blog" },
-    ],
-    links: [{ rel: "canonical", href: "/blog" }],
-  }),
+  head: () => {
+    const url = absoluteUrl("/blog");
+    const image = SITE.defaultOgImage;
+    return {
+      meta: [
+        { title: "Fencing Blog — Guides, Comparisons & Field Notes | LS Fencing" },
+        { name: "description", content: "Practical fencing guides from a working Fraser Valley contractor: chain link vs cedar, gate specs, bylaw heights, and city-by-city job notes across BC." },
+        { property: "og:title", content: "Fencing Blog — LS Fencing & Metal Work" },
+        { property: "og:description", content: "Practical fencing guides from a working Fraser Valley contractor — materials, gates, welding, and city-by-city field notes." },
+        { property: "og:type", content: "website" },
+        { property: "og:url", content: url },
+        { property: "og:image", content: image },
+        { property: "og:image:width", content: "1200" },
+        { property: "og:image:height", content: "630" },
+        { property: "og:image:alt", content: "LS Fencing & Metal Work — Fraser Valley fencing blog" },
+        { property: "og:image:type", content: "image/jpeg" },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: "Fencing Blog — LS Fencing & Metal Work" },
+        { name: "twitter:description", content: "Practical fencing guides from a working Fraser Valley contractor." },
+        { name: "twitter:image", content: image },
+        { name: "twitter:image:alt", content: "LS Fencing & Metal Work — Fraser Valley fencing blog" },
+      ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            name: "LS Fencing Blog",
+            url,
+            publisher: {
+              "@type": "Organization",
+              name: SITE.name,
+              url: absoluteUrl("/"),
+            },
+            blogPost: POSTS.slice(0, 10).map((p) => ({
+              "@type": "BlogPosting",
+              headline: p.title,
+              description: p.description,
+              url: absoluteUrl(`/blog/${p.slug}`),
+              datePublished: p.date,
+              image: absoluteUrl(p.ogImage),
+            })),
+          }),
+        },
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+              { "@type": "ListItem", position: 2, name: "Blog", item: url },
+            ],
+          }),
+        },
+      ],
+    };
+  },
   component: Blog,
 });
 
