@@ -1,5 +1,5 @@
 // Production custom domain. Used for absolute canonical / og:url / sitemap URLs.
-export const BASE_URL = "https://lsfence.ca";
+export const BASE_URL = "https://lsfencingandmetalwork.com";
 
 /** Build an absolute URL for canonical/og:url/sitemap entries. */
 export const absoluteUrl = (path: string) =>
