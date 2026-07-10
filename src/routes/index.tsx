@@ -150,20 +150,35 @@ function Home() {
           </Link>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {SERVICES.map((s) => (
-            <Link
-              key={s.to}
-              to={s.to}
-              className="group border border-border bg-card p-6 rounded-sm hover:border-primary transition flex items-center justify-between"
-            >
-              <div>
-                <Hammer className="h-5 w-5 text-primary mb-3" />
-                <div className="font-display uppercase text-lg">{s.label}</div>
-              </div>
-              <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition" />
-            </Link>
-          ))}
+          {SERVICES.map((s) => {
+            const img = FEATURES.find((f) => f.to === s.to);
+            return (
+              <Link
+                key={s.to}
+                to={s.to}
+                className="group relative overflow-hidden border border-border bg-card rounded-sm hover:border-primary transition aspect-[4/3]"
+              >
+                {img && (
+                  <img
+                    src={img.src}
+                    alt={s.label}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/10" />
+                <div className="relative h-full flex flex-col justify-end p-6">
+                  <Hammer className="h-5 w-5 text-primary mb-3" />
+                  <div className="flex items-center justify-between">
+                    <div className="font-display uppercase text-lg">{s.label}</div>
+                    <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition" />
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
         </div>
+
       </section>
 
       {/* Territory */}
