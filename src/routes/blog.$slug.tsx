@@ -1,8 +1,10 @@
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 import { PageShell, CtaStrip } from "@/components/PageShell";
-import { POSTS, getPost, type BlogPost } from "@/lib/blog";
+import { BlogImage } from "@/components/BlogImage";
+import { POSTS, getPost, getPostImage, getPostImageAlt, type BlogPost } from "@/lib/blog";
 import { absoluteUrl, SITE } from "@/lib/site";
 import { ArrowLeft, Calendar, Clock, CheckCircle2, ExternalLink } from "lucide-react";
+
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
@@ -16,7 +18,9 @@ export const Route = createFileRoute("/blog/$slug")({
       return { meta: [{ title: "Post not found" }, { name: "robots", content: "noindex" }] };
     }
     const url = absoluteUrl(`/blog/${params.slug}`);
-    const image = absoluteUrl(post.ogImage);
+    const image = absoluteUrl(getPostImage(post));
+    const imageAlt = getPostImageAlt(post);
+
 
     const articleLd = {
       "@context": "https://schema.org",
@@ -101,10 +105,14 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:image", content: image },
         { property: "og:image:width", content: "1200" },
         { property: "og:image:height", content: "630" },
+        { property: "og:image:alt", content: imageAlt },
+        { property: "og:image:type", content: "image/jpeg" },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: post.title },
         { name: "twitter:description", content: post.description },
         { name: "twitter:image", content: image },
+        { name: "twitter:image:alt", content: imageAlt },
+
         { property: "article:published_time", content: post.date },
         { name: "author", content: SITE.name },
       ],
@@ -128,18 +136,14 @@ function Post() {
           </div>
           <div className="container-industrial mt-6 max-w-4xl">
             <div className="aspect-[1200/630] overflow-hidden rounded-sm border border-border bg-muted">
-              <img
-                src={post.ogImage}
-                alt={post.ogImageCaption ?? post.title}
-                width={1200}
-                height={630}
-                className="w-full h-full object-cover"
-              />
+              <BlogImage post={post} variant="hero" eager />
             </div>
-            {post.ogImageCaption && (
-              <p className="mt-2 text-xs text-muted-foreground italic">{post.ogImageCaption}</p>
-            )}
+            <p className="mt-2 text-xs text-muted-foreground italic">
+              {post.ogImageCaption ?? `${post.title} — LS Fencing & Metal Work${post.cityName ? `, ${post.cityName}, BC` : ""}.`}
+            </p>
           </div>
+
+
           <div className="container-industrial py-10 md:py-14 max-w-3xl">
             <div className="flex flex-wrap gap-4 text-xs uppercase tracking-widest text-muted-foreground">
               <span className="flex items-center gap-1.5"><Calendar className="h-3 w-3" />{formatDate(post.date)}</span>
