@@ -1,6 +1,5 @@
-// Stable Lovable-published origin (unchanged on rename). Swap once a custom
-// domain is connected. Used for absolute canonical / og:url / sitemap URLs.
-export const BASE_URL = "https://project--593453aa-81d0-4624-a72c-181966a7cb9f.lovable.app";
+// Production custom domain. Used for absolute canonical / og:url / sitemap URLs.
+export const BASE_URL = "https://lsfence.ca";
 
 /** Build an absolute URL for canonical/og:url/sitemap entries. */
 export const absoluteUrl = (path: string) =>
