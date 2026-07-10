@@ -6,6 +6,30 @@ import { ArrowRight, Phone, ShieldCheck, Hammer, MapPin } from "lucide-react";
 import cantileverImg from "@/assets/gallery/8x16-cantilever-slat-gate-abbotsford.jpg.asset.json";
 import commercialImg from "@/assets/gallery/8ft-galv-commercial-security.jpeg.asset.json";
 import ornamentalImg from "@/assets/gallery/ornamental-powdercoat-chilliwack.jpeg.asset.json";
+import residentialImg from "@/assets/gallery/4ft-galv-residential.jpeg.asset.json";
+import cedarImg from "@/assets/gallery/custom-cedar-horizontal-slat.jpg.asset.json";
+import chainlinkImg from "@/assets/gallery/black-chainlink-hillside-chilliwack.jpg.asset.json";
+import barrierImg from "@/assets/gallery/galvanized-handrail-driveway.jpeg.asset.json";
+import metalGateImg from "@/assets/gallery/ornamental-storefront-gate-abbotsford.jpg.asset.json";
+import weldingImg from "@/assets/gallery/shop-welding-kubota-fabrication.jpg.asset.json";
+import excavationImg from "@/assets/gallery/kubota-kx033-excavator-post-line.jpg.asset.json";
+import snowImg from "@/assets/gallery/ls-fencing-truck-skidsteer.jpeg.asset.json";
+
+type Feature = { to: string; src: string; label: string; sub: string };
+const FEATURES: Feature[] = [
+  { to: "/chain-link-fencing", src: chainlinkImg.url, label: "Chain Link Fencing", sub: "Chilliwack, BC" },
+  { to: "/commercial-chain-link-fencing", src: commercialImg.url, label: "Commercial Chain Link", sub: "8ft Galvanized" },
+  { to: "/residential-chain-link-fencing", src: residentialImg.url, label: "Residential Chain Link", sub: "4ft Galvanized" },
+  { to: "/cedar-fencing", src: cedarImg.url, label: "Cedar Fencing", sub: "Horizontal Slat" },
+  { to: "/ornamental-fencing", src: ornamentalImg.url, label: "Ornamental Fencing", sub: "Chilliwack, BC" },
+  { to: "/barrier-gates", src: barrierImg.url, label: "Barrier Gates & Rails", sub: "Galvanized" },
+  { to: "/metal-gates", src: metalGateImg.url, label: "Metal Gates", sub: "Abbotsford, BC" },
+  { to: "/welding-services", src: weldingImg.url, label: "Welding Services", sub: "Shop & On-Site" },
+  { to: "/excavation-services", src: excavationImg.url, label: "Excavation Services", sub: "Kubota KX033" },
+  { to: "/snow-removal", src: snowImg.url, label: "Snow Removal", sub: "Fraser Valley" },
+  { to: "/gallery", src: cantileverImg.url, label: "Cantilever Gates", sub: "Abbotsford, BC" },
+];
+
 
 
 
@@ -30,10 +54,17 @@ export const Route = createFileRoute("/")({
 function Home() {
   const rotating = SERVICES.map((s) => s.label);
   const [idx, setIdx] = useState(0);
+  const [featureStart, setFeatureStart] = useState(0);
   useEffect(() => {
     const id = setInterval(() => setIdx((i) => (i + 1) % rotating.length), 2200);
     return () => clearInterval(id);
   }, [rotating.length]);
+  useEffect(() => {
+    const id = setInterval(() => setFeatureStart((i) => (i + 3) % FEATURES.length), 4000);
+    return () => clearInterval(id);
+  }, []);
+  const visibleFeatures = Array.from({ length: 3 }, (_, i) => FEATURES[(featureStart + i) % FEATURES.length]);
+
 
   return (
     <PageShell>
@@ -67,12 +98,12 @@ function Home() {
           </div>
 
           <div className="mt-14 grid sm:grid-cols-3 gap-4">
-            {[
-              { src: cantileverImg.url, label: "Cantilever Gates", sub: "Abbotsford, BC" },
-              { src: commercialImg.url, label: "Commercial Security", sub: "8ft Galvanized" },
-              { src: ornamentalImg.url, label: "Ornamental Steel", sub: "Chilliwack, BC" },
-            ].map((img) => (
-              <figure key={img.label} className="group relative overflow-hidden border border-border rounded-sm bg-card aspect-[4/3]">
+            {visibleFeatures.map((img, i) => (
+              <Link
+                key={`${featureStart}-${i}`}
+                to={img.to}
+                className="group relative block overflow-hidden border border-border rounded-sm bg-card aspect-[4/3] animate-in fade-in duration-700"
+              >
                 <img
                   src={img.src}
                   alt={`${img.label} — ${img.sub}`}
@@ -80,13 +111,15 @@ function Home() {
                   className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-                <figcaption className="absolute bottom-0 left-0 right-0 p-4">
+                <div className="absolute bottom-0 left-0 right-0 p-4">
                   <div className="text-xs uppercase tracking-[0.3em] text-primary">{img.sub}</div>
                   <div className="font-display uppercase text-lg mt-1">{img.label}</div>
-                </figcaption>
-              </figure>
+                </div>
+
+              </Link>
             ))}
           </div>
+
 
           <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl">
             {[
