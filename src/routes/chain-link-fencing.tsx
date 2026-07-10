@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
 import { serviceJsonLd, type FaqItem } from "@/lib/service-schema";
+import heroImg from "@/assets/gallery/black-chainlink-hillside-chilliwack.jpg.asset.json";
 
 const FAQ: FaqItem[] = [
   { q: "How long does a typical residential install take?", a: "Most 100–200 ft residential runs are installed in 1–2 days after posts have cured." },
