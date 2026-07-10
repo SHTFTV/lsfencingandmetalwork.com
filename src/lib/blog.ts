@@ -1,3 +1,17 @@
+import { buildCityPosts } from "./blog/city-post";
+
+export interface FaqItem {
+  q: string;
+  a: string;
+}
+
+export interface LinkRef {
+  /** For internal links use the site path ("/cedar-fencing"). For external, full https URL. */
+  to: string;
+  label: string;
+  external?: boolean;
+}
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -7,7 +21,9 @@ export interface BlogPost {
   tags: string[];
   /** Absolute path (from /public) to the OpenGraph image, e.g. /og/foo.jpg */
   ogImage: string;
-  /** Structured body rendered by <BlogArticle /> */
+  /** Optional caption used in image sitemap. */
+  ogImageCaption?: string;
+  /** Structured body rendered by the post renderer. */
   body: Array<
     | { type: "p"; text: string }
     | { type: "h2"; text: string }
@@ -15,9 +31,21 @@ export interface BlogPost {
     | { type: "ul"; items: string[] }
     | { type: "quote"; text: string }
   >;
+  /** Answer-Engine / voice / AI-Overview friendly Q&A. Rendered as <dl> and emitted as FAQPage JSON-LD. */
+  faq?: FaqItem[];
+  /** Short "Key takeaways" bullets rendered at the top of the post — AEO/LLM friendly. */
+  keyTakeaways?: string[];
+  /** Internal cross-links to service / geo pages. */
+  internalLinks?: LinkRef[];
+  /** Authoritative external references (bylaws, building code, WorkSafeBC). Good for E-E-A-T. */
+  externalLinks?: LinkRef[];
+  /** City name for LocalBusiness JSON-LD areaServed. Present on city guides. */
+  cityName?: string;
+  /** Region label (e.g. "Metro Vancouver"). */
+  region?: string;
 }
 
-export const POSTS: BlogPost[] = [
+const legacyPosts: BlogPost[] = [
   {
     slug: "best-fencing-options-and-their-qualities",
     title: "The Best Fencing Options and Their Qualities",
@@ -126,6 +154,8 @@ export const POSTS: BlogPost[] = [
     ],
   },
 ];
+
+export const POSTS: BlogPost[] = [...buildCityPosts(), ...legacyPosts];
 
 export function getPost(slug: string) {
   return POSTS.find((p) => p.slug === slug);
