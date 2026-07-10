@@ -3,7 +3,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell, CtaStrip } from "@/components/PageShell";
 import { SERVICES, GEO_PAGES, SITE, absoluteUrl } from "@/lib/site";
 import { localBusinessScript } from "@/lib/service-schema";
-import { ArrowRight, Phone, ShieldCheck, Hammer, MapPin, X, ZoomIn } from "lucide-react";
+import { POSTS } from "@/lib/blog";
+import { ArrowRight, Phone, ShieldCheck, Hammer, MapPin, X, ZoomIn, Calendar } from "lucide-react";
 import cantileverImg from "@/assets/gallery/8x16-cantilever-slat-gate-abbotsford.jpg.asset.json";
 import commercialImg from "@/assets/gallery/8ft-galv-commercial-security.jpeg.asset.json";
 import ornamentalImg from "@/assets/gallery/ornamental-powdercoat-chilliwack.jpeg.asset.json";
@@ -365,6 +366,47 @@ function Home() {
             <p className="text-sm text-muted-foreground mt-2">{f.d}</p>
           </div>
         ))}
+      </section>
+
+      {/* Latest from the blog */}
+      <section className="border-t border-border bg-background">
+        <div className="container-industrial py-20">
+          <div className="flex items-end justify-between flex-wrap gap-4 mb-10">
+            <div>
+              <div className="text-xs uppercase tracking-[0.3em] text-primary">Field notes</div>
+              <h2 className="font-display text-3xl md:text-4xl uppercase mt-2">Latest from the blog</h2>
+            </div>
+            <Link to="/blog" className="text-sm uppercase tracking-widest text-muted-foreground hover:text-foreground">
+              All posts →
+            </Link>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[...POSTS]
+              .sort((a, b) => (a.date < b.date ? 1 : -1))
+              .slice(0, 4)
+              .map((p) => (
+                <Link
+                  key={p.slug}
+                  to="/blog/$slug"
+                  params={{ slug: p.slug }}
+                  className="group border border-border rounded-sm bg-card p-5 hover:border-primary transition flex flex-col"
+                >
+                  <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-primary">
+                    <Calendar className="h-3 w-3" />
+                    <time dateTime={p.date}>
+                      {new Date(p.date).toLocaleDateString("en-CA", { year: "numeric", month: "short", day: "numeric" })}
+                    </time>
+                    <span className="text-muted-foreground normal-case tracking-normal">· {p.readMinutes} min</span>
+                  </div>
+                  <h3 className="font-display uppercase text-lg mt-3 leading-tight">{p.title}</h3>
+                  <p className="text-sm text-muted-foreground mt-2 line-clamp-3 flex-1">{p.description}</p>
+                  <div className="mt-4 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-primary">
+                    Read <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition" />
+                  </div>
+                </Link>
+              ))}
+          </div>
+        </div>
       </section>
 
       <CtaStrip />
