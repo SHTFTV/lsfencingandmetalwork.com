@@ -22,8 +22,8 @@ const DESCRIPTION =
   "Cannabis facility perimeter fencing for licensed producers across BC — restricted-visibility chain link, cantilever access gates and Health Canada physical-security-aligned installs.";
 
 export const Route = createFileRoute("/cannabis-fencing")({
-  head: () =>
-    serviceHead({
+  head: () => {
+    const base = serviceHead({
       title: "Cannabis Facility Fencing — Licensed Producers, BC | LS Fencing",
       ogTitle: "Cannabis Facility Fencing — Licensed Producers, BC",
       description: DESCRIPTION,
@@ -33,7 +33,15 @@ export const Route = createFileRoute("/cannabis-fencing")({
       path: "/cannabis-fencing",
       image: { src: IMAGE.src, alt: IMAGE.alt, title: IMAGE.title },
       faq: FAQ,
-    }),
+    });
+    return {
+      ...base,
+      links: [
+        ...base.links,
+        { rel: "preload", as: "image", href: IMAGE.src, fetchpriority: "high" },
+      ],
+    };
+  },
   component: Page,
 });
 
@@ -47,6 +55,7 @@ function Page() {
       />
       <ServiceContent
         image={IMAGE}
+        priorityImage
         intro="Licensed producer sites carry hard physical-security obligations under the Cannabis Regulations. We install 8 ft galvanized or vinyl-coated chain link with full privacy slats, schedule-40 posts, controlled cantilever access gates and hardware that supports monitored intrusion detection — staged so the compliant perimeter stays intact through the build."
         highlights={[
           "8 ft galvanized or black vinyl fabric",

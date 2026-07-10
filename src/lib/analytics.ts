@@ -45,7 +45,30 @@ export type NavClickEvent = {
   label?: string;
   /** Optional route the click was made from. */
   from?: string;
+  /** UTM params applied to the outgoing link. */
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_content?: string;
 };
+
+export type UtmParams = {
+  utm_source: string;
+  utm_medium: string;
+  utm_campaign: string;
+  utm_content?: string;
+};
+
+/** Build the search object for an internal Link that should carry UTMs. */
+export function utmSearch(u: UtmParams): Record<string, string> {
+  const out: Record<string, string> = {
+    utm_source: u.utm_source,
+    utm_medium: u.utm_medium,
+    utm_campaign: u.utm_campaign,
+  };
+  if (u.utm_content) out.utm_content = u.utm_content;
+  return out;
+}
 
 type DataLayerWindow = Window & {
   dataLayer?: Record<string, unknown>[];

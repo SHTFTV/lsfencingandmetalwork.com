@@ -22,8 +22,8 @@ const DESCRIPTION =
   "High-security airport and airfield perimeter fencing across BC — galvanized chain link, barbed wire toppings, cantilever access gates and wildlife exclusion built to airside spec.";
 
 export const Route = createFileRoute("/airport-fencing")({
-  head: () =>
-    serviceHead({
+  head: () => {
+    const base = serviceHead({
       title: "Airport & Airfield Perimeter Fencing — BC | LS Fencing",
       ogTitle: "Airport & Airfield Perimeter Fencing — BC",
       description: DESCRIPTION,
@@ -33,7 +33,15 @@ export const Route = createFileRoute("/airport-fencing")({
       path: "/airport-fencing",
       image: { src: IMAGE.src, alt: IMAGE.alt, title: IMAGE.title },
       faq: FAQ,
-    }),
+    });
+    return {
+      ...base,
+      links: [
+        ...base.links,
+        { rel: "preload", as: "image", href: IMAGE.src, fetchpriority: "high" },
+      ],
+    };
+  },
   component: Page,
 });
 
@@ -47,6 +55,7 @@ function Page() {
       />
       <ServiceContent
         image={IMAGE}
+        priorityImage
         intro="Airport perimeters have zero tolerance for gaps. We build 8–12 ft galvanized chain link with 3-strand barb or razor tape, schedule-40 posts on concrete footings, and cantilever slide gates for controlled vehicle access — phased so the operational perimeter is never open."
         highlights={[
           "8–12 ft galvanized chain link fabric",

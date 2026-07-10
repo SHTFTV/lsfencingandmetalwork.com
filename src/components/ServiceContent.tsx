@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Check, ArrowRight, Phone } from "lucide-react";
 import { SITE } from "@/lib/site";
-import { trackNavClick } from "@/lib/analytics";
+import { trackNavClick, utmSearch } from "@/lib/analytics";
 
 export type ServiceContentProps = {
   intro: string;
@@ -13,6 +13,8 @@ export type ServiceContentProps = {
   related?: { to: string; label: string }[];
   swatch?: string; // fallback tailwind gradient class
   image?: { src: string; alt: string; title?: string; caption?: string };
+  /** When true, hero image is eager + fetchpriority high (use on above-the-fold LCP). */
+  priorityImage?: boolean;
   children?: ReactNode;
 };
 
@@ -25,6 +27,7 @@ export function ServiceContent({
   related,
   swatch = "from-zinc-800 via-zinc-900 to-black",
   image,
+  priorityImage = false,
   children,
 }: ServiceContentProps) {
   return (
@@ -39,9 +42,10 @@ export function ServiceContent({
                 src={image.src}
                 alt={image.alt}
                 title={image.title ?? image.alt}
-                loading="lazy"
+                loading={priorityImage ? "eager" : "lazy"}
                 decoding="async"
                 sizes="(min-width: 1024px) 66vw, 100vw"
+                {...(priorityImage ? { fetchPriority: "high" as const } : {})}
                 className="absolute inset-0 h-full w-full object-cover"
               />
             ) : (
@@ -136,22 +140,40 @@ export function ServiceContent({
 
 function RelatedList({ related }: { related: { to: string; label: string }[] }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const fromSlug = pathname.replace(/^\//, "").replace(/\/$/, "") || "home";
   return (
     <div className="border border-border rounded-sm bg-card p-6">
       <div className="text-xs uppercase tracking-[0.3em] text-primary mb-3">Related services</div>
       <ul className="space-y-2">
-        {related.map((r) => (
-          <li key={r.to}>
-            <Link
-              to={r.to}
-              onClick={() => trackNavClick({ surface: "service-related", to: r.to, label: r.label, from: pathname })}
-              data-testid={`related-link-${r.to.replace(/^\//, "")}`}
-              className="text-sm hover:text-primary flex items-center gap-2"
-            >
-              <ArrowRight className="h-3.5 w-3.5" /> {r.label}
-            </Link>
-          </li>
-        ))}
+        {related.map((r) => {
+          const utm = {
+            utm_source: "site",
+            utm_medium: "internal",
+            utm_campaign: "service-related",
+            utm_content: `${fromSlug}__${r.to.replace(/^\//, "")}`,
+          };
+          return (
+            <li key={r.to}>
+              <Link
+                to={r.to}
+                search={utmSearch(utm)}
+                onClick={() =>
+                  trackNavClick({
+                    surface: "service-related",
+                    to: r.to,
+                    label: r.label,
+                    from: pathname,
+                    ...utm,
+                  })
+                }
+                data-testid={`related-link-${r.to.replace(/^\//, "")}`}
+                className="text-sm hover:text-primary flex items-center gap-2"
+              >
+                <ArrowRight className="h-3.5 w-3.5" /> {r.label}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

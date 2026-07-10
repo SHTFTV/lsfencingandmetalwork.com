@@ -4,7 +4,7 @@ import { PageShell, CtaStrip } from "@/components/PageShell";
 import { SERVICES, GEO_PAGES, SITE, absoluteUrl } from "@/lib/site";
 import { localBusinessScript } from "@/lib/service-schema";
 import { POSTS } from "@/lib/blog";
-import { trackNavClick } from "@/lib/analytics";
+import { trackNavClick, utmSearch } from "@/lib/analytics";
 import { ArrowRight, Phone, ShieldCheck, Hammer, MapPin, X, ZoomIn, Calendar } from "lucide-react";
 import cantileverImg from "@/assets/gallery/8x16-cantilever-slat-gate-abbotsford.jpg.asset.json";
 import commercialImg from "@/assets/gallery/8ft-galv-commercial-security.jpeg.asset.json";
@@ -401,22 +401,39 @@ function Home() {
                 sub: "Licensed producer sites",
                 blurb: "Restricted-visibility privacy-slat perimeter aligned with Health Canada physical security.",
               },
-            ].map((s) => (
-              <Link
-                key={s.to}
-                to={s.to}
-                onClick={() => trackNavClick({ surface: "home-specialty-strip", to: s.to, label: s.label, from: "/" })}
-                data-testid={`specialty-link-${s.to.replace(/^\//, "")}`}
-                className="group border border-border rounded-sm bg-background p-6 hover:border-primary transition flex flex-col"
-              >
-                <div className="text-xs uppercase tracking-[0.3em] text-primary">{s.sub}</div>
-                <div className="font-display uppercase text-lg mt-2">{s.label}</div>
-                <p className="text-sm text-muted-foreground mt-3 flex-1">{s.blurb}</p>
-                <div className="mt-4 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-primary">
-                  Explore <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition" />
-                </div>
-              </Link>
-            ))}
+            ].map((s) => {
+              const utm = {
+                utm_source: "site",
+                utm_medium: "internal",
+                utm_campaign: "specialty-strip",
+                utm_content: s.to.replace(/^\//, ""),
+              };
+              return (
+                <Link
+                  key={s.to}
+                  to={s.to}
+                  search={utmSearch(utm)}
+                  onClick={() =>
+                    trackNavClick({
+                      surface: "home-specialty-strip",
+                      to: s.to,
+                      label: s.label,
+                      from: "/",
+                      ...utm,
+                    })
+                  }
+                  data-testid={`specialty-link-${s.to.replace(/^\//, "")}`}
+                  className="group border border-border rounded-sm bg-background p-6 hover:border-primary transition flex flex-col"
+                >
+                  <div className="text-xs uppercase tracking-[0.3em] text-primary">{s.sub}</div>
+                  <div className="font-display uppercase text-lg mt-2">{s.label}</div>
+                  <p className="text-sm text-muted-foreground mt-3 flex-1">{s.blurb}</p>
+                  <div className="mt-4 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-primary">
+                    Explore <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition" />
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
