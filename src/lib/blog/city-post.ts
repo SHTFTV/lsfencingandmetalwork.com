@@ -18,26 +18,30 @@ import imgBlackPlayground from "@/assets/gallery/black-chainlink-playground.jpeg
 import imgBlackSlatMapleRidge from "@/assets/gallery/black-privacy-slat-chainlink-maple-ridge.jpg.asset.json";
 
 // City-page hero photos are restricted to real LS Fencing chain link work.
-// The gallery has plenty of chain link shots — commercial and residential —
-// so every city post still gets a unique hero without pulling in cedar,
-// ornamental, or shop photos.
-const COMMERCIAL_POOL: string[] = [
-  img8ftSecurity.url,
-  imgPerimeterBarb.url,
-  imgHighSecurityFarm.url,
-  imgCooperRentals.url,
-  imgCommercialGate.url,
-  img6ftBarb.url,
-  imgBlackSchool.url,
-  imgCantileverSlatGate.url,
-  imgBaseballBackstop.url,
+// Each entry pairs the CDN url with a short caption describing what the
+// photo actually shows so the alt text / OG caption match the image.
+interface CityHero {
+  url: string;
+  caption: string;
+}
+
+const COMMERCIAL_POOL: CityHero[] = [
+  { url: img8ftSecurity.url, caption: "8 ft galvanized commercial security chain link perimeter installed by LS Fencing & Metal Work" },
+  { url: imgPerimeterBarb.url, caption: "Galvanized chain link perimeter with three-strand barbed wire on 45° extension arms" },
+  { url: imgHighSecurityFarm.url, caption: "High-security cantilever slide gate on a galvanized chain link farm perimeter" },
+  { url: imgCooperRentals.url, caption: "Heavy-duty galvanized cantilever slide gate and chain link perimeter for Cooper Equipment Rentals in Langley" },
+  { url: imgCommercialGate.url, caption: "Commercial double swing gate in galvanized chain link at an industrial yard" },
+  { url: img6ftBarb.url, caption: "6 ft galvanized chain link fence with barbed wire in Abbotsford" },
+  { url: imgBlackSchool.url, caption: "Black vinyl-coated chain link perimeter fence at a Surrey school" },
+  { url: imgCantileverSlatGate.url, caption: "8 ft × 16 ft welded cantilever slide gate with privacy slats on a chain link perimeter in Abbotsford" },
+  { url: imgBaseballBackstop.url, caption: "Galvanized chain link baseball backstop built for a Fraser Valley community park" },
 ];
 
-const RESIDENTIAL_POOL: string[] = [
-  img4ftGalv.url,
-  imgBlackHillside.url,
-  imgBlackPlayground.url,
-  imgBlackSlatMapleRidge.url,
+const RESIDENTIAL_POOL: CityHero[] = [
+  { url: img4ftGalv.url, caption: "4 ft galvanized chain link residential fence installed by LS Fencing & Metal Work" },
+  { url: imgBlackHillside.url, caption: "Black vinyl-coated chain link fence stepped down a Chilliwack hillside lot" },
+  { url: imgBlackPlayground.url, caption: "Black vinyl-coated chain link fence surrounding a residential playground" },
+  { url: imgBlackSlatMapleRidge.url, caption: "Black vinyl-coated chain link fence with privacy slats installed in Maple Ridge" },
 ];
 
 /**
@@ -45,13 +49,13 @@ const RESIDENTIAL_POOL: string[] = [
  * within its own category (commercial vs residential) so each pool is
  * consumed in order and no two city posts on /blog share a hero photo.
  */
-function pickCommercialImage(city: CityFact): string {
+function pickCommercialImage(city: CityFact): CityHero {
   const commercial = CITIES.filter((c) => c.commercialFocus);
   const i = Math.max(0, commercial.findIndex((c) => c.slug === city.slug));
   return COMMERCIAL_POOL[i % COMMERCIAL_POOL.length];
 }
 
-function pickResidentialImage(city: CityFact): string {
+function pickResidentialImage(city: CityFact): CityHero {
   const residential = CITIES.filter((c) => !c.commercialFocus);
   const i = Math.max(0, residential.findIndex((c) => c.slug === city.slug));
   return RESIDENTIAL_POOL[i % RESIDENTIAL_POOL.length];
@@ -234,8 +238,8 @@ function buildPost(city: CityFact): BlogPost {
     date: "2026-07-10",
     readMinutes: 12,
     tags: ["City Guides", region, "Bylaws", "Costs"],
-    ogImage: pickResidentialImage(city),
-    ogImageCaption: `Fence installation in ${name}, BC by LS Fencing & Metal Work`,
+    ogImage: pickResidentialImage(city).url,
+    ogImageCaption: `${pickResidentialImage(city).caption} — ${name}, BC.`,
     body,
     faq,
     keyTakeaways,
@@ -393,8 +397,8 @@ function buildCommercialPost(city: CityFact): BlogPost {
     date: "2026-07-10",
     readMinutes: 12,
     tags: ["Commercial", region, "Strata", "High-Security", "Welded Gates"],
-    ogImage: pickCommercialImage(city),
-    ogImageCaption: `Commercial fencing and welded gate installation in ${name}, BC by LS Fencing & Metal Work`,
+    ogImage: pickCommercialImage(city).url,
+    ogImageCaption: `${pickCommercialImage(city).caption} — ${name}, BC commercial project.`,
     body,
     faq,
     keyTakeaways,
