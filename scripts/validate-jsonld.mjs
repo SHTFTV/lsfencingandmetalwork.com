@@ -74,7 +74,7 @@ function resolveFaq(src, ident) {
 /** @param {string} file @returns {Extracted | null} */
 function extract(file) {
   const src = readFileSync(file, "utf8");
-  const callRe = /serviceJsonLd\(\{([\s\S]*?)\}\s*\)/m;
+  const callRe = /(?:serviceHead|serviceJsonLd)\(\{([\s\S]*?)\}\s*\)/m;
   const call = callRe.exec(src);
   if (!call) return null;
   const body = call[1];
@@ -88,7 +88,8 @@ function extract(file) {
     return m ? m[1].trim().replace(/,\s*$/, "") : null;
   };
 
-  const rawName = field("name");
+  // serviceHead uses `serviceName`; legacy serviceJsonLd uses `name`.
+  const rawName = field("serviceName") ?? field("name");
   const rawDesc = field("description");
   const rawPath = field("path");
   const rawFaq = field("faq");
