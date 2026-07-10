@@ -1,15 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://lsfencingandmetalwork.com/</loc>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://lsfencingandmetalwork.com/about-us</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/services</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/gallery</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/pricing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/testimonial</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/career</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://lsfencingandmetalwork.com/chain-link-fencing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/commercial-chain-link-fencing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/residential-chain-link-fencing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/cedar-fencing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/ornamental-fencing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/metal-gates</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -19,73 +82,279 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lsfencingandmetalwork.com/commercial-fencing</loc>
+    <loc>https://lsfencingandmetalwork.com/welding-services</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lsfencingandmetalwork.com/industrial-fencing</loc>
+    <loc>https://lsfencingandmetalwork.com/excavation-services</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lsfencingandmetalwork.com/contact</loc>
+    <loc>https://lsfencingandmetalwork.com/snow-removal</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://lsfencingandmetalwork.com/about</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://lsfencingandmetalwork.com/locations/chilliwack</loc>
+    <loc>https://lsfencingandmetalwork.com/chilliwack-chain-link-fence-company</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://lsfencingandmetalwork.com/locations/abbotsford</loc>
+    <loc>https://lsfencingandmetalwork.com/abbotsford-chain-link-fence-contractor</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://lsfencingandmetalwork.com/locations/langley</loc>
+    <loc>https://lsfencingandmetalwork.com/projects/heatherbrae-builders-surrey</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://lsfencingandmetalwork.com/locations/aldergrove</loc>
+    <loc>https://lsfencingandmetalwork.com/projects/cooper-rentals-langley</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://lsfencingandmetalwork.com/locations/surrey</loc>
+    <loc>https://lsfencingandmetalwork.com/projects/cantilever-gates-chilliwack</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://lsfencingandmetalwork.com/locations/maple-ridge</loc>
+    <loc>https://lsfencingandmetalwork.com/projects/railing-installation-maple-ridge</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://lsfencingandmetalwork.com/locations/pitt-meadows</loc>
+    <loc>https://lsfencingandmetalwork.com/blog/fencing-in-vancouver</loc>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://lsfencingandmetalwork.com/__l5e/assets-v1/49c595d1-982e-4836-a465-7ab54eec8109/8ft-galv-commercial-security.jpeg</image:loc>
+      <image:title>Commercial Fencing, Gates &amp; Hand Rails in Vancouver — Strata, Industrial &amp; High-Security (2026)</image:title>
+      <image:caption>Commercial fencing and welded gate installation in Vancouver, BC by LS Fencing &amp; Metal Work</image:caption>
+    </image:image>
   </url>
   <url>
-    <loc>https://lsfencingandmetalwork.com/locations/agassiz</loc>
+    <loc>https://lsfencingandmetalwork.com/blog/fencing-in-burnaby</loc>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://lsfencingandmetalwork.com/__l5e/assets-v1/695bfb95-c992-4280-b574-15048bf24beb/commercial-double-swing-gate.jpeg</image:loc>
+      <image:title>Commercial Fencing, Gates &amp; Hand Rails in Burnaby — Strata, Industrial &amp; High-Security (2026)</image:title>
+      <image:caption>Commercial fencing and welded gate installation in Burnaby, BC by LS Fencing &amp; Metal Work</image:caption>
+    </image:image>
   </url>
   <url>
-    <loc>https://lsfencingandmetalwork.com/locations/harrison-hot-springs</loc>
+    <loc>https://lsfencingandmetalwork.com/blog/fencing-in-surrey</loc>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://lsfencingandmetalwork.com/__l5e/assets-v1/2d4311fc-bded-4419-be0a-0f7800980bd3/custom-cedar-horizontal-slat.jpg</image:loc>
+      <image:title>Fencing in Surrey — Materials, Bylaws &amp; Costs (2026 Guide)</image:title>
+      <image:caption>Fence installation in Surrey, BC by LS Fencing &amp; Metal Work</image:caption>
+    </image:image>
   </url>
   <url>
-    <loc>https://lsfencingandmetalwork.com/locations/hope</loc>
+    <loc>https://lsfencingandmetalwork.com/blog/fencing-in-richmond</loc>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://lsfencingandmetalwork.com/__l5e/assets-v1/7e5ec4a4-b30b-4049-992f-3bad53118f2d/galv-perimeter-barbwire.jpeg</image:loc>
+      <image:title>Commercial Fencing, Gates &amp; Hand Rails in Richmond — Strata, Industrial &amp; High-Security (2026)</image:title>
+      <image:caption>Commercial fencing and welded gate installation in Richmond, BC by LS Fencing &amp; Metal Work</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/blog/fencing-in-coquitlam</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://lsfencingandmetalwork.com/__l5e/assets-v1/9682bbb8-c0da-432b-85b2-2d1b17c49b6a/high-security-cantilever-gate-farm.jpeg</image:loc>
+      <image:title>Commercial Fencing, Gates &amp; Hand Rails in Coquitlam — Strata, Industrial &amp; High-Security (2026)</image:title>
+      <image:caption>Commercial fencing and welded gate installation in Coquitlam, BC by LS Fencing &amp; Metal Work</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/blog/fencing-in-port-coquitlam</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://lsfencingandmetalwork.com/__l5e/assets-v1/3cde8b7a-4215-495d-a250-3ac094d2d267/cooper-rentals-cantilever-langley.png</image:loc>
+      <image:title>Commercial Fencing, Gates &amp; Hand Rails in Port Coquitlam — Strata, Industrial &amp; High-Security (2026)</image:title>
+      <image:caption>Commercial fencing and welded gate installation in Port Coquitlam, BC by LS Fencing &amp; Metal Work</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/blog/fencing-in-port-moody</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://lsfencingandmetalwork.com/__l5e/assets-v1/92ea9239-f506-4de8-b257-cc7981a2304b/utility-equipment-enclosure.jpeg</image:loc>
+      <image:title>Commercial Fencing, Gates &amp; Hand Rails in Port Moody — Strata, Industrial &amp; High-Security (2026)</image:title>
+      <image:caption>Commercial fencing and welded gate installation in Port Moody, BC by LS Fencing &amp; Metal Work</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/blog/fencing-in-langley</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://lsfencingandmetalwork.com/__l5e/assets-v1/d7ff1be1-dc57-4a2c-bd15-672749d83105/4ft-galv-residential.jpeg</image:loc>
+      <image:title>Fencing in Langley — Materials, Bylaws &amp; Costs (2026 Guide)</image:title>
+      <image:caption>Fence installation in Langley, BC by LS Fencing &amp; Metal Work</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/blog/fencing-in-delta</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://lsfencingandmetalwork.com/__l5e/assets-v1/5e05659c-78d6-4e61-84a9-9c20eaf96040/galvanized-handrail-driveway.jpeg</image:loc>
+      <image:title>Commercial Fencing, Gates &amp; Hand Rails in Delta — Strata, Industrial &amp; High-Security (2026)</image:title>
+      <image:caption>Commercial fencing and welded gate installation in Delta, BC by LS Fencing &amp; Metal Work</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/blog/fencing-in-maple-ridge</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://lsfencingandmetalwork.com/__l5e/assets-v1/acc03f41-1844-4129-a8c7-4b2f8904eb84/black-privacy-slat-chainlink-maple-ridge.jpg</image:loc>
+      <image:title>Fencing in Maple Ridge — Materials, Bylaws &amp; Costs (2026 Guide)</image:title>
+      <image:caption>Fence installation in Maple Ridge, BC by LS Fencing &amp; Metal Work</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/blog/fencing-in-pitt-meadows</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://lsfencingandmetalwork.com/__l5e/assets-v1/29a6d258-6604-4a6a-817f-d8b40a7756c1/black-chainlink-hillside-chilliwack.jpg</image:loc>
+      <image:title>Fencing in Pitt Meadows — Materials, Bylaws &amp; Costs (2026 Guide)</image:title>
+      <image:caption>Fence installation in Pitt Meadows, BC by LS Fencing &amp; Metal Work</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/blog/fencing-in-new-westminster</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://lsfencingandmetalwork.com/__l5e/assets-v1/2b9a8635-6b4c-46df-b729-f43837eb79c9/ornamental-storefront-gate-abbotsford.jpg</image:loc>
+      <image:title>Commercial Fencing, Gates &amp; Hand Rails in New Westminster — Strata, Industrial &amp; High-Security (2026)</image:title>
+      <image:caption>Commercial fencing and welded gate installation in New Westminster, BC by LS Fencing &amp; Metal Work</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/blog/fencing-in-north-vancouver</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://lsfencingandmetalwork.com/__l5e/assets-v1/2f7eb8fd-87ac-4852-8a6c-01597275ee9f/8x16-cantilever-slat-gate-abbotsford.jpg</image:loc>
+      <image:title>Commercial Fencing, Gates &amp; Hand Rails in North Vancouver — Strata, Industrial &amp; High-Security (2026)</image:title>
+      <image:caption>Commercial fencing and welded gate installation in North Vancouver, BC by LS Fencing &amp; Metal Work</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/blog/fencing-in-west-vancouver</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://lsfencingandmetalwork.com/__l5e/assets-v1/a0eae145-efcf-40e0-bdc1-72042787fce3/shop-welding-kubota-fabrication.jpg</image:loc>
+      <image:title>Commercial Fencing, Gates &amp; Hand Rails in West Vancouver — Strata, Industrial &amp; High-Security (2026)</image:title>
+      <image:caption>Commercial fencing and welded gate installation in West Vancouver, BC by LS Fencing &amp; Metal Work</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/blog/fencing-in-white-rock</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://lsfencingandmetalwork.com/__l5e/assets-v1/42b4a6e6-103b-414f-8e95-cab07823902d/kubota-kx033-excavator-post-line.jpg</image:loc>
+      <image:title>Commercial Fencing, Gates &amp; Hand Rails in White Rock — Strata, Industrial &amp; High-Security (2026)</image:title>
+      <image:caption>Commercial fencing and welded gate installation in White Rock, BC by LS Fencing &amp; Metal Work</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/blog/fencing-in-mission</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://lsfencingandmetalwork.com/__l5e/assets-v1/adb8f4ab-de88-430b-bbfa-cf4dff7a73b1/ornamental-powdercoat-chilliwack.jpeg</image:loc>
+      <image:title>Fencing in Mission — Materials, Bylaws &amp; Costs (2026 Guide)</image:title>
+      <image:caption>Fence installation in Mission, BC by LS Fencing &amp; Metal Work</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/blog/fencing-in-hope</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://lsfencingandmetalwork.com/__l5e/assets-v1/a8d1db01-9c17-451a-9cb4-7a74211c0780/black-chainlink-playground.jpeg</image:loc>
+      <image:title>Fencing in Hope — Materials, Bylaws &amp; Costs (2026 Guide)</image:title>
+      <image:caption>Fence installation in Hope, BC by LS Fencing &amp; Metal Work</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/blog/best-fencing-options-and-their-qualities</loc>
+    <lastmod>2016-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://lsfencingandmetalwork.com/og/blog-best-fencing-options.jpg</image:loc>
+      <image:title>The Best Fencing Options and Their Qualities</image:title>
+      <image:caption>The Best Fencing Options and Their Qualities</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/blog/why-you-should-consider-fencing-as-an-option</loc>
+    <lastmod>2016-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://lsfencingandmetalwork.com/og/blog-why-consider-fencing.jpg</image:loc>
+      <image:title>Why You Should Consider Fencing as an Option</image:title>
+      <image:caption>Why You Should Consider Fencing as an Option</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/blog/differences-between-chain-link-fence-and-wooden-fence</loc>
+    <lastmod>2016-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://lsfencingandmetalwork.com/og/blog-chain-link-vs-wood.jpg</image:loc>
+      <image:title>Differences Between a Chain Link Fence and a Wooden Fence</image:title>
+      <image:caption>Differences Between a Chain Link Fence and a Wooden Fence</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://lsfencingandmetalwork.com/blog/benefits-of-barrier-gates</loc>
+    <lastmod>2017-03-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://lsfencingandmetalwork.com/og/blog-barrier-gates.jpg</image:loc>
+      <image:title>The Benefits of Barrier Gates</image:title>
+      <image:caption>The Benefits of Barrier Gates</image:caption>
+    </image:image>
   </url>
 </urlset>
