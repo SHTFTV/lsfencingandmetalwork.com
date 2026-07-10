@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell, CtaStrip } from "@/components/PageShell";
 import { SERVICES, GEO_PAGES, SITE } from "@/lib/site";
-import { ArrowRight, Phone, ShieldCheck, Hammer, MapPin } from "lucide-react";
+import { ArrowRight, Phone, ShieldCheck, Hammer, MapPin, X, ZoomIn } from "lucide-react";
 import cantileverImg from "@/assets/gallery/8x16-cantilever-slat-gate-abbotsford.jpg.asset.json";
 import commercialImg from "@/assets/gallery/8ft-galv-commercial-security.jpeg.asset.json";
 import ornamentalImg from "@/assets/gallery/ornamental-powdercoat-chilliwack.jpeg.asset.json";
@@ -15,20 +15,107 @@ import weldingImg from "@/assets/gallery/shop-welding-kubota-fabrication.jpg.ass
 import excavationImg from "@/assets/gallery/kubota-kx033-excavator-post-line.jpg.asset.json";
 import snowImg from "@/assets/gallery/ls-fencing-truck-skidsteer.jpeg.asset.json";
 
-type Feature = { to: string; src: string; label: string; sub: string };
+type Feature = {
+  to: string;
+  src: string;
+  label: string;
+  sub: string;
+  alt: string;
+  title: string;
+};
+
+// Each service card image is verified against the linked service page.
 const FEATURES: Feature[] = [
-  { to: "/chain-link-fencing", src: chainlinkImg.url, label: "Chain Link Fencing", sub: "Chilliwack, BC" },
-  { to: "/commercial-chain-link-fencing", src: commercialImg.url, label: "Commercial Chain Link", sub: "8ft Galvanized" },
-  { to: "/residential-chain-link-fencing", src: residentialImg.url, label: "Residential Chain Link", sub: "4ft Galvanized" },
-  { to: "/cedar-fencing", src: cedarImg.url, label: "Cedar Fencing", sub: "Horizontal Slat" },
-  { to: "/ornamental-fencing", src: ornamentalImg.url, label: "Ornamental Fencing", sub: "Chilliwack, BC" },
-  { to: "/barrier-gates", src: barrierImg.url, label: "Barrier Gates & Rails", sub: "Galvanized" },
-  { to: "/metal-gates", src: metalGateImg.url, label: "Metal Gates", sub: "Abbotsford, BC" },
-  { to: "/welding-services", src: weldingImg.url, label: "Welding Services", sub: "Shop & On-Site" },
-  { to: "/excavation-services", src: excavationImg.url, label: "Excavation Services", sub: "Kubota KX033" },
-  { to: "/snow-removal", src: snowImg.url, label: "Snow Removal", sub: "Fraser Valley" },
-  { to: "/gallery", src: cantileverImg.url, label: "Cantilever Gates", sub: "Abbotsford, BC" },
+  {
+    to: "/chain-link-fencing",
+    src: chainlinkImg.url,
+    label: "Chain Link Fencing",
+    sub: "Chilliwack, BC",
+    alt: "Black vinyl-coated chain link fence installed along a rock-wall hillside acreage in Chilliwack BC by LS Fencing",
+    title: "Chain link fencing installation — Chilliwack, BC",
+  },
+  {
+    to: "/commercial-chain-link-fencing",
+    src: commercialImg.url,
+    label: "Commercial Chain Link",
+    sub: "8ft Galvanized",
+    alt: "8-foot galvanized chain link commercial security enclosure with covered top installed in the Fraser Valley",
+    title: "Commercial chain link security enclosure — Fraser Valley, BC",
+  },
+  {
+    to: "/residential-chain-link-fencing",
+    src: residentialImg.url,
+    label: "Residential Chain Link",
+    sub: "4ft Galvanized",
+    alt: "4-foot galvanized chain link residential yard fence with top rail installed in the Fraser Valley",
+    title: "Residential chain link fence — Fraser Valley, BC",
+  },
+  {
+    to: "/cedar-fencing",
+    src: cedarImg.url,
+    label: "Cedar Fencing",
+    sub: "Horizontal Slat",
+    alt: "Custom cedar privacy fence with horizontal slats along a stone-paver garden path in the Fraser Valley",
+    title: "Custom horizontal-slat cedar privacy fence — Fraser Valley, BC",
+  },
+  {
+    to: "/ornamental-fencing",
+    src: ornamentalImg.url,
+    label: "Ornamental Fencing",
+    sub: "Chilliwack, BC",
+    alt: "Black powder-coated ornamental steel fence panels next to a stone column in Chilliwack BC",
+    title: "Powder-coated ornamental steel fence — Chilliwack, BC",
+  },
+  {
+    to: "/barrier-gates",
+    src: barrierImg.url,
+    label: "Barrier Gates & Rails",
+    sub: "Maple Ridge, BC",
+    alt: "Galvanized pipe MMCD-spec handrail installed along an accessible driveway ramp in Maple Ridge BC",
+    title: "MMCD-spec galvanized handrail install — Maple Ridge, BC",
+  },
+  {
+    to: "/metal-gates",
+    src: metalGateImg.url,
+    label: "Metal Gates",
+    sub: "Abbotsford, BC",
+    alt: "Black powder-coated ornamental steel storefront swing gate outside an Abbotsford commercial building",
+    title: "Custom ornamental storefront metal gate — Abbotsford, BC",
+  },
+  {
+    to: "/welding-services",
+    src: weldingImg.url,
+    label: "Welding Services",
+    sub: "Shop & On-Site",
+    alt: "LS Fencing welder MIG welding a custom steel attachment on a Kubota skid steer inside the fabrication shop in Chilliwack",
+    title: "Custom in-shop welding and fabrication — Chilliwack, BC",
+  },
+  {
+    to: "/excavation-services",
+    src: excavationImg.url,
+    label: "Excavation Services",
+    sub: "Kubota KX033",
+    alt: "Operator running an orange Kubota KX033-4 mini excavator digging a fence post line in a rural Fraser Valley pasture",
+    title: "Excavation and post-line digging with Kubota KX033 — Fraser Valley, BC",
+  },
+  {
+    to: "/snow-removal",
+    src: snowImg.url,
+    label: "Snow Removal",
+    sub: "Fraser Valley",
+    alt: "LS Fencing service truck towing a trailer with a Kubota skid steer used for commercial snow removal in the Fraser Valley",
+    title: "Commercial snow removal fleet — Fraser Valley, BC",
+  },
+  {
+    to: "/gallery",
+    src: cantileverImg.url,
+    label: "Cantilever Gates",
+    sub: "Abbotsford, BC",
+    alt: "8-foot by 16-foot galvanized cantilever slide gate with grey privacy slats securing an Abbotsford industrial yard",
+    title: "8×16 cantilever slat gate install — Abbotsford, BC",
+  },
 ];
+
 
 
 
