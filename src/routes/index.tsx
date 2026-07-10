@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell, CtaStrip } from "@/components/PageShell";
 import { SERVICES, GEO_PAGES, SITE } from "@/lib/site";
@@ -5,6 +6,7 @@ import { ArrowRight, Phone, ShieldCheck, Hammer, MapPin } from "lucide-react";
 import cantileverImg from "@/assets/gallery/8x16-cantilever-slat-gate-abbotsford.jpg.asset.json";
 import commercialImg from "@/assets/gallery/8ft-galv-commercial-security.jpeg.asset.json";
 import ornamentalImg from "@/assets/gallery/ornamental-powdercoat-chilliwack.jpeg.asset.json";
+
 
 
 export const Route = createFileRoute("/")({
@@ -26,6 +28,13 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const rotating = SERVICES.map((s) => s.label);
+  const [idx, setIdx] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setIdx((i) => (i + 1) % rotating.length), 2200);
+    return () => clearInterval(id);
+  }, [rotating.length]);
+
   return (
     <PageShell>
       {/* Hero */}
@@ -35,8 +44,15 @@ function Home() {
             Fraser Valley · Lower Mainland · Since 2010
           </div>
           <h1 className="font-display text-5xl md:text-7xl uppercase max-w-5xl leading-[0.95]">
-            Fences, gates & metal work <span className="text-primary">built to last.</span>
+            <span
+              key={idx}
+              className="block text-primary animate-in fade-in slide-in-from-bottom-2 duration-500"
+            >
+              {rotating[idx]}
+            </span>
+            <span className="block">built to last.</span>
           </h1>
+
           <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
             Commercial and residential chain link, cedar, ornamental steel,
             custom gates, welding and site work — installed by a crew that shows up.
