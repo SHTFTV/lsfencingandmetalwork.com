@@ -25,6 +25,7 @@ type Feature = {
   sub: string;
   alt: string;
   title: string;
+  desc: string;
 };
 
 // Each service card image is verified against the linked service page.
