@@ -17,6 +17,7 @@ import {
   type StarBreakdown,
 } from "@/lib/google-reviews.functions";
 
+
 const INITIAL: GoogleReviewsSummary = {
   rating: 4.9,
   total: 55,
