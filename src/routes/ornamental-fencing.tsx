@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
 import { serviceJsonLd, type FaqItem } from "@/lib/service-schema";
+import heroImg from "@/assets/gallery/ornamental-powdercoat-chilliwack.jpeg.asset.json";
 
 const FAQ: FaqItem[] = [
   { q: "Can it follow slope?", a: "Yes — our panels rack up to 20° without cutting, keeping picket tops level with grade." },
