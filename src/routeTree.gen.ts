@@ -44,6 +44,7 @@ import { Route as ChainLinkRouteImport } from './routes/chain-link'
 import { Route as CedarFencingRouteImport } from './routes/cedar-fencing'
 import { Route as CedarFencesRouteImport } from './routes/cedar-fences'
 import { Route as CareerRouteImport } from './routes/career'
+import { Route as CannabisFencingRouteImport } from './routes/cannabis-fencing'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as BestFencingOptionsAndTheirQualitiesRouteImport } from './routes/best-fencing-options-and-their-qualities'
 import { Route as BenefitsOfBarrierGatesRouteImport } from './routes/benefits-of-barrier-gates'
@@ -262,6 +263,11 @@ const CedarFencesRoute = CedarFencesRouteImport.update({
 const CareerRoute = CareerRouteImport.update({
   id: '/career',
   path: '/career',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CannabisFencingRoute = CannabisFencingRouteImport.update({
+  id: '/cannabis-fencing',
+  path: '/cannabis-fencing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogRoute = BlogRouteImport.update({
@@ -486,6 +492,7 @@ export interface FileRoutesByFullPath {
   '/benefits-of-barrier-gates': typeof BenefitsOfBarrierGatesRoute
   '/best-fencing-options-and-their-qualities': typeof BestFencingOptionsAndTheirQualitiesRoute
   '/blog': typeof BlogRouteWithChildren
+  '/cannabis-fencing': typeof CannabisFencingRoute
   '/career': typeof CareerRoute
   '/cedar-fences': typeof CedarFencesRoute
   '/cedar-fencing': typeof CedarFencingRoute
@@ -558,6 +565,7 @@ export interface FileRoutesByTo {
   '/benefits-of-barrier-gates': typeof BenefitsOfBarrierGatesRoute
   '/best-fencing-options-and-their-qualities': typeof BestFencingOptionsAndTheirQualitiesRoute
   '/blog': typeof BlogRouteWithChildren
+  '/cannabis-fencing': typeof CannabisFencingRoute
   '/career': typeof CareerRoute
   '/cedar-fences': typeof CedarFencesRoute
   '/cedar-fencing': typeof CedarFencingRoute
@@ -632,6 +640,7 @@ export interface FileRoutesById {
   '/benefits-of-barrier-gates': typeof BenefitsOfBarrierGatesRoute
   '/best-fencing-options-and-their-qualities': typeof BestFencingOptionsAndTheirQualitiesRoute
   '/blog': typeof BlogRouteWithChildren
+  '/cannabis-fencing': typeof CannabisFencingRoute
   '/career': typeof CareerRoute
   '/cedar-fences': typeof CedarFencesRoute
   '/cedar-fencing': typeof CedarFencingRoute
@@ -706,6 +715,7 @@ export interface FileRouteTypes {
     | '/benefits-of-barrier-gates'
     | '/best-fencing-options-and-their-qualities'
     | '/blog'
+    | '/cannabis-fencing'
     | '/career'
     | '/cedar-fences'
     | '/cedar-fencing'
@@ -778,6 +788,7 @@ export interface FileRouteTypes {
     | '/benefits-of-barrier-gates'
     | '/best-fencing-options-and-their-qualities'
     | '/blog'
+    | '/cannabis-fencing'
     | '/career'
     | '/cedar-fences'
     | '/cedar-fencing'
@@ -851,6 +862,7 @@ export interface FileRouteTypes {
     | '/benefits-of-barrier-gates'
     | '/best-fencing-options-and-their-qualities'
     | '/blog'
+    | '/cannabis-fencing'
     | '/career'
     | '/cedar-fences'
     | '/cedar-fencing'
@@ -925,6 +937,7 @@ export interface RootRouteChildren {
   BenefitsOfBarrierGatesRoute: typeof BenefitsOfBarrierGatesRoute
   BestFencingOptionsAndTheirQualitiesRoute: typeof BestFencingOptionsAndTheirQualitiesRoute
   BlogRoute: typeof BlogRouteWithChildren
+  CannabisFencingRoute: typeof CannabisFencingRoute
   CareerRoute: typeof CareerRoute
   CedarFencesRoute: typeof CedarFencesRoute
   CedarFencingRoute: typeof CedarFencingRoute
@@ -1215,6 +1228,13 @@ declare module '@tanstack/react-router' {
       path: '/career'
       fullPath: '/career'
       preLoaderRoute: typeof CareerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cannabis-fencing': {
+      id: '/cannabis-fencing'
+      path: '/cannabis-fencing'
+      fullPath: '/cannabis-fencing'
+      preLoaderRoute: typeof CannabisFencingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog': {
@@ -1524,6 +1544,7 @@ const rootRouteChildren: RootRouteChildren = {
   BestFencingOptionsAndTheirQualitiesRoute:
     BestFencingOptionsAndTheirQualitiesRoute,
   BlogRoute: BlogRouteWithChildren,
+  CannabisFencingRoute: CannabisFencingRoute,
   CareerRoute: CareerRoute,
   CedarFencesRoute: CedarFencesRoute,
   CedarFencingRoute: CedarFencingRoute,

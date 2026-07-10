@@ -68,6 +68,9 @@ function Page() {
           { to: "/commercial-chain-link-fencing", label: "Commercial chain link" },
           { to: "/residential-chain-link-fencing", label: "Residential chain link" },
           { to: "/metal-gates", label: "Custom metal & cantilever gates" },
+          { to: "/airport-fencing", label: "Airport perimeter fencing" },
+          { to: "/port-fencing", label: "Port & marine terminal fencing" },
+          { to: "/cannabis-fencing", label: "Cannabis facility fencing" },
         ]}
       >
         <ProjectShowcase
