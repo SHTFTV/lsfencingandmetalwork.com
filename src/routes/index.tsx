@@ -253,8 +253,13 @@ function Home() {
               >
                 <img
                   src={img.src}
-                  alt={`${img.label} — ${img.sub}`}
+                  alt={img.alt}
+                  title={img.title}
+                  width={800}
+                  height={600}
                   loading="lazy"
+                  decoding="async"
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                   className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/40 to-transparent" />
