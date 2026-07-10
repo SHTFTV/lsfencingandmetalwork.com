@@ -49,6 +49,7 @@ import { Route as BenefitsOfBarrierGatesRouteImport } from './routes/benefits-of
 import { Route as BarrierGatesHandRailsRouteImport } from './routes/barrier-gates-hand-rails'
 import { Route as BarrierGatesRouteImport } from './routes/barrier-gates'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AirportFencingRouteImport } from './routes/airport-fencing'
 import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as AbbotsfordChainLinkFenceContractorRouteImport } from './routes/abbotsford-chain-link-fence-contractor'
 import { Route as Wood_FencingDotphpRouteImport } from './routes/Wood_Fencing[.]php'
@@ -288,6 +289,11 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AirportFencingRoute = AirportFencingRouteImport.update({
+  id: '/airport-fencing',
+  path: '/airport-fencing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutUsRoute = AboutUsRouteImport.update({
   id: '/about-us',
   path: '/about-us',
@@ -467,6 +473,7 @@ export interface FileRoutesByFullPath {
   '/Wood_Fencing.php': typeof Wood_FencingDotphpRoute
   '/abbotsford-chain-link-fence-contractor': typeof AbbotsfordChainLinkFenceContractorRoute
   '/about-us': typeof AboutUsRoute
+  '/airport-fencing': typeof AirportFencingRoute
   '/auth': typeof AuthRoute
   '/barrier-gates': typeof BarrierGatesRoute
   '/barrier-gates-hand-rails': typeof BarrierGatesHandRailsRoute
@@ -537,6 +544,7 @@ export interface FileRoutesByTo {
   '/Wood_Fencing.php': typeof Wood_FencingDotphpRoute
   '/abbotsford-chain-link-fence-contractor': typeof AbbotsfordChainLinkFenceContractorRoute
   '/about-us': typeof AboutUsRoute
+  '/airport-fencing': typeof AirportFencingRoute
   '/auth': typeof AuthRoute
   '/barrier-gates': typeof BarrierGatesRoute
   '/barrier-gates-hand-rails': typeof BarrierGatesHandRailsRoute
@@ -609,6 +617,7 @@ export interface FileRoutesById {
   '/Wood_Fencing.php': typeof Wood_FencingDotphpRoute
   '/abbotsford-chain-link-fence-contractor': typeof AbbotsfordChainLinkFenceContractorRoute
   '/about-us': typeof AboutUsRoute
+  '/airport-fencing': typeof AirportFencingRoute
   '/auth': typeof AuthRoute
   '/barrier-gates': typeof BarrierGatesRoute
   '/barrier-gates-hand-rails': typeof BarrierGatesHandRailsRoute
@@ -681,6 +690,7 @@ export interface FileRouteTypes {
     | '/Wood_Fencing.php'
     | '/abbotsford-chain-link-fence-contractor'
     | '/about-us'
+    | '/airport-fencing'
     | '/auth'
     | '/barrier-gates'
     | '/barrier-gates-hand-rails'
@@ -751,6 +761,7 @@ export interface FileRouteTypes {
     | '/Wood_Fencing.php'
     | '/abbotsford-chain-link-fence-contractor'
     | '/about-us'
+    | '/airport-fencing'
     | '/auth'
     | '/barrier-gates'
     | '/barrier-gates-hand-rails'
@@ -822,6 +833,7 @@ export interface FileRouteTypes {
     | '/Wood_Fencing.php'
     | '/abbotsford-chain-link-fence-contractor'
     | '/about-us'
+    | '/airport-fencing'
     | '/auth'
     | '/barrier-gates'
     | '/barrier-gates-hand-rails'
@@ -894,6 +906,7 @@ export interface RootRouteChildren {
   Wood_FencingDotphpRoute: typeof Wood_FencingDotphpRoute
   AbbotsfordChainLinkFenceContractorRoute: typeof AbbotsfordChainLinkFenceContractorRoute
   AboutUsRoute: typeof AboutUsRoute
+  AirportFencingRoute: typeof AirportFencingRoute
   AuthRoute: typeof AuthRoute
   BarrierGatesRoute: typeof BarrierGatesRoute
   BarrierGatesHandRailsRoute: typeof BarrierGatesHandRailsRoute
@@ -1226,6 +1239,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/airport-fencing': {
+      id: '/airport-fencing'
+      path: '/airport-fencing'
+      fullPath: '/airport-fencing'
+      preLoaderRoute: typeof AirportFencingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about-us': {
       id: '/about-us'
       path: '/about-us'
@@ -1476,6 +1496,7 @@ const rootRouteChildren: RootRouteChildren = {
   AbbotsfordChainLinkFenceContractorRoute:
     AbbotsfordChainLinkFenceContractorRoute,
   AboutUsRoute: AboutUsRoute,
+  AirportFencingRoute: AirportFencingRoute,
   AuthRoute: AuthRoute,
   BarrierGatesRoute: BarrierGatesRoute,
   BarrierGatesHandRailsRoute: BarrierGatesHandRailsRoute,
