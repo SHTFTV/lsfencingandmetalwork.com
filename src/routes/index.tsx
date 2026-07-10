@@ -6,6 +6,30 @@ import { ArrowRight, Phone, ShieldCheck, Hammer, MapPin } from "lucide-react";
 import cantileverImg from "@/assets/gallery/8x16-cantilever-slat-gate-abbotsford.jpg.asset.json";
 import commercialImg from "@/assets/gallery/8ft-galv-commercial-security.jpeg.asset.json";
 import ornamentalImg from "@/assets/gallery/ornamental-powdercoat-chilliwack.jpeg.asset.json";
+import residentialImg from "@/assets/gallery/4ft-galv-residential.jpeg.asset.json";
+import cedarImg from "@/assets/gallery/custom-cedar-horizontal-slat.jpg.asset.json";
+import chainlinkImg from "@/assets/gallery/black-chainlink-hillside-chilliwack.jpg.asset.json";
+import barrierImg from "@/assets/gallery/galvanized-handrail-driveway.jpeg.asset.json";
+import metalGateImg from "@/assets/gallery/ornamental-storefront-gate-abbotsford.jpg.asset.json";
+import weldingImg from "@/assets/gallery/shop-welding-kubota-fabrication.jpg.asset.json";
+import excavationImg from "@/assets/gallery/kubota-kx033-excavator-post-line.jpg.asset.json";
+import snowImg from "@/assets/gallery/ls-fencing-truck-skidsteer.jpeg.asset.json";
+
+type Feature = { to: string; src: string; label: string; sub: string };
+const FEATURES: Feature[] = [
+  { to: "/chain-link-fencing", src: chainlinkImg.url, label: "Chain Link Fencing", sub: "Chilliwack, BC" },
+  { to: "/commercial-chain-link-fencing", src: commercialImg.url, label: "Commercial Chain Link", sub: "8ft Galvanized" },
+  { to: "/residential-chain-link-fencing", src: residentialImg.url, label: "Residential Chain Link", sub: "4ft Galvanized" },
+  { to: "/cedar-fencing", src: cedarImg.url, label: "Cedar Fencing", sub: "Horizontal Slat" },
+  { to: "/ornamental-fencing", src: ornamentalImg.url, label: "Ornamental Fencing", sub: "Chilliwack, BC" },
+  { to: "/barrier-gates", src: barrierImg.url, label: "Barrier Gates & Rails", sub: "Galvanized" },
+  { to: "/metal-gates", src: metalGateImg.url, label: "Metal Gates", sub: "Abbotsford, BC" },
+  { to: "/welding-services", src: weldingImg.url, label: "Welding Services", sub: "Shop & On-Site" },
+  { to: "/excavation-services", src: excavationImg.url, label: "Excavation Services", sub: "Kubota KX033" },
+  { to: "/snow-removal", src: snowImg.url, label: "Snow Removal", sub: "Fraser Valley" },
+  { to: "/gallery", src: cantileverImg.url, label: "Cantilever Gates", sub: "Abbotsford, BC" },
+];
+
 
 
 
