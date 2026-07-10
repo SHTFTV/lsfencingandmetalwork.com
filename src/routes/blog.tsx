@@ -1,7 +1,9 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
+import { BlogImage } from "@/components/BlogImage";
 import { POSTS } from "@/lib/blog";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
+
 
 export const Route = createFileRoute("/blog")({
   head: () => ({
