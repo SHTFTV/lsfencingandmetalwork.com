@@ -1,36 +1,18 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Phone, MessageSquare, Mail, X } from "lucide-react";
 import { SITE } from "@/lib/site";
 
-const DISMISS_KEY = "ls-contact-floater-dismissed";
-
 /**
- * Persistent right-side contact floater. Always visible until the user
- * clicks X. Dismissal is remembered in localStorage so the site doesn't
- * nag on every page load. Never opens or closes on its own — it is not
- * a popup.
+ * Persistent right-side contact floater. Visible on every page load.
+ * Clicking X hides it for the current session only — it returns on refresh.
  */
 export function ContactFloater() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    try {
-      if (localStorage.getItem(DISMISS_KEY) !== "1") setVisible(true);
-    } catch {
-      setVisible(true);
-    }
-  }, []);
+  const [visible, setVisible] = useState(true);
 
   if (!visible) return null;
 
-  const dismiss = () => {
-    setVisible(false);
-    try {
-      localStorage.setItem(DISMISS_KEY, "1");
-    } catch {
-      /* ignore */
-    }
-  };
+  const dismiss = () => setVisible(false);
+
 
   const smsHref = `sms:${SITE.phoneHref.replace("tel:", "")}`;
 
