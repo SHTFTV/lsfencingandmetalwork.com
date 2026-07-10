@@ -55,17 +55,19 @@ const RESIDENTIAL_POOL: string[] = [
 ];
 
 /**
- * Deterministic unique-per-city hero image. Uses the city's index in
- * CITIES modulo pool length so every city post shows a distinct photo
- * and adjacent cards on /blog never duplicate.
+ * Deterministic unique-per-city hero image. We use the city's dense index
+ * within its own category (commercial vs residential) so each pool is
+ * consumed in order and no two city posts on /blog share a hero photo.
  */
 function pickCommercialImage(city: CityFact): string {
-  const i = Math.max(0, CITIES.findIndex((c) => c.slug === city.slug));
+  const commercial = CITIES.filter((c) => c.commercialFocus);
+  const i = Math.max(0, commercial.findIndex((c) => c.slug === city.slug));
   return COMMERCIAL_POOL[i % COMMERCIAL_POOL.length];
 }
 
 function pickResidentialImage(city: CityFact): string {
-  const i = Math.max(0, CITIES.findIndex((c) => c.slug === city.slug));
+  const residential = CITIES.filter((c) => !c.commercialFocus);
+  const i = Math.max(0, residential.findIndex((c) => c.slug === city.slug));
   return RESIDENTIAL_POOL[i % RESIDENTIAL_POOL.length];
 }
 
