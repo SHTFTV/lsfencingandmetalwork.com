@@ -379,7 +379,7 @@ function Contact() {
           </div>
         </aside>
       </section>
-      <CtaStrip />
+      
     </PageShell>
   );
 }
