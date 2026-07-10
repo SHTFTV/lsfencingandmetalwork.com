@@ -42,7 +42,7 @@ function Page() {
         intro="From 4-ft residential enclosures to 10-ft security perimeters, we install galvanized and black vinyl-coated chain link across the Fraser Valley — quickly, straight, and to spec."
       />
       <ServiceContent
-        swatch="from-slate-700 via-slate-800 to-black"
+        image={{ src: heroImg.url, alt: "Black vinyl-coated chain link fence installed along a rock-wall hillside acreage in Chilliwack BC by LS Fencing", title: "Chain link fencing installation — Chilliwack, BC", caption: "Vinyl-Coated Chain Link · Chilliwack, BC" }}
         intro="Chain link is still the fastest, most cost-effective way to secure a property. We source Canadian-made fabric, use schedule-40 posts on commercial jobs, and set every corner and end post in concrete so your fence stays plumb through the freeze-thaw cycle."
         highlights={[
           "Galvanized & black vinyl-coated fabric",
