@@ -31,6 +31,10 @@ const staticEntries: SitemapEntry[] = [
   { path: "/excavation-services", changefreq: "monthly", priority: "0.7" },
   { path: "/snow-removal", changefreq: "monthly", priority: "0.6" },
 
+  { path: "/airport-fencing", changefreq: "monthly", priority: "0.85" },
+  { path: "/port-fencing", changefreq: "monthly", priority: "0.85" },
+  { path: "/cannabis-fencing", changefreq: "monthly", priority: "0.85" },
+
   { path: "/chilliwack-chain-link-fence-company", changefreq: "monthly", priority: "0.9" },
   { path: "/abbotsford-chain-link-fence-contractor", changefreq: "monthly", priority: "0.9" },
 
