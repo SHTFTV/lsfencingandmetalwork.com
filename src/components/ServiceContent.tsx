@@ -136,22 +136,40 @@ export function ServiceContent({
 
 function RelatedList({ related }: { related: { to: string; label: string }[] }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const fromSlug = pathname.replace(/^\//, "").replace(/\/$/, "") || "home";
   return (
     <div className="border border-border rounded-sm bg-card p-6">
       <div className="text-xs uppercase tracking-[0.3em] text-primary mb-3">Related services</div>
       <ul className="space-y-2">
-        {related.map((r) => (
-          <li key={r.to}>
-            <Link
-              to={r.to}
-              onClick={() => trackNavClick({ surface: "service-related", to: r.to, label: r.label, from: pathname })}
-              data-testid={`related-link-${r.to.replace(/^\//, "")}`}
-              className="text-sm hover:text-primary flex items-center gap-2"
-            >
-              <ArrowRight className="h-3.5 w-3.5" /> {r.label}
-            </Link>
-          </li>
-        ))}
+        {related.map((r) => {
+          const utm = {
+            utm_source: "site",
+            utm_medium: "internal",
+            utm_campaign: "service-related",
+            utm_content: `${fromSlug}__${r.to.replace(/^\//, "")}`,
+          };
+          return (
+            <li key={r.to}>
+              <Link
+                to={r.to}
+                search={utmSearch(utm)}
+                onClick={() =>
+                  trackNavClick({
+                    surface: "service-related",
+                    to: r.to,
+                    label: r.label,
+                    from: pathname,
+                    ...utm,
+                  })
+                }
+                data-testid={`related-link-${r.to.replace(/^\//, "")}`}
+                className="text-sm hover:text-primary flex items-center gap-2"
+              >
+                <ArrowRight className="h-3.5 w-3.5" /> {r.label}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
