@@ -222,19 +222,26 @@ function buildCommercialPost(city: CityFact): BlogPost {
     { to: "https://www.worksafebc.com/en", label: "WorkSafeBC — worksite safety standards", external: true },
   ];
 
-  const faq: FaqItem[] = city.faq;
+  // Commercial-only FAQ — not reused from CityFact (which is residential-toned).
+  const faq: FaqItem[] = [
+    { q: `Do you take on residential fencing jobs in ${name}?`, a: `No. Our ${name} work is strictly commercial, industrial, strata, and high-security — perimeter chain link, welded cantilever and swing gates, bollards, and MMCD-spec hand rails. For residential backyard fencing we focus on our Fraser Valley home service area.` },
+    { q: `What commercial chain link spec do you install in ${name}?`, a: `9-gauge hot-dip galvanized (or black vinyl-coated) chain link fabric, schedule 40 galvanized pipe posts, top and bottom rails, and either single or triple-strand barbed wire on 45° extension arms for high-security perimeters. Heights typically 8 ft or 10 ft on industrial ${name} sites, 6 ft on strata perimeters.` },
+    { q: `Do you fabricate cantilever gates for ${name} sites?`, a: `Yes — every cantilever slide gate, swing gate, barrier gate, and set of bollards we install in ${name} is welded in our own shop to the measured opening, then hot-dip galvanized or powder-coated. Spans from 12 ft up to 40+ ft, with keypad, card-reader, or LTE operator integration.` },
+    { q: `Can you install MMCD-spec hand rails on ${name} public and loading-dock work?`, a: `Yes. MMCD-spec galvanized pipe hand rails and guard rails for public walkways, ramps, and loading-dock edges are a standard scope for us across ${name} — fabricated in-shop, installed with our own excavation crew, WCB-covered.` },
+    { q: `Do you work with property managers and general contractors in ${name}?`, a: `Yes — property management firms, general contractors, strata councils, industrial and warehouse operators, and public-sector clients make up the majority of our ${name} work. Phased scopes, written itemized quotes, and clean turnover documentation are standard.` },
+  ];
 
   const keyTakeaways: string[] = [
-    `${name} is a commercial and strata focus for us — high-security perimeters, industrial chain link, welded gates, and hand rails. We don't chase small residential work here.`,
+    `${name} is a commercial and strata focus for us — high-security perimeters, industrial chain link, welded cantilever gates, bollards, and MMCD hand rails. We don't chase small residential work here.`,
     `In-house welding shop: cantilever slide gates, swing gates, bollards, and MMCD-spec hand rails fabricated to drawing, not ordered in.`,
     `Own excavation kit and crew — we mobilize into ${name} for full site perimeters, tenant improvements, and shut-down/turnover work on our own timeline.`,
     `Written scope, WCB coverage, COR-track safety practices, and a single point of contact from quote through turnover.`,
   ];
 
   const body: BlogPost["body"] = [
-    { type: "p", text: `LS Fencing & Metal Work is a Fraser Valley commercial fencing and metal-fabrication contractor. We install high-security chain link, welded metal gates, ornamental strata perimeters, hand rails, and bollards across ${name} and the surrounding ${region.toLowerCase()}. This page is a straight commercial brief — what we build in ${name}, who we build it for, and how we structure a scope from site walk-through to turnover.` },
-    { type: "p", text: `We are not a residential backyard shop in ${name}. Our ${name} work is property managers, general contractors, strata councils, industrial and warehouse operators, and public-sector projects that need a real commercial spec — 9-gauge galvanized mesh, top and bottom rails, welded cantilever gates, engineered hand rails, and a crew that can hold a schedule on a live site.` },
-    { type: "p", text: city.uniqueParagraphs[0] },
+    { type: "p", text: `LS Fencing & Metal Work is a Fraser Valley commercial fencing and metal-fabrication contractor. We install high-security chain link, welded metal gates, ornamental strata perimeters, MMCD hand rails, and bollards across ${name} and the surrounding ${region.toLowerCase()}. This page is a straight commercial brief — what we build in ${name}, who we build it for, and how we structure a scope from site walk-through to turnover.` },
+    { type: "p", text: `Our ${name} work is property managers, general contractors, strata councils, industrial and warehouse operators, and public-sector projects that need a real commercial spec — 9-gauge galvanized mesh, top and bottom rails, welded cantilever gates, engineered hand rails, and a crew that can hold a schedule on a live site. ${city.climate}` },
+    { type: "p", text: `${city.terrain} On a commercial perimeter that dictates post depth, hardware spec, and how we mobilize the excavation kit.` },
 
     { type: "h2", text: `Commercial fencing we install in ${name}` },
     { type: "p", text: `Almost every ${name} job we bid falls into one of five buckets. The spec, gauge, gate hardware, and site logistics change per bucket, and getting the right bucket picked at the site walk is what keeps the project on budget.` },
