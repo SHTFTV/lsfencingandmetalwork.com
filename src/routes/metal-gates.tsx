@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
 import { serviceJsonLd, type FaqItem } from "@/lib/service-schema";
+import heroImg from "@/assets/gallery/ornamental-storefront-gate-abbotsford.jpg.asset.json";
 
 const FAQ: FaqItem[] = [
   { q: "Do you install the gate operator too?", a: "We can supply and install popular residential and commercial operators, or coordinate with your preferred automation company." },
