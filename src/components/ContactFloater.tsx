@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Phone, MessageSquare, Mail, X } from "lucide-react";
+import { Phone, MessageSquare, Mail, X, Star } from "lucide-react";
 import { SITE } from "@/lib/site";
 
 /**
