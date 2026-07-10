@@ -126,16 +126,16 @@ const FEATURES: Feature[] = [
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "LS Fencing & Metal Work — Fence, Gate & Welding Contractor" },
+      { title: "LS Fencing & Metal Work — Fraser Valley Fence & Gate Contractor" },
       {
         name: "description",
         content:
-          "Chain link, cedar, ornamental fencing, custom metal gates, welding, excavation & snow removal across the Fraser Valley & Lower Mainland, BC.",
+          "Chain link, cedar, ornamental fencing, custom metal gates, welding, excavation & snow removal across the Fraser Valley & Lower Mainland, BC. Free on-site quotes.",
       },
       { name: "robots", content: "index, follow, max-image-preview:large" },
       { name: "googlebot", content: "index, follow, max-image-preview:large" },
       { property: "og:site_name", content: SITE.name },
-      { property: "og:title", content: "LS Fencing & Metal Work — Fence, Gate & Welding Contractor" },
+      { property: "og:title", content: "LS Fencing & Metal Work — Fraser Valley Fence & Gate Contractor" },
       { property: "og:description", content: "Fence, gate & metal fabrication crew serving the Fraser Valley & Lower Mainland, BC." },
       { property: "og:url", content: absoluteUrl("/") },
       { property: "og:type", content: "website" },
