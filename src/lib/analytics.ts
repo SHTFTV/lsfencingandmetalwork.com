@@ -26,12 +26,14 @@ export type QuoteAnalyticsEvent =
   | ({ name: "quote_submit_success"; service?: string } & QuoteSource)
   | ({ name: "quote_submit_error"; service?: string; message?: string } & QuoteSource);
 
+export type GallerySurface = "gallery" | "lightbox" | "tile" | (string & {});
+
 export type GalleryAnalyticsEvent =
-  | { name: "gallery_tile_click"; index: number; title: string; category: string }
-  | { name: "gallery_lightbox_open"; index: number; title: string; category: string }
-  | { name: "gallery_lightbox_close"; index: number; title: string }
-  | { name: "gallery_lightbox_navigate"; direction: "prev" | "next"; index: number; title: string }
-  | { name: "gallery_quote_cta_click"; index: number; title: string; category: string; service: string; surface: "lightbox" | "tile" };
+  | { name: "gallery_tile_click"; index: number; title: string; category: string; surface?: GallerySurface }
+  | { name: "gallery_lightbox_open"; index: number; title: string; category: string; surface?: GallerySurface }
+  | { name: "gallery_lightbox_close"; index: number; title: string; surface?: GallerySurface }
+  | { name: "gallery_lightbox_navigate"; direction: "prev" | "next"; index: number; title: string; surface?: GallerySurface }
+  | { name: "gallery_quote_cta_click"; index: number; title: string; category: string; service: string; surface: GallerySurface };
 
 type DataLayerWindow = Window & {
   dataLayer?: Record<string, unknown>[];
