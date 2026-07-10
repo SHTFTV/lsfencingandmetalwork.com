@@ -57,7 +57,7 @@ function Blog() {
           ))}
         </div>
       </section>
-      <CtaStrip />
+      
     </PageShell>
   );
 }
