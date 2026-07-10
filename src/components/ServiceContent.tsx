@@ -13,6 +13,8 @@ export type ServiceContentProps = {
   related?: { to: string; label: string }[];
   swatch?: string; // fallback tailwind gradient class
   image?: { src: string; alt: string; title?: string; caption?: string };
+  /** When true, hero image is eager + fetchpriority high (use on above-the-fold LCP). */
+  priorityImage?: boolean;
   children?: ReactNode;
 };
 
