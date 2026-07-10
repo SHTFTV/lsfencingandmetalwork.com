@@ -153,6 +153,79 @@ const legacyPosts: BlogPost[] = [
       { type: "p", text: "If a barrier gate fits your site, we can spec, fabricate, and install it in-house — no subcontractors, no waiting." },
     ],
   },
+  {
+    slug: "aluminum-vs-ornamental-steel-fencing",
+    title: "Aluminum vs Ornamental Steel Fencing in the Fraser Valley",
+    description:
+      "Aluminum vs ornamental steel fencing for Chilliwack, Abbotsford, and Metro Vancouver — cost, durability, maintenance, and which one actually holds up in Fraser Valley weather.",
+    date: "2026-07-10",
+    readMinutes: 7,
+    ogImage: "/og/blog-aluminum-vs-ornamental-steel.jpg",
+    ogImageCaption:
+      "Aluminum picket fence next to a powder-coated ornamental steel fence in a Fraser Valley yard.",
+    tags: ["Comparison", "Ornamental", "Aluminum"],
+    keyTakeaways: [
+      "Aluminum is lighter, cheaper up-front, and never rusts — the low-maintenance pick.",
+      "Ornamental steel is heavier, stronger, and takes hard impact without bending.",
+      "In the wet Fraser Valley climate, powder-coated steel and aluminum both last 25+ years when installed properly.",
+      "For security or driveway gates, spec steel. For pool enclosures, front yards, and pet fencing, aluminum wins on cost and weight.",
+    ],
+    body: [
+      { type: "p", text: "Nine out of ten homeowners in Chilliwack and Abbotsford asking about a decorative metal fence are choosing between two materials: pressed aluminum and powder-coated ornamental steel. They look similar from the street. They perform very differently once you factor in cost, weight, security, and how they age in the Fraser Valley climate." },
+      { type: "h2", text: "Quick comparison" },
+      { type: "ul", items: [
+        "Cost per linear foot: aluminum runs 20–35% cheaper than comparable ornamental steel.",
+        "Weight: aluminum is roughly one-third the weight of steel — cheaper to ship, easier to install, easier on posts.",
+        "Rust: aluminum does not rust, ever. Powder-coated steel resists rust for 15–25 years but eventually needs touch-ups where the coating chips.",
+        "Strength: steel wins on impact resistance. A garden tractor bumping an aluminum picket will bend it; steel will scuff and shrug it off.",
+        "Lifespan in BC weather: 25–40 years for either material with proper install and powder coat.",
+      ]},
+      { type: "h2", text: "How aluminum holds up in the Fraser Valley climate" },
+      { type: "p", text: "Aluminum is the low-maintenance king. It cannot rust, so the constant Chilliwack and Abbotsford rain that turns raw steel to orange in a season does nothing to it. Powder-coated aluminum handles UV, salt air off the Fraser River, and freeze-thaw cycles without corroding. The tradeoff: it is soft. A dropped hockey stick or a snowplow drift can bend a picket that a steel fence would barely notice." },
+      { type: "h2", text: "Where ornamental steel earns its price tag" },
+      { type: "p", text: "Powder-coated ornamental steel is what we spec for driveway gates, commercial perimeters, and anywhere security matters. The pickets are welded, not screwed, so nothing rattles loose. It shrugs off ladder impacts, vehicle nudges, and vandalism. In wet coastal BC the difference between a fence that lasts 20 years and one that lasts 40 comes down to the quality of the coating and the drainage on the post footings — get both right and steel is essentially permanent." },
+      { type: "h2", text: "Cost breakdown for a typical Chilliwack yard" },
+      { type: "p", text: "For a 100-foot front yard with two gates, expect aluminum ornamental to land in the $55–$85 per linear foot range installed, and powder-coated ornamental steel in the $75–$120 range depending on picket spacing, height, and finial style. Pool enclosures with self-closing gates cost more on either material because BC building code requires specific latch heights and gap tolerances." },
+      { type: "h2", text: "Maintenance over 10 years" },
+      { type: "ul", items: [
+        "Aluminum: hose off twice a year. That is the maintenance schedule.",
+        "Steel: hose off twice a year and touch up any coating chips with matching powder-coat paint within a few weeks — otherwise moisture gets under the coating and rust spreads.",
+      ]},
+      { type: "h2", text: "Which fence should you actually buy?" },
+      { type: "p", text: "Pick aluminum if the fence is decorative, cost matters, or the yard has kids and pets rather than security threats — front yards, side yards, pool enclosures, and dog runs. Pick ornamental steel if the fence has to do a job: driveway gates, commercial perimeters, high-traffic public frontage, or any run where impact resistance and security are the point." },
+      { type: "quote", text: "In this climate both materials will outlast the mortgage. The question is what the fence has to do — decorate or defend." },
+      { type: "p", text: "If you are weighing the two for a Fraser Valley property, book a free on-site quote and we will price both side-by-side so you can compare line-for-line." },
+    ],
+    faq: [
+      {
+        q: "Is aluminum or ornamental steel fencing better for the Fraser Valley climate?",
+        a: "Both last 25 years or more when installed correctly. Aluminum never rusts and is lower maintenance; powder-coated steel resists rust for 15–25 years and is stronger. For pure weather resistance in Chilliwack and Abbotsford, aluminum wins on maintenance — for durability under impact, steel wins.",
+      },
+      {
+        q: "How much does aluminum ornamental fencing cost per foot installed in BC?",
+        a: "Aluminum ornamental fencing typically runs $55–$85 per linear foot installed in the Fraser Valley for a standard 4–5 foot residential fence, depending on picket style, gate count, and site access.",
+      },
+      {
+        q: "Does ornamental steel fencing rust in Chilliwack rain?",
+        a: "Powder-coated ornamental steel is engineered against rust and typically holds for 15–25 years before touch-ups are needed. Rust only starts where the coating gets chipped and moisture reaches bare steel, so keeping chips touched up is the entire maintenance job.",
+      },
+      {
+        q: "Which is stronger for a driveway gate — aluminum or steel?",
+        a: "Powder-coated ornamental steel. Steel driveway gates handle wind load, vehicle impacts, and daily automation cycles without flexing. Aluminum driveway gates exist but are limited to shorter spans and lighter-duty residential use.",
+      },
+    ],
+    internalLinks: [
+      { to: "/ornamental-fencing", label: "Ornamental Iron Fencing" },
+      { to: "/chilliwack", label: "Fencing in Chilliwack, BC" },
+      { to: "/abbotsford", label: "Fencing in Abbotsford, BC" },
+      { to: "/metal-gates", label: "Custom Metal Gates" },
+      { to: "/pricing", label: "Pricing Guide" },
+    ],
+    externalLinks: [
+      { to: "https://www.chilliwack.com/main/page.cfm?id=131", label: "City of Chilliwack fence bylaw", external: true },
+      { to: "https://www.abbotsford.ca/planning-and-development/building-permits", label: "City of Abbotsford building permits", external: true },
+    ],
+  },
 ];
 
 export const POSTS: BlogPost[] = [...buildCityPosts(), ...legacyPosts];
