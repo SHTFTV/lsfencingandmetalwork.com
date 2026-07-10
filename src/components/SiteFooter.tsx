@@ -49,7 +49,7 @@ export function SiteFooter() {
       <div className="border-t border-border/60">
         <div className="container-industrial py-4 text-xs text-muted-foreground flex flex-wrap justify-between gap-2">
           <span>© {new Date().getFullYear()} {SITE.name}. All rights reserved.</span>
-          <span className="uppercase tracking-widest">Serving the Fraser Valley since 2010</span>
+          <span className="uppercase tracking-widest">Serving the Fraser Valley since 2011</span>
         </div>
       </div>
     </footer>
