@@ -177,7 +177,7 @@ function buildPost(city: CityFact): BlogPost {
     date: "2026-07-10",
     readMinutes: 12,
     tags: ["City Guides", region, "Bylaws", "Costs"],
-    ogImage: city.ogImage,
+    ogImage: pickResidentialImage(city),
     ogImageCaption: `Fence installation in ${name}, BC by LS Fencing & Metal Work`,
     body,
     faq,
