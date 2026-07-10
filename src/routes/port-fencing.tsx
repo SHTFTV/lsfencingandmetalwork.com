@@ -22,8 +22,8 @@ const DESCRIPTION =
   "Port, marine terminal and container yard fencing across BC — galvanized chain link, cantilever slide gates, corrosion-rated hardware and CBSA-compliant access perimeters.";
 
 export const Route = createFileRoute("/port-fencing")({
-  head: () =>
-    serviceHead({
+  head: () => {
+    const base = serviceHead({
       title: "Port & Marine Terminal Fencing — BC | LS Fencing",
       ogTitle: "Port & Marine Terminal Fencing — BC",
       description: DESCRIPTION,
@@ -33,7 +33,15 @@ export const Route = createFileRoute("/port-fencing")({
       path: "/port-fencing",
       image: { src: IMAGE.src, alt: IMAGE.alt, title: IMAGE.title },
       faq: FAQ,
-    }),
+    });
+    return {
+      ...base,
+      links: [
+        ...base.links,
+        { rel: "preload", as: "image", href: IMAGE.src, fetchpriority: "high" },
+      ],
+    };
+  },
   component: Page,
 });
 
@@ -47,6 +55,7 @@ function Page() {
       />
       <ServiceContent
         image={IMAGE}
+        priorityImage
         intro="Marine terminals live under wash-down, salt air and constant truck traffic. We spec hot-dip galvanized fabric on schedule-40 posts, corrosion-rated hardware, and cantilever slide gates sized for reach-stacker and drayage flow — built to port authority and CBSA controlled-access spec."
         highlights={[
           "8–10 ft hot-dip galvanized fabric",
