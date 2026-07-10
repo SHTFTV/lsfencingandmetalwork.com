@@ -1,4 +1,4 @@
-import { createFileRoute, notFound } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import abbotsford from "@/locations/chain-link-fencing-abbotsford-bc.html?raw";
 import agassiz from "@/locations/chain-link-fencing-agassiz-bc.html?raw";
 import aldergrove from "@/locations/chain-link-fencing-aldergrove-bc.html?raw";
@@ -40,8 +40,4 @@ export const Route = createFileRoute("/locations/$slug")({
       },
     },
   },
-  loader: () => {
-    throw notFound();
-  },
-  component: () => null,
 });
