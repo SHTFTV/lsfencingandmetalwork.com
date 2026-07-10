@@ -12,6 +12,8 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SchemaDebugPanel } from "../components/SchemaDebugPanel";
+import { SITE, BASE_URL, absoluteUrl } from "../lib/site";
+
 
 
 function NotFoundComponent() {
@@ -89,10 +91,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "theme-color", content: "#1a0000" },
       { property: "og:site_name", content: "LS Fencing & Metal Work" },
       { property: "og:type", content: "website" },
+      { property: "og:locale", content: "en_CA" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "msapplication-TileColor", content: "#1a0000" },
       { name: "msapplication-TileImage", content: "/mstile-150x150.png" },
       { name: "msapplication-config", content: "/browserconfig.xml" },
+      { name: "geo.region", content: "CA-BC" },
+      { name: "geo.placename", content: "Fraser Valley & Lower Mainland" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -108,7 +113,45 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap",
       },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "@id": `${BASE_URL}/#organization`,
+          name: SITE.name,
+          url: BASE_URL,
+          logo: absoluteUrl("/favicon-32x32.png"),
+          image: SITE.defaultOgImage,
+          telephone: SITE.phone,
+          email: SITE.email,
+          areaServed: [
+            { "@type": "AdministrativeArea", name: "Fraser Valley, BC" },
+            { "@type": "AdministrativeArea", name: "Metro Vancouver, BC" },
+          ],
+          address: {
+            "@type": "PostalAddress",
+            addressRegion: "BC",
+            addressCountry: "CA",
+          },
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "@id": `${BASE_URL}/#website`,
+          url: BASE_URL,
+          name: SITE.name,
+          publisher: { "@id": `${BASE_URL}/#organization` },
+          inLanguage: "en-CA",
+        }),
+      },
+    ],
   }),
+
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,

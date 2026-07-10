@@ -123,9 +123,47 @@ function buildPost(city: CityFact): BlogPost {
     ]},
     { type: "p", text: "A standard 100 ft residential run is usually a two-day job. Larger commercial perimeters, cantilever gates, or excavation-heavy sites get their own timeline in the written quote." },
 
+    // Section 8 — Local contractor value (E-E-A-T)
+    { type: "h2", text: `Why work with a local ${name} fence contractor` },
+    { type: "p", text: `A national franchise install crew shows up with one panel spec, one post size, and a subcontractor holding the auger. That model works in a subdivision where every lot is identical; it does not work on a ${name} lot where the setback is tight, the neighbour's old post is buried in the wrong place, and the soil changes twice between the front and back property lines. Local matters because the person quoting your fence needs to have stood on the actual ground — read the grade, spotted the buried irrigation, confirmed the property pins — before the number goes on paper.` },
+    { type: "p", text: `We're a family-run shop that has been welding gates and installing fence across ${region} since 2013. Same crew, same shop, same phone number. Every ${name} quote is written by someone who will be on the job site the day the auger runs. That's the meaningful difference: continuity from quote to installation to the warranty call two years later when a hinge needs an adjustment.` },
+    { type: "ul", items: [
+      `Direct dispatch — the person quoting your ${name} job is the person running the crew.`,
+      "In-house welding shop — custom gates, brackets, and repairs fabricated on-site, not ordered in.",
+      "Own excavation equipment — no waiting on a sub-trade to open post holes.",
+      "Written, itemized quote — every line broken out so you can compare apples to apples.",
+      "Warranty in writing — one year on labour, manufacturer coverage on materials.",
+    ]},
+
+    // Section 9 — Common mistakes we fix
+    { type: "h2", text: `Common ${name} fencing mistakes we get called to fix` },
+    { type: "p", text: `A meaningful share of our ${name} calls are repairs — someone else built the fence three or five years ago, and the same handful of failures come up again and again. Sharing them here so you can spec around them the first time.` },
+    { type: "h3", text: "1. Posts set too shallow" },
+    { type: "p", text: `We pull a lot of old ${name} posts out of 18-inch holes. 30 inches is the minimum for a 6-ft residential fence in our climate, and 36–42 inches for gates and taller runs. A shallow post looks fine until the first winter wind rocks it loose in the freeze-thaw.` },
+    { type: "h3", text: "2. Wrong fasteners" },
+    { type: "p", text: `Plain zinc-plated deck screws are the single most common failure we see on ${name} cedar fences. They bleed rust within two winters and rot the board around the screw head. Hot-dip galvanized or stainless is the only defensible spec on the coast.` },
+    { type: "h3", text: "3. Ignoring drainage" },
+    { type: "p", text: `A post hole that pools water becomes a rot column. Crown the concrete above grade so water sheds away from the post, and on wet ${name} lots consider a drainage rock base at the bottom of the hole.` },
+    { type: "h3", text: "4. Building over an unsurveyed line" },
+    { type: "p", text: `On older ${name} blocks, the "obvious" fence line and the surveyed property line disagree more often than people expect. Building the new fence on the wrong line invites a bylaw complaint and, in the worst case, a tear-down order. When in doubt, get a survey.` },
+
+    // Section 10 — Timeline (voice/AEO friendly)
+    { type: "h2", text: `Typical ${name} project timeline` },
+    { type: "p", text: `For most ${name} homeowners the useful question is how many weeks from first call to finished fence. Below is a realistic timeline for a standard residential job in our current schedule — larger commercial perimeters or custom gate fabrication add lead time.` },
+    { type: "ul", items: [
+      "Day 0 — you book a quote (phone, form, or email).",
+      "Day 1–3 — we schedule an on-site walk-through and hand you a written quote.",
+      "Day 4–14 — you approve; we schedule install and file the BC 1 Call locate.",
+      "Install day 1 — post holes, posts set in concrete, cure overnight.",
+      "Install day 2 — mesh / boards / picket panels installed, gates hung, site cleaned.",
+      "Day of install — final walk-through, invoice, one-year workmanship warranty in writing.",
+    ]},
+    { type: "p", text: `In peak season (April through September) our schedule fills 3–5 weeks ahead. Booking a quote early — even before you're ready to commit — locks in the earliest install slot without any obligation.` },
+
     // Closer
     { type: "quote", text: `The best fence in ${name} is the one built for your specific lot — not a catalogue install dropped on top of your grade.` },
     { type: "p", text: `Ready to talk through a specific project? Book a free on-site quote and we'll walk your ${name} property together, pull the current bylaw, and price it in writing.` },
+
   ];
 
   const slug = `fencing-in-${city.slug}`;
