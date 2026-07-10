@@ -255,7 +255,7 @@ function buildCommercialPost(city: CityFact): BlogPost {
     { type: "p", text: `Powder-coated steel picket for strata entries, commercial storefronts, amenity building perimeters, and any pool or amenity enclosure that has to meet BC Building Code Part 9. Self-closing, self-latching gate hardware; no climbable horizontal rails on pool sides.` },
     { type: "h3", text: "5. Metal hand rails, guard rails, and bollards" },
     { type: "p", text: `MMCD-spec galvanized hand rails for public walkways, ramps, and loading-dock access. Bollards — fixed, removable, and retractable — for parking-lot protection, storefront ram-raid mitigation, and access control at strata visitor entries. Fabricated in the shop, installed on our own excavation kit.` },
-    { type: "p", text: `${city.materialNotes} For a commercial ${name} spec that pushes us to hot-dip galvanized hardware end-to-end, black vinyl-coated fabric where aesthetics matter, and heavier gate posts than a residential catalogue would default to.` },
+    { type: "p", text: `Materials-wise, a commercial ${name} spec pushes us to hot-dip galvanized hardware end-to-end, 9-gauge fabric on high-security perimeters, black vinyl-coated chain link where aesthetics matter (strata, storefronts), and heavier gate posts than a residential catalogue would default to.` },
 
     { type: "h2", text: `Who we work for in ${name}` },
     { type: "ul", items: [
