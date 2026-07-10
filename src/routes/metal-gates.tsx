@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
+import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { serviceHead, type FaqItem } from "@/lib/service-schema";
 import heroImg from "@/assets/gallery/ornamental-storefront-gate-abbotsford.jpg.asset.json";
 
@@ -68,7 +69,15 @@ function Page() {
           { to: "/chain-link-fencing", label: "Chain link fencing" },
           { to: "/welding-services", label: "Welding & fabrication" },
         ]}
-      />
+      >
+        <ProjectShowcase
+          category="Gates"
+          eyebrow="Gate case studies"
+          title="Recent gate builds"
+          subtitle="Cantilever slide, double swing and privacy-slat gates fabricated and installed across BC."
+          surface="service-gates"
+        />
+      </ServiceContent>
       <CtaStrip />
     </PageShell>
   );

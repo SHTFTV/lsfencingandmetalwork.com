@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
+import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { serviceHead, type FaqItem } from "@/lib/service-schema";
 import heroImg from "@/assets/gallery/shop-welding-kubota-fabrication.jpg.asset.json";
 
@@ -68,7 +69,15 @@ function Page() {
           { to: "/barrier-gates-hand-rails", label: "Barrier gates & handrails" },
           { to: "/ornamental-fencing", label: "Ornamental steel fencing" },
         ]}
-      />
+      >
+        <ProjectShowcase
+          category="Welding"
+          eyebrow="Welding & fabrication"
+          title="From the shop and the field"
+          subtitle="MMCD-spec rails, custom brackets, and gate hardware fabricated in-house."
+          surface="service-welding"
+        />
+      </ServiceContent>
       <CtaStrip />
     </PageShell>
   );

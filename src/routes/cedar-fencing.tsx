@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
+import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { serviceHead, type FaqItem } from "@/lib/service-schema";
 import heroImg from "@/assets/gallery/custom-cedar-horizontal-slat.jpg.asset.json";
 
@@ -68,7 +69,15 @@ function Page() {
           { to: "/chain-link-fencing", label: "Chain link fencing" },
           { to: "/metal-gates", label: "Custom metal gates" },
         ]}
-      />
+      >
+        <ProjectShowcase
+          category="Cedar"
+          eyebrow="Cedar case studies"
+          title="Recent cedar work"
+          subtitle="Horizontal-slat, board-on-board and privacy runs — every tile links to a quote request for that spec."
+          surface="service-cedar"
+        />
+      </ServiceContent>
       <CtaStrip />
     </PageShell>
   );

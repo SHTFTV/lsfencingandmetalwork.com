@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
+import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { serviceHead, type FaqItem } from "@/lib/service-schema";
 import heroImg from "@/assets/gallery/ornamental-powdercoat-chilliwack.jpeg.asset.json";
 
@@ -68,7 +69,15 @@ function Page() {
           { to: "/cedar-fencing", label: "Cedar privacy fencing" },
           { to: "/welding-services", label: "Welding & fabrication" },
         ]}
-      />
+      >
+        <ProjectShowcase
+          category="Ornamental"
+          eyebrow="Ornamental case studies"
+          title="Recent ornamental installs"
+          subtitle="Powder-coated steel panels, storefront frontages and matching gates — tap for the full photo."
+          surface="service-ornamental"
+        />
+      </ServiceContent>
       <CtaStrip />
     </PageShell>
   );
