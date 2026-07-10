@@ -50,19 +50,20 @@ export function ContactFloater() {
   });
 
   return (
-    <aside
-      aria-label="Contact LS Fencing"
-      className="fixed right-2 top-1/2 z-40 hidden -translate-y-1/2 w-[230px] rounded-2xl border border-border bg-background/95 shadow-2xl backdrop-blur supports-[backdrop-filter]:bg-background/80 md:block"
-    >
-      <FloaterBody
-        dismiss={dismiss}
-        smsHref={smsHref}
-        rating={rating}
-        total={total}
-        stars={stars}
-        reviewsUrl={reviewsUrl}
-      />
-      {/* Mobile trigger button + sheet */}
+    <>
+      <aside
+        aria-label="Contact LS Fencing"
+        className="fixed right-2 top-1/2 z-40 hidden -translate-y-1/2 w-[230px] rounded-2xl border border-border bg-background/95 shadow-2xl backdrop-blur supports-[backdrop-filter]:bg-background/80 md:block"
+      >
+        <FloaterBody
+          dismiss={dismiss}
+          smsHref={smsHref}
+          rating={rating}
+          total={total}
+          stars={stars}
+          reviewsUrl={reviewsUrl}
+        />
+      </aside>
       <MobileTrigger open={mobileOpen} setOpen={setMobileOpen} />
       {mobileOpen && (
         <MobileSheet
@@ -74,9 +75,10 @@ export function ContactFloater() {
           reviewsUrl={reviewsUrl}
         />
       )}
-    </aside>
+    </>
   );
 }
+
 
 type Star = "full" | "half" | "empty";
 
