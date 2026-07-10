@@ -267,34 +267,50 @@ function Home() {
           </Link>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {SERVICES.map((s) => {
+          {SERVICES.map((s, i) => {
             const img = FEATURES.find((f) => f.to === s.to);
             return (
-              <Link
+              <article
                 key={s.to}
-                to={s.to}
                 className="group relative overflow-hidden border border-border bg-card rounded-sm hover:border-primary transition aspect-[4/3]"
               >
                 {img && (
-                  <img
-                    src={img.src}
-                    alt={s.label}
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                  />
+                  <button
+                    type="button"
+                    onClick={() => openLightbox(img)}
+                    aria-label={`Preview full-size photo: ${img.title}`}
+                    title={img.title}
+                    className="absolute inset-0 w-full h-full focus:outline-none focus:ring-2 focus:ring-primary"
+                  >
+                    <SmartImage
+                      src={img.src}
+                      alt={img.alt}
+                      title={img.title}
+                      priority={i === 0}
+                      className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    />
+                    <span className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition inline-flex items-center gap-1 text-[10px] uppercase tracking-widest bg-primary text-primary-foreground px-2 py-1 rounded-sm">
+                      <ZoomIn className="h-3 w-3" /> Preview
+                    </span>
+                  </button>
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/10" />
-                <div className="relative h-full flex flex-col justify-end p-6">
-                  <Hammer className="h-5 w-5 text-primary mb-3" />
-                  <div className="flex items-center justify-between">
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/10" />
+                <Link
+                  to={s.to}
+                  className="absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between focus:outline-none focus:ring-2 focus:ring-primary"
+                  aria-label={`View ${s.label} service page`}
+                >
+                  <div>
+                    <Hammer className="h-5 w-5 text-primary mb-3" />
                     <div className="font-display uppercase text-lg">{s.label}</div>
-                    <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition" />
                   </div>
-                </div>
-              </Link>
+                  <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition" />
+                </Link>
+              </article>
             );
           })}
         </div>
+
 
       </section>
 
