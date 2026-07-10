@@ -23,6 +23,7 @@ import { Route as ResidentialChainLinkRouteImport } from './routes/residential-c
 import { Route as ProfessionalMmcdSpecRailingInstallationInMapleRidgeRouteImport } from './routes/professional-mmcd-spec-railing-installation-in-maple-ridge'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRouteImport } from './routes/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack'
+import { Route as PortFencingRouteImport } from './routes/port-fencing'
 import { Route as OrnamentalIronRouteImport } from './routes/ornamental-iron'
 import { Route as OrnamentalFencingRouteImport } from './routes/ornamental-fencing'
 import { Route as OrnamentalFencesRouteImport } from './routes/ornamental-fences'
@@ -154,6 +155,11 @@ const Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRoute =
     path: '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack',
     getParentRoute: () => rootRouteImport,
   } as any)
+const PortFencingRoute = PortFencingRouteImport.update({
+  id: '/port-fencing',
+  path: '/port-fencing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OrnamentalIronRoute = OrnamentalIronRouteImport.update({
   id: '/ornamental-iron',
   path: '/ornamental-iron',
@@ -500,6 +506,7 @@ export interface FileRoutesByFullPath {
   '/ornamental-fences': typeof OrnamentalFencesRoute
   '/ornamental-fencing': typeof OrnamentalFencingRoute
   '/ornamental-iron': typeof OrnamentalIronRoute
+  '/port-fencing': typeof PortFencingRoute
   '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack': typeof Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRoute
   '/pricing': typeof PricingRoute
   '/professional-mmcd-spec-railing-installation-in-maple-ridge': typeof ProfessionalMmcdSpecRailingInstallationInMapleRidgeRoute
@@ -571,6 +578,7 @@ export interface FileRoutesByTo {
   '/ornamental-fences': typeof OrnamentalFencesRoute
   '/ornamental-fencing': typeof OrnamentalFencingRoute
   '/ornamental-iron': typeof OrnamentalIronRoute
+  '/port-fencing': typeof PortFencingRoute
   '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack': typeof Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRoute
   '/pricing': typeof PricingRoute
   '/professional-mmcd-spec-railing-installation-in-maple-ridge': typeof ProfessionalMmcdSpecRailingInstallationInMapleRidgeRoute
@@ -644,6 +652,7 @@ export interface FileRoutesById {
   '/ornamental-fences': typeof OrnamentalFencesRoute
   '/ornamental-fencing': typeof OrnamentalFencingRoute
   '/ornamental-iron': typeof OrnamentalIronRoute
+  '/port-fencing': typeof PortFencingRoute
   '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack': typeof Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRoute
   '/pricing': typeof PricingRoute
   '/professional-mmcd-spec-railing-installation-in-maple-ridge': typeof ProfessionalMmcdSpecRailingInstallationInMapleRidgeRoute
@@ -717,6 +726,7 @@ export interface FileRouteTypes {
     | '/ornamental-fences'
     | '/ornamental-fencing'
     | '/ornamental-iron'
+    | '/port-fencing'
     | '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack'
     | '/pricing'
     | '/professional-mmcd-spec-railing-installation-in-maple-ridge'
@@ -788,6 +798,7 @@ export interface FileRouteTypes {
     | '/ornamental-fences'
     | '/ornamental-fencing'
     | '/ornamental-iron'
+    | '/port-fencing'
     | '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack'
     | '/pricing'
     | '/professional-mmcd-spec-railing-installation-in-maple-ridge'
@@ -860,6 +871,7 @@ export interface FileRouteTypes {
     | '/ornamental-fences'
     | '/ornamental-fencing'
     | '/ornamental-iron'
+    | '/port-fencing'
     | '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack'
     | '/pricing'
     | '/professional-mmcd-spec-railing-installation-in-maple-ridge'
@@ -933,6 +945,7 @@ export interface RootRouteChildren {
   OrnamentalFencesRoute: typeof OrnamentalFencesRoute
   OrnamentalFencingRoute: typeof OrnamentalFencingRoute
   OrnamentalIronRoute: typeof OrnamentalIronRoute
+  PortFencingRoute: typeof PortFencingRoute
   Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRoute: typeof Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRoute
   PricingRoute: typeof PricingRoute
   ProfessionalMmcdSpecRailingInstallationInMapleRidgeRoute: typeof ProfessionalMmcdSpecRailingInstallationInMapleRidgeRoute
@@ -1055,6 +1068,13 @@ declare module '@tanstack/react-router' {
       path: '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack'
       fullPath: '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack'
       preLoaderRoute: typeof Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/port-fencing': {
+      id: '/port-fencing'
+      path: '/port-fencing'
+      fullPath: '/port-fencing'
+      preLoaderRoute: typeof PortFencingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ornamental-iron': {
@@ -1526,6 +1546,7 @@ const rootRouteChildren: RootRouteChildren = {
   OrnamentalFencesRoute: OrnamentalFencesRoute,
   OrnamentalFencingRoute: OrnamentalFencingRoute,
   OrnamentalIronRoute: OrnamentalIronRoute,
+  PortFencingRoute: PortFencingRoute,
   Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRoute:
     Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRoute,
   PricingRoute: PricingRoute,
