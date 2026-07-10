@@ -13,12 +13,14 @@ interface Props {
 
 /**
  * Responsive, lazy-loaded blog image with a hard fallback so a missing
- * asset can never break a post render. Uses the intrinsic 1200x630 asset
- * with a `sizes` hint so the browser can pick an efficient decode size.
+ * asset can never break a post render. Renders a shimmering skeleton
+ * underneath the image until it decodes so cards don't jump or show
+ * empty space while thumbnails load on mobile.
  */
 export function BlogImage({ post, variant = "thumb", eager = false, className }: Props) {
   const primary = getPostImage(post);
   const [src, setSrc] = useState(primary);
+  const [loaded, setLoaded] = useState(false);
   const alt = getPostImageAlt(post);
 
   const sizes =
@@ -27,19 +29,32 @@ export function BlogImage({ post, variant = "thumb", eager = false, className }:
       : "(min-width: 1024px) 560px, (min-width: 640px) 45vw, 100vw";
 
   return (
-    <img
-      src={src}
-      alt={alt}
-      width={1200}
-      height={630}
-      sizes={sizes}
-      loading={eager ? "eager" : "lazy"}
-      decoding="async"
-      {...(eager ? { fetchPriority: "high" as const } : {})}
-      onError={() => {
-        if (src !== DEFAULT_BLOG_IMAGE) setSrc(DEFAULT_BLOG_IMAGE);
-      }}
-      className={className ?? "w-full h-full object-cover"}
-    />
+    <div className="relative w-full h-full overflow-hidden bg-muted">
+      {!loaded && (
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-r from-muted via-muted-foreground/10 to-muted animate-pulse"
+        />
+      )}
+      <img
+        src={src}
+        alt={alt}
+        width={1200}
+        height={630}
+        sizes={sizes}
+        loading={eager ? "eager" : "lazy"}
+        decoding="async"
+        {...(eager ? { fetchPriority: "high" as const } : {})}
+        onLoad={() => setLoaded(true)}
+        onError={() => {
+          if (src !== DEFAULT_BLOG_IMAGE) {
+            setSrc(DEFAULT_BLOG_IMAGE);
+          } else {
+            setLoaded(true);
+          }
+        }}
+        className={`${className ?? "w-full h-full object-cover"} transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0"}`}
+      />
+    </div>
   );
 }
