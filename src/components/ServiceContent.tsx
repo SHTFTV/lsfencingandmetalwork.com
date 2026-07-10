@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Check, ArrowRight, Phone } from "lucide-react";
 import { SITE } from "@/lib/site";
-import { trackNavClick } from "@/lib/analytics";
+import { trackNavClick, utmSearch } from "@/lib/analytics";
 
 export type ServiceContentProps = {
   intro: string;
