@@ -16,7 +16,6 @@ import { Route as WeldingRouteImport } from './routes/welding'
 import { Route as TestimonialRouteImport } from './routes/testimonial'
 import { Route as SnowRemovalRouteImport } from './routes/snow-removal'
 import { Route as SnowRouteImport } from './routes/snow'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ResidentialChainLinkFencingRouteImport } from './routes/residential-chain-link-fencing'
 import { Route as ResidentialChainLinkRouteImport } from './routes/residential-chain-link'
@@ -116,11 +115,6 @@ const SnowRemovalRoute = SnowRemovalRouteImport.update({
 const SnowRoute = SnowRouteImport.update({
   id: '/snow',
   path: '/snow',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -520,7 +514,6 @@ export interface FileRoutesByFullPath {
   '/residential-chain-link': typeof ResidentialChainLinkRoute
   '/residential-chain-link-fencing': typeof ResidentialChainLinkFencingRoute
   '/services': typeof ServicesRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/snow': typeof SnowRoute
   '/snow-removal': typeof SnowRemovalRoute
   '/testimonial': typeof TestimonialRoute
@@ -593,7 +586,6 @@ export interface FileRoutesByTo {
   '/residential-chain-link': typeof ResidentialChainLinkRoute
   '/residential-chain-link-fencing': typeof ResidentialChainLinkFencingRoute
   '/services': typeof ServicesRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/snow': typeof SnowRoute
   '/snow-removal': typeof SnowRemovalRoute
   '/testimonial': typeof TestimonialRoute
@@ -668,7 +660,6 @@ export interface FileRoutesById {
   '/residential-chain-link': typeof ResidentialChainLinkRoute
   '/residential-chain-link-fencing': typeof ResidentialChainLinkFencingRoute
   '/services': typeof ServicesRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/snow': typeof SnowRoute
   '/snow-removal': typeof SnowRemovalRoute
   '/testimonial': typeof TestimonialRoute
@@ -743,7 +734,6 @@ export interface FileRouteTypes {
     | '/residential-chain-link'
     | '/residential-chain-link-fencing'
     | '/services'
-    | '/sitemap.xml'
     | '/snow'
     | '/snow-removal'
     | '/testimonial'
@@ -816,7 +806,6 @@ export interface FileRouteTypes {
     | '/residential-chain-link'
     | '/residential-chain-link-fencing'
     | '/services'
-    | '/sitemap.xml'
     | '/snow'
     | '/snow-removal'
     | '/testimonial'
@@ -890,7 +879,6 @@ export interface FileRouteTypes {
     | '/residential-chain-link'
     | '/residential-chain-link-fencing'
     | '/services'
-    | '/sitemap.xml'
     | '/snow'
     | '/snow-removal'
     | '/testimonial'
@@ -965,7 +953,6 @@ export interface RootRouteChildren {
   ResidentialChainLinkRoute: typeof ResidentialChainLinkRoute
   ResidentialChainLinkFencingRoute: typeof ResidentialChainLinkFencingRoute
   ServicesRoute: typeof ServicesRoute
-  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SnowRoute: typeof SnowRoute
   SnowRemovalRoute: typeof SnowRemovalRoute
   TestimonialRoute: typeof TestimonialRoute
@@ -1032,13 +1019,6 @@ declare module '@tanstack/react-router' {
       path: '/snow'
       fullPath: '/snow'
       preLoaderRoute: typeof SnowRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -1576,7 +1556,6 @@ const rootRouteChildren: RootRouteChildren = {
   ResidentialChainLinkRoute: ResidentialChainLinkRoute,
   ResidentialChainLinkFencingRoute: ResidentialChainLinkFencingRoute,
   ServicesRoute: ServicesRoute,
-  SitemapDotxmlRoute: SitemapDotxmlRoute,
   SnowRoute: SnowRoute,
   SnowRemovalRoute: SnowRemovalRoute,
   TestimonialRoute: TestimonialRoute,
