@@ -35,6 +35,18 @@ export type GalleryAnalyticsEvent =
   | { name: "gallery_lightbox_navigate"; direction: "prev" | "next"; index: number; title: string; surface?: GallerySurface }
   | { name: "gallery_quote_cta_click"; index: number; title: string; category: string; service: string; surface: GallerySurface };
 
+export type NavClickEvent = {
+  name: "nav_click";
+  /** Where the click originated, e.g. "home-specialty-strip", "service-related". */
+  surface: string;
+  /** Destination route path, e.g. "/airport-fencing". */
+  to: string;
+  /** Optional human label of the link. */
+  label?: string;
+  /** Optional route the click was made from. */
+  from?: string;
+};
+
 type DataLayerWindow = Window & {
   dataLayer?: Record<string, unknown>[];
 };
@@ -46,6 +58,11 @@ export function trackQuoteEvent(event: QuoteAnalyticsEvent) {
 export function trackGalleryEvent(event: GalleryAnalyticsEvent) {
   emit(event);
 }
+
+export function trackNavClick(event: Omit<NavClickEvent, "name">) {
+  emit({ name: "nav_click", ...event });
+}
+
 
 function emit(event: QuoteAnalyticsEvent | GalleryAnalyticsEvent) {
   if (typeof window === "undefined") return;
