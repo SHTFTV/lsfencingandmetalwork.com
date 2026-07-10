@@ -1,57 +1,43 @@
 import type { BlogPost, FaqItem, LinkRef } from "@/lib/blog";
 import { CITIES, type CityFact } from "./cities";
 
-// Real gallery photos — each city post gets a unique one so no two cards
-// on /blog ever render the same hero image.
+// Real chain link gallery photos — commercial and residential. Every city
+// post gets a unique one so no two cards on /blog share a hero image.
 import img8ftSecurity from "@/assets/gallery/8ft-galv-commercial-security.jpeg.asset.json";
-import imgHandrail from "@/assets/gallery/galvanized-handrail-driveway.jpeg.asset.json";
 import imgPerimeterBarb from "@/assets/gallery/galv-perimeter-barbwire.jpeg.asset.json";
 import imgCommercialGate from "@/assets/gallery/commercial-double-swing-gate.jpeg.asset.json";
 import imgHighSecurityFarm from "@/assets/gallery/high-security-cantilever-gate-farm.jpeg.asset.json";
 import imgCooperRentals from "@/assets/gallery/cooper-rentals-cantilever-langley.png.asset.json";
-import imgUtilityEnclosure from "@/assets/gallery/utility-equipment-enclosure.jpeg.asset.json";
-import imgShopWelding from "@/assets/gallery/shop-welding-kubota-fabrication.jpg.asset.json";
-import imgOrnamentalStorefront from "@/assets/gallery/ornamental-storefront-gate-abbotsford.jpg.asset.json";
-import imgKubotaExcavator from "@/assets/gallery/kubota-kx033-excavator-post-line.jpg.asset.json";
 import imgCantileverSlatGate from "@/assets/gallery/8x16-cantilever-slat-gate-abbotsford.jpg.asset.json";
 import img6ftBarb from "@/assets/gallery/6ft-galv-barb-abbotsford.jpeg.asset.json";
 import imgBaseballBackstop from "@/assets/gallery/baseball-backstop-fraser-valley.jpeg.asset.json";
 import imgBlackSchool from "@/assets/gallery/black-vinyl-school-surrey.png.asset.json";
 import img4ftGalv from "@/assets/gallery/4ft-galv-residential.jpeg.asset.json";
-import imgCustomCedar from "@/assets/gallery/custom-cedar-horizontal-slat.jpg.asset.json";
 import imgBlackHillside from "@/assets/gallery/black-chainlink-hillside-chilliwack.jpg.asset.json";
 import imgBlackPlayground from "@/assets/gallery/black-chainlink-playground.jpeg.asset.json";
 import imgBlackSlatMapleRidge from "@/assets/gallery/black-privacy-slat-chainlink-maple-ridge.jpg.asset.json";
-import imgOrnamentalChilliwack from "@/assets/gallery/ornamental-powdercoat-chilliwack.jpeg.asset.json";
-import imgTruckSkidsteer from "@/assets/gallery/ls-fencing-truck-skidsteer.jpeg.asset.json";
-import imgExcavation from "@/assets/gallery/excavation-post-drilling.jpeg.asset.json";
 
+// City-page hero photos are restricted to real LS Fencing chain link work.
+// The gallery has plenty of chain link shots — commercial and residential —
+// so every city post still gets a unique hero without pulling in cedar,
+// ornamental, or shop photos.
 const COMMERCIAL_POOL: string[] = [
   img8ftSecurity.url,
-  imgCommercialGate.url,
   imgPerimeterBarb.url,
   imgHighSecurityFarm.url,
   imgCooperRentals.url,
-  imgUtilityEnclosure.url,
-  imgHandrail.url,
-  imgOrnamentalStorefront.url,
-  imgCantileverSlatGate.url,
-  imgShopWelding.url,
-  imgKubotaExcavator.url,
+  imgCommercialGate.url,
   img6ftBarb.url,
-  imgBaseballBackstop.url,
   imgBlackSchool.url,
+  imgCantileverSlatGate.url,
+  imgBaseballBackstop.url,
 ];
 
 const RESIDENTIAL_POOL: string[] = [
-  imgCustomCedar.url,
   img4ftGalv.url,
-  imgBlackSlatMapleRidge.url,
   imgBlackHillside.url,
-  imgOrnamentalChilliwack.url,
   imgBlackPlayground.url,
-  imgTruckSkidsteer.url,
-  imgExcavation.url,
+  imgBlackSlatMapleRidge.url,
 ];
 
 /**
