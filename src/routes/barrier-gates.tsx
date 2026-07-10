@@ -42,7 +42,7 @@ function Page() {
         intro="Hot-dip galvanized pipe barrier gates, guard rails, and MMCD-spec hand rails — built for municipal parks, parking lots, and commercial sites."
       />
       <ServiceContent
-        swatch="from-yellow-900 via-neutral-900 to-black"
+        image={{ src: heroImg.url, alt: "Galvanized pipe MMCD-spec handrail installed along an accessible driveway ramp in Maple Ridge BC", title: "MMCD-spec galvanized handrail install — Maple Ridge, BC", caption: "MMCD-Spec Handrail · Maple Ridge, BC" }}
         intro="Whether you're closing off a service road, protecting a utility yard, or meeting MMCD handrail requirements on a civic project, we fabricate and install galvanized pipe barriers to spec. Every gate is welded in our Chilliwack shop, hot-dip galvanized, and installed on concrete-set posts sized for the span."
         highlights={[
           "Hot-dip galvanized pipe construction",
