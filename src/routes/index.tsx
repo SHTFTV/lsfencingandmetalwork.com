@@ -111,10 +111,11 @@ function Home() {
                   className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-                <figcaption className="absolute bottom-0 left-0 right-0 p-4">
+                <div className="absolute bottom-0 left-0 right-0 p-4">
                   <div className="text-xs uppercase tracking-[0.3em] text-primary">{img.sub}</div>
                   <div className="font-display uppercase text-lg mt-1">{img.label}</div>
-                </figcaption>
+                </div>
+
               </Link>
             ))}
           </div>
