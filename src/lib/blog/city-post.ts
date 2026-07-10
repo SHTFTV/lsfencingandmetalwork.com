@@ -336,7 +336,7 @@ function buildCommercialPost(city: CityFact): BlogPost {
     date: "2026-07-10",
     readMinutes: 12,
     tags: ["Commercial", region, "Strata", "High-Security", "Welded Gates"],
-    ogImage: city.ogImage,
+    ogImage: pickCommercialImage(city),
     ogImageCaption: `Commercial fencing and welded gate installation in ${name}, BC by LS Fencing & Metal Work`,
     body,
     faq,
