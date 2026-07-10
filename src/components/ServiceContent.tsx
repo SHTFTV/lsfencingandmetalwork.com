@@ -10,7 +10,8 @@ export type ServiceContentProps = {
   specs?: { label: string; value: string }[];
   faq?: { q: string; a: string }[];
   related?: { to: string; label: string }[];
-  swatch?: string; // tailwind gradient class for the visual banner
+  swatch?: string; // fallback tailwind gradient class
+  image?: { src: string; alt: string; title?: string; caption?: string };
   children?: ReactNode;
 };
 
@@ -22,6 +23,7 @@ export function ServiceContent({
   faq,
   related,
   swatch = "from-zinc-800 via-zinc-900 to-black",
+  image,
   children,
 }: ServiceContentProps) {
   return (
@@ -30,11 +32,28 @@ export function ServiceContent({
         <div className="lg:col-span-2 space-y-10">
           <p className="text-lg text-foreground/85 leading-relaxed">{intro}</p>
 
-          <div className={`relative h-56 md:h-72 rounded-sm border border-border overflow-hidden bg-gradient-to-br ${swatch}`}>
-            <div className="absolute inset-0 opacity-20"
-                 style={{ backgroundImage: "repeating-linear-gradient(45deg, rgba(255,255,255,0.08) 0 2px, transparent 2px 12px)" }} />
-            <div className="absolute bottom-4 left-5 text-xs uppercase tracking-[0.3em] text-white/70">Fraser Valley · Lower Mainland</div>
-          </div>
+          <figure className={`relative h-64 md:h-96 rounded-sm border border-border overflow-hidden ${image ? "bg-muted" : `bg-gradient-to-br ${swatch}`}`}>
+            {image ? (
+              <img
+                src={image.src}
+                alt={image.alt}
+                title={image.title ?? image.alt}
+                loading="lazy"
+                decoding="async"
+                sizes="(min-width: 1024px) 66vw, 100vw"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            ) : (
+              <div
+                className="absolute inset-0 opacity-20"
+                style={{ backgroundImage: "repeating-linear-gradient(45deg, rgba(255,255,255,0.08) 0 2px, transparent 2px 12px)" }}
+              />
+            )}
+            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background/90 to-transparent pointer-events-none" />
+            <figcaption className="absolute bottom-4 left-5 right-5 text-xs uppercase tracking-[0.3em] text-white/85">
+              {image?.caption ?? "Fraser Valley · Lower Mainland"}
+            </figcaption>
+          </figure>
 
           <div>
             <h2 className="font-display uppercase text-2xl mb-4">What you get</h2>

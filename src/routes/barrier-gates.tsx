@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
 import { serviceJsonLd, type FaqItem } from "@/lib/service-schema";
+import heroImg from "@/assets/gallery/galvanized-handrail-driveway.jpeg.asset.json";
 
 const FAQ: FaqItem[] = [
   { q: "Do you supply MMCD-spec drawings?", a: "Yes — our barrier gates and handrails are fabricated to MMCD standards and we can supply shop drawings on request." },
@@ -41,7 +42,7 @@ function Page() {
         intro="Hot-dip galvanized pipe barrier gates, guard rails, and MMCD-spec hand rails — built for municipal parks, parking lots, and commercial sites."
       />
       <ServiceContent
-        swatch="from-yellow-900 via-neutral-900 to-black"
+        image={{ src: heroImg.url, alt: "Galvanized pipe MMCD-spec handrail installed along an accessible driveway ramp in Maple Ridge BC", title: "MMCD-spec galvanized handrail install — Maple Ridge, BC", caption: "MMCD-Spec Handrail · Maple Ridge, BC" }}
         intro="Whether you're closing off a service road, protecting a utility yard, or meeting MMCD handrail requirements on a civic project, we fabricate and install galvanized pipe barriers to spec. Every gate is welded in our Chilliwack shop, hot-dip galvanized, and installed on concrete-set posts sized for the span."
         highlights={[
           "Hot-dip galvanized pipe construction",
