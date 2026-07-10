@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { PageShell, CtaStrip } from "@/components/PageShell";
+import { PageShell } from "@/components/PageShell";
 import { SITE } from "@/lib/site";
 import { submitLead } from "@/lib/leads.functions";
 import { useEffect, useRef, useState } from "react";
