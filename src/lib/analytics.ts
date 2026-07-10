@@ -64,7 +64,7 @@ export function trackNavClick(event: Omit<NavClickEvent, "name">) {
 }
 
 
-function emit(event: QuoteAnalyticsEvent | GalleryAnalyticsEvent) {
+function emit(event: QuoteAnalyticsEvent | GalleryAnalyticsEvent | NavClickEvent) {
   if (typeof window === "undefined") return;
   const payload = { ...event, event: event.name, ts: Date.now() };
   try {
