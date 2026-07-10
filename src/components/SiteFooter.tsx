@@ -17,7 +17,7 @@ const LOCATION_PAGES: ReadonlyArray<{ slug: string; label: string }> = [
 export function SiteFooter() {
   return (
     <footer className="mt-24 border-t border-border bg-steel">
-      <div className="container-industrial py-14 grid gap-10 md:grid-cols-4">
+      <div className="container-industrial py-14 grid gap-10 md:grid-cols-3">
         <div>
           <div className="font-display text-xl uppercase">{SITE.name}</div>
           <p className="mt-3 text-sm text-muted-foreground">{SITE.tagline}</p>
@@ -29,8 +29,8 @@ export function SiteFooter() {
         </div>
         <FooterCol title="Company" items={NAV_PRIMARY} />
         <FooterCol title="Services" items={SERVICES} />
-        <FooterCol title="Service Areas" items={GEO_PAGES} />
       </div>
+
       <div className="border-t border-border/60">
         <div className="container-industrial py-8">
           <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-3">Service Areas — Fraser Valley & Metro Vancouver</div>
