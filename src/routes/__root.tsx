@@ -12,6 +12,8 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SchemaDebugPanel } from "../components/SchemaDebugPanel";
+import { SITE, BASE_URL, absoluteUrl } from "../lib/site";
+
 
 
 function NotFoundComponent() {
