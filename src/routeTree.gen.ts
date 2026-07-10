@@ -23,6 +23,7 @@ import { Route as ResidentialChainLinkRouteImport } from './routes/residential-c
 import { Route as ProfessionalMmcdSpecRailingInstallationInMapleRidgeRouteImport } from './routes/professional-mmcd-spec-railing-installation-in-maple-ridge'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRouteImport } from './routes/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack'
+import { Route as PortFencingRouteImport } from './routes/port-fencing'
 import { Route as OrnamentalIronRouteImport } from './routes/ornamental-iron'
 import { Route as OrnamentalFencingRouteImport } from './routes/ornamental-fencing'
 import { Route as OrnamentalFencesRouteImport } from './routes/ornamental-fences'
@@ -43,12 +44,14 @@ import { Route as ChainLinkRouteImport } from './routes/chain-link'
 import { Route as CedarFencingRouteImport } from './routes/cedar-fencing'
 import { Route as CedarFencesRouteImport } from './routes/cedar-fences'
 import { Route as CareerRouteImport } from './routes/career'
+import { Route as CannabisFencingRouteImport } from './routes/cannabis-fencing'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as BestFencingOptionsAndTheirQualitiesRouteImport } from './routes/best-fencing-options-and-their-qualities'
 import { Route as BenefitsOfBarrierGatesRouteImport } from './routes/benefits-of-barrier-gates'
 import { Route as BarrierGatesHandRailsRouteImport } from './routes/barrier-gates-hand-rails'
 import { Route as BarrierGatesRouteImport } from './routes/barrier-gates'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AirportFencingRouteImport } from './routes/airport-fencing'
 import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as AbbotsfordChainLinkFenceContractorRouteImport } from './routes/abbotsford-chain-link-fence-contractor'
 import { Route as Wood_FencingDotphpRouteImport } from './routes/Wood_Fencing[.]php'
@@ -153,6 +156,11 @@ const Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRoute =
     path: '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack',
     getParentRoute: () => rootRouteImport,
   } as any)
+const PortFencingRoute = PortFencingRouteImport.update({
+  id: '/port-fencing',
+  path: '/port-fencing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OrnamentalIronRoute = OrnamentalIronRouteImport.update({
   id: '/ornamental-iron',
   path: '/ornamental-iron',
@@ -257,6 +265,11 @@ const CareerRoute = CareerRouteImport.update({
   path: '/career',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CannabisFencingRoute = CannabisFencingRouteImport.update({
+  id: '/cannabis-fencing',
+  path: '/cannabis-fencing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogRoute = BlogRouteImport.update({
   id: '/blog',
   path: '/blog',
@@ -286,6 +299,11 @@ const BarrierGatesRoute = BarrierGatesRouteImport.update({
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AirportFencingRoute = AirportFencingRouteImport.update({
+  id: '/airport-fencing',
+  path: '/airport-fencing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutUsRoute = AboutUsRouteImport.update({
@@ -467,12 +485,14 @@ export interface FileRoutesByFullPath {
   '/Wood_Fencing.php': typeof Wood_FencingDotphpRoute
   '/abbotsford-chain-link-fence-contractor': typeof AbbotsfordChainLinkFenceContractorRoute
   '/about-us': typeof AboutUsRoute
+  '/airport-fencing': typeof AirportFencingRoute
   '/auth': typeof AuthRoute
   '/barrier-gates': typeof BarrierGatesRoute
   '/barrier-gates-hand-rails': typeof BarrierGatesHandRailsRoute
   '/benefits-of-barrier-gates': typeof BenefitsOfBarrierGatesRoute
   '/best-fencing-options-and-their-qualities': typeof BestFencingOptionsAndTheirQualitiesRoute
   '/blog': typeof BlogRouteWithChildren
+  '/cannabis-fencing': typeof CannabisFencingRoute
   '/career': typeof CareerRoute
   '/cedar-fences': typeof CedarFencesRoute
   '/cedar-fencing': typeof CedarFencingRoute
@@ -493,6 +513,7 @@ export interface FileRoutesByFullPath {
   '/ornamental-fences': typeof OrnamentalFencesRoute
   '/ornamental-fencing': typeof OrnamentalFencingRoute
   '/ornamental-iron': typeof OrnamentalIronRoute
+  '/port-fencing': typeof PortFencingRoute
   '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack': typeof Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRoute
   '/pricing': typeof PricingRoute
   '/professional-mmcd-spec-railing-installation-in-maple-ridge': typeof ProfessionalMmcdSpecRailingInstallationInMapleRidgeRoute
@@ -537,12 +558,14 @@ export interface FileRoutesByTo {
   '/Wood_Fencing.php': typeof Wood_FencingDotphpRoute
   '/abbotsford-chain-link-fence-contractor': typeof AbbotsfordChainLinkFenceContractorRoute
   '/about-us': typeof AboutUsRoute
+  '/airport-fencing': typeof AirportFencingRoute
   '/auth': typeof AuthRoute
   '/barrier-gates': typeof BarrierGatesRoute
   '/barrier-gates-hand-rails': typeof BarrierGatesHandRailsRoute
   '/benefits-of-barrier-gates': typeof BenefitsOfBarrierGatesRoute
   '/best-fencing-options-and-their-qualities': typeof BestFencingOptionsAndTheirQualitiesRoute
   '/blog': typeof BlogRouteWithChildren
+  '/cannabis-fencing': typeof CannabisFencingRoute
   '/career': typeof CareerRoute
   '/cedar-fences': typeof CedarFencesRoute
   '/cedar-fencing': typeof CedarFencingRoute
@@ -563,6 +586,7 @@ export interface FileRoutesByTo {
   '/ornamental-fences': typeof OrnamentalFencesRoute
   '/ornamental-fencing': typeof OrnamentalFencingRoute
   '/ornamental-iron': typeof OrnamentalIronRoute
+  '/port-fencing': typeof PortFencingRoute
   '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack': typeof Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRoute
   '/pricing': typeof PricingRoute
   '/professional-mmcd-spec-railing-installation-in-maple-ridge': typeof ProfessionalMmcdSpecRailingInstallationInMapleRidgeRoute
@@ -609,12 +633,14 @@ export interface FileRoutesById {
   '/Wood_Fencing.php': typeof Wood_FencingDotphpRoute
   '/abbotsford-chain-link-fence-contractor': typeof AbbotsfordChainLinkFenceContractorRoute
   '/about-us': typeof AboutUsRoute
+  '/airport-fencing': typeof AirportFencingRoute
   '/auth': typeof AuthRoute
   '/barrier-gates': typeof BarrierGatesRoute
   '/barrier-gates-hand-rails': typeof BarrierGatesHandRailsRoute
   '/benefits-of-barrier-gates': typeof BenefitsOfBarrierGatesRoute
   '/best-fencing-options-and-their-qualities': typeof BestFencingOptionsAndTheirQualitiesRoute
   '/blog': typeof BlogRouteWithChildren
+  '/cannabis-fencing': typeof CannabisFencingRoute
   '/career': typeof CareerRoute
   '/cedar-fences': typeof CedarFencesRoute
   '/cedar-fencing': typeof CedarFencingRoute
@@ -635,6 +661,7 @@ export interface FileRoutesById {
   '/ornamental-fences': typeof OrnamentalFencesRoute
   '/ornamental-fencing': typeof OrnamentalFencingRoute
   '/ornamental-iron': typeof OrnamentalIronRoute
+  '/port-fencing': typeof PortFencingRoute
   '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack': typeof Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRoute
   '/pricing': typeof PricingRoute
   '/professional-mmcd-spec-railing-installation-in-maple-ridge': typeof ProfessionalMmcdSpecRailingInstallationInMapleRidgeRoute
@@ -681,12 +708,14 @@ export interface FileRouteTypes {
     | '/Wood_Fencing.php'
     | '/abbotsford-chain-link-fence-contractor'
     | '/about-us'
+    | '/airport-fencing'
     | '/auth'
     | '/barrier-gates'
     | '/barrier-gates-hand-rails'
     | '/benefits-of-barrier-gates'
     | '/best-fencing-options-and-their-qualities'
     | '/blog'
+    | '/cannabis-fencing'
     | '/career'
     | '/cedar-fences'
     | '/cedar-fencing'
@@ -707,6 +736,7 @@ export interface FileRouteTypes {
     | '/ornamental-fences'
     | '/ornamental-fencing'
     | '/ornamental-iron'
+    | '/port-fencing'
     | '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack'
     | '/pricing'
     | '/professional-mmcd-spec-railing-installation-in-maple-ridge'
@@ -751,12 +781,14 @@ export interface FileRouteTypes {
     | '/Wood_Fencing.php'
     | '/abbotsford-chain-link-fence-contractor'
     | '/about-us'
+    | '/airport-fencing'
     | '/auth'
     | '/barrier-gates'
     | '/barrier-gates-hand-rails'
     | '/benefits-of-barrier-gates'
     | '/best-fencing-options-and-their-qualities'
     | '/blog'
+    | '/cannabis-fencing'
     | '/career'
     | '/cedar-fences'
     | '/cedar-fencing'
@@ -777,6 +809,7 @@ export interface FileRouteTypes {
     | '/ornamental-fences'
     | '/ornamental-fencing'
     | '/ornamental-iron'
+    | '/port-fencing'
     | '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack'
     | '/pricing'
     | '/professional-mmcd-spec-railing-installation-in-maple-ridge'
@@ -822,12 +855,14 @@ export interface FileRouteTypes {
     | '/Wood_Fencing.php'
     | '/abbotsford-chain-link-fence-contractor'
     | '/about-us'
+    | '/airport-fencing'
     | '/auth'
     | '/barrier-gates'
     | '/barrier-gates-hand-rails'
     | '/benefits-of-barrier-gates'
     | '/best-fencing-options-and-their-qualities'
     | '/blog'
+    | '/cannabis-fencing'
     | '/career'
     | '/cedar-fences'
     | '/cedar-fencing'
@@ -848,6 +883,7 @@ export interface FileRouteTypes {
     | '/ornamental-fences'
     | '/ornamental-fencing'
     | '/ornamental-iron'
+    | '/port-fencing'
     | '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack'
     | '/pricing'
     | '/professional-mmcd-spec-railing-installation-in-maple-ridge'
@@ -894,12 +930,14 @@ export interface RootRouteChildren {
   Wood_FencingDotphpRoute: typeof Wood_FencingDotphpRoute
   AbbotsfordChainLinkFenceContractorRoute: typeof AbbotsfordChainLinkFenceContractorRoute
   AboutUsRoute: typeof AboutUsRoute
+  AirportFencingRoute: typeof AirportFencingRoute
   AuthRoute: typeof AuthRoute
   BarrierGatesRoute: typeof BarrierGatesRoute
   BarrierGatesHandRailsRoute: typeof BarrierGatesHandRailsRoute
   BenefitsOfBarrierGatesRoute: typeof BenefitsOfBarrierGatesRoute
   BestFencingOptionsAndTheirQualitiesRoute: typeof BestFencingOptionsAndTheirQualitiesRoute
   BlogRoute: typeof BlogRouteWithChildren
+  CannabisFencingRoute: typeof CannabisFencingRoute
   CareerRoute: typeof CareerRoute
   CedarFencesRoute: typeof CedarFencesRoute
   CedarFencingRoute: typeof CedarFencingRoute
@@ -920,6 +958,7 @@ export interface RootRouteChildren {
   OrnamentalFencesRoute: typeof OrnamentalFencesRoute
   OrnamentalFencingRoute: typeof OrnamentalFencingRoute
   OrnamentalIronRoute: typeof OrnamentalIronRoute
+  PortFencingRoute: typeof PortFencingRoute
   Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRoute: typeof Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRoute
   PricingRoute: typeof PricingRoute
   ProfessionalMmcdSpecRailingInstallationInMapleRidgeRoute: typeof ProfessionalMmcdSpecRailingInstallationInMapleRidgeRoute
@@ -1042,6 +1081,13 @@ declare module '@tanstack/react-router' {
       path: '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack'
       fullPath: '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack'
       preLoaderRoute: typeof Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/port-fencing': {
+      id: '/port-fencing'
+      path: '/port-fencing'
+      fullPath: '/port-fencing'
+      preLoaderRoute: typeof PortFencingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ornamental-iron': {
@@ -1184,6 +1230,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CareerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cannabis-fencing': {
+      id: '/cannabis-fencing'
+      path: '/cannabis-fencing'
+      fullPath: '/cannabis-fencing'
+      preLoaderRoute: typeof CannabisFencingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog': {
       id: '/blog'
       path: '/blog'
@@ -1224,6 +1277,13 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/airport-fencing': {
+      id: '/airport-fencing'
+      path: '/airport-fencing'
+      fullPath: '/airport-fencing'
+      preLoaderRoute: typeof AirportFencingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about-us': {
@@ -1476,6 +1536,7 @@ const rootRouteChildren: RootRouteChildren = {
   AbbotsfordChainLinkFenceContractorRoute:
     AbbotsfordChainLinkFenceContractorRoute,
   AboutUsRoute: AboutUsRoute,
+  AirportFencingRoute: AirportFencingRoute,
   AuthRoute: AuthRoute,
   BarrierGatesRoute: BarrierGatesRoute,
   BarrierGatesHandRailsRoute: BarrierGatesHandRailsRoute,
@@ -1483,6 +1544,7 @@ const rootRouteChildren: RootRouteChildren = {
   BestFencingOptionsAndTheirQualitiesRoute:
     BestFencingOptionsAndTheirQualitiesRoute,
   BlogRoute: BlogRouteWithChildren,
+  CannabisFencingRoute: CannabisFencingRoute,
   CareerRoute: CareerRoute,
   CedarFencesRoute: CedarFencesRoute,
   CedarFencingRoute: CedarFencingRoute,
@@ -1505,6 +1567,7 @@ const rootRouteChildren: RootRouteChildren = {
   OrnamentalFencesRoute: OrnamentalFencesRoute,
   OrnamentalFencingRoute: OrnamentalFencingRoute,
   OrnamentalIronRoute: OrnamentalIronRoute,
+  PortFencingRoute: PortFencingRoute,
   Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRoute:
     Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRoute,
   PricingRoute: PricingRoute,

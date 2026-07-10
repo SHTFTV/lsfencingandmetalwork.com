@@ -68,6 +68,9 @@ function Page() {
           { to: "/barrier-gates", label: "Barrier gates" },
           { to: "/chain-link-fencing", label: "Chain link fencing" },
           { to: "/welding-services", label: "Welding & fabrication" },
+          { to: "/airport-fencing", label: "Airport perimeter gates" },
+          { to: "/port-fencing", label: "Port & terminal cantilever gates" },
+          { to: "/cannabis-fencing", label: "Cannabis facility access gates" },
         ]}
       >
         <ProjectShowcase

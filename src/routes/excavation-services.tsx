@@ -68,6 +68,9 @@ function Page() {
           { to: "/chain-link-fencing", label: "Chain link fencing" },
           { to: "/cedar-fencing", label: "Cedar fencing" },
           { to: "/snow-removal", label: "Snow removal" },
+          { to: "/airport-fencing", label: "Airport perimeter fencing" },
+          { to: "/port-fencing", label: "Port & marine terminal fencing" },
+          { to: "/cannabis-fencing", label: "Cannabis facility fencing" },
         ]}
       >
         <ProjectShowcase

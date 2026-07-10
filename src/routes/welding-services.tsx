@@ -68,6 +68,9 @@ function Page() {
           { to: "/metal-gates", label: "Custom metal gates" },
           { to: "/barrier-gates-hand-rails", label: "Barrier gates & handrails" },
           { to: "/ornamental-fencing", label: "Ornamental steel fencing" },
+          { to: "/airport-fencing", label: "Airport perimeter fencing" },
+          { to: "/port-fencing", label: "Port & marine terminal fencing" },
+          { to: "/cannabis-fencing", label: "Cannabis facility fencing" },
         ]}
       >
         <ProjectShowcase

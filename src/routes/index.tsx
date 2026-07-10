@@ -368,6 +368,56 @@ function Home() {
         ))}
       </section>
 
+      {/* Specialty perimeter work */}
+      <section className="border-t border-border bg-card">
+        <div className="container-industrial py-16">
+          <div className="flex items-end justify-between flex-wrap gap-4 mb-8">
+            <div>
+              <div className="text-xs uppercase tracking-[0.3em] text-primary">Specialty</div>
+              <h2 className="font-display text-3xl md:text-4xl uppercase mt-2">Specialty perimeter work</h2>
+              <p className="mt-3 max-w-2xl text-muted-foreground">
+                High-security and regulated perimeters — built to airside, port authority and Health Canada spec across BC.
+              </p>
+            </div>
+          </div>
+          <div className="grid sm:grid-cols-3 gap-4">
+            {[
+              {
+                to: "/airport-fencing" as const,
+                label: "Airport & Airfield",
+                sub: "Airside-grade perimeter",
+                blurb: "Galvanized chain link, barb toppings and cantilever access to Transport Canada AFR spec.",
+              },
+              {
+                to: "/port-fencing" as const,
+                label: "Ports & Terminals",
+                sub: "CBSA-grade access",
+                blurb: "Marine-rated perimeter, container-yard cantilever gates and controlled truck access.",
+              },
+              {
+                to: "/cannabis-fencing" as const,
+                label: "Cannabis Facilities",
+                sub: "Licensed producer sites",
+                blurb: "Restricted-visibility privacy-slat perimeter aligned with Health Canada physical security.",
+              },
+            ].map((s) => (
+              <Link
+                key={s.to}
+                to={s.to}
+                className="group border border-border rounded-sm bg-background p-6 hover:border-primary transition flex flex-col"
+              >
+                <div className="text-xs uppercase tracking-[0.3em] text-primary">{s.sub}</div>
+                <div className="font-display uppercase text-lg mt-2">{s.label}</div>
+                <p className="text-sm text-muted-foreground mt-3 flex-1">{s.blurb}</p>
+                <div className="mt-4 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-primary">
+                  Explore <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition" />
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Latest from the blog */}
       <section className="border-t border-border bg-background">
         <div className="container-industrial py-20">
