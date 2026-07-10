@@ -386,12 +386,12 @@ export const COMMERCIAL_BANNED_PHRASES = [
 ] as const;
 
 function collectPostText(post: BlogPost): string {
-  const parts: string[] = [post.title, post.description, ...post.keyTakeaways];
+  const parts: string[] = [post.title, post.description, ...(post.keyTakeaways ?? [])];
   for (const block of post.body) {
     if ("text" in block && typeof block.text === "string") parts.push(block.text);
     if ("items" in block && Array.isArray(block.items)) parts.push(...block.items);
   }
-  for (const f of post.faq) parts.push(f.q, f.a);
+  for (const f of post.faq ?? []) parts.push(f.q, f.a);
   return parts.join("\n").toLowerCase();
 }
 
