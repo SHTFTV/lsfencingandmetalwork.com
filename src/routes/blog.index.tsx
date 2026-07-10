@@ -6,7 +6,7 @@ import { absoluteUrl, SITE } from "@/lib/site";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
 
 
-export const Route = createFileRoute("/blog")({
+export const Route = createFileRoute("/blog/")({
   head: () => {
     const url = absoluteUrl("/blog");
     const image = SITE.defaultOgImage;
