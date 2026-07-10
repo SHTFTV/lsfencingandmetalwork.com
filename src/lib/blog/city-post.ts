@@ -189,6 +189,159 @@ function buildPost(city: CityFact): BlogPost {
   };
 }
 
-export function buildCityPosts(): BlogPost[] {
-  return CITIES.map(buildPost);
+/**
+ * Commercial-only variant used for cities outside our Fraser Valley
+ * residential service bubble (Vancouver, Burnaby, Richmond, the Tri-Cities,
+ * North Shore, Delta, White Rock, New West). Positioning is strictly
+ * commercial, industrial, strata, and high-security work with in-house
+ * welded gates and hand rails — no residential backyard content.
+ */
+function buildCommercialPost(city: CityFact): BlogPost {
+  const { name, region, neighbourhoods } = city;
+  const nbhList = neighbourhoods.join(", ");
+
+  const internalLinks: LinkRef[] = [
+    { to: "/commercial-chain-link-fencing", label: "Commercial chain link fencing" },
+    { to: "/chain-link-fencing", label: "Heavy-gauge chain link" },
+    { to: "/metal-gates", label: "Custom welded metal gates" },
+    { to: "/barrier-gates", label: "Barrier gates & bollards" },
+    { to: "/ornamental-fencing", label: "Ornamental steel & strata perimeters" },
+    { to: "/welding-services", label: "In-house welding & fabrication" },
+    { to: "/excavation-services", label: "Excavation & post drilling" },
+    { to: "/airport-fencing", label: "Airport & high-security perimeters" },
+    { to: "/cannabis-fencing", label: "Cannabis & regulated-site fencing" },
+    { to: "/port-fencing", label: "Port & industrial yard fencing" },
+    { to: "/pricing", label: "Commercial fencing pricing" },
+    { to: "/gallery", label: "Commercial project gallery" },
+    { to: "/contact", label: `Request a ${name} site walk-through` },
+  ];
+
+  const externalLinks: LinkRef[] = [
+    { to: city.bylawUrl, label: city.bylawUrlLabel, external: true },
+    { to: "https://www.bccodes.ca/", label: "BC Building Code (Building & Safety Standards Branch)", external: true },
+    { to: "https://www.worksafebc.com/en", label: "WorkSafeBC — worksite safety standards", external: true },
+  ];
+
+  const faq: FaqItem[] = city.faq;
+
+  const keyTakeaways: string[] = [
+    `${name} is a commercial and strata focus for us — high-security perimeters, industrial chain link, welded gates, and hand rails. We don't chase small residential work here.`,
+    `In-house welding shop: cantilever slide gates, swing gates, bollards, and MMCD-spec hand rails fabricated to drawing, not ordered in.`,
+    `Own excavation kit and crew — we mobilize into ${name} for full site perimeters, tenant improvements, and shut-down/turnover work on our own timeline.`,
+    `Written scope, WCB coverage, COR-track safety practices, and a single point of contact from quote through turnover.`,
+  ];
+
+  const body: BlogPost["body"] = [
+    { type: "p", text: `LS Fencing & Metal Work is a Fraser Valley commercial fencing and metal-fabrication contractor. We install high-security chain link, welded metal gates, ornamental strata perimeters, hand rails, and bollards across ${name} and the surrounding ${region.toLowerCase()}. This page is a straight commercial brief — what we build in ${name}, who we build it for, and how we structure a scope from site walk-through to turnover.` },
+    { type: "p", text: `We are not a residential backyard shop in ${name}. Our ${name} work is property managers, general contractors, strata councils, industrial and warehouse operators, and public-sector projects that need a real commercial spec — 9-gauge galvanized mesh, top and bottom rails, welded cantilever gates, engineered hand rails, and a crew that can hold a schedule on a live site.` },
+    { type: "p", text: city.uniqueParagraphs[0] },
+
+    { type: "h2", text: `Commercial fencing we install in ${name}` },
+    { type: "p", text: `Almost every ${name} job we bid falls into one of five buckets. The spec, gauge, gate hardware, and site logistics change per bucket, and getting the right bucket picked at the site walk is what keeps the project on budget.` },
+    { type: "h3", text: "1. High-security industrial and warehouse perimeters" },
+    { type: "p", text: `8-foot to 10-foot hot-dip galvanized chain link, 9-gauge mesh, top rail plus tension wire at the bottom, and either single or triple-strand barbed wire on 45° extension arms. Cantilever slide gates sized for tractor-trailer access, with keypad, card-reader, or LTE-controlled operators tied into the tenant's access system. Standard on industrial pockets across ${name} — logistics yards, distribution centres, equipment rental yards, and utility compounds.` },
+    { type: "h3", text: "2. Strata townhouse and multi-family perimeters" },
+    { type: "p", text: `Black vinyl-coated chain link or powder-coated ornamental steel picket, depending on the strata council's aesthetic requirements and budget. We work directly with strata property managers on ${name} perimeter replacements — a phased scope so residents keep access to their units and the parking lot never fully closes. Written turnover with warranty documentation goes to the property manager on completion.` },
+    { type: "h3", text: "3. Welded custom gates — swing, cantilever, and barrier" },
+    { type: "p", text: `Everything gated at ${name} commercial sites is fabricated in our shop, not ordered in from a catalogue. Cantilever slide gates spanning 20 to 40 feet, swing gates on heavy-duty hinges rated for the actual leaf weight, and barrier gates and bollards for parking-lot access control. All welded to CWB-quality practice and finished with hot-dip galvanizing or shop-applied powder coat.` },
+    { type: "h3", text: "4. Ornamental steel and pool-code compliant perimeters" },
+    { type: "p", text: `Powder-coated steel picket for strata entries, commercial storefronts, amenity building perimeters, and any pool or amenity enclosure that has to meet BC Building Code Part 9. Self-closing, self-latching gate hardware; no climbable horizontal rails on pool sides.` },
+    { type: "h3", text: "5. Metal hand rails, guard rails, and bollards" },
+    { type: "p", text: `MMCD-spec galvanized hand rails for public walkways, ramps, and loading-dock access. Bollards — fixed, removable, and retractable — for parking-lot protection, storefront ram-raid mitigation, and access control at strata visitor entries. Fabricated in the shop, installed on our own excavation kit.` },
+    { type: "p", text: city.uniqueParagraphs[1] },
+
+    { type: "h2", text: `Who we work for in ${name}` },
+    { type: "ul", items: [
+      `Property management firms with ${name} portfolios — strata perimeters, tenant improvements, incident-driven repairs.`,
+      `General contractors and construction managers on ${name} commercial builds — perimeter chain link during construction, permanent fence and gate scope at project turnover.`,
+      `Industrial and warehouse operators — logistics yards, equipment yards, and utility compounds across ${name}.`,
+      `Public-sector and institutional clients — schools, parks, transit, and municipal facilities.`,
+      `Owner-operators of regulated sites — cannabis production, cold storage, and secure-storage tenants that need audit-ready perimeter documentation.`,
+    ]},
+
+    { type: "h2", text: `Site conditions in ${name}` },
+    { type: "p", text: `${city.climate} On a commercial perimeter that translates into corrosion load, wind load on tall fabric-covered runs, and freeze-thaw at the base of every post. Every ${name} spec we write assumes hot-dip galvanized hardware end-to-end — plain zinc-plated fasteners and pre-galvanized wire are false economies on a site expected to hold up for 20+ years.` },
+    { type: "p", text: `${city.terrain} That's why we mobilize with our own Kubota mini-excavator and percussion post-drilling attachment. Contaminated fill, old slab, buried debris, and rock refusal are all common on ${name} industrial sites — an outside sub-trade on a rented auger will stall a full-day dig. On rocky or slab-encumbered ${name} sites we core through rather than punt to another day.` },
+
+    { type: "h2", text: `Codes, bylaws, and permitting in ${name}` },
+    { type: "p", text: city.bylawSummary },
+    { type: "p", text: `On commercial and industrial ${name} sites, height, sightline, and setback rules from the zoning bylaw combine with BC Building Code Part 9 (pool and amenity enclosures), WorkSafeBC requirements for edge-protection hand rails, and any tenant-specific security spec (e.g. audit-ready perimeters for regulated cannabis production, TSA/CATSA-equivalent standards on airside work). We coordinate the paperwork against the ${city.bylawUrlLabel} at quote stage so nothing gets missed at inspection.` },
+
+    { type: "h2", text: `${name} neighbourhoods and industrial pockets we work in` },
+    { type: "p", text: `Our ${name} mobilizations cluster around the commercial and industrial nodes: ${nbhList}. Whether it's a strata perimeter replacement in a townhouse complex or an 8-foot barbed perimeter around an equipment yard, we walk the site with the property manager or GC before quote — sightlines, existing services, gate swing radius, truck turning circles — so the price on paper matches the price at the invoice.` },
+
+    { type: "h2", text: `In-house welding shop — why it matters on ${name} jobs` },
+    { type: "p", text: `The single biggest reason property managers and GCs call us for ${name} work is that our metal gates and hand rails are welded in our own shop, not ordered in from a wholesaler. A cantilever slide gate spanning a specific ${name} entry gets fabricated to the actual measured opening, the actual hinge post spec, and the actual operator model — not to a stock catalogue size that has to be shimmed on-site. Repairs, retrofits, and one-off brackets go from measurement to install inside a week instead of the four to eight weeks a supplier catalogue takes.` },
+    { type: "ul", items: [
+      "Custom cantilever and swing gates fabricated to measured openings",
+      "Hot-dip galvanizing or shop-applied powder-coat finish",
+      "MMCD-spec hand rails and guard rails for public walkways and loading docks",
+      "Fixed, removable, and retractable bollards for access control",
+      "Field repair welding — hinge replacement, gate frame straightening, post retrofit",
+    ]},
+
+    { type: "h2", text: `How a ${name} commercial job runs` },
+    { type: "ul", items: [
+      `Day 0 — property manager, GC, or owner-op contacts us with a ${name} scope.`,
+      `Day 1–5 — on-site walk-through with the site contact; existing conditions, gate operators, sightlines, and service locates flagged.`,
+      "Day 5–10 — written itemized quote with scope, materials, gauge, finish, gate specs, timeline, and warranty.",
+      "Approval + BC 1 Call locates + coordination with tenant/site operations to schedule mobilization windows.",
+      "Mobilize crew and excavation kit; posts set in concrete; gate frames fabricated in-shop in parallel.",
+      "Install fabric, panels, rails, gates, operators, and hand rails; commissioning of any gate operator with the access-control vendor.",
+      "Site clean, final walk-through with the site contact, warranty and turnover documentation issued.",
+    ]},
+    { type: "p", text: `${city.costNote}` },
+
+    { type: "h2", text: `Why property managers and GCs pick us for ${name}` },
+    { type: "ul", items: [
+      "Family-run since 2011 — same crew, same shop, same phone number.",
+      "In-house welding shop — every gate and hand rail fabricated to the measured opening.",
+      "Own excavation equipment — no waiting on a sub-trade for post holes on your live site.",
+      "WCB coverage, COR-track safety practices, and clean documentation for property-manager audit files.",
+      "One point of contact from quote through turnover — the person who quotes your job is the person who runs the crew.",
+      "Written itemized quotes — every line broken out so a strata council or GC can compare apples to apples.",
+      "Warranty in writing — one year on labour, manufacturer coverage on materials.",
+    ]},
+
+    { type: "h2", text: `Materials and specs we default to in ${name}` },
+    { type: "p", text: `${city.materialNotes} For commercial perimeters that translates into a small number of specs we default to unless a site condition forces something different.` },
+    { type: "ul", items: [
+      "Chain link fabric: 9-gauge, hot-dip galvanized after weaving, black vinyl-coated where aesthetics matter (strata, storefronts).",
+      "Posts: schedule 40 pipe, hot-dip galvanized, 3\" line posts and 4\" terminal posts standard; heavier on gate posts and cantilever gate opposite-side rollers.",
+      "Fasteners: hot-dip galvanized or stainless — never plain zinc-plated on any commercial ${name} job.",
+      "Barbed wire: three-strand on 45° extension arms, standard on industrial and utility perimeters; omit or replace with smooth rail on strata and storefront work.",
+      "Gates: welded in-shop, hot-dip galvanized or powder-coat finish, hardware rated for the actual leaf weight not the catalogue span.",
+      "Hand rails: MMCD-spec galvanized pipe on public and loading-dock installations.",
+    ]},
+
+    { type: "quote", text: `${name} commercial fencing is a schedule problem as much as a materials problem. Our crew, our welding shop, and our excavation kit exist so your site doesn't wait on ours.` },
+    { type: "p", text: `Ready to scope a specific ${name} project — perimeter replacement, gate retrofit, hand rail package, or new-build turnover? Reach out for a site walk-through and a written itemized quote.` },
+  ];
+
+  const slug = `fencing-in-${city.slug}`;
+  const title = `Commercial Fencing, Gates & Hand Rails in ${name} — Strata, Industrial & High-Security (${new Date().getFullYear()})`;
+  const description = `Commercial chain link, welded metal gates, ornamental strata perimeters, hand rails, and bollards in ${name}, BC. In-house welding shop, own excavation crew, WCB-covered. Property managers, GCs, industrial and public-sector clients.`;
+
+  return {
+    slug,
+    title,
+    description,
+    date: "2026-07-10",
+    readMinutes: 12,
+    tags: ["Commercial", region, "Strata", "High-Security", "Welded Gates"],
+    ogImage: city.ogImage,
+    ogImageCaption: `Commercial fencing and welded gate installation in ${name}, BC by LS Fencing & Metal Work`,
+    body,
+    faq,
+    keyTakeaways,
+    internalLinks,
+    externalLinks,
+    cityName: name,
+    region,
+  };
 }
+
+export function buildCityPosts(): BlogPost[] {
+  return CITIES.map((c) => (c.commercialFocus ? buildCommercialPost(c) : buildPost(c)));
+}
+
