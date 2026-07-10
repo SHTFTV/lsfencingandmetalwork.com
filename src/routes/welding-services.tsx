@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
 import { serviceJsonLd, type FaqItem } from "@/lib/service-schema";
+import heroImg from "@/assets/gallery/shop-welding-kubota-fabrication.jpg.asset.json";
 
 const FAQ: FaqItem[] = [
   { q: "Can you weld aluminum?", a: "Yes — TIG on aluminum and stainless is available; call ahead so we bring the right rig." },
