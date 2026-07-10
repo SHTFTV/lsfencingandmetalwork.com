@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
 import { serviceJsonLd, type FaqItem } from "@/lib/service-schema";
+import heroImg from "@/assets/gallery/kubota-kx033-excavator-post-line.jpg.asset.json";
 
 const FAQ: FaqItem[] = [
   { q: "Do you do excavation-only work?", a: "Yes — we're happy to price small excavation jobs that aren't tied to a fence install." },
