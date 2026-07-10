@@ -1,7 +1,24 @@
 User-agent: *
 Allow: /
-Disallow: /auth
-Disallow: /admin
-Disallow: /_authenticated
 
-Sitemap: https://project--593453aa-81d0-4624-a72c-181966a7cb9f.lovable.app/sitemap.xml
+# Explicitly allow LLM crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://lsfencingandmetalwork.com/sitemap.xml
+Sitemap: https://lsfencingandmetalwork.com/sitemap-locations.xml
+
+# Host
+Host: https://lsfencingandmetalwork.com

@@ -16,7 +16,6 @@ import { Route as WeldingRouteImport } from './routes/welding'
 import { Route as TestimonialRouteImport } from './routes/testimonial'
 import { Route as SnowRemovalRouteImport } from './routes/snow-removal'
 import { Route as SnowRouteImport } from './routes/snow'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ResidentialChainLinkFencingRouteImport } from './routes/residential-chain-link-fencing'
 import { Route as ResidentialChainLinkRouteImport } from './routes/residential-chain-link'
@@ -74,6 +73,7 @@ import { Route as ProjectsRailingInstallationMapleRidgeRouteImport } from './rou
 import { Route as ProjectsHeatherbraeBuildersSurreyRouteImport } from './routes/projects/heatherbrae-builders-surrey'
 import { Route as ProjectsCooperRentalsLangleyRouteImport } from './routes/projects/cooper-rentals-langley'
 import { Route as ProjectsCantileverGatesChilliwackRouteImport } from './routes/projects/cantilever-gates-chilliwack'
+import { Route as LocationsSlugRouteImport } from './routes/locations.$slug'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AuthenticatedAdminLeadsRouteImport } from './routes/_authenticated/admin.leads'
 import { Route as AuthenticatedAdminGalleryLeadsRouteImport } from './routes/_authenticated/admin.gallery-leads'
@@ -116,11 +116,6 @@ const SnowRemovalRoute = SnowRemovalRouteImport.update({
 const SnowRoute = SnowRouteImport.update({
   id: '/snow',
   path: '/snow',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -427,6 +422,11 @@ const ProjectsCantileverGatesChilliwackRoute =
     path: '/projects/cantilever-gates-chilliwack',
     getParentRoute: () => rootRouteImport,
   } as any)
+const LocationsSlugRoute = LocationsSlugRouteImport.update({
+  id: '/locations/$slug',
+  path: '/locations/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -520,7 +520,6 @@ export interface FileRoutesByFullPath {
   '/residential-chain-link': typeof ResidentialChainLinkRoute
   '/residential-chain-link-fencing': typeof ResidentialChainLinkFencingRoute
   '/services': typeof ServicesRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/snow': typeof SnowRoute
   '/snow-removal': typeof SnowRemovalRoute
   '/testimonial': typeof TestimonialRoute
@@ -529,6 +528,7 @@ export interface FileRoutesByFullPath {
   '/were-hiring-apply-now': typeof WereHiringApplyNowRoute
   '/why-you-should-consider-fencing-as-an-option': typeof WhyYouShouldConsiderFencingAsAnOptionRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/locations/$slug': typeof LocationsSlugRoute
   '/projects/cantilever-gates-chilliwack': typeof ProjectsCantileverGatesChilliwackRoute
   '/projects/cooper-rentals-langley': typeof ProjectsCooperRentalsLangleyRoute
   '/projects/heatherbrae-builders-surrey': typeof ProjectsHeatherbraeBuildersSurreyRoute
@@ -593,7 +593,6 @@ export interface FileRoutesByTo {
   '/residential-chain-link': typeof ResidentialChainLinkRoute
   '/residential-chain-link-fencing': typeof ResidentialChainLinkFencingRoute
   '/services': typeof ServicesRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/snow': typeof SnowRoute
   '/snow-removal': typeof SnowRemovalRoute
   '/testimonial': typeof TestimonialRoute
@@ -602,6 +601,7 @@ export interface FileRoutesByTo {
   '/were-hiring-apply-now': typeof WereHiringApplyNowRoute
   '/why-you-should-consider-fencing-as-an-option': typeof WhyYouShouldConsiderFencingAsAnOptionRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/locations/$slug': typeof LocationsSlugRoute
   '/projects/cantilever-gates-chilliwack': typeof ProjectsCantileverGatesChilliwackRoute
   '/projects/cooper-rentals-langley': typeof ProjectsCooperRentalsLangleyRoute
   '/projects/heatherbrae-builders-surrey': typeof ProjectsHeatherbraeBuildersSurreyRoute
@@ -668,7 +668,6 @@ export interface FileRoutesById {
   '/residential-chain-link': typeof ResidentialChainLinkRoute
   '/residential-chain-link-fencing': typeof ResidentialChainLinkFencingRoute
   '/services': typeof ServicesRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/snow': typeof SnowRoute
   '/snow-removal': typeof SnowRemovalRoute
   '/testimonial': typeof TestimonialRoute
@@ -677,6 +676,7 @@ export interface FileRoutesById {
   '/were-hiring-apply-now': typeof WereHiringApplyNowRoute
   '/why-you-should-consider-fencing-as-an-option': typeof WhyYouShouldConsiderFencingAsAnOptionRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/locations/$slug': typeof LocationsSlugRoute
   '/projects/cantilever-gates-chilliwack': typeof ProjectsCantileverGatesChilliwackRoute
   '/projects/cooper-rentals-langley': typeof ProjectsCooperRentalsLangleyRoute
   '/projects/heatherbrae-builders-surrey': typeof ProjectsHeatherbraeBuildersSurreyRoute
@@ -743,7 +743,6 @@ export interface FileRouteTypes {
     | '/residential-chain-link'
     | '/residential-chain-link-fencing'
     | '/services'
-    | '/sitemap.xml'
     | '/snow'
     | '/snow-removal'
     | '/testimonial'
@@ -752,6 +751,7 @@ export interface FileRouteTypes {
     | '/were-hiring-apply-now'
     | '/why-you-should-consider-fencing-as-an-option'
     | '/blog/$slug'
+    | '/locations/$slug'
     | '/projects/cantilever-gates-chilliwack'
     | '/projects/cooper-rentals-langley'
     | '/projects/heatherbrae-builders-surrey'
@@ -816,7 +816,6 @@ export interface FileRouteTypes {
     | '/residential-chain-link'
     | '/residential-chain-link-fencing'
     | '/services'
-    | '/sitemap.xml'
     | '/snow'
     | '/snow-removal'
     | '/testimonial'
@@ -825,6 +824,7 @@ export interface FileRouteTypes {
     | '/were-hiring-apply-now'
     | '/why-you-should-consider-fencing-as-an-option'
     | '/blog/$slug'
+    | '/locations/$slug'
     | '/projects/cantilever-gates-chilliwack'
     | '/projects/cooper-rentals-langley'
     | '/projects/heatherbrae-builders-surrey'
@@ -890,7 +890,6 @@ export interface FileRouteTypes {
     | '/residential-chain-link'
     | '/residential-chain-link-fencing'
     | '/services'
-    | '/sitemap.xml'
     | '/snow'
     | '/snow-removal'
     | '/testimonial'
@@ -899,6 +898,7 @@ export interface FileRouteTypes {
     | '/were-hiring-apply-now'
     | '/why-you-should-consider-fencing-as-an-option'
     | '/blog/$slug'
+    | '/locations/$slug'
     | '/projects/cantilever-gates-chilliwack'
     | '/projects/cooper-rentals-langley'
     | '/projects/heatherbrae-builders-surrey'
@@ -965,7 +965,6 @@ export interface RootRouteChildren {
   ResidentialChainLinkRoute: typeof ResidentialChainLinkRoute
   ResidentialChainLinkFencingRoute: typeof ResidentialChainLinkFencingRoute
   ServicesRoute: typeof ServicesRoute
-  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SnowRoute: typeof SnowRoute
   SnowRemovalRoute: typeof SnowRemovalRoute
   TestimonialRoute: typeof TestimonialRoute
@@ -973,6 +972,7 @@ export interface RootRouteChildren {
   WeldingServicesRoute: typeof WeldingServicesRoute
   WereHiringApplyNowRoute: typeof WereHiringApplyNowRoute
   WhyYouShouldConsiderFencingAsAnOptionRoute: typeof WhyYouShouldConsiderFencingAsAnOptionRoute
+  LocationsSlugRoute: typeof LocationsSlugRoute
   ProjectsCantileverGatesChilliwackRoute: typeof ProjectsCantileverGatesChilliwackRoute
   ProjectsCooperRentalsLangleyRoute: typeof ProjectsCooperRentalsLangleyRoute
   ProjectsHeatherbraeBuildersSurreyRoute: typeof ProjectsHeatherbraeBuildersSurreyRoute
@@ -1032,13 +1032,6 @@ declare module '@tanstack/react-router' {
       path: '/snow'
       fullPath: '/snow'
       preLoaderRoute: typeof SnowRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -1440,6 +1433,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsCantileverGatesChilliwackRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/locations/$slug': {
+      id: '/locations/$slug'
+      path: '/locations/$slug'
+      fullPath: '/locations/$slug'
+      preLoaderRoute: typeof LocationsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/$slug': {
       id: '/blog/$slug'
       path: '/$slug'
@@ -1576,7 +1576,6 @@ const rootRouteChildren: RootRouteChildren = {
   ResidentialChainLinkRoute: ResidentialChainLinkRoute,
   ResidentialChainLinkFencingRoute: ResidentialChainLinkFencingRoute,
   ServicesRoute: ServicesRoute,
-  SitemapDotxmlRoute: SitemapDotxmlRoute,
   SnowRoute: SnowRoute,
   SnowRemovalRoute: SnowRemovalRoute,
   TestimonialRoute: TestimonialRoute,
@@ -1585,6 +1584,7 @@ const rootRouteChildren: RootRouteChildren = {
   WereHiringApplyNowRoute: WereHiringApplyNowRoute,
   WhyYouShouldConsiderFencingAsAnOptionRoute:
     WhyYouShouldConsiderFencingAsAnOptionRoute,
+  LocationsSlugRoute: LocationsSlugRoute,
   ProjectsCantileverGatesChilliwackRoute:
     ProjectsCantileverGatesChilliwackRoute,
   ProjectsCooperRentalsLangleyRoute: ProjectsCooperRentalsLangleyRoute,
