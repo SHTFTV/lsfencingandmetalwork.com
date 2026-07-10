@@ -249,7 +249,7 @@ function Post() {
 
         <RelatedPosts currentSlug={post.slug} />
       </article>
-      <CtaStrip />
+      
     </PageShell>
   );
 }
