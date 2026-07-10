@@ -1,33 +1,74 @@
 import type { BlogPost, FaqItem, LinkRef } from "@/lib/blog";
 import { CITIES, type CityFact } from "./cities";
 
-/**
- * Per-post hero image assignment. We generated a small set of on-brand
- * photos in /public/og/ and map cities to them by positioning and terrain
- * rather than one-off per-city renders — keeps every post visual without
- * ballooning image cost, and lets swapping in a real client photo later be
- * a one-line change.
- */
-const HERO = {
-  commercialPerimeter: "/og/blog-commercial-perimeter.jpg",
-  ornamentalStrata: "/og/blog-ornamental-strata.jpg",
-  cedarPrivacy: "/og/blog-cedar-privacy.jpg",
-  ruralAcreage: "/og/blog-rural-acreage.jpg",
-} as const;
+// Real gallery photos — each city post gets a unique one so no two cards
+// on /blog ever render the same hero image.
+import img8ftSecurity from "@/assets/gallery/8ft-galv-commercial-security.jpeg.asset.json";
+import imgHandrail from "@/assets/gallery/galvanized-handrail-driveway.jpeg.asset.json";
+import imgPerimeterBarb from "@/assets/gallery/galv-perimeter-barbwire.jpeg.asset.json";
+import imgCommercialGate from "@/assets/gallery/commercial-double-swing-gate.jpeg.asset.json";
+import imgHighSecurityFarm from "@/assets/gallery/high-security-cantilever-gate-farm.jpeg.asset.json";
+import imgCooperRentals from "@/assets/gallery/cooper-rentals-cantilever-langley.png.asset.json";
+import imgUtilityEnclosure from "@/assets/gallery/utility-equipment-enclosure.jpeg.asset.json";
+import imgShopWelding from "@/assets/gallery/shop-welding-kubota-fabrication.jpg.asset.json";
+import imgOrnamentalStorefront from "@/assets/gallery/ornamental-storefront-gate-abbotsford.jpg.asset.json";
+import imgKubotaExcavator from "@/assets/gallery/kubota-kx033-excavator-post-line.jpg.asset.json";
+import imgCantileverSlatGate from "@/assets/gallery/8x16-cantilever-slat-gate-abbotsford.jpg.asset.json";
+import img6ftBarb from "@/assets/gallery/6ft-galv-barb-abbotsford.jpeg.asset.json";
+import imgBaseballBackstop from "@/assets/gallery/baseball-backstop-fraser-valley.jpeg.asset.json";
+import imgBlackSchool from "@/assets/gallery/black-vinyl-school-surrey.png.asset.json";
+import img4ftGalv from "@/assets/gallery/4ft-galv-residential.jpeg.asset.json";
+import imgCustomCedar from "@/assets/gallery/custom-cedar-horizontal-slat.jpg.asset.json";
+import imgBlackHillside from "@/assets/gallery/black-chainlink-hillside-chilliwack.jpg.asset.json";
+import imgBlackPlayground from "@/assets/gallery/black-chainlink-playground.jpeg.asset.json";
+import imgBlackSlatMapleRidge from "@/assets/gallery/black-privacy-slat-chainlink-maple-ridge.jpg.asset.json";
+import imgOrnamentalChilliwack from "@/assets/gallery/ornamental-powdercoat-chilliwack.jpeg.asset.json";
+import imgTruckSkidsteer from "@/assets/gallery/ls-fencing-truck-skidsteer.jpeg.asset.json";
+import imgExcavation from "@/assets/gallery/excavation-post-drilling.jpeg.asset.json";
+
+const COMMERCIAL_POOL: string[] = [
+  img8ftSecurity.url,
+  imgCommercialGate.url,
+  imgPerimeterBarb.url,
+  imgHighSecurityFarm.url,
+  imgCooperRentals.url,
+  imgUtilityEnclosure.url,
+  imgHandrail.url,
+  imgOrnamentalStorefront.url,
+  imgCantileverSlatGate.url,
+  imgShopWelding.url,
+  imgKubotaExcavator.url,
+  img6ftBarb.url,
+  imgBaseballBackstop.url,
+  imgBlackSchool.url,
+];
+
+const RESIDENTIAL_POOL: string[] = [
+  imgCustomCedar.url,
+  img4ftGalv.url,
+  imgBlackSlatMapleRidge.url,
+  imgBlackHillside.url,
+  imgOrnamentalChilliwack.url,
+  imgBlackPlayground.url,
+  imgTruckSkidsteer.url,
+  imgExcavation.url,
+];
 
 /**
- * Hero image picker. We alternate by the city's index in the CITIES list so
- * adjacent cards in the 2-column blog grid never show the same photo — that
- * side-by-side repetition is what read as "duplicate images" on /blog.
+ * Deterministic unique-per-city hero image. We use the city's dense index
+ * within its own category (commercial vs residential) so each pool is
+ * consumed in order and no two city posts on /blog share a hero photo.
  */
 function pickCommercialImage(city: CityFact): string {
-  const i = CITIES.findIndex((c) => c.slug === city.slug);
-  return i % 2 === 0 ? HERO.commercialPerimeter : HERO.ornamentalStrata;
+  const commercial = CITIES.filter((c) => c.commercialFocus);
+  const i = Math.max(0, commercial.findIndex((c) => c.slug === city.slug));
+  return COMMERCIAL_POOL[i % COMMERCIAL_POOL.length];
 }
 
 function pickResidentialImage(city: CityFact): string {
-  const i = CITIES.findIndex((c) => c.slug === city.slug);
-  return i % 2 === 0 ? HERO.cedarPrivacy : HERO.ruralAcreage;
+  const residential = CITIES.filter((c) => !c.commercialFocus);
+  const i = Math.max(0, residential.findIndex((c) => c.slug === city.slug));
+  return RESIDENTIAL_POOL[i % RESIDENTIAL_POOL.length];
 }
 
 
