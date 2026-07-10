@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell, CtaStrip } from "@/components/PageShell";
 import { SERVICES, GEO_PAGES, SITE } from "@/lib/site";
-import { ArrowRight, Phone, ShieldCheck, Hammer, MapPin } from "lucide-react";
+import { ArrowRight, Phone, ShieldCheck, Hammer, MapPin, X, ZoomIn } from "lucide-react";
 import cantileverImg from "@/assets/gallery/8x16-cantilever-slat-gate-abbotsford.jpg.asset.json";
 import commercialImg from "@/assets/gallery/8ft-galv-commercial-security.jpeg.asset.json";
 import ornamentalImg from "@/assets/gallery/ornamental-powdercoat-chilliwack.jpeg.asset.json";
@@ -15,20 +15,107 @@ import weldingImg from "@/assets/gallery/shop-welding-kubota-fabrication.jpg.ass
 import excavationImg from "@/assets/gallery/kubota-kx033-excavator-post-line.jpg.asset.json";
 import snowImg from "@/assets/gallery/ls-fencing-truck-skidsteer.jpeg.asset.json";
 
-type Feature = { to: string; src: string; label: string; sub: string };
+type Feature = {
+  to: string;
+  src: string;
+  label: string;
+  sub: string;
+  alt: string;
+  title: string;
+};
+
+// Each service card image is verified against the linked service page.
 const FEATURES: Feature[] = [
-  { to: "/chain-link-fencing", src: chainlinkImg.url, label: "Chain Link Fencing", sub: "Chilliwack, BC" },
-  { to: "/commercial-chain-link-fencing", src: commercialImg.url, label: "Commercial Chain Link", sub: "8ft Galvanized" },
-  { to: "/residential-chain-link-fencing", src: residentialImg.url, label: "Residential Chain Link", sub: "4ft Galvanized" },
-  { to: "/cedar-fencing", src: cedarImg.url, label: "Cedar Fencing", sub: "Horizontal Slat" },
-  { to: "/ornamental-fencing", src: ornamentalImg.url, label: "Ornamental Fencing", sub: "Chilliwack, BC" },
-  { to: "/barrier-gates", src: barrierImg.url, label: "Barrier Gates & Rails", sub: "Galvanized" },
-  { to: "/metal-gates", src: metalGateImg.url, label: "Metal Gates", sub: "Abbotsford, BC" },
-  { to: "/welding-services", src: weldingImg.url, label: "Welding Services", sub: "Shop & On-Site" },
-  { to: "/excavation-services", src: excavationImg.url, label: "Excavation Services", sub: "Kubota KX033" },
-  { to: "/snow-removal", src: snowImg.url, label: "Snow Removal", sub: "Fraser Valley" },
-  { to: "/gallery", src: cantileverImg.url, label: "Cantilever Gates", sub: "Abbotsford, BC" },
+  {
+    to: "/chain-link-fencing",
+    src: chainlinkImg.url,
+    label: "Chain Link Fencing",
+    sub: "Chilliwack, BC",
+    alt: "Black vinyl-coated chain link fence installed along a rock-wall hillside acreage in Chilliwack BC by LS Fencing",
+    title: "Chain link fencing installation — Chilliwack, BC",
+  },
+  {
+    to: "/commercial-chain-link-fencing",
+    src: commercialImg.url,
+    label: "Commercial Chain Link",
+    sub: "8ft Galvanized",
+    alt: "8-foot galvanized chain link commercial security enclosure with covered top installed in the Fraser Valley",
+    title: "Commercial chain link security enclosure — Fraser Valley, BC",
+  },
+  {
+    to: "/residential-chain-link-fencing",
+    src: residentialImg.url,
+    label: "Residential Chain Link",
+    sub: "4ft Galvanized",
+    alt: "4-foot galvanized chain link residential yard fence with top rail installed in the Fraser Valley",
+    title: "Residential chain link fence — Fraser Valley, BC",
+  },
+  {
+    to: "/cedar-fencing",
+    src: cedarImg.url,
+    label: "Cedar Fencing",
+    sub: "Horizontal Slat",
+    alt: "Custom cedar privacy fence with horizontal slats along a stone-paver garden path in the Fraser Valley",
+    title: "Custom horizontal-slat cedar privacy fence — Fraser Valley, BC",
+  },
+  {
+    to: "/ornamental-fencing",
+    src: ornamentalImg.url,
+    label: "Ornamental Fencing",
+    sub: "Chilliwack, BC",
+    alt: "Black powder-coated ornamental steel fence panels next to a stone column in Chilliwack BC",
+    title: "Powder-coated ornamental steel fence — Chilliwack, BC",
+  },
+  {
+    to: "/barrier-gates",
+    src: barrierImg.url,
+    label: "Barrier Gates & Rails",
+    sub: "Maple Ridge, BC",
+    alt: "Galvanized pipe MMCD-spec handrail installed along an accessible driveway ramp in Maple Ridge BC",
+    title: "MMCD-spec galvanized handrail install — Maple Ridge, BC",
+  },
+  {
+    to: "/metal-gates",
+    src: metalGateImg.url,
+    label: "Metal Gates",
+    sub: "Abbotsford, BC",
+    alt: "Black powder-coated ornamental steel storefront swing gate outside an Abbotsford commercial building",
+    title: "Custom ornamental storefront metal gate — Abbotsford, BC",
+  },
+  {
+    to: "/welding-services",
+    src: weldingImg.url,
+    label: "Welding Services",
+    sub: "Shop & On-Site",
+    alt: "LS Fencing welder MIG welding a custom steel attachment on a Kubota skid steer inside the fabrication shop in Chilliwack",
+    title: "Custom in-shop welding and fabrication — Chilliwack, BC",
+  },
+  {
+    to: "/excavation-services",
+    src: excavationImg.url,
+    label: "Excavation Services",
+    sub: "Kubota KX033",
+    alt: "Operator running an orange Kubota KX033-4 mini excavator digging a fence post line in a rural Fraser Valley pasture",
+    title: "Excavation and post-line digging with Kubota KX033 — Fraser Valley, BC",
+  },
+  {
+    to: "/snow-removal",
+    src: snowImg.url,
+    label: "Snow Removal",
+    sub: "Fraser Valley",
+    alt: "LS Fencing service truck towing a trailer with a Kubota skid steer used for commercial snow removal in the Fraser Valley",
+    title: "Commercial snow removal fleet — Fraser Valley, BC",
+  },
+  {
+    to: "/gallery",
+    src: cantileverImg.url,
+    label: "Cantilever Gates",
+    sub: "Abbotsford, BC",
+    alt: "8-foot by 16-foot galvanized cantilever slide gate with grey privacy slats securing an Abbotsford industrial yard",
+    title: "8×16 cantilever slat gate install — Abbotsford, BC",
+  },
 ];
+
 
 
 
@@ -42,19 +129,32 @@ export const Route = createFileRoute("/")({
         content:
           "Chain link, cedar, ornamental fencing, custom metal gates, welding, excavation & snow removal across the Fraser Valley & Lower Mainland, BC.",
       },
-      { property: "og:title", content: "LS Fencing & Metal Work" },
-      { property: "og:description", content: "Fence, gate & metal fabrication crew serving the Fraser Valley." },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
+      { name: "googlebot", content: "index, follow, max-image-preview:large" },
+      { property: "og:title", content: "LS Fencing & Metal Work — Fence, Gate & Welding Contractor" },
+      { property: "og:description", content: "Fence, gate & metal fabrication crew serving the Fraser Valley & Lower Mainland, BC." },
       { property: "og:url", content: "/" },
+      { property: "og:type", content: "website" },
+      { property: "og:image", content: commercialImg.url },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "LS Fencing & Metal Work" },
+      { name: "twitter:description", content: "Fence, gate & metal fabrication crew serving the Fraser Valley." },
+      { name: "twitter:image", content: commercialImg.url },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [
+      { rel: "canonical", href: "/" },
+      { rel: "preload", as: "image", href: FEATURES[0].src, fetchpriority: "high" },
+    ],
   }),
   component: Home,
 });
+
 
 function Home() {
   const rotating = SERVICES.map((s) => s.label);
   const [idx, setIdx] = useState(0);
   const [featureStart, setFeatureStart] = useState(0);
+  const [lightbox, setLightbox] = useState<Feature | null>(null);
   useEffect(() => {
     const id = setInterval(() => setIdx((i) => (i + 1) % rotating.length), 2200);
     return () => clearInterval(id);
@@ -64,6 +164,23 @@ function Home() {
     return () => clearInterval(id);
   }, []);
   const visibleFeatures = Array.from({ length: 3 }, (_, i) => FEATURES[(featureStart + i) % FEATURES.length]);
+
+  const openLightbox = useCallback((f: Feature) => setLightbox(f), []);
+  const closeLightbox = useCallback(() => setLightbox(null), []);
+  useEffect(() => {
+    if (!lightbox) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeLightbox();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [lightbox, closeLightbox]);
+
 
 
   return (
@@ -150,34 +267,50 @@ function Home() {
           </Link>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {SERVICES.map((s) => {
+          {SERVICES.map((s, i) => {
             const img = FEATURES.find((f) => f.to === s.to);
             return (
-              <Link
+              <article
                 key={s.to}
-                to={s.to}
                 className="group relative overflow-hidden border border-border bg-card rounded-sm hover:border-primary transition aspect-[4/3]"
               >
                 {img && (
-                  <img
-                    src={img.src}
-                    alt={s.label}
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                  />
+                  <button
+                    type="button"
+                    onClick={() => openLightbox(img)}
+                    aria-label={`Preview full-size photo: ${img.title}`}
+                    title={img.title}
+                    className="absolute inset-0 w-full h-full focus:outline-none focus:ring-2 focus:ring-primary"
+                  >
+                    <SmartImage
+                      src={img.src}
+                      alt={img.alt}
+                      title={img.title}
+                      priority={i === 0}
+                      className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    />
+                    <span className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition inline-flex items-center gap-1 text-[10px] uppercase tracking-widest bg-primary text-primary-foreground px-2 py-1 rounded-sm">
+                      <ZoomIn className="h-3 w-3" /> Preview
+                    </span>
+                  </button>
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/10" />
-                <div className="relative h-full flex flex-col justify-end p-6">
-                  <Hammer className="h-5 w-5 text-primary mb-3" />
-                  <div className="flex items-center justify-between">
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/10" />
+                <Link
+                  to={s.to}
+                  className="absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between focus:outline-none focus:ring-2 focus:ring-primary"
+                  aria-label={`View ${s.label} service page`}
+                >
+                  <div>
+                    <Hammer className="h-5 w-5 text-primary mb-3" />
                     <div className="font-display uppercase text-lg">{s.label}</div>
-                    <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition" />
                   </div>
-                </div>
-              </Link>
+                  <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition" />
+                </Link>
+              </article>
             );
           })}
         </div>
+
 
       </section>
 
@@ -219,6 +352,81 @@ function Home() {
       </section>
 
       <CtaStrip />
+
+      {lightbox && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={lightbox.title}
+          onClick={closeLightbox}
+          className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200"
+        >
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); closeLightbox(); }}
+            aria-label="Close preview"
+            className="absolute top-4 right-4 h-10 w-10 flex items-center justify-center rounded-sm border border-border text-foreground/80 hover:text-foreground hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary transition"
+          >
+            <X className="h-5 w-5" />
+          </button>
+          <figure onClick={(e) => e.stopPropagation()} className="max-w-6xl w-full flex flex-col items-center gap-4">
+            <img
+              src={lightbox.src}
+              alt={lightbox.alt}
+              title={lightbox.title}
+              className="max-h-[80vh] w-auto max-w-full object-contain rounded-sm border border-border"
+            />
+            <figcaption className="text-center max-w-2xl">
+              <div className="text-xs uppercase tracking-[0.3em] text-primary">{lightbox.sub}</div>
+              <div className="font-display uppercase text-lg mt-1">{lightbox.label}</div>
+              <p className="text-sm text-muted-foreground mt-2">{lightbox.alt}</p>
+              <Link
+                to={lightbox.to}
+                onClick={closeLightbox}
+                className="mt-4 inline-flex items-center gap-2 border border-border px-5 py-2.5 uppercase text-xs font-semibold tracking-wide rounded-sm hover:bg-accent"
+              >
+                View {lightbox.label} <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </figcaption>
+          </figure>
+        </div>
+      )}
     </PageShell>
   );
 }
+
+function SmartImage({
+  src, alt, title, priority, className,
+}: {
+  src: string;
+  alt: string;
+  title?: string;
+  priority?: boolean;
+  className?: string;
+}) {
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <>
+      {!loaded && (
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-muted animate-pulse"
+        />
+      )}
+      <img
+        src={src}
+        alt={alt}
+        title={title}
+        width={1200}
+        height={900}
+        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+        loading={priority ? "eager" : "lazy"}
+        decoding="async"
+        {...(priority ? { fetchPriority: "high" as const } : {})}
+        onLoad={() => setLoaded(true)}
+        className={className}
+      />
+    </>
+  );
+}
+
