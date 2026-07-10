@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell, CtaStrip } from "@/components/PageShell";
 import { SERVICES, GEO_PAGES, SITE } from "@/lib/site";
@@ -5,6 +6,7 @@ import { ArrowRight, Phone, ShieldCheck, Hammer, MapPin } from "lucide-react";
 import cantileverImg from "@/assets/gallery/8x16-cantilever-slat-gate-abbotsford.jpg.asset.json";
 import commercialImg from "@/assets/gallery/8ft-galv-commercial-security.jpeg.asset.json";
 import ornamentalImg from "@/assets/gallery/ornamental-powdercoat-chilliwack.jpeg.asset.json";
+
 
 
 export const Route = createFileRoute("/")({
