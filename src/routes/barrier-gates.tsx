@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
 import { serviceJsonLd, type FaqItem } from "@/lib/service-schema";
+import heroImg from "@/assets/gallery/galvanized-handrail-driveway.jpeg.asset.json";
 
 const FAQ: FaqItem[] = [
   { q: "Do you supply MMCD-spec drawings?", a: "Yes — our barrier gates and handrails are fabricated to MMCD standards and we can supply shop drawings on request." },
