@@ -27,6 +27,7 @@ export function ServiceContent({
   related,
   swatch = "from-zinc-800 via-zinc-900 to-black",
   image,
+  priorityImage = false,
   children,
 }: ServiceContentProps) {
   return (
@@ -41,9 +42,10 @@ export function ServiceContent({
                 src={image.src}
                 alt={image.alt}
                 title={image.title ?? image.alt}
-                loading="lazy"
+                loading={priorityImage ? "eager" : "lazy"}
                 decoding="async"
                 sizes="(min-width: 1024px) 66vw, 100vw"
+                {...(priorityImage ? { fetchPriority: "high" as const } : {})}
                 className="absolute inset-0 h-full w-full object-cover"
               />
             ) : (
