@@ -143,7 +143,7 @@ function Post() {
             </p>
           </div>
 
-          </div>
+
           <div className="container-industrial py-10 md:py-14 max-w-3xl">
             <div className="flex flex-wrap gap-4 text-xs uppercase tracking-widest text-muted-foreground">
               <span className="flex items-center gap-1.5"><Calendar className="h-3 w-3" />{formatDate(post.date)}</span>
