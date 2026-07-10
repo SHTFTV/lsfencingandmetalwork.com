@@ -68,6 +68,7 @@ export const CITIES: CityFact[] = [
       { q: "What's the best fence material for Vancouver's rainy climate?", a: "Hot-dip galvanized (or black vinyl-coated) chain link and Western red cedar both handle Vancouver's rain and marine salt well. Avoid pressure-treated fence boards — they cup and check faster than cedar in a coastal climate." },
     ],
     ogImage: OG.wood,
+    commercialFocus: true,
   },
   {
     slug: "burnaby",
@@ -96,6 +97,7 @@ export const CITIES: CityFact[] = [
       { q: "Do you install commercial fencing in the Big Bend industrial area?", a: "Yes. Big Bend is one of our regular commercial areas — we install 8-foot galvanized chain link, barbed wire, cantilever gates, and equipment enclosures for industrial and warehouse clients across Burnaby." },
     ],
     ogImage: OG.best,
+    commercialFocus: true,
   },
   {
     slug: "surrey",
@@ -152,6 +154,7 @@ export const CITIES: CityFact[] = [
       { q: "How much does a fence cost in Richmond?", a: "Roughly $60–$95 per linear foot for a 6-ft cedar privacy fence installed, $45–$65 for black vinyl-coated chain link — about 5–10% above the Fraser Valley average to cover deeper posts and upgraded hardware." },
     ],
     ogImage: OG.best,
+    commercialFocus: true,
   },
   {
     slug: "coquitlam",
@@ -180,6 +183,7 @@ export const CITIES: CityFact[] = [
       { q: "How much does a stepped hillside fence cost in Coquitlam?", a: "Expect a 10–20% premium over a comparable flat-lot install. A stepped 6-ft cedar privacy fence typically runs $70–$100 per linear foot on Coquitlam hillside lots, versus $60–$85 on flat ground." },
     ],
     ogImage: OG.wood,
+    commercialFocus: true,
   },
   {
     slug: "port-coquitlam",
@@ -208,6 +212,7 @@ export const CITIES: CityFact[] = [
       { q: "How much does a cedar privacy fence cost in Port Coquitlam?", a: "$55–$85 per linear foot installed for a standard 6-ft cedar privacy fence in Port Coquitlam. Horizontal-slat modern styles run $85–$120 per linear foot. Gates price separately based on hardware and span." },
     ],
     ogImage: OG.best,
+    commercialFocus: true,
   },
   {
     slug: "port-moody",
@@ -236,6 +241,7 @@ export const CITIES: CityFact[] = [
       { q: "How much does a Heritage Mountain fence install cost?", a: "Sloped, shaded Heritage Mountain lots typically add 10–20% over a flat-ground install. Expect $70–$105 per linear foot for a stepped 6-ft cedar privacy fence, plus finishing." },
     ],
     ogImage: OG.wood,
+    commercialFocus: true,
   },
   {
     slug: "langley",
@@ -292,6 +298,7 @@ export const CITIES: CityFact[] = [
       { q: "Do you install ALR farm fencing in East Delta?", a: "Yes. Page-wire, high-tensile, and standard chain link for livestock and equipment containment across East Delta ALR properties. Long runs earn a per-foot discount." },
     ],
     ogImage: OG.gates,
+    commercialFocus: true,
   },
   {
     slug: "maple-ridge",
@@ -376,6 +383,7 @@ export const CITIES: CityFact[] = [
       { q: "Can you build a fence on a Queensborough lot?", a: "Yes. Queensborough is flat delta land like Richmond — high water table, softer soil, so we set posts to 36 inches minimum with hot-dip galvanized hardware to handle the wet conditions." },
     ],
     ogImage: OG.best,
+    commercialFocus: true,
   },
   {
     slug: "north-vancouver",
@@ -404,6 +412,7 @@ export const CITIES: CityFact[] = [
       { q: "How much does a stepped hillside fence cost in North Vancouver?", a: "Expect a 15–20% premium over a comparable flat-lot install. Stepped 6-ft cedar privacy fence typically runs $75–$110 per linear foot in North Vancouver, plus finishing." },
     ],
     ogImage: OG.wood,
+    commercialFocus: true,
   },
   {
     slug: "west-vancouver",
@@ -432,6 +441,7 @@ export const CITIES: CityFact[] = [
       { q: "How much does a West Vancouver ornamental entry gate cost?", a: "Custom ornamental swing driveway gates in West Vancouver typically start around $6,500–$12,000+ depending on span, design complexity, automation, and integration with existing stone or masonry. Every gate is a written quote based on drawings." },
     ],
     ogImage: OG.gates,
+    commercialFocus: true,
   },
   {
     slug: "white-rock",
@@ -460,6 +470,7 @@ export const CITIES: CityFact[] = [
       { q: "How much does an ornamental fence cost in White Rock?", a: "Ornamental steel picket runs $95–$150 per linear foot installed in White Rock. Custom hybrid designs — steel with mesh infill, or steel over a cedar base — price on drawings. Coastal hardware upgrades add a small per-foot premium." },
     ],
     ogImage: OG.gates,
+    commercialFocus: true,
   },
   {
     slug: "mission",
