@@ -157,6 +157,25 @@ const legacyPosts: BlogPost[] = [
 
 export const POSTS: BlogPost[] = [...buildCityPosts(), ...legacyPosts];
 
+/**
+ * Dev-time guard: fail loudly if two blog posts share the same hero
+ * image. Ensures each card on /blog renders a unique thumbnail.
+ */
+if (import.meta.env?.DEV) {
+  const seen = new Map<string, string>();
+  for (const p of POSTS) {
+    const key = getPostImage(p);
+    const other = seen.get(key);
+    if (other) {
+      // eslint-disable-next-line no-console
+      console.error(
+        `[blog] duplicate hero image "${key}" used by posts "${other}" and "${p.slug}". Assign a unique ogImage.`,
+      );
+    }
+    seen.set(key, p.slug);
+  }
+}
+
 export function getPost(slug: string) {
   return POSTS.find((p) => p.slug === slug);
 }
