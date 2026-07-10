@@ -18,7 +18,9 @@ export const Route = createFileRoute("/blog/$slug")({
       return { meta: [{ title: "Post not found" }, { name: "robots", content: "noindex" }] };
     }
     const url = absoluteUrl(`/blog/${params.slug}`);
-    const image = absoluteUrl(post.ogImage);
+    const image = absoluteUrl(getPostImage(post));
+    const imageAlt = getPostImageAlt(post);
+
 
     const articleLd = {
       "@context": "https://schema.org",
