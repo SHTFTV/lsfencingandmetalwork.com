@@ -33,15 +33,14 @@ function Blog() {
               className="group flex flex-col border border-border bg-card rounded-sm overflow-hidden hover:border-primary transition"
             >
               <div className="aspect-[1200/630] overflow-hidden bg-muted">
-                <img
-                  src={p.ogImage}
-                  alt={p.ogImageCaption ?? p.title}
-                  width={1200}
-                  height={630}
-                  loading={idx < 2 ? "eager" : "lazy"}
+                <BlogImage
+                  post={p}
+                  variant="thumb"
+                  eager={idx < 2}
                   className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
                 />
               </div>
+
               <div className="p-6 md:p-8">
                 <div className="flex flex-wrap items-center gap-4 text-xs uppercase tracking-widest text-muted-foreground">
                   <span className="flex items-center gap-1.5"><Calendar className="h-3 w-3" />{formatDate(p.date)}</span>
