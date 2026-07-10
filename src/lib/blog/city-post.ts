@@ -2,6 +2,46 @@ import type { BlogPost, FaqItem, LinkRef } from "@/lib/blog";
 import { CITIES, type CityFact } from "./cities";
 
 /**
+ * Per-post hero image assignment. We generated a small set of on-brand
+ * photos in /public/og/ and map cities to them by positioning and terrain
+ * rather than one-off per-city renders — keeps every post visual without
+ * ballooning image cost, and lets swapping in a real client photo later be
+ * a one-line change.
+ */
+const HERO = {
+  commercialPerimeter: "/og/blog-commercial-perimeter.jpg",
+  ornamentalStrata: "/og/blog-ornamental-strata.jpg",
+  cedarPrivacy: "/og/blog-cedar-privacy.jpg",
+  ruralAcreage: "/og/blog-rural-acreage.jpg",
+} as const;
+
+/** Upscale / strata-heavy commercial cities lean on the ornamental hero. */
+const ORNAMENTAL_COMMERCIAL = new Set([
+  "white-rock",
+  "north-vancouver",
+  "west-vancouver",
+  "new-westminster",
+]);
+
+/** Rural / acreage-heavy Fraser Valley cities lean on the rural hero. */
+const RURAL_RESIDENTIAL = new Set([
+  "surrey",
+  "langley",
+  "pitt-meadows",
+  "hope",
+  "mission",
+]);
+
+function pickCommercialImage(city: CityFact): string {
+  return ORNAMENTAL_COMMERCIAL.has(city.slug) ? HERO.ornamentalStrata : HERO.commercialPerimeter;
+}
+
+function pickResidentialImage(city: CityFact): string {
+  return RURAL_RESIDENTIAL.has(city.slug) ? HERO.ruralAcreage : HERO.cedarPrivacy;
+}
+
+
+/**
  * Assembles a ~2000-word city fencing guide from a CityFact record.
  * Prose alternates between shared industry knowledge and city-specific
  * facts (climate, terrain, neighbourhoods, bylaw, unique paragraphs, FAQ)
@@ -177,7 +217,7 @@ function buildPost(city: CityFact): BlogPost {
     date: "2026-07-10",
     readMinutes: 12,
     tags: ["City Guides", region, "Bylaws", "Costs"],
-    ogImage: city.ogImage,
+    ogImage: pickResidentialImage(city),
     ogImageCaption: `Fence installation in ${name}, BC by LS Fencing & Metal Work`,
     body,
     faq,
@@ -336,7 +376,7 @@ function buildCommercialPost(city: CityFact): BlogPost {
     date: "2026-07-10",
     readMinutes: 12,
     tags: ["Commercial", region, "Strata", "High-Security", "Welded Gates"],
-    ogImage: city.ogImage,
+    ogImage: pickCommercialImage(city),
     ogImageCaption: `Commercial fencing and welded gate installation in ${name}, BC by LS Fencing & Metal Work`,
     body,
     faq,
