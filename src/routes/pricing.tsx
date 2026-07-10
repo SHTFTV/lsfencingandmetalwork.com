@@ -19,6 +19,9 @@ function Page() {
   return (
     <PageShell>
       <PageHero eyebrow="Pricing" title="Straight-Up Pricing" intro="Transparent pricing ranges for chain link, cedar, ornamental fencing, gates and metal fabrication in BC." />
+      <section className="container-industrial pt-16 pb-0">
+        <h2 className="text-3xl font-semibold tracking-tight">How LS Fencing prices fence and gate work</h2>
+      </section>
       <StubBody />
       <CtaStrip />
     </PageShell>
