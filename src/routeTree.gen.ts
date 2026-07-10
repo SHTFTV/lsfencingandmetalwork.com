@@ -44,7 +44,6 @@ import { Route as CedarFencingRouteImport } from './routes/cedar-fencing'
 import { Route as CedarFencesRouteImport } from './routes/cedar-fences'
 import { Route as CareerRouteImport } from './routes/career'
 import { Route as CannabisFencingRouteImport } from './routes/cannabis-fencing'
-import { Route as BlogRouteImport } from './routes/blog'
 import { Route as BestFencingOptionsAndTheirQualitiesRouteImport } from './routes/best-fencing-options-and-their-qualities'
 import { Route as BenefitsOfBarrierGatesRouteImport } from './routes/benefits-of-barrier-gates'
 import { Route as BarrierGatesHandRailsRouteImport } from './routes/barrier-gates-hand-rails'
@@ -69,6 +68,7 @@ import { Route as Barrier_GatesDotphpRouteImport } from './routes/Barrier_Gates[
 import { Route as R10HighGalvanizedChainLinkFenceInstalledForHeatherbraeBuildersSurreyBcRouteImport } from './routes/10-high-galvanized-chain-link-fence-installed-for-heatherbrae-builders-surrey-bc'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as ProjectsRailingInstallationMapleRidgeRouteImport } from './routes/projects/railing-installation-maple-ridge'
 import { Route as ProjectsHeatherbraeBuildersSurreyRouteImport } from './routes/projects/heatherbrae-builders-surrey'
 import { Route as ProjectsCooperRentalsLangleyRouteImport } from './routes/projects/cooper-rentals-langley'
@@ -265,11 +265,6 @@ const CannabisFencingRoute = CannabisFencingRouteImport.update({
   path: '/cannabis-fencing',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BlogRoute = BlogRouteImport.update({
-  id: '/blog',
-  path: '/blog',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const BestFencingOptionsAndTheirQualitiesRoute =
   BestFencingOptionsAndTheirQualitiesRouteImport.update({
     id: '/best-fencing-options-and-their-qualities',
@@ -398,6 +393,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProjectsRailingInstallationMapleRidgeRoute =
   ProjectsRailingInstallationMapleRidgeRouteImport.update({
     id: '/projects/railing-installation-maple-ridge',
@@ -428,9 +428,9 @@ const LocationsSlugRoute = LocationsSlugRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => BlogRoute,
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAdminLeadsRoute = AuthenticatedAdminLeadsRouteImport.update({
   id: '/admin/leads',
@@ -491,7 +491,6 @@ export interface FileRoutesByFullPath {
   '/barrier-gates-hand-rails': typeof BarrierGatesHandRailsRoute
   '/benefits-of-barrier-gates': typeof BenefitsOfBarrierGatesRoute
   '/best-fencing-options-and-their-qualities': typeof BestFencingOptionsAndTheirQualitiesRoute
-  '/blog': typeof BlogRouteWithChildren
   '/cannabis-fencing': typeof CannabisFencingRoute
   '/career': typeof CareerRoute
   '/cedar-fences': typeof CedarFencesRoute
@@ -533,6 +532,7 @@ export interface FileRoutesByFullPath {
   '/projects/cooper-rentals-langley': typeof ProjectsCooperRentalsLangleyRoute
   '/projects/heatherbrae-builders-surrey': typeof ProjectsHeatherbraeBuildersSurreyRoute
   '/projects/railing-installation-maple-ridge': typeof ProjectsRailingInstallationMapleRidgeRoute
+  '/blog/': typeof BlogIndexRoute
   '/admin/gallery-leads': typeof AuthenticatedAdminGalleryLeadsRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/2016/06/07/best-fencing-options-qualities': typeof R20160607BestFencingOptionsQualitiesRoute
@@ -564,7 +564,6 @@ export interface FileRoutesByTo {
   '/barrier-gates-hand-rails': typeof BarrierGatesHandRailsRoute
   '/benefits-of-barrier-gates': typeof BenefitsOfBarrierGatesRoute
   '/best-fencing-options-and-their-qualities': typeof BestFencingOptionsAndTheirQualitiesRoute
-  '/blog': typeof BlogRouteWithChildren
   '/cannabis-fencing': typeof CannabisFencingRoute
   '/career': typeof CareerRoute
   '/cedar-fences': typeof CedarFencesRoute
@@ -606,6 +605,7 @@ export interface FileRoutesByTo {
   '/projects/cooper-rentals-langley': typeof ProjectsCooperRentalsLangleyRoute
   '/projects/heatherbrae-builders-surrey': typeof ProjectsHeatherbraeBuildersSurreyRoute
   '/projects/railing-installation-maple-ridge': typeof ProjectsRailingInstallationMapleRidgeRoute
+  '/blog': typeof BlogIndexRoute
   '/admin/gallery-leads': typeof AuthenticatedAdminGalleryLeadsRoute
   '/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/2016/06/07/best-fencing-options-qualities': typeof R20160607BestFencingOptionsQualitiesRoute
@@ -639,7 +639,6 @@ export interface FileRoutesById {
   '/barrier-gates-hand-rails': typeof BarrierGatesHandRailsRoute
   '/benefits-of-barrier-gates': typeof BenefitsOfBarrierGatesRoute
   '/best-fencing-options-and-their-qualities': typeof BestFencingOptionsAndTheirQualitiesRoute
-  '/blog': typeof BlogRouteWithChildren
   '/cannabis-fencing': typeof CannabisFencingRoute
   '/career': typeof CareerRoute
   '/cedar-fences': typeof CedarFencesRoute
@@ -681,6 +680,7 @@ export interface FileRoutesById {
   '/projects/cooper-rentals-langley': typeof ProjectsCooperRentalsLangleyRoute
   '/projects/heatherbrae-builders-surrey': typeof ProjectsHeatherbraeBuildersSurreyRoute
   '/projects/railing-installation-maple-ridge': typeof ProjectsRailingInstallationMapleRidgeRoute
+  '/blog/': typeof BlogIndexRoute
   '/_authenticated/admin/gallery-leads': typeof AuthenticatedAdminGalleryLeadsRoute
   '/_authenticated/admin/leads': typeof AuthenticatedAdminLeadsRoute
   '/2016/06/07/best-fencing-options-qualities': typeof R20160607BestFencingOptionsQualitiesRoute
@@ -714,7 +714,6 @@ export interface FileRouteTypes {
     | '/barrier-gates-hand-rails'
     | '/benefits-of-barrier-gates'
     | '/best-fencing-options-and-their-qualities'
-    | '/blog'
     | '/cannabis-fencing'
     | '/career'
     | '/cedar-fences'
@@ -756,6 +755,7 @@ export interface FileRouteTypes {
     | '/projects/cooper-rentals-langley'
     | '/projects/heatherbrae-builders-surrey'
     | '/projects/railing-installation-maple-ridge'
+    | '/blog/'
     | '/admin/gallery-leads'
     | '/admin/leads'
     | '/2016/06/07/best-fencing-options-qualities'
@@ -787,7 +787,6 @@ export interface FileRouteTypes {
     | '/barrier-gates-hand-rails'
     | '/benefits-of-barrier-gates'
     | '/best-fencing-options-and-their-qualities'
-    | '/blog'
     | '/cannabis-fencing'
     | '/career'
     | '/cedar-fences'
@@ -829,6 +828,7 @@ export interface FileRouteTypes {
     | '/projects/cooper-rentals-langley'
     | '/projects/heatherbrae-builders-surrey'
     | '/projects/railing-installation-maple-ridge'
+    | '/blog'
     | '/admin/gallery-leads'
     | '/admin/leads'
     | '/2016/06/07/best-fencing-options-qualities'
@@ -861,7 +861,6 @@ export interface FileRouteTypes {
     | '/barrier-gates-hand-rails'
     | '/benefits-of-barrier-gates'
     | '/best-fencing-options-and-their-qualities'
-    | '/blog'
     | '/cannabis-fencing'
     | '/career'
     | '/cedar-fences'
@@ -903,6 +902,7 @@ export interface FileRouteTypes {
     | '/projects/cooper-rentals-langley'
     | '/projects/heatherbrae-builders-surrey'
     | '/projects/railing-installation-maple-ridge'
+    | '/blog/'
     | '/_authenticated/admin/gallery-leads'
     | '/_authenticated/admin/leads'
     | '/2016/06/07/best-fencing-options-qualities'
@@ -936,7 +936,6 @@ export interface RootRouteChildren {
   BarrierGatesHandRailsRoute: typeof BarrierGatesHandRailsRoute
   BenefitsOfBarrierGatesRoute: typeof BenefitsOfBarrierGatesRoute
   BestFencingOptionsAndTheirQualitiesRoute: typeof BestFencingOptionsAndTheirQualitiesRoute
-  BlogRoute: typeof BlogRouteWithChildren
   CannabisFencingRoute: typeof CannabisFencingRoute
   CareerRoute: typeof CareerRoute
   CedarFencesRoute: typeof CedarFencesRoute
@@ -972,11 +971,13 @@ export interface RootRouteChildren {
   WeldingServicesRoute: typeof WeldingServicesRoute
   WereHiringApplyNowRoute: typeof WereHiringApplyNowRoute
   WhyYouShouldConsiderFencingAsAnOptionRoute: typeof WhyYouShouldConsiderFencingAsAnOptionRoute
+  BlogSlugRoute: typeof BlogSlugRoute
   LocationsSlugRoute: typeof LocationsSlugRoute
   ProjectsCantileverGatesChilliwackRoute: typeof ProjectsCantileverGatesChilliwackRoute
   ProjectsCooperRentalsLangleyRoute: typeof ProjectsCooperRentalsLangleyRoute
   ProjectsHeatherbraeBuildersSurreyRoute: typeof ProjectsHeatherbraeBuildersSurreyRoute
   ProjectsRailingInstallationMapleRidgeRoute: typeof ProjectsRailingInstallationMapleRidgeRoute
+  BlogIndexRoute: typeof BlogIndexRoute
   R20160607BestFencingOptionsQualitiesRoute: typeof R20160607BestFencingOptionsQualitiesRoute
   R20160607ConsiderFencingOptionRoute: typeof R20160607ConsiderFencingOptionRoute
   R20160607DifferencesChainLinkFenceWoodenFenceRoute: typeof R20160607DifferencesChainLinkFenceWoodenFenceRoute
@@ -1230,13 +1231,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CannabisFencingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blog': {
-      id: '/blog'
-      path: '/blog'
-      fullPath: '/blog'
-      preLoaderRoute: typeof BlogRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/best-fencing-options-and-their-qualities': {
       id: '/best-fencing-options-and-their-qualities'
       path: '/best-fencing-options-and-their-qualities'
@@ -1405,6 +1399,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projects/railing-installation-maple-ridge': {
       id: '/projects/railing-installation-maple-ridge'
       path: '/projects/railing-installation-maple-ridge'
@@ -1442,10 +1443,10 @@ declare module '@tanstack/react-router' {
     }
     '/blog/$slug': {
       id: '/blog/$slug'
-      path: '/$slug'
+      path: '/blog/$slug'
       fullPath: '/blog/$slug'
       preLoaderRoute: typeof BlogSlugRouteImport
-      parentRoute: typeof BlogRoute
+      parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin/leads': {
       id: '/_authenticated/admin/leads'
@@ -1505,16 +1506,6 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
 const AuthenticatedRouteRouteWithChildren =
   AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
-interface BlogRouteChildren {
-  BlogSlugRoute: typeof BlogSlugRoute
-}
-
-const BlogRouteChildren: BlogRouteChildren = {
-  BlogSlugRoute: BlogSlugRoute,
-}
-
-const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
@@ -1543,7 +1534,6 @@ const rootRouteChildren: RootRouteChildren = {
   BenefitsOfBarrierGatesRoute: BenefitsOfBarrierGatesRoute,
   BestFencingOptionsAndTheirQualitiesRoute:
     BestFencingOptionsAndTheirQualitiesRoute,
-  BlogRoute: BlogRouteWithChildren,
   CannabisFencingRoute: CannabisFencingRoute,
   CareerRoute: CareerRoute,
   CedarFencesRoute: CedarFencesRoute,
@@ -1584,6 +1574,7 @@ const rootRouteChildren: RootRouteChildren = {
   WereHiringApplyNowRoute: WereHiringApplyNowRoute,
   WhyYouShouldConsiderFencingAsAnOptionRoute:
     WhyYouShouldConsiderFencingAsAnOptionRoute,
+  BlogSlugRoute: BlogSlugRoute,
   LocationsSlugRoute: LocationsSlugRoute,
   ProjectsCantileverGatesChilliwackRoute:
     ProjectsCantileverGatesChilliwackRoute,
@@ -1592,6 +1583,7 @@ const rootRouteChildren: RootRouteChildren = {
     ProjectsHeatherbraeBuildersSurreyRoute,
   ProjectsRailingInstallationMapleRidgeRoute:
     ProjectsRailingInstallationMapleRidgeRoute,
+  BlogIndexRoute: BlogIndexRoute,
   R20160607BestFencingOptionsQualitiesRoute:
     R20160607BestFencingOptionsQualitiesRoute,
   R20160607ConsiderFencingOptionRoute: R20160607ConsiderFencingOptionRoute,
@@ -1602,3 +1594,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
