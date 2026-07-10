@@ -42,7 +42,7 @@ function Page() {
         intro="Premium western red cedar — cut on-site, spaced for airflow, and set on pressure-treated posts. Built to age gracefully in Fraser Valley rain."
       />
       <ServiceContent
-        swatch="from-amber-900 via-yellow-950 to-stone-950"
+        image={{ src: heroImg.url, alt: "Custom cedar privacy fence with horizontal slats along a stone-paver garden path in the Fraser Valley", title: "Custom horizontal-slat cedar privacy fence — Fraser Valley, BC", caption: "Horizontal Slat Cedar · Fraser Valley, BC" }}
         intro="Cedar is the classic BC privacy fence for good reason: naturally rot-resistant, dimensionally stable, and beautiful once it silvers. We build every panel with proper gap spacing, gravel drainage below the posts, and hidden or exposed fasteners depending on the look you want."
         highlights={[
           "1×6 rough or S4S western red cedar",
