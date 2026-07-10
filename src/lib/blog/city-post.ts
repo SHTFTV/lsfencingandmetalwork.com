@@ -26,32 +26,27 @@ import imgOrnamentalChilliwack from "@/assets/gallery/ornamental-powdercoat-chil
 import imgTruckSkidsteer from "@/assets/gallery/ls-fencing-truck-skidsteer.jpeg.asset.json";
 import imgExcavation from "@/assets/gallery/excavation-post-drilling.jpeg.asset.json";
 
+// City-page hero photos are restricted to real LS Fencing chain link work.
+// The gallery has plenty of chain link shots — commercial and residential —
+// so every city post still gets a unique hero without pulling in cedar,
+// ornamental, or shop photos.
 const COMMERCIAL_POOL: string[] = [
   img8ftSecurity.url,
-  imgCommercialGate.url,
   imgPerimeterBarb.url,
   imgHighSecurityFarm.url,
   imgCooperRentals.url,
-  imgUtilityEnclosure.url,
-  imgHandrail.url,
-  imgOrnamentalStorefront.url,
-  imgCantileverSlatGate.url,
-  imgShopWelding.url,
-  imgKubotaExcavator.url,
+  imgCommercialGate.url,
   img6ftBarb.url,
-  imgBaseballBackstop.url,
   imgBlackSchool.url,
+  imgCantileverSlatGate.url,
+  imgBaseballBackstop.url,
 ];
 
 const RESIDENTIAL_POOL: string[] = [
-  imgCustomCedar.url,
   img4ftGalv.url,
-  imgBlackSlatMapleRidge.url,
   imgBlackHillside.url,
-  imgOrnamentalChilliwack.url,
   imgBlackPlayground.url,
-  imgTruckSkidsteer.url,
-  imgExcavation.url,
+  imgBlackSlatMapleRidge.url,
 ];
 
 /**
