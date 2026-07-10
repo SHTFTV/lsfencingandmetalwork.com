@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
+import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { serviceHead, type FaqItem } from "@/lib/service-schema";
 import heroImg from "@/assets/gallery/kubota-kx033-excavator-post-line.jpg.asset.json";
 
@@ -68,7 +69,15 @@ function Page() {
           { to: "/cedar-fencing", label: "Cedar fencing" },
           { to: "/snow-removal", label: "Snow removal" },
         ]}
-      />
+      >
+        <ProjectShowcase
+          category="Excavation"
+          eyebrow="Excavation case studies"
+          title="Recent excavation work"
+          subtitle="Post-line dig, hydraulic auger, and mobile skid steer / mini-ex work across the Fraser Valley."
+          surface="service-excavation"
+        />
+      </ServiceContent>
       <CtaStrip />
     </PageShell>
   );

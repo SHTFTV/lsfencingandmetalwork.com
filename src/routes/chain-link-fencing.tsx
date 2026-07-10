@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
+import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { serviceHead, type FaqItem } from "@/lib/service-schema";
 import heroImg from "@/assets/gallery/black-chainlink-hillside-chilliwack.jpg.asset.json";
 
@@ -68,7 +69,15 @@ function Page() {
           { to: "/residential-chain-link-fencing", label: "Residential chain link" },
           { to: "/metal-gates", label: "Custom metal & cantilever gates" },
         ]}
-      />
+      >
+        <ProjectShowcase
+          category="Chain Link"
+          eyebrow="Chain link case studies"
+          title="Recent chain link installs"
+          subtitle="Residential, commercial and institutional runs across the Fraser Valley. Tap any tile for the full photo and a one-click quote request tied to that spec."
+          surface="service-chain-link"
+        />
+      </ServiceContent>
       <CtaStrip />
     </PageShell>
   );
