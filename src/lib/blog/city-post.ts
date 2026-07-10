@@ -15,29 +15,19 @@ const HERO = {
   ruralAcreage: "/og/blog-rural-acreage.jpg",
 } as const;
 
-/** Upscale / strata-heavy commercial cities lean on the ornamental hero. */
-const ORNAMENTAL_COMMERCIAL = new Set([
-  "white-rock",
-  "north-vancouver",
-  "west-vancouver",
-  "new-westminster",
-]);
-
-/** Rural / acreage-heavy Fraser Valley cities lean on the rural hero. */
-const RURAL_RESIDENTIAL = new Set([
-  "surrey",
-  "langley",
-  "pitt-meadows",
-  "hope",
-  "mission",
-]);
-
+/**
+ * Hero image picker. We alternate by the city's index in the CITIES list so
+ * adjacent cards in the 2-column blog grid never show the same photo — that
+ * side-by-side repetition is what read as "duplicate images" on /blog.
+ */
 function pickCommercialImage(city: CityFact): string {
-  return ORNAMENTAL_COMMERCIAL.has(city.slug) ? HERO.ornamentalStrata : HERO.commercialPerimeter;
+  const i = CITIES.findIndex((c) => c.slug === city.slug);
+  return i % 2 === 0 ? HERO.commercialPerimeter : HERO.ornamentalStrata;
 }
 
 function pickResidentialImage(city: CityFact): string {
-  return RURAL_RESIDENTIAL.has(city.slug) ? HERO.ruralAcreage : HERO.cedarPrivacy;
+  const i = CITIES.findIndex((c) => c.slug === city.slug);
+  return i % 2 === 0 ? HERO.cedarPrivacy : HERO.ruralAcreage;
 }
 
 
