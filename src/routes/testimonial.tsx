@@ -19,6 +19,9 @@ function Page() {
   return (
     <PageShell>
       <PageHero eyebrow="Testimonials" title="What Clients Say" intro="What Fraser Valley homeowners, builders and property managers say about working with LS Fencing." />
+      <section className="container-industrial pt-16 pb-0">
+        <h2 className="text-3xl font-semibold tracking-tight">Reviews from Fraser Valley homeowners and builders</h2>
+      </section>
       <StubBody />
       <CtaStrip />
     </PageShell>
