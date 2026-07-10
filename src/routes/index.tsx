@@ -352,6 +352,81 @@ function Home() {
       </section>
 
       <CtaStrip />
+
+      {lightbox && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={lightbox.title}
+          onClick={closeLightbox}
+          className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200"
+        >
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); closeLightbox(); }}
+            aria-label="Close preview"
+            className="absolute top-4 right-4 h-10 w-10 flex items-center justify-center rounded-sm border border-border text-foreground/80 hover:text-foreground hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary transition"
+          >
+            <X className="h-5 w-5" />
+          </button>
+          <figure onClick={(e) => e.stopPropagation()} className="max-w-6xl w-full flex flex-col items-center gap-4">
+            <img
+              src={lightbox.src}
+              alt={lightbox.alt}
+              title={lightbox.title}
+              className="max-h-[80vh] w-auto max-w-full object-contain rounded-sm border border-border"
+            />
+            <figcaption className="text-center max-w-2xl">
+              <div className="text-xs uppercase tracking-[0.3em] text-primary">{lightbox.sub}</div>
+              <div className="font-display uppercase text-lg mt-1">{lightbox.label}</div>
+              <p className="text-sm text-muted-foreground mt-2">{lightbox.alt}</p>
+              <Link
+                to={lightbox.to}
+                onClick={closeLightbox}
+                className="mt-4 inline-flex items-center gap-2 border border-border px-5 py-2.5 uppercase text-xs font-semibold tracking-wide rounded-sm hover:bg-accent"
+              >
+                View {lightbox.label} <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </figcaption>
+          </figure>
+        </div>
+      )}
     </PageShell>
   );
 }
+
+function SmartImage({
+  src, alt, title, priority, className,
+}: {
+  src: string;
+  alt: string;
+  title?: string;
+  priority?: boolean;
+  className?: string;
+}) {
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <>
+      {!loaded && (
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-muted animate-pulse"
+        />
+      )}
+      <img
+        src={src}
+        alt={alt}
+        title={title}
+        width={1200}
+        height={900}
+        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+        loading={priority ? "eager" : "lazy"}
+        decoding="async"
+        {...(priority ? { fetchPriority: "high" as const } : {})}
+        onLoad={() => setLoaded(true)}
+        className={className}
+      />
+    </>
+  );
+}
+
