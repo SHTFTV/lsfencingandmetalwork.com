@@ -123,7 +123,7 @@ export function StubBody({ points }: { points?: string[] }) {
           <div className="mt-5 pt-5 border-t border-border text-xs text-muted-foreground space-y-1">
             <div>· Fully insured & WCB covered</div>
             <div>· In-house welding shop</div>
-            <div>· Family-run since 2013</div>
+            <div>· Family-run since 2011</div>
             <div>· One-year workmanship warranty</div>
           </div>
         </aside>
