@@ -33,17 +33,15 @@ const INITIAL: GoogleReviewsSummary = {
  */
 export function ContactFloater() {
   const [visible, setVisible] = useState(true);
-  const [mobileOpen, setMobileOpen] = useState(false);
   const fetchReviews = useServerFn(getGoogleReviews);
 
   const { data: reviews } = useQuery({
     queryKey: ["google-reviews"],
     queryFn: () => fetchReviews(),
-    staleTime: 1000 * 60 * 60, // 1 hour
+    staleTime: 1000 * 60 * 60,
     initialData: INITIAL,
   });
 
-  // Dev-only console warning so devs know why the number isn't updating.
   useEffect(() => {
     if (!import.meta.env.DEV) return;
     if (reviews.status === "missing_config") {
@@ -56,14 +54,6 @@ export function ContactFloater() {
       console.warn(`[ContactFloater] Google Places fetch failed: ${reviews.message ?? "unknown error"}. Showing fallback.`);
     }
   }, [reviews.status, reviews.message]);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const mq = window.matchMedia("(min-width: 768px)");
-    const onChange = () => setMobileOpen(false);
-    mq.addEventListener?.("change", onChange);
-    return () => mq.removeEventListener?.("change", onChange);
-  }, []);
 
   if (!visible) return null;
 
@@ -78,44 +68,27 @@ export function ContactFloater() {
     return "empty" as const;
   });
 
-  const body = (dismissFn: () => void) => (
-    <FloaterBody
-      dismiss={dismissFn}
-      smsHref={smsHref}
-      rating={rating}
-      total={reviews.total}
-      stars={stars}
-      reviewsUrl={reviews.url}
-      status={reviews.status}
-      message={reviews.message}
-      breakdown={reviews.breakdown}
-    />
-  );
-
   return (
-    <>
-      <aside
-        aria-label="Contact LS Fencing"
-        data-testid="contact-floater"
-        className="fixed right-2 top-1/2 z-40 hidden -translate-y-1/2 w-[240px] rounded-2xl border border-border bg-background/95 shadow-2xl backdrop-blur supports-[backdrop-filter]:bg-background/80 md:block"
-      >
-        {body(dismiss)}
-      </aside>
-      <MobileTrigger open={mobileOpen} setOpen={setMobileOpen} />
-      {mobileOpen && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label="Contact LS Fencing"
-          className="fixed inset-x-0 bottom-0 z-50 rounded-t-2xl border-t border-border bg-background shadow-2xl md:hidden"
-          data-testid="contact-floater-sheet"
-        >
-          {body(() => setMobileOpen(false))}
-        </div>
-      )}
-    </>
+    <aside
+      aria-label="Contact LS Fencing"
+      data-testid="contact-floater"
+      className="fixed right-2 top-1/2 z-40 -translate-y-1/2 w-[230px] max-w-[calc(100vw-1rem)] rounded-2xl border border-border bg-background/95 shadow-2xl backdrop-blur supports-[backdrop-filter]:bg-background/80"
+    >
+      <FloaterBody
+        dismiss={dismiss}
+        smsHref={smsHref}
+        rating={rating}
+        total={reviews.total}
+        stars={stars}
+        reviewsUrl={reviews.url}
+        status={reviews.status}
+        message={reviews.message}
+        breakdown={reviews.breakdown}
+      />
+    </aside>
   );
 }
+
 
 type StarKind = "full" | "half" | "empty";
 
