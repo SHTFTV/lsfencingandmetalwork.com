@@ -24,6 +24,13 @@ export interface CityFact {
   costNote: string;
   faq: Array<{ q: string; a: string }>;
   ogImage: string;
+  /**
+   * When true, the generated post is positioned strictly around commercial,
+   * industrial, high-security, and strata perimeter work — plus in-house
+   * welded gates and hand rails. No residential backyard content. Used for
+   * cities outside our Fraser Valley residential service bubble.
+   */
+  commercialFocus?: boolean;
 }
 
 const OG = {
