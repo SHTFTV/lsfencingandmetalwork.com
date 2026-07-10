@@ -121,11 +121,27 @@ function Post() {
     <PageShell>
       <article>
         <header className="border-b border-border grid-lines">
-          <div className="container-industrial py-16 md:py-20 max-w-3xl">
+          <div className="container-industrial pt-10 md:pt-14 max-w-4xl">
             <Link to="/blog" className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-muted-foreground hover:text-primary">
               <ArrowLeft className="h-3 w-3" /> All posts
             </Link>
-            <div className="mt-6 flex flex-wrap gap-4 text-xs uppercase tracking-widest text-muted-foreground">
+          </div>
+          <div className="container-industrial mt-6 max-w-4xl">
+            <div className="aspect-[1200/630] overflow-hidden rounded-sm border border-border bg-muted">
+              <img
+                src={post.ogImage}
+                alt={post.ogImageCaption ?? post.title}
+                width={1200}
+                height={630}
+                className="w-full h-full object-cover"
+              />
+            </div>
+            {post.ogImageCaption && (
+              <p className="mt-2 text-xs text-muted-foreground italic">{post.ogImageCaption}</p>
+            )}
+          </div>
+          <div className="container-industrial py-10 md:py-14 max-w-3xl">
+            <div className="flex flex-wrap gap-4 text-xs uppercase tracking-widest text-muted-foreground">
               <span className="flex items-center gap-1.5"><Calendar className="h-3 w-3" />{formatDate(post.date)}</span>
               <span className="flex items-center gap-1.5"><Clock className="h-3 w-3" />{post.readMinutes} min read</span>
               <span className="flex gap-2 flex-wrap">{post.tags.map((t) => <span key={t} className="text-primary">{t}</span>)}</span>
