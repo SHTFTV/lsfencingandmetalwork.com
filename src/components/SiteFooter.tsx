@@ -1,6 +1,19 @@
 import { Link } from "@tanstack/react-router";
 import { SITE, SERVICES, GEO_PAGES, NAV_PRIMARY } from "@/lib/site";
 
+const LOCATION_PAGES: ReadonlyArray<{ slug: string; label: string }> = [
+  { slug: "chilliwack", label: "Chilliwack" },
+  { slug: "abbotsford", label: "Abbotsford" },
+  { slug: "langley", label: "Langley" },
+  { slug: "aldergrove", label: "Aldergrove" },
+  { slug: "surrey", label: "Surrey" },
+  { slug: "maple-ridge", label: "Maple Ridge" },
+  { slug: "pitt-meadows", label: "Pitt Meadows" },
+  { slug: "agassiz", label: "Agassiz" },
+  { slug: "harrison-hot-springs", label: "Harrison Hot Springs" },
+  { slug: "hope", label: "Hope" },
+];
+
 export function SiteFooter() {
   return (
     <footer className="mt-24 border-t border-border bg-steel">
