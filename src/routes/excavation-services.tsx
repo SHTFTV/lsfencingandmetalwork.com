@@ -42,7 +42,7 @@ function Page() {
         intro="Mini-excavator work for fence lines, post holes, drainage trenching, and site prep across the Fraser Valley."
       />
       <ServiceContent
-        swatch="from-yellow-900 via-neutral-900 to-black"
+        image={{ src: heroImg.url, alt: "Operator running an orange Kubota KX033-4 mini excavator digging a fence post line in a rural Fraser Valley pasture", title: "Excavation and post-line digging — Fraser Valley, BC", caption: "Kubota KX033 · Fraser Valley, BC" }}
         intro="Fencing usually starts with digging. We run a compact excavator so we can get onto tight residential lots, dig clean post holes on rocky ground, trench in drainage, and grade the fence line before the crew shows up."
         highlights={[
           "Mini-excavator (fits through 4-ft gates)",
