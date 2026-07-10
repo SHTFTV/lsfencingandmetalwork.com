@@ -160,3 +160,31 @@ export const POSTS: BlogPost[] = [...buildCityPosts(), ...legacyPosts];
 export function getPost(slug: string) {
   return POSTS.find((p) => p.slug === slug);
 }
+
+/** Safe fallback used when a post's ogImage is missing or fails to load. */
+export const DEFAULT_BLOG_IMAGE = "/og/blog-commercial-perimeter.jpg";
+
+/** Returns the post's OG image or the shared fallback. */
+export function getPostImage(post: Pick<BlogPost, "ogImage">): string {
+  const src = post.ogImage?.trim();
+  return src && src.length > 0 ? src : DEFAULT_BLOG_IMAGE;
+}
+
+/**
+ * Descriptive alt text for hero / thumbnail images. Falls back to a
+ * generated sentence using city + tags when no caption exists so screen
+ * readers and image search both get something meaningful.
+ */
+export function getPostImageAlt(
+  post: Pick<BlogPost, "ogImageCaption" | "title" | "cityName" | "region" | "tags">,
+): string {
+  if (post.ogImageCaption && post.ogImageCaption.trim().length > 0) {
+    return post.ogImageCaption;
+  }
+  const where = post.cityName
+    ? `${post.cityName}, BC`
+    : post.region ?? "the Fraser Valley";
+  const topic = post.tags?.[0]?.toLowerCase() ?? "fencing";
+  return `${post.title} — ${topic} project photo from LS Fencing & Metal Work in ${where}.`;
+}
+
