@@ -62,11 +62,20 @@ export function StubBody({ points }: { points?: string[] }) {
   return (
     <section className="container-industrial py-16">
       <div className="grid md:grid-cols-3 gap-6">
-        <div className="md:col-span-2 space-y-4 text-foreground/80 leading-relaxed">
+        <div className="md:col-span-2 space-y-4 text-foreground/85 leading-relaxed">
           <p>
-            Content injection pending. This page is wired into the site architecture,
-            SEO metadata, navigation, and design system — ready for real copy, photos,
-            specs, and project data.
+            LS Fencing & Metal Work is a family-run Fraser Valley contractor building
+            chain link, cedar, and ornamental fencing, barrier gates, metal hand rails,
+            custom driveway gates, and on-site welding across the Lower Mainland. One
+            crew, in-house fabrication, our own excavation kit — no subcontractors, no
+            surprises on the invoice.
+          </p>
+          <p>
+            Every quote is written on-site and itemized so you can compare it line-for-line
+            against anyone else. Galvanized and black vinyl-coated chain link, western red
+            cedar privacy fences, powder-coated ornamental steel, MMCD-spec handrails, and
+            fully welded custom gates — priced competitively and built to outlast the
+            catalogue installs the national crews drop on top of your grade.
           </p>
           {points && (
             <ul className="grid gap-2 pt-4">
@@ -77,12 +86,33 @@ export function StubBody({ points }: { points?: string[] }) {
               ))}
             </ul>
           )}
+          <div className="grid sm:grid-cols-2 gap-2 pt-6">
+            {[
+              { to: "/chain-link-fencing", label: "Chain Link Fencing" },
+              { to: "/cedar-fencing", label: "Cedar Fencing" },
+              { to: "/ornamental-fencing", label: "Ornamental Fencing" },
+              { to: "/barrier-gates", label: "Barrier Gates & Hand Rails" },
+              { to: "/metal-gates", label: "Custom Metal Gates" },
+              { to: "/welding-services", label: "Welding Services" },
+              { to: "/excavation-services", label: "Excavation & Post Drilling" },
+              { to: "/pricing", label: "Pricing Guide" },
+            ].map((l) => (
+              <a
+                key={l.to}
+                href={l.to}
+                className="block border border-border bg-card px-4 py-3 rounded-sm hover:border-primary transition text-sm"
+              >
+                {l.label}
+              </a>
+            ))}
+          </div>
         </div>
-        <aside className="border border-border rounded-sm p-6 bg-card">
-          <div className="text-xs uppercase tracking-widest text-primary">Fast quote</div>
+        <aside className="border border-border rounded-sm p-6 bg-card h-fit">
+          <div className="text-xs uppercase tracking-widest text-primary">Free quote</div>
           <div className="mt-1 font-display text-xl uppercase">Talk to the crew</div>
           <p className="mt-3 text-sm text-muted-foreground">
-            Same-day callback across the Fraser Valley & Lower Mainland.
+            Same-day callback across the Fraser Valley & Lower Mainland. On-site walk-through,
+            written itemized quote, no pressure sales.
           </p>
           <a href={SITE.phoneHref} className="mt-4 block text-center bg-primary text-primary-foreground py-3 uppercase text-sm font-semibold tracking-wide rounded-sm">
             {SITE.phone}
@@ -90,8 +120,15 @@ export function StubBody({ points }: { points?: string[] }) {
           <Link to="/contact" className="mt-2 block text-center border border-border py-3 uppercase text-xs font-semibold tracking-wide rounded-sm hover:bg-accent">
             Request Quote Form
           </Link>
+          <div className="mt-5 pt-5 border-t border-border text-xs text-muted-foreground space-y-1">
+            <div>· Fully insured & WCB covered</div>
+            <div>· In-house welding shop</div>
+            <div>· Family-run since 2013</div>
+            <div>· One-year workmanship warranty</div>
+          </div>
         </aside>
       </div>
     </section>
   );
 }
+
