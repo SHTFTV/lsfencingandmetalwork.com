@@ -90,6 +90,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: "LS Fencing & Metal Work" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "msapplication-TileColor", content: "#1a0000" },
+      { name: "msapplication-TileImage", content: "/mstile-150x150.png" },
+      { name: "msapplication-config", content: "/browserconfig.xml" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
