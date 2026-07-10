@@ -257,10 +257,11 @@ function Home() {
                   loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/40 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-4">
                   <div className="text-xs uppercase tracking-[0.3em] text-primary">{img.sub}</div>
-                  <div className="font-display uppercase text-lg mt-1">{img.label}</div>
+                  <div className="font-display uppercase text-lg mt-1 leading-tight">{img.label}</div>
+                  <p className="mt-1.5 text-xs text-muted-foreground leading-snug line-clamp-2">{img.desc}</p>
                 </div>
 
               </Link>
