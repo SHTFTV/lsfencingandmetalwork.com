@@ -42,7 +42,7 @@ function Page() {
         intro="Cantilever, swing, and slide driveway gates fabricated in-house — from privacy louvered panels to heavy industrial spans."
       />
       <ServiceContent
-        swatch="from-zinc-800 via-zinc-900 to-black"
+        image={{ src: heroImg.url, alt: "Black powder-coated ornamental steel storefront swing gate outside an Abbotsford commercial building", title: "Custom ornamental storefront metal gate — Abbotsford, BC", caption: "Custom Storefront Gate · Abbotsford, BC" }}
         intro="Every gate is welded to spec in our Chilliwack shop, then set on concrete-poured posts sized for the span. Whether you need a 6×24 cantilever for a truck yard or a matched double-swing for a rural driveway, we design the frame, order the fabric or infill, and install it as one turn-key job."
         highlights={[
           "Cantilever slide gates up to 40+ ft",
