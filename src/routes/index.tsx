@@ -4,6 +4,7 @@ import { PageShell, CtaStrip } from "@/components/PageShell";
 import { SERVICES, GEO_PAGES, SITE, absoluteUrl } from "@/lib/site";
 import { localBusinessScript } from "@/lib/service-schema";
 import { POSTS } from "@/lib/blog";
+import { trackNavClick } from "@/lib/analytics";
 import { ArrowRight, Phone, ShieldCheck, Hammer, MapPin, X, ZoomIn, Calendar } from "lucide-react";
 import cantileverImg from "@/assets/gallery/8x16-cantilever-slat-gate-abbotsford.jpg.asset.json";
 import commercialImg from "@/assets/gallery/8ft-galv-commercial-security.jpeg.asset.json";
