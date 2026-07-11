@@ -105,8 +105,34 @@ export function trackNavClick(event: Omit<NavClickEvent, "name">) {
   emit({ name: "nav_click", ...event });
 }
 
+/**
+ * Track a click on the persistent ContactFloater. Auto-attaches viewport
+ * width/height/dpr and a coarse device bucket so responsive issues are
+ * debuggable from the analytics stream.
+ */
+export function trackFloaterClick(
+  event: Omit<FloaterAnalyticsEvent, "name" | "viewport_width" | "viewport_height" | "dpr" | "device" | "from">,
+) {
+  if (typeof window === "undefined") {
+    emit({ name: "floater_action_click", device: "desktop", ...event });
+    return;
+  }
+  const w = window.innerWidth;
+  const device: FloaterAction extends never ? never : "mobile" | "tablet" | "desktop" =
+    w < 640 ? "mobile" : w < 1024 ? "tablet" : "desktop";
+  emit({
+    name: "floater_action_click",
+    viewport_width: w,
+    viewport_height: window.innerHeight,
+    dpr: window.devicePixelRatio,
+    device,
+    from: window.location.pathname,
+    ...event,
+  });
+}
 
-function emit(event: QuoteAnalyticsEvent | GalleryAnalyticsEvent | NavClickEvent) {
+
+function emit(event: QuoteAnalyticsEvent | GalleryAnalyticsEvent | NavClickEvent | FloaterAnalyticsEvent) {
   if (typeof window === "undefined") return;
   const payload = { ...event, event: event.name, ts: Date.now() };
   try {
