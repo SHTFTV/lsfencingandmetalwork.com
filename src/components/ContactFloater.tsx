@@ -11,6 +11,7 @@ import {
   AlertTriangle,
 } from "lucide-react";
 import { SITE } from "@/lib/site";
+import { trackFloaterClick } from "@/lib/analytics";
 import {
   getGoogleReviews,
   type GoogleReviewsSummary,
