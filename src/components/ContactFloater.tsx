@@ -198,6 +198,7 @@ function FloaterBody({
       <div className="flex flex-col gap-1.5 px-3 pb-3">
         <a
           href={SITE.phoneHref}
+          onClick={() => trackFloaterClick({ action: "call", to: SITE.phoneHref })}
           aria-label={`Call LS Fencing at ${SITE.phone}`}
           className={`group inline-flex items-center gap-2.5 rounded-lg bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 ${focusRing}`}
         >
@@ -210,6 +211,7 @@ function FloaterBody({
 
         <a
           href={smsHref}
+          onClick={() => trackFloaterClick({ action: "text", to: smsHref })}
           aria-label={`Text LS Fencing at ${SITE.phone}`}
           className={`group inline-flex items-center gap-2.5 rounded-lg border border-border bg-background px-3 py-2 text-sm font-semibold text-foreground hover:bg-muted ${focusRing}`}
         >
@@ -222,6 +224,7 @@ function FloaterBody({
 
         <a
           href={SITE.emailHref}
+          onClick={() => trackFloaterClick({ action: "email", to: SITE.emailHref })}
           aria-label={`Email LS Fencing at ${SITE.email}`}
           className={`group inline-flex items-center gap-2.5 rounded-lg border border-border bg-background px-3 py-2 text-xs font-medium text-foreground hover:bg-muted ${focusRing}`}
         >
