@@ -11,6 +11,7 @@ import {
   AlertTriangle,
 } from "lucide-react";
 import { SITE } from "@/lib/site";
+import { trackFloaterClick } from "@/lib/analytics";
 import {
   getGoogleReviews,
   type GoogleReviewsSummary,
@@ -55,9 +56,26 @@ export function ContactFloater() {
     }
   }, [reviews.status, reviews.message]);
 
+  // Escape key dismisses — matches native dialog/menu keyboard expectations
+  // and helps keyboard/screen-reader users who land on the floater on mobile.
+  useEffect(() => {
+    if (!visible) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setVisible(false);
+        trackFloaterClick({ action: "dismiss", to: "keyboard:escape" });
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [visible]);
+
   if (!visible) return null;
 
-  const dismiss = () => setVisible(false);
+  const dismiss = () => {
+    trackFloaterClick({ action: "dismiss" });
+    setVisible(false);
+  };
   const smsHref = `sms:${SITE.phoneHref.replace("tel:", "")}`;
   const rating = reviews.rating.toFixed(1);
 
@@ -180,6 +198,7 @@ function FloaterBody({
       <div className="flex flex-col gap-1.5 px-3 pb-3">
         <a
           href={SITE.phoneHref}
+          onClick={() => trackFloaterClick({ action: "call", to: SITE.phoneHref })}
           aria-label={`Call LS Fencing at ${SITE.phone}`}
           className={`group inline-flex items-center gap-2.5 rounded-lg bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 ${focusRing}`}
         >
@@ -192,6 +211,7 @@ function FloaterBody({
 
         <a
           href={smsHref}
+          onClick={() => trackFloaterClick({ action: "text", to: smsHref })}
           aria-label={`Text LS Fencing at ${SITE.phone}`}
           className={`group inline-flex items-center gap-2.5 rounded-lg border border-border bg-background px-3 py-2 text-sm font-semibold text-foreground hover:bg-muted ${focusRing}`}
         >
@@ -204,6 +224,7 @@ function FloaterBody({
 
         <a
           href={SITE.emailHref}
+          onClick={() => trackFloaterClick({ action: "email", to: SITE.emailHref })}
           aria-label={`Email LS Fencing at ${SITE.email}`}
           className={`group inline-flex items-center gap-2.5 rounded-lg border border-border bg-background px-3 py-2 text-xs font-medium text-foreground hover:bg-muted ${focusRing}`}
         >
@@ -281,6 +302,7 @@ function FloaterBody({
             href={reviewsUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackFloaterClick({ action: "reviews", to: reviewsUrl })}
             aria-label={`Read all ${total} Google reviews (opens in a new tab)`}
             className={`mt-2 inline-flex w-full items-center justify-center gap-1.5 rounded-md bg-foreground px-2.5 py-1.5 text-[11px] font-semibold text-background hover:bg-foreground/90 ${focusRing}`}
           >
