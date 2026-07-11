@@ -302,6 +302,7 @@ function FloaterBody({
             href={reviewsUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackFloaterClick({ action: "reviews", to: reviewsUrl })}
             aria-label={`Read all ${total} Google reviews (opens in a new tab)`}
             className={`mt-2 inline-flex w-full items-center justify-center gap-1.5 rounded-md bg-foreground px-2.5 py-1.5 text-[11px] font-semibold text-background hover:bg-foreground/90 ${focusRing}`}
           >
