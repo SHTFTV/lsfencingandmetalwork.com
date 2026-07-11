@@ -56,9 +56,26 @@ export function ContactFloater() {
     }
   }, [reviews.status, reviews.message]);
 
+  // Escape key dismisses — matches native dialog/menu keyboard expectations
+  // and helps keyboard/screen-reader users who land on the floater on mobile.
+  useEffect(() => {
+    if (!visible) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setVisible(false);
+        trackFloaterClick({ action: "dismiss", to: "keyboard:escape" });
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [visible]);
+
   if (!visible) return null;
 
-  const dismiss = () => setVisible(false);
+  const dismiss = () => {
+    trackFloaterClick({ action: "dismiss" });
+    setVisible(false);
+  };
   const smsHref = `sms:${SITE.phoneHref.replace("tel:", "")}`;
   const rating = reviews.rating.toFixed(1);
 
