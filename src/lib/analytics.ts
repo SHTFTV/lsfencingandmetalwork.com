@@ -52,6 +52,25 @@ export type NavClickEvent = {
   utm_content?: string;
 };
 
+export type FloaterAction = "call" | "text" | "email" | "reviews" | "dismiss";
+
+export type FloaterAnalyticsEvent = {
+  name: "floater_action_click";
+  action: FloaterAction;
+  /** Destination URL/href when applicable (tel:, sms:, mailto:, https://). */
+  to?: string;
+  /** Viewport width at click time — helpful for debugging responsive issues. */
+  viewport_width?: number;
+  /** Viewport height at click time. */
+  viewport_height?: number;
+  /** Device pixel ratio. */
+  dpr?: number;
+  /** Coarse device bucket derived from viewport width. */
+  device: "mobile" | "tablet" | "desktop";
+  /** Page path the click was made from. */
+  from?: string;
+};
+
 export type UtmParams = {
   utm_source: string;
   utm_medium: string;
