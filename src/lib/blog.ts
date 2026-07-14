@@ -297,6 +297,7 @@ const legacyPosts: BlogPost[] = [
         "Corner and terminal assemblies: welded in our shop, not tension-banded — welded assemblies do not loosen over time and are the industry standard for cannabis LP and airport-adjacent work.",
       ] },
 
+      { type: "image", src: "/__l5e/assets-v1/2b9a8635-6b4c-46df-b729-f43837eb79c9/ornamental-storefront-gate-abbotsford.jpg", alt: "Powder-coated ornamental metal storefront gate installed on a commercial property in Abbotsford, BC by LS Fencing & Metal Work.", caption: "In-house welded ornamental storefront gate — Abbotsford commercial retail install.", focusKeyword: "commercial fence Abbotsford" },
       { type: "h2", text: "Gates we fabricate for Abbotsford commercial clients" },
       { type: "p", text: "Every gate on our jobs is welded in our Chilliwack shop, hot-dip galvanized, and delivered to the site ready to hang. We do not order pre-fab residential gates for commercial perimeters — the hinges fail and the frames rack within a few years of daily use." },
       { type: "ul", items: [
