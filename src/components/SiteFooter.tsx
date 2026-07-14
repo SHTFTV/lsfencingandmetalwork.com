@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { SITE, SERVICES, NAV_PRIMARY } from "@/lib/site";
 
+const SMS_HREF = `sms:${SITE.phoneHref.replace("tel:", "")}`;
+
 
 const LOCATION_PAGES: ReadonlyArray<{ slug: string; label: string }> = [
   { slug: "chilliwack", label: "Chilliwack" },
@@ -23,7 +25,10 @@ export function SiteFooter() {
           <div className="font-display text-xl uppercase">{SITE.name}</div>
           <p className="mt-3 text-sm text-muted-foreground">{SITE.tagline}</p>
           <div className="mt-4 text-sm">
-            <a href={SITE.phoneHref} className="block text-primary font-semibold">{SITE.phone}</a>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+              <a href={SITE.phoneHref} className="text-primary font-semibold" aria-label={`Call LS Fencing at ${SITE.phone}`}>Call {SITE.phone}</a>
+              <a href={SMS_HREF} className="text-primary font-semibold underline-offset-2 hover:underline" aria-label={`Text LS Fencing at ${SITE.phone}`}>Text {SITE.phone}</a>
+            </div>
             <a href={SITE.emailHref} className="block text-muted-foreground break-all">{SITE.email}</a>
             <div className="mt-2 text-xs uppercase tracking-widest text-muted-foreground">{SITE.territory}</div>
           </div>
