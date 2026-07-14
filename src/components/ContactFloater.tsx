@@ -152,6 +152,7 @@ function BreakdownBar({ label, count, max }: { label: string; count: number; max
 function FloaterBody({
   dismiss,
   smsHref,
+  smsNumber,
   rating,
   total,
   stars,
@@ -162,6 +163,7 @@ function FloaterBody({
 }: {
   dismiss: () => void;
   smsHref: string;
+  smsNumber: string;
   rating: string;
   total: number;
   stars: StarKind[];
