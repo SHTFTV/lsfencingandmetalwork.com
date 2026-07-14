@@ -76,7 +76,8 @@ export function ContactFloater() {
     trackFloaterClick({ action: "dismiss" });
     setVisible(false);
   };
-  const smsHref = `sms:${SITE.phoneHref.replace("tel:", "")}`;
+  const smsNumber = "604-808-7496";
+  const smsHref = `sms:+16048087496`;
   const rating = reviews.rating.toFixed(1);
 
   const stars = Array.from({ length: 5 }, (_, i) => {
@@ -95,6 +96,7 @@ export function ContactFloater() {
       <FloaterBody
         dismiss={dismiss}
         smsHref={smsHref}
+        smsNumber={smsNumber}
         rating={rating}
         total={reviews.total}
         stars={stars}
@@ -150,6 +152,7 @@ function BreakdownBar({ label, count, max }: { label: string; count: number; max
 function FloaterBody({
   dismiss,
   smsHref,
+  smsNumber,
   rating,
   total,
   stars,
@@ -160,6 +163,7 @@ function FloaterBody({
 }: {
   dismiss: () => void;
   smsHref: string;
+  smsNumber: string;
   rating: string;
   total: number;
   stars: StarKind[];
@@ -212,13 +216,13 @@ function FloaterBody({
         <a
           href={smsHref}
           onClick={() => trackFloaterClick({ action: "text", to: smsHref })}
-          aria-label={`Text LS Fencing at ${SITE.phone}`}
+          aria-label={`Text LS Fencing at ${smsNumber}`}
           className={`group inline-flex items-center gap-2.5 rounded-lg border border-border bg-background px-3 py-2 text-sm font-semibold text-foreground hover:bg-muted ${focusRing}`}
         >
           <MessageSquare className="h-4 w-4 shrink-0" aria-hidden="true" />
           <span className="flex min-w-0 flex-col leading-tight">
             <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">Text</span>
-            <span className="truncate">{SITE.phone}</span>
+            <span className="truncate">{smsNumber}</span>
           </span>
         </a>
 
