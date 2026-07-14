@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { SITE, SERVICES, NAV_PRIMARY } from "@/lib/site";
 
+const SMS_HREF = `sms:${SITE.phoneHref.replace("tel:", "")}`;
+
 
 const LOCATION_PAGES: ReadonlyArray<{ slug: string; label: string }> = [
   { slug: "chilliwack", label: "Chilliwack" },
