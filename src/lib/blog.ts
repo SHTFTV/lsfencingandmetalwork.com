@@ -30,6 +30,7 @@ export interface BlogPost {
     | { type: "h3"; text: string }
     | { type: "ul"; items: string[] }
     | { type: "quote"; text: string }
+    | { type: "image"; src: string; alt: string; caption?: string; focusKeyword?: string }
   >;
   /** Answer-Engine / voice / AI-Overview friendly Q&A. Rendered as <dl> and emitted as FAQPage JSON-LD. */
   faq?: FaqItem[];
