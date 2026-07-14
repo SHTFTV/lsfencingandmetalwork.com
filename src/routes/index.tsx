@@ -219,7 +219,7 @@ function Home() {
       <section className="relative border-b border-border grid-lines overflow-hidden">
         <div className="container-industrial py-20 md:py-32 relative">
           <div className="text-xs uppercase tracking-[0.3em] text-primary mb-5">
-            Fraser Valley · Lower Mainland · Since 2010
+            Fraser Valley · Lower Mainland · Since 2011
           </div>
           <h1 className="font-display text-5xl md:text-7xl uppercase max-w-5xl leading-[0.95]">
             <span
