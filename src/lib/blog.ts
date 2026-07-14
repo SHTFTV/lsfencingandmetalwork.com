@@ -30,6 +30,7 @@ export interface BlogPost {
     | { type: "h3"; text: string }
     | { type: "ul"; items: string[] }
     | { type: "quote"; text: string }
+    | { type: "image"; src: string; alt: string; caption?: string; focusKeyword?: string }
   >;
   /** Answer-Engine / voice / AI-Overview friendly Q&A. Rendered as <dl> and emitted as FAQPage JSON-LD. */
   faq?: FaqItem[];
@@ -296,6 +297,7 @@ const legacyPosts: BlogPost[] = [
         "Corner and terminal assemblies: welded in our shop, not tension-banded — welded assemblies do not loosen over time and are the industry standard for cannabis LP and airport-adjacent work.",
       ] },
 
+      { type: "image", src: "/__l5e/assets-v1/2b9a8635-6b4c-46df-b729-f43837eb79c9/ornamental-storefront-gate-abbotsford.jpg", alt: "Powder-coated ornamental metal storefront gate installed on a commercial property in Abbotsford, BC by LS Fencing & Metal Work.", caption: "In-house welded ornamental storefront gate — Abbotsford commercial retail install.", focusKeyword: "commercial fence Abbotsford" },
       { type: "h2", text: "Gates we fabricate for Abbotsford commercial clients" },
       { type: "p", text: "Every gate on our jobs is welded in our Chilliwack shop, hot-dip galvanized, and delivered to the site ready to hang. We do not order pre-fab residential gates for commercial perimeters — the hinges fail and the frames rack within a few years of daily use." },
       { type: "ul", items: [
@@ -320,6 +322,7 @@ const legacyPosts: BlogPost[] = [
       ] },
       { type: "p", text: "For a written quote based on your actual property, book a site visit — a five-minute walk-through gives us everything we need to price the job accurately. We do not quote sight-unseen off aerial imagery on commercial work; the details that move the price live at the site." },
 
+      { type: "image", src: "/__l5e/assets-v1/2f7eb8fd-87ac-4852-8a6c-01597275ee9f/8x16-cantilever-slat-gate-abbotsford.jpg", alt: "8 by 16 foot galvanized chain link cantilever slide gate with privacy slats installed on an Abbotsford industrial site by LS Fencing & Metal Work.", caption: "8×16 galvanized chain link cantilever slide gate with privacy slats — Abbotsford industrial perimeter.", focusKeyword: "chain link fencing Abbotsford BC" },
       { type: "h2", text: "Neighbourhoods and industrial areas we work in most" },
       { type: "p", text: "Every neighbourhood in Abbotsford has its own fencing rhythm. What we install and why, by area:" },
       { type: "ul", items: [
