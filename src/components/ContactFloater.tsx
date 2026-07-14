@@ -96,6 +96,7 @@ export function ContactFloater() {
       <FloaterBody
         dismiss={dismiss}
         smsHref={smsHref}
+        smsNumber={smsNumber}
         rating={rating}
         total={reviews.total}
         stars={stars}
