@@ -322,6 +322,7 @@ const legacyPosts: BlogPost[] = [
       ] },
       { type: "p", text: "For a written quote based on your actual property, book a site visit — a five-minute walk-through gives us everything we need to price the job accurately. We do not quote sight-unseen off aerial imagery on commercial work; the details that move the price live at the site." },
 
+      { type: "image", src: "/__l5e/assets-v1/2f7eb8fd-87ac-4852-8a6c-01597275ee9f/8x16-cantilever-slat-gate-abbotsford.jpg", alt: "8 by 16 foot galvanized chain link cantilever slide gate with privacy slats installed on an Abbotsford industrial site by LS Fencing & Metal Work.", caption: "8×16 galvanized chain link cantilever slide gate with privacy slats — Abbotsford industrial perimeter.", focusKeyword: "chain link fencing Abbotsford BC" },
       { type: "h2", text: "Neighbourhoods and industrial areas we work in most" },
       { type: "p", text: "Every neighbourhood in Abbotsford has its own fencing rhythm. What we install and why, by area:" },
       { type: "ul", items: [
