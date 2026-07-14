@@ -189,6 +189,26 @@ function Post() {
                   );
                 case "quote":
                   return <blockquote key={i} className="border-l-4 border-primary pl-6 py-2 text-xl font-display uppercase text-foreground/90">"{block.text}"</blockquote>;
+                case "image":
+                  return (
+                    <figure key={i} className="my-8">
+                      <div className="aspect-[1200/630] overflow-hidden rounded-sm border border-border bg-muted">
+                        <img
+                          src={block.src}
+                          alt={block.alt}
+                          width={1200}
+                          height={630}
+                          loading="lazy"
+                          decoding="async"
+                          data-focus-keyword={block.focusKeyword}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      {block.caption && (
+                        <figcaption className="mt-2 text-xs text-muted-foreground italic">{block.caption}</figcaption>
+                      )}
+                    </figure>
+                  );
               }
             })}
           </div>
