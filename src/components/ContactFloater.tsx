@@ -76,7 +76,8 @@ export function ContactFloater() {
     trackFloaterClick({ action: "dismiss" });
     setVisible(false);
   };
-  const smsHref = `sms:${SITE.phoneHref.replace("tel:", "")}`;
+  const smsNumber = "604-808-7496";
+  const smsHref = `sms:+16048087496`;
   const rating = reviews.rating.toFixed(1);
 
   const stars = Array.from({ length: 5 }, (_, i) => {
