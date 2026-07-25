@@ -161,9 +161,9 @@ const legacyPosts: BlogPost[] = [
       "Aluminum vs ornamental steel fencing for Chilliwack, Abbotsford, and Metro Vancouver — cost, durability, maintenance, and which one actually holds up in Fraser Valley weather.",
     date: "2026-07-10",
     readMinutes: 7,
-    ogImage: "/og/blog-aluminum-vs-ornamental-steel.jpg",
+    ogImage: "/__l5e/assets-v1/6167cad4-4634-4014-94f1-cc1c3dca39c7/ornamental-iron-gate-greenhouse-abbotsford.jpg",
     ogImageCaption:
-      "Aluminum picket fence next to a powder-coated ornamental steel fence in a Fraser Valley yard.",
+      "Black ornamental iron swing gate with spear-top pickets and matching perimeter fence at an Abbotsford commercial greenhouse operation.",
     tags: ["Comparison", "Ornamental", "Aluminum"],
     keyTakeaways: [
       "Aluminum is lighter, cheaper up-front, and never rusts — the low-maintenance pick.",
