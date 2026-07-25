@@ -173,6 +173,7 @@ const legacyPosts: BlogPost[] = [
     ],
     body: [
       { type: "p", text: "Nine out of ten homeowners in Chilliwack and Abbotsford asking about a decorative metal fence are choosing between two materials: pressed aluminum and powder-coated ornamental steel. They look similar from the street. They perform very differently once you factor in cost, weight, security, and how they age in the Fraser Valley climate." },
+      { type: "image", src: "/__l5e/assets-v1/6167cad4-4634-4014-94f1-cc1c3dca39c7/ornamental-iron-gate-greenhouse-abbotsford.jpg", alt: "Black ornamental iron swing gate with spear-top pickets and matching perimeter fence securing a commercial greenhouse operation in Abbotsford BC", caption: "Powder-coated ornamental iron swing gate and matching perimeter fence — Abbotsford, BC greenhouse operation.", focusKeyword: "ornamental iron gate Abbotsford" },
       { type: "h2", text: "Quick comparison" },
       { type: "ul", items: [
         "Cost per linear foot: aluminum runs 20–35% cheaper than comparable ornamental steel.",
