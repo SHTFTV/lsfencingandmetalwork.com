@@ -20,6 +20,7 @@ import imgOrnamentalStorefront from "@/assets/gallery/ornamental-storefront-gate
 import imgKubotaExcavator from "@/assets/gallery/kubota-kx033-excavator-post-line.jpg.asset.json";
 import imgBlackHillside from "@/assets/gallery/black-chainlink-hillside-chilliwack.jpg.asset.json";
 import imgCantileverSlatGate from "@/assets/gallery/8x16-cantilever-slat-gate-abbotsford.jpg.asset.json";
+import imgOrnamentalIronGreenhouse from "@/assets/gallery/ornamental-iron-gate-greenhouse-abbotsford.jpg.asset.json";
 
 export type GalleryCategory =
   | "Chain Link"
