@@ -161,9 +161,9 @@ const legacyPosts: BlogPost[] = [
       "Aluminum vs ornamental steel fencing for Chilliwack, Abbotsford, and Metro Vancouver — cost, durability, maintenance, and which one actually holds up in Fraser Valley weather.",
     date: "2026-07-10",
     readMinutes: 7,
-    ogImage: "/og/blog-aluminum-vs-ornamental-steel.jpg",
+    ogImage: "/__l5e/assets-v1/6167cad4-4634-4014-94f1-cc1c3dca39c7/ornamental-iron-gate-greenhouse-abbotsford.jpg",
     ogImageCaption:
-      "Aluminum picket fence next to a powder-coated ornamental steel fence in a Fraser Valley yard.",
+      "Black ornamental iron swing gate with spear-top pickets and matching perimeter fence at an Abbotsford commercial greenhouse operation.",
     tags: ["Comparison", "Ornamental", "Aluminum"],
     keyTakeaways: [
       "Aluminum is lighter, cheaper up-front, and never rusts — the low-maintenance pick.",
@@ -173,6 +173,7 @@ const legacyPosts: BlogPost[] = [
     ],
     body: [
       { type: "p", text: "Nine out of ten homeowners in Chilliwack and Abbotsford asking about a decorative metal fence are choosing between two materials: pressed aluminum and powder-coated ornamental steel. They look similar from the street. They perform very differently once you factor in cost, weight, security, and how they age in the Fraser Valley climate." },
+      { type: "image", src: "/__l5e/assets-v1/6167cad4-4634-4014-94f1-cc1c3dca39c7/ornamental-iron-gate-greenhouse-abbotsford.jpg", alt: "Black ornamental iron swing gate with spear-top pickets and matching perimeter fence securing a commercial greenhouse operation in Abbotsford BC", caption: "Powder-coated ornamental iron swing gate and matching perimeter fence — Abbotsford, BC greenhouse operation.", focusKeyword: "ornamental iron gate Abbotsford" },
       { type: "h2", text: "Quick comparison" },
       { type: "ul", items: [
         "Cost per linear foot: aluminum runs 20–35% cheaper than comparable ornamental steel.",
