@@ -198,11 +198,13 @@ function Post() {
                           alt={block.alt}
                           width={1200}
                           height={630}
+                          sizes="(min-width: 1024px) 768px, (min-width: 640px) 90vw, 100vw"
                           loading="lazy"
                           decoding="async"
                           data-focus-keyword={block.focusKeyword}
                           className="w-full h-full object-cover"
                         />
+
                       </div>
                       {block.caption && (
                         <figcaption className="mt-2 text-xs text-muted-foreground italic">{block.caption}</figcaption>

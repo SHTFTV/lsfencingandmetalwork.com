@@ -4,6 +4,8 @@ import { PageShell, CtaStrip } from "@/components/PageShell";
 import { SERVICES, GEO_PAGES, SITE, absoluteUrl } from "@/lib/site";
 import { localBusinessScript } from "@/lib/service-schema";
 import { POSTS } from "@/lib/blog";
+import { BlogImage } from "@/components/BlogImage";
+
 import { trackNavClick, utmSearch } from "@/lib/analytics";
 import { ArrowRight, Phone, ShieldCheck, Hammer, MapPin, X, ZoomIn, Calendar } from "lucide-react";
 import cantileverImg from "@/assets/gallery/8x16-cantilever-slat-gate-abbotsford.jpg.asset.json";
@@ -477,22 +479,32 @@ function Home() {
                   key={p.slug}
                   to="/blog/$slug"
                   params={{ slug: p.slug }}
-                  className="group border border-border rounded-sm bg-card p-5 hover:border-primary transition flex flex-col"
+                  className="group border border-border rounded-sm bg-card overflow-hidden hover:border-primary transition flex flex-col"
                 >
-                  <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-primary">
-                    <Calendar className="h-3 w-3" />
-                    <time dateTime={p.date}>
-                      {new Date(p.date).toLocaleDateString("en-CA", { year: "numeric", month: "short", day: "numeric" })}
-                    </time>
-                    <span className="text-muted-foreground normal-case tracking-normal">· {p.readMinutes} min</span>
+                  <div className="aspect-[1200/630] overflow-hidden bg-muted">
+                    <BlogImage
+                      post={p}
+                      variant="thumb"
+                      className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                    />
                   </div>
-                  <h3 className="font-display uppercase text-lg mt-3 leading-tight">{p.title}</h3>
-                  <p className="text-sm text-muted-foreground mt-2 line-clamp-3 flex-1">{p.description}</p>
-                  <div className="mt-4 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-primary">
-                    Read <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition" />
+                  <div className="p-5 flex flex-col flex-1">
+                    <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-primary">
+                      <Calendar className="h-3 w-3" />
+                      <time dateTime={p.date}>
+                        {new Date(p.date).toLocaleDateString("en-CA", { year: "numeric", month: "short", day: "numeric" })}
+                      </time>
+                      <span className="text-muted-foreground normal-case tracking-normal">· {p.readMinutes} min read</span>
+                    </div>
+                    <h3 className="font-display uppercase text-lg mt-3 leading-tight">{p.title}</h3>
+                    <p className="text-sm text-muted-foreground mt-2 line-clamp-3 flex-1">{p.description}</p>
+                    <div className="mt-4 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-primary">
+                      Read <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition" />
+                    </div>
                   </div>
                 </Link>
               ))}
+
           </div>
         </div>
       </section>
