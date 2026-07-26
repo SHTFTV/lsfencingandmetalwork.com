@@ -159,7 +159,7 @@ const legacyPosts: BlogPost[] = [
     title: "Aluminum vs Ornamental Steel Fencing in the Fraser Valley",
     description:
       "Aluminum vs ornamental steel fencing for Chilliwack, Abbotsford, and Metro Vancouver — cost, durability, maintenance, and which one actually holds up in Fraser Valley weather.",
-    date: "2026-07-10",
+    date: "2026-07-26",
     readMinutes: 7,
     ogImage: "/__l5e/assets-v1/6167cad4-4634-4014-94f1-cc1c3dca39c7/ornamental-iron-gate-greenhouse-abbotsford.jpg",
     ogImageCaption:
@@ -388,7 +388,9 @@ const legacyPosts: BlogPost[] = [
   },
 ];
 
-export const POSTS: BlogPost[] = [...buildCityPosts(), ...legacyPosts];
+export const POSTS: BlogPost[] = [...buildCityPosts(), ...legacyPosts].sort((a, b) =>
+  b.date.localeCompare(a.date),
+);
 
 /**
  * Dev-time guard: fail loudly if two blog posts share the same hero

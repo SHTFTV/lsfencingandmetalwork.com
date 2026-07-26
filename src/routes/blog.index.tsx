@@ -76,7 +76,9 @@ function Blog() {
       <PageHero eyebrow="Field Notes & Guides" title="Blog" intro="Practical writing from the crew — fencing, gates, welding, and what actually works in the Fraser Valley climate." />
       <section className="container-industrial py-16">
         <div className="grid gap-6 md:grid-cols-2">
-          {POSTS.map((p, idx) => (
+          {[...POSTS]
+            .sort((a, b) => b.date.localeCompare(a.date))
+            .map((p, idx) => (
             <Link
               key={p.slug}
               to="/blog/$slug"
