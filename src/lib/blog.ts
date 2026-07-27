@@ -211,7 +211,7 @@ const legacyPosts: BlogPost[] = [
       { type: "quote", text: "If it's made of steel and it's broken — or needs to exist and doesn't yet — call us. We'll come to you." },
       { type: "h2", text: "Chain link fencing — commercial and industrial grade" },
       { type: "p", text: "Chain link is the workhorse of commercial perimeter security across the Fraser Valley. It's fast to install, cost-effective, and when specified correctly it's extremely durable." },
-      { type: "image", src: "/__l5e/assets-v1/e0d1cfe0-0000-0000-0000-000000000000/placeholder.png", alt: "placeholder", caption: "placeholder" },
+      { type: "image", src: "/__l5e/assets-v1/d23d642f-105c-42dc-9924-3367fc801e85/black-chainlink-sports-field-perimeter.png", alt: "Black vinyl-coated chain link perimeter fence with privacy screening around a turf sports field in Langley BC", caption: "Black vinyl-coated chain link perimeter with screening — turf sports field, Langley, BC.", focusKeyword: "commercial chain link fencing Langley" },
       { type: "ul", items: [
         "Industrial yards and logistics facilities",
         "Construction site security",
