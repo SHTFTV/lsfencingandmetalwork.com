@@ -21,6 +21,10 @@ import imgKubotaExcavator from "@/assets/gallery/kubota-kx033-excavator-post-lin
 import imgBlackHillside from "@/assets/gallery/black-chainlink-hillside-chilliwack.jpg.asset.json";
 import imgCantileverSlatGate from "@/assets/gallery/8x16-cantilever-slat-gate-abbotsford.jpg.asset.json";
 import imgOrnamentalIronGreenhouse from "@/assets/gallery/ornamental-iron-gate-greenhouse-abbotsford.jpg.asset.json";
+import imgBarbTrailAbbotsford from "@/assets/gallery/6ft-galv-barb-trail-abbotsford.jpg.asset.json";
+import imgCedarLatticeTop from "@/assets/gallery/6ft-cedar-lattice-top-privacy-fence.jpg.asset.json";
+import imgBlackSportsField from "@/assets/gallery/black-chainlink-sports-field-perimeter.png.asset.json";
+import imgSportsFacilityRailing from "@/assets/gallery/black-chainlink-railing-sports-facility-langley.png.asset.json";
 
 export type GalleryCategory =
   | "Chain Link"
