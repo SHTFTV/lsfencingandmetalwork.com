@@ -26,6 +26,7 @@ import imgCedarLatticeTop from "@/assets/gallery/6ft-cedar-lattice-top-privacy-f
 import imgBlackSportsField from "@/assets/gallery/black-chainlink-sports-field-perimeter.png.asset.json";
 import imgSportsFacilityRailing from "@/assets/gallery/black-chainlink-railing-sports-facility-langley.png.asset.json";
 import imgRecCourt from "@/assets/gallery/galvanized-chainlink-recreational-court-gate.jpg.asset.json";
+import imgIndustrialPerimeter from "@/assets/gallery/industrial-perimeter-security-chainlink-langley.png.asset.json";
 
 export type GalleryCategory =
   | "Chain Link"
