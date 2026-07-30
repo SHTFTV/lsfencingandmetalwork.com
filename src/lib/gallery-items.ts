@@ -27,6 +27,7 @@ import imgBlackSportsField from "@/assets/gallery/black-chainlink-sports-field-p
 import imgSportsFacilityRailing from "@/assets/gallery/black-chainlink-railing-sports-facility-langley.png.asset.json";
 import imgRecCourt from "@/assets/gallery/galvanized-chainlink-recreational-court-gate.jpg.asset.json";
 import imgIndustrialPerimeter from "@/assets/gallery/industrial-perimeter-security-chainlink-langley.png.asset.json";
+import imgStrataCompound from "@/assets/gallery/strata-parking-gate-security-fencing-abbotsford.jpg.asset.json";
 
 export type GalleryCategory =
   | "Chain Link"
@@ -96,6 +97,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   { title: "Black chain link sports field perimeter", location: "Langley, BC", category: "Chain Link", src: imgBlackSportsField.url, alt: "Black vinyl-coated chain link perimeter fence with privacy screening around a turf sports field beside a concrete walkway in Langley BC", outcome: "Black vinyl-coated · turf field perimeter" },
   { title: "Sports facility chain link & pipe railing", location: "Langley, BC", category: "Chain Link", src: imgSportsFacilityRailing.url, alt: "Black chain link fence with galvanized pipe top railing lining a concrete walkway at a government sports facility in Langley BC", outcome: "Chain link + pipe railing · public facility" },
   { title: "Galvanized recreational court perimeter & walk-through gate", location: "Langley, BC", category: "Chain Link", src: imgRecCourt.url, alt: "Galvanized commercial-grade chain link perimeter fence with a walk-through gate around a private basketball court in the Fraser Valley", outcome: "Commercial-grade galvanized · self-latching walk gate" },
+  { title: "Strata waste enclosure with cantilever sliding gate", location: "Abbotsford, BC", category: "Chain Link", src: imgStrataCompound.url, alt: "Galvanized chain link strata waste and compactor enclosure with three-strand barbed wire topping and a cantilever sliding gate in Abbotsford BC", outcome: "Galvanized chain link · barbed wire top · cantilever slide gate" },
   { title: "Industrial perimeter security fence with barb wire", location: "Langley, BC", category: "Chain Link", src: imgIndustrialPerimeter.url, alt: "Heavy-gauge galvanized chain link industrial perimeter security fence with three-strand barbed wire topping around a commercial building and fleet parking lot in Langley BC", outcome: "Heavy-gauge galvanized · 3-strand barb · industrial perimeter" },
   { title: "6-ft cedar privacy fence with lattice top", location: "Fraser Valley, BC", category: "Cedar", src: imgCedarLatticeTop.url, alt: "Six-foot western red cedar privacy fence with lattice-top panels stepped along a sloped new-construction property line in the Fraser Valley", outcome: "6ft cedar · lattice top · stepped to grade" },
   { title: "Commercial double-swing chain link gate", location: "Abbotsford, BC", category: "Gates", src: imgCommercialGate.url, alt: "Commercial grade galvanized chain link double swing driveway gate with barrier arms", outcome: "Double swing · barrier arm ready" },
