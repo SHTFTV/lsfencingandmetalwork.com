@@ -1,104 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  <url>
-    <loc>https://lsfencingandmetalwork.com/locations/chilliwack</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://lsfencingandmetalwork.com/og-default.jpg</image:loc>
-      <image:title>Chain link fencing &amp; barrier gates — Chilliwack, BC</image:title>
-      <image:caption>LS Fencing &amp; Metal Work commercial chain link and gate installation in Chilliwack.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://lsfencingandmetalwork.com/locations/abbotsford</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://lsfencingandmetalwork.com/og-default.jpg</image:loc>
-      <image:title>Chain link fencing &amp; barrier gates — Abbotsford, BC</image:title>
-      <image:caption>LS Fencing &amp; Metal Work commercial chain link and gate installation in Abbotsford.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://lsfencingandmetalwork.com/locations/langley</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://lsfencingandmetalwork.com/og-default.jpg</image:loc>
-      <image:title>Chain link fencing &amp; barrier gates — Langley, BC</image:title>
-      <image:caption>LS Fencing &amp; Metal Work commercial chain link and gate installation in Langley.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://lsfencingandmetalwork.com/locations/aldergrove</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://lsfencingandmetalwork.com/og-default.jpg</image:loc>
-      <image:title>Chain link fencing &amp; barrier gates — Aldergrove, BC</image:title>
-      <image:caption>LS Fencing &amp; Metal Work commercial chain link and gate installation in Aldergrove.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://lsfencingandmetalwork.com/locations/surrey</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://lsfencingandmetalwork.com/og-default.jpg</image:loc>
-      <image:title>Chain link fencing &amp; barrier gates — Surrey, BC</image:title>
-      <image:caption>LS Fencing &amp; Metal Work commercial chain link and gate installation in Surrey.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://lsfencingandmetalwork.com/locations/maple-ridge</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://lsfencingandmetalwork.com/og-default.jpg</image:loc>
-      <image:title>Chain link fencing &amp; barrier gates — Maple Ridge, BC</image:title>
-      <image:caption>LS Fencing &amp; Metal Work commercial chain link and gate installation in Maple Ridge.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://lsfencingandmetalwork.com/locations/pitt-meadows</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://lsfencingandmetalwork.com/og-default.jpg</image:loc>
-      <image:title>Chain link fencing &amp; barrier gates — Pitt Meadows, BC</image:title>
-      <image:caption>LS Fencing &amp; Metal Work commercial chain link and gate installation in Pitt Meadows.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://lsfencingandmetalwork.com/locations/agassiz</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://lsfencingandmetalwork.com/og-default.jpg</image:loc>
-      <image:title>Chain link fencing &amp; barrier gates — Agassiz, BC</image:title>
-      <image:caption>LS Fencing &amp; Metal Work commercial chain link and gate installation in Agassiz.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://lsfencingandmetalwork.com/locations/harrison-hot-springs</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://lsfencingandmetalwork.com/og-default.jpg</image:loc>
-      <image:title>Chain link fencing &amp; barrier gates — Harrison Hot Springs, BC</image:title>
-      <image:caption>LS Fencing &amp; Metal Work commercial chain link and gate installation in Harrison Hot Springs.</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://lsfencingandmetalwork.com/locations/hope</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://lsfencingandmetalwork.com/og-default.jpg</image:loc>
-      <image:title>Chain link fencing &amp; barrier gates — Hope, BC</image:title>
-      <image:caption>LS Fencing &amp; Metal Work commercial chain link and gate installation in Hope.</image:caption>
-    </image:image>
-  </url>
+  <url><loc>https://lsfencingandmetalwork.com/locations/chilliwack</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lsfencingandmetalwork.com/locations/abbotsford</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lsfencingandmetalwork.com/locations/langley</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lsfencingandmetalwork.com/locations/aldergrove</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lsfencingandmetalwork.com/locations/surrey</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lsfencingandmetalwork.com/locations/maple-ridge</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lsfencingandmetalwork.com/locations/pitt-meadows</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lsfencingandmetalwork.com/locations/hope</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lsfencingandmetalwork.com/locations/agassiz</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://lsfencingandmetalwork.com/locations/harrison-hot-springs</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://lsfencingandmetalwork.com/locations/kelowna-bc</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://lsfencingandmetalwork.com/locations/kamloops-bc</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://lsfencingandmetalwork.com/locations/prince-george-bc</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://lsfencingandmetalwork.com/locations/penticton-bc</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lsfencingandmetalwork.com/locations/castlegar-bc</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lsfencingandmetalwork.com/locations/vernon-bc</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lsfencingandmetalwork.com/locations/cranbrook-bc</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://lsfencingandmetalwork.com/locations/williams-lake-bc</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>
