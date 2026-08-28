@@ -228,8 +228,8 @@ function buildPost(city: CityFact): BlogPost {
   ];
 
   const slug = `fencing-in-${city.slug}`;
-  const title = `Fencing in ${name} — Materials, Bylaws & Costs (${new Date().getFullYear()} Guide)`;
-  const description = `Everything you need to know about fencing in ${name}, BC — bylaw heights, best materials for our climate, typical costs, and how a working ${name} fence contractor actually builds it.`;
+  const title = `Fencing in ${name}, BC: Materials, Bylaws & Costs`;
+  const description = `Compare fence materials, local height rules, typical costs and installation considerations for properties in ${name}, BC.`;
 
   return {
     slug,
@@ -387,8 +387,8 @@ function buildCommercialPost(city: CityFact): BlogPost {
   ];
 
   const slug = `fencing-in-${city.slug}`;
-  const title = `Commercial Fencing, Gates & Hand Rails in ${name} — Strata, Industrial & High-Security (${new Date().getFullYear()})`;
-  const description = `Commercial chain link, welded metal gates, ornamental strata perimeters, hand rails, and bollards in ${name}, BC. In-house welding shop, own excavation crew, WCB-covered. Property managers, GCs, industrial and public-sector clients.`;
+  const title = `Commercial Fencing & Gates in ${name}, BC | LS Fencing`;
+  const description = `Commercial chain link, security gates, railings and mobile welding in ${name}, BC. In-house fabrication, excavation equipment and insured crews.`;
 
   return {
     slug,
@@ -478,5 +478,4 @@ export function buildCityPosts(): BlogPost[] {
     return buildPost(c);
   });
 }
-
 
