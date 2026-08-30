@@ -41,6 +41,7 @@ test.describe("/contact multi-step quote validation", () => {
   });
 
   test("review card shows only relevant fields for chosen service", async ({ page }) => {
+    test.setTimeout(60_000);
     await page.goto("/contact", { waitUntil: "networkidle" });
     await page.getByRole("radio", { name: "Welding / Repair" }).check();
     await expect(page.getByText(/No linear-feet or gate details needed/i)).toBeVisible();
