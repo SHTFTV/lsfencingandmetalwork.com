@@ -4,12 +4,12 @@ import { test, expect } from "@playwright/test";
 // parameters instead of prefilling from them or leaking them into analytics.
 test.describe("/contact prefill sanitization", () => {
   test("valid service prefill auto-advances to step 1", async ({ page }) => {
-    await page.goto("/contact?service=Chain+Link+Fencing&source=gallery-lightbox&photo=black-vinyl-school");
+    await page.goto("/contact?service=Chain+Link+Fencing&source=gallery&photo=black-vinyl-school", { waitUntil: "networkidle" });
     await expect(page.getByPlaceholder("e.g. Chilliwack")).toBeVisible();
   });
 
   test("unknown service value is dropped — stays on step 0", async ({ page }) => {
-    await page.goto("/contact?service=<script>alert(1)</script>&source=gallery-tile&photo=black-vinyl-school");
+    await page.goto("/contact?service=<script>alert(1)</script>&source=gallery-tile&photo=black-vinyl-school", { waitUntil: "networkidle" });
     // The service radios (step 0) must still be visible and no service pre-selected.
     await expect(page.getByRole("radio", { name: "Chain Link Fencing" })).toBeVisible();
     const checked = await page.locator('input[type="radio"][name="service"]:checked').count();
@@ -18,7 +18,7 @@ test.describe("/contact prefill sanitization", () => {
 
   test("invalid photo slug is dropped from the submit payload notes", async ({ page }) => {
     // Photo contains uppercase + spaces + special chars — should not match slug regex.
-    await page.goto("/contact?service=Welding+%2F+Repair&source=gallery-lightbox&photo=%3Cimg%20src=x%3E");
+    await page.goto("/contact?service=Welding+%2F+Repair&source=gallery&photo=%3Cimg%20src=x%3E", { waitUntil: "networkidle" });
     await expect(page.getByPlaceholder("e.g. Chilliwack")).toBeVisible();
 
     // Intercept the server-fn call and inspect the outgoing payload.
@@ -53,7 +53,7 @@ test.describe("/contact prefill sanitization", () => {
   });
 
   test("invalid source is dropped and defaults to contact-form", async ({ page }) => {
-    await page.goto("/contact?source=totally-fake-source");
+    await page.goto("/contact?source=totally-fake-source", { waitUntil: "networkidle" });
     // No service prefill, so step 0 must still be visible.
     await expect(page.getByRole("radio", { name: "Chain Link Fencing" })).toBeVisible();
   });
