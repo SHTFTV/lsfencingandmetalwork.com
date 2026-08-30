@@ -172,7 +172,7 @@ function Contact() {
     },
   });
 
-  const { register, handleSubmit, trigger, watch, formState: { errors }, getValues } = form;
+  const { register, handleSubmit, trigger, watch, formState: { errors }, getValues, setError, clearErrors } = form;
   const service = watch("service");
   const isFence = service ? FENCE_SERVICES.has(service) : false;
   const needsGate = service ? isFence || GATE_ONLY_SERVICES.has(service) : false;
@@ -220,7 +220,26 @@ function Contact() {
     if (step === 2) return;
     const currentStep = step as 0 | 1;
     const fields = stepFields[currentStep];
-    const ok = await trigger(fields);
+    let ok: boolean;
+
+    if (currentStep === 0) {
+      ok = await trigger("service");
+    } else {
+      // The full Zod schema includes the final contact step. Validating it here
+      // prevents superRefine from reporting project-field errors while those
+      // later contact fields are intentionally blank, so validate step 1
+      // explicitly and leave the full schema for final submission.
+      clearErrors(fields);
+      const values = getValues();
+      const invalid: Array<[keyof FormValues, string]> = [];
+      if (isFence && (!values.linearFeet || Number(values.linearFeet) < 1)) invalid.push(["linearFeet", "Enter approximate linear feet"]);
+      if (isFence && !values.fenceHeight) invalid.push(["fenceHeight", "Pick a fence height"]);
+      if (needsGate && !values.gate) invalid.push(["gate", isFence ? "Pick a gate option" : "Pick a gate type"]);
+      if (!values.city || values.city.trim().length < 2) invalid.push(["city", "Enter your city"]);
+      if (!values.timeline) invalid.push(["timeline", "Pick a timeline"]);
+      invalid.forEach(([field, message]) => setError(field, { type: "manual", message }));
+      ok = invalid.length === 0;
+    }
     if (ok) {
       trackQuoteEvent({
         name: "quote_step_complete",
