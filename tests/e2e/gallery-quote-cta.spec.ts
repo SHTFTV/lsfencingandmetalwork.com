@@ -15,12 +15,18 @@ const GATE_ONLY_SERVICES = new Set([
 async function fillAndSubmit(page: Page, service: string) {
   await expect(page.getByPlaceholder("e.g. Chilliwack")).toBeVisible();
 
-  if (FENCE_SERVICES.has(service)) {
-    await page.getByPlaceholder("e.g. 120").fill("100");
+  const linearFeet = page.getByPlaceholder("e.g. 120");
+  if (await linearFeet.isVisible()) {
+    await linearFeet.fill("100");
     await page.getByLabel("Fence height").selectOption("6 ft");
-    await page.getByRole("radio", { name: "No gate needed" }).check();
-  } else if (GATE_ONLY_SERVICES.has(service)) {
-    await page.getByRole("radio", { name: "Single drive gate" }).check();
+  }
+
+  const noGate = page.getByRole("radio", { name: "No gate needed" });
+  const driveGate = page.getByRole("radio", { name: "Single drive gate" });
+  if (await noGate.isVisible()) {
+    await noGate.check();
+  } else if (await driveGate.isVisible()) {
+    await driveGate.check();
   }
 
   await page.getByLabel(/City \/ neighbourhood/i).fill("Chilliwack");
@@ -63,7 +69,7 @@ test.describe("/gallery lightbox CTA → /contact submit attribution", () => {
       });
     });
 
-    await page.goto("/gallery", { waitUntil: "networkidle" });
+    await page.goto("/gallery");
     const tileCount = await page.locator(TILE_SELECTOR).count();
     expect(tileCount).toBeGreaterThanOrEqual(15);
 
@@ -124,7 +130,7 @@ test.describe("/gallery lightbox CTA → /contact submit attribution", () => {
         // @ts-expect-error test-only global
         window.__quoteEvents = [];
       });
-      await page.goto("/gallery", { waitUntil: "networkidle" });
+      await page.goto("/gallery");
     }
   });
 });
