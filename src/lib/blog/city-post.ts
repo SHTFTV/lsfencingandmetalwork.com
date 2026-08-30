@@ -11,6 +11,7 @@ interface CityHero {
 }
 
 const STATIC_BLOG_HEROES = new Set([
+  "/__l5e/assets-v1/5d8442f4-708e-466c-b510-56aac6813245/strata-parking-gate-security-fencing-abbotsford.jpg",
   "/__l5e/assets-v1/c17f519b-6e1c-4e4b-9862-fc49c5d614f8/6ft-galv-barb-abbotsford.jpeg",
   "/__l5e/assets-v1/37339657-d229-4758-a5e5-dbb446bddcba/industrial-perimeter-security-chainlink-langley.png",
   "/__l5e/assets-v1/e839bc90-d5c0-45f1-a9f3-2e0fad756c6e/galvanized-chainlink-recreational-court-gate.jpg",
