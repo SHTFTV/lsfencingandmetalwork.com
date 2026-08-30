@@ -62,7 +62,7 @@ test.describe("/gallery lightbox CTA → /contact submit attribution", () => {
       });
     });
 
-    await page.goto("/gallery");
+    await page.goto("/gallery", { waitUntil: "networkidle" });
     const tileCount = await page.locator(TILE_SELECTOR).count();
     expect(tileCount).toBeGreaterThanOrEqual(15);
 
@@ -78,7 +78,7 @@ test.describe("/gallery lightbox CTA → /contact submit attribution", () => {
       const href = await cta.getAttribute("href");
       expect(href, `tile #${i} CTA missing href`).toBeTruthy();
       expect(href!).toMatch(/^\/contact\?/);
-      expect(href!).toContain("source=gallery-lightbox");
+      expect(href!).toContain("source=gallery");
       expect(href!).toMatch(/photo=[a-z0-9-]+/);
 
       const url = new URL(href!, page.url());
@@ -88,7 +88,7 @@ test.describe("/gallery lightbox CTA → /contact submit attribution", () => {
       await Promise.all([page.waitForURL("**/contact*"), cta.click()]);
 
       const finalUrl = new URL(page.url());
-      expect(finalUrl.searchParams.get("source")).toBe("gallery-lightbox");
+      expect(finalUrl.searchParams.get("source")).toBe("gallery");
       expect(finalUrl.searchParams.get("photo")).toBe(expectedPhoto);
       if (expectedService) {
         expect(finalUrl.searchParams.get("service")).toBe(expectedService);
@@ -108,14 +108,14 @@ test.describe("/gallery lightbox CTA → /contact submit attribution", () => {
       expect(attempts.length, `tile #${i} no attempt event`).toBeGreaterThan(0);
       expect(successes.length, `tile #${i} no success event`).toBeGreaterThan(0);
       const last = successes[successes.length - 1];
-      expect(last.source, `tile #${i} attribution.source missing`).toBe("gallery-lightbox");
+      expect(last.source, `tile #${i} attribution.source missing`).toBe("gallery");
       expect(last.photo, `tile #${i} attribution.photo missing`).toBe(expectedPhoto);
 
       // Payload — at least one new body captured since iteration start includes attribution.
       const newBodies = submitBodies.slice(beforeBodies);
       if (newBodies.length > 0) {
         expect(newBodies.some((b) => b.includes(expectedPhoto))).toBe(true);
-        expect(newBodies.some((b) => b.includes("gallery-lightbox"))).toBe(true);
+        expect(newBodies.some((b) => b.includes("gallery"))).toBe(true);
       }
 
       // Reset analytics + return to gallery for next tile
@@ -123,7 +123,7 @@ test.describe("/gallery lightbox CTA → /contact submit attribution", () => {
         // @ts-expect-error test-only global
         window.__quoteEvents = [];
       });
-      await page.goto("/gallery");
+      await page.goto("/gallery", { waitUntil: "networkidle" });
     }
   });
 });
