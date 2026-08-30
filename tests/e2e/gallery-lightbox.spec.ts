@@ -123,7 +123,7 @@ test.describe("/gallery lightbox keyboard + focus trap", () => {
     await expect(cta).toBeVisible();
     const href = await cta.getAttribute("href");
     expect(href).toContain("/contact?");
-    expect(href).toContain("source=gallery");
+    expect(href).toContain("source=gallery-lightbox");
     expect(href).toContain("service=Chain+Link+Fencing");
     expect(href).toMatch(/photo=[^&]+/);
 
@@ -132,7 +132,7 @@ test.describe("/gallery lightbox keyboard + focus trap", () => {
     // input from step 1 should be visible without the user touching the service radios.
     await expect(page.getByPlaceholder("e.g. Chilliwack")).toBeVisible();
     // And the URL retained the attribution params for downstream analytics.
-    expect(page.url()).toContain("source=gallery");
+    expect(page.url()).toContain("source=gallery-lightbox");
     expect(page.url()).toContain("service=Chain+Link+Fencing");
   });
 });
