@@ -12,7 +12,7 @@ const SERVICE_PAGES = [
 
 for (const { path, name } of SERVICE_PAGES) {
   test(`${path} emits valid Service + FAQPage JSON-LD`, async ({ page }) => {
-    await page.goto(path);
+    await page.goto(path, { waitUntil: "networkidle" });
     const blocks = await page.$$eval(
       'script[type="application/ld+json"]',
       (nodes) => nodes.map((n) => n.textContent ?? ""),
