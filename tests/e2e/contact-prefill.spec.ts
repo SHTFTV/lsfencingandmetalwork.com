@@ -4,7 +4,7 @@ import { test, expect } from "@playwright/test";
 // parameters instead of prefilling from them or leaking them into analytics.
 test.describe("/contact prefill sanitization", () => {
   test("valid service prefill auto-advances to step 1", async ({ page }) => {
-    await page.goto("/contact?service=Chain+Link+Fencing&source=gallery&photo=black-vinyl-school", { waitUntil: "networkidle" });
+    await page.goto("/contact?service=Chain+Link+Fencing&source=gallery-lightbox&photo=black-vinyl-school", { waitUntil: "networkidle" });
     await expect(page.getByPlaceholder("e.g. Chilliwack")).toBeVisible();
   });
 
@@ -18,7 +18,7 @@ test.describe("/contact prefill sanitization", () => {
 
   test("invalid photo slug is dropped from the submit payload notes", async ({ page }) => {
     // Photo contains uppercase + spaces + special chars — should not match slug regex.
-    await page.goto("/contact?service=Welding+%2F+Repair&source=gallery&photo=%3Cimg%20src=x%3E", { waitUntil: "networkidle" });
+    await page.goto("/contact?service=Welding+%2F+Repair&source=gallery-lightbox&photo=%3Cimg%20src=x%3E", { waitUntil: "networkidle" });
     await expect(page.getByPlaceholder("e.g. Chilliwack")).toBeVisible();
 
     // Intercept the server-fn call and inspect the outgoing payload.
