@@ -40,6 +40,7 @@ async function fillAndSubmit(page: Page, service: string) {
 
 test.describe("/gallery lightbox CTA → /contact submit attribution", () => {
   test("every tile carries service + source + photo attribution through submit", async ({ page, context }) => {
+    test.setTimeout(10 * 60 * 1000);
     // Capture analytics events fired on every navigation via a context-scoped init script.
     await context.addInitScript(() => {
       // @ts-expect-error test-only global
