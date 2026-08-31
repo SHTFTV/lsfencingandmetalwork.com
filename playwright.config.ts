@@ -13,7 +13,6 @@ export default defineConfig({
   use: {
     baseURL: BASE_URL,
     trace: "on-first-retry",
-    launchOptions: process.env.CI ? { slowMo: 200 } : undefined,
   },
   projects: [
     {
