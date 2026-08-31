@@ -31,8 +31,8 @@ test.describe("/contact prefill sanitization", () => {
     // The service prefill remains valid, but the hostile photo value is never
     // rendered into the form or review UI.
     await expect(page.getByText("<img src=x>", { exact: false })).toHaveCount(0);
-    await page.getByLabel(/City \/ neighbourhood/i).fill("Chilliwack");
-    await page.getByLabel("Timeline").selectOption("ASAP");
+    await page.getByPlaceholder("e.g. Chilliwack").fill("Chilliwack");
+    await page.getByRole("combobox").selectOption("ASAP");
     await page.getByRole("button", { name: /^Next/i }).click();
     await expect(page.getByText("Review project")).toBeVisible();
     await expect(page.locator("dl").first()).not.toContainText("from gallery photo:");
