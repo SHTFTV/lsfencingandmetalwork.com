@@ -22,7 +22,7 @@ async function fillAndSubmit(page: Page, service: string) {
   const linearFeet = page.getByPlaceholder("e.g. 120");
   if (await linearFeet.isVisible()) {
     await linearFeet.fill("100");
-    await page.getByLabel("Fence height").selectOption("6 ft");
+    await page.locator('select[name="fenceHeight"]').selectOption("6 ft");
   }
 
   const noGate = page.getByRole("radio", { name: "No gate needed" });
@@ -34,7 +34,7 @@ async function fillAndSubmit(page: Page, service: string) {
   }
 
   await page.getByPlaceholder("e.g. Chilliwack").fill("Chilliwack");
-  await page.getByRole("combobox").selectOption("ASAP");
+  await page.locator('select[name="timeline"]').selectOption("ASAP");
   await page.getByRole("button", { name: /^Next/i }).click();
 
   await expect(page.getByText("Review project")).toBeVisible();
