@@ -237,7 +237,7 @@ function Lightbox({
           </div>
           <div className="flex items-center gap-4">
             <a
-              href={quoteHrefFor(item, surface)}
+              href={quoteHrefFor(item, "gallery-lightbox")}
               onClick={(e) => {
                 e.stopPropagation();
                 trackGalleryEvent({

@@ -176,6 +176,13 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
+  useEffect(() => {
+    document.documentElement.dataset.hydrated = "true";
+    return () => {
+      delete document.documentElement.dataset.hydrated;
+    };
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
@@ -185,4 +192,3 @@ function RootComponent() {
     </QueryClientProvider>
   );
 }
-

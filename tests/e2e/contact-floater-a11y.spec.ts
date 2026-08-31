@@ -6,7 +6,7 @@ import { test, expect } from "@playwright/test";
  */
 test.describe("ContactFloater accessibility", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("/");
+    await page.goto("/", { waitUntil: "networkidle" });
   });
 
   test("landmark and every interactive element has an accessible name", async ({ page }) => {

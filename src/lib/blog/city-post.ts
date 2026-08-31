@@ -1,21 +1,6 @@
 import type { BlogPost, FaqItem, LinkRef } from "@/lib/blog";
+import { GALLERY_ITEMS } from "@/lib/gallery-items";
 import { CITIES, type CityFact } from "./cities";
-
-// Real chain link gallery photos — commercial and residential. Every city
-// post gets a unique one so no two cards on /blog share a hero image.
-import img8ftSecurity from "@/assets/gallery/8ft-galv-commercial-security.jpeg.asset.json";
-import imgPerimeterBarb from "@/assets/gallery/galv-perimeter-barbwire.jpeg.asset.json";
-import imgCommercialGate from "@/assets/gallery/commercial-double-swing-gate.jpeg.asset.json";
-import imgHighSecurityFarm from "@/assets/gallery/high-security-cantilever-gate-farm.jpeg.asset.json";
-import imgCooperRentals from "@/assets/gallery/cooper-rentals-cantilever-langley.png.asset.json";
-import imgCantileverSlatGate from "@/assets/gallery/8x16-cantilever-slat-gate-abbotsford.jpg.asset.json";
-import img6ftBarb from "@/assets/gallery/6ft-galv-barb-abbotsford.jpeg.asset.json";
-import imgBaseballBackstop from "@/assets/gallery/baseball-backstop-fraser-valley.jpeg.asset.json";
-import imgBlackSchool from "@/assets/gallery/black-vinyl-school-surrey.png.asset.json";
-import img4ftGalv from "@/assets/gallery/4ft-galv-residential.jpeg.asset.json";
-import imgBlackHillside from "@/assets/gallery/black-chainlink-hillside-chilliwack.jpg.asset.json";
-import imgBlackPlayground from "@/assets/gallery/black-chainlink-playground.jpeg.asset.json";
-import imgBlackSlatMapleRidge from "@/assets/gallery/black-privacy-slat-chainlink-maple-ridge.jpg.asset.json";
 
 // City-page hero photos are restricted to real LS Fencing chain link work.
 // Each entry pairs the CDN url with a short caption describing what the
@@ -25,24 +10,18 @@ interface CityHero {
   caption: string;
 }
 
-const COMMERCIAL_POOL: CityHero[] = [
-  { url: img8ftSecurity.url, caption: "8 ft galvanized commercial security chain link perimeter installed by LS Fencing & Metal Work" },
-  { url: imgPerimeterBarb.url, caption: "Galvanized chain link perimeter with three-strand barbed wire on 45° extension arms" },
-  { url: imgHighSecurityFarm.url, caption: "High-security cantilever slide gate on a galvanized chain link farm perimeter" },
-  { url: imgCooperRentals.url, caption: "Heavy-duty galvanized cantilever slide gate and chain link perimeter for Cooper Equipment Rentals in Langley" },
-  { url: imgCommercialGate.url, caption: "Commercial double swing gate in galvanized chain link at an industrial yard" },
-  { url: img6ftBarb.url, caption: "6 ft galvanized chain link fence with barbed wire in Abbotsford" },
-  { url: imgBlackSchool.url, caption: "Black vinyl-coated chain link perimeter fence at a Surrey school" },
-  { url: imgCantileverSlatGate.url, caption: "8 ft × 16 ft welded cantilever slide gate with privacy slats on a chain link perimeter in Abbotsford" },
-  { url: imgBaseballBackstop.url, caption: "Galvanized chain link baseball backstop built for a Fraser Valley community park" },
-];
+const STATIC_BLOG_HEROES = new Set([
+  "/__l5e/assets-v1/5d8442f4-708e-466c-b510-56aac6813245/strata-parking-gate-security-fencing-abbotsford.jpg",
+  "/__l5e/assets-v1/c17f519b-6e1c-4e4b-9862-fc49c5d614f8/6ft-galv-barb-abbotsford.jpeg",
+  "/__l5e/assets-v1/37339657-d229-4758-a5e5-dbb446bddcba/industrial-perimeter-security-chainlink-langley.png",
+  "/__l5e/assets-v1/e839bc90-d5c0-45f1-a9f3-2e0fad756c6e/galvanized-chainlink-recreational-court-gate.jpg",
+  "/__l5e/assets-v1/0387aa99-dfba-42a9-89af-047c9366c9ad/black-chainlink-railing-sports-facility-langley.png",
+  "/__l5e/assets-v1/6167cad4-4634-4014-94f1-cc1c3dca39c7/ornamental-iron-gate-greenhouse-abbotsford.jpg",
+]);
 
-const RESIDENTIAL_POOL: CityHero[] = [
-  { url: img4ftGalv.url, caption: "4 ft galvanized chain link residential fence installed by LS Fencing & Metal Work" },
-  { url: imgBlackHillside.url, caption: "Black vinyl-coated chain link fence stepped down a Chilliwack hillside lot" },
-  { url: imgBlackPlayground.url, caption: "Black vinyl-coated chain link fence surrounding a residential playground" },
-  { url: imgBlackSlatMapleRidge.url, caption: "Black vinyl-coated chain link fence with privacy slats installed in Maple Ridge" },
-];
+const CITY_HERO_POOL: CityHero[] = GALLERY_ITEMS
+  .filter((item) => !STATIC_BLOG_HEROES.has(item.src))
+  .map((item) => ({ url: item.src, caption: item.alt }));
 
 /**
  * Deterministic unique-per-city hero image. We use the city's dense index
@@ -50,15 +29,13 @@ const RESIDENTIAL_POOL: CityHero[] = [
  * consumed in order and no two city posts on /blog share a hero photo.
  */
 function pickCommercialImage(city: CityFact): CityHero {
-  const commercial = CITIES.filter((c) => c.commercialFocus);
-  const i = Math.max(0, commercial.findIndex((c) => c.slug === city.slug));
-  return COMMERCIAL_POOL[i % COMMERCIAL_POOL.length];
+  const i = Math.max(0, CITIES.findIndex((c) => c.slug === city.slug));
+  return CITY_HERO_POOL[i % CITY_HERO_POOL.length];
 }
 
 function pickResidentialImage(city: CityFact): CityHero {
-  const residential = CITIES.filter((c) => !c.commercialFocus);
-  const i = Math.max(0, residential.findIndex((c) => c.slug === city.slug));
-  return RESIDENTIAL_POOL[i % RESIDENTIAL_POOL.length];
+  const i = Math.max(0, CITIES.findIndex((c) => c.slug === city.slug));
+  return CITY_HERO_POOL[i % CITY_HERO_POOL.length];
 }
 
 
@@ -478,4 +455,3 @@ export function buildCityPosts(): BlogPost[] {
     return buildPost(c);
   });
 }
-

@@ -17,7 +17,7 @@ async function runAxe(page: import("@playwright/test").Page, include?: string) {
 
 test.describe("/gallery accessibility", () => {
   test("gallery grid has no serious/critical axe violations (alt, focus, ARIA)", async ({ page }) => {
-    await page.goto("/gallery");
+    await page.goto("/gallery", { waitUntil: "networkidle" });
     await expect(page.locator('button[aria-label^="View "]').first()).toBeVisible();
 
     const results = await runAxe(page);
@@ -32,7 +32,7 @@ test.describe("/gallery accessibility", () => {
   });
 
   test("every gallery tile img has a non-empty descriptive alt", async ({ page }) => {
-    await page.goto("/gallery");
+    await page.goto("/gallery", { waitUntil: "networkidle" });
     const tiles = page.locator('button[aria-label^="View "]');
     const count = await tiles.count();
     expect(count).toBeGreaterThanOrEqual(15);
@@ -46,7 +46,7 @@ test.describe("/gallery accessibility", () => {
   });
 
   test("open lightbox has no serious/critical axe violations", async ({ page }) => {
-    await page.goto("/gallery");
+    await page.goto("/gallery", { waitUntil: "networkidle" });
     const tile = page.locator('button[aria-label^="View "]').first();
     await tile.click();
     const dialog = page.getByRole("dialog");
@@ -67,7 +67,7 @@ test.describe("/gallery accessibility", () => {
   // because a component that overrides focus:outline-none without a replacement
   // ring is a common regression axe alone doesn't always flag as critical.
   test("every tile shows a visible focus ring when keyboard-focused", async ({ page }) => {
-    await page.goto("/gallery");
+    await page.goto("/gallery", { waitUntil: "networkidle" });
     const tiles = page.locator('button[aria-label^="View "]');
     const count = await tiles.count();
     expect(count).toBeGreaterThanOrEqual(15);
@@ -92,7 +92,7 @@ test.describe("/gallery accessibility", () => {
   });
 
   test("lightbox close/prev/next controls + CTA all show a visible focus ring", async ({ page }) => {
-    await page.goto("/gallery");
+    await page.goto("/gallery", { waitUntil: "networkidle" });
     await page.locator('button[aria-label^="View "]').first().click();
     const dialog = page.getByRole("dialog");
     await expect(dialog).toBeVisible();

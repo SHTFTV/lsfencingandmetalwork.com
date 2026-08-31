@@ -23,9 +23,9 @@ on:
         default: "6"
 
 concurrency:
-  # Serialize per bucket+key across all runs of this workflow on this ref.
-  # Cross-workflow / cross-repo serialization is enforced by the S3 lock object.
-  group: s3-dist-upload-${{ github.event.inputs.bucket || secrets.S3_BUCKET }}-${{ github.event.inputs.object_key || secrets.S3_OBJECT_KEY }}
+  # Secrets are unavailable while GitHub evaluates workflow-level concurrency.
+  # The upload script still serializes per bucket/key with its S3 lock object.
+  group: s3-dist-upload-${{ github.repository }}-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -63,4 +63,6 @@ jobs:
           S3_UPLOAD_BASE_DELAY_SECONDS: "2"
           S3_UPLOAD_MAX_DELAY_SECONDS: "60"
           S3_LOCK_HOLDER: "${{ github.repository }}@${{ github.run_id }}-${{ github.run_attempt }}"
+          # TanStack Start/Nitro emits the deployable bundle here, not /dist.
+          DIST_DIR: ".output"
         run: bun run deploy:s3

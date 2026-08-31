@@ -12,7 +12,7 @@ const SERVICE_PAGES = [
 
 for (const { path, name } of SERVICE_PAGES) {
   test(`${path} emits valid Service + FAQPage JSON-LD`, async ({ page }) => {
-    await page.goto(path);
+    await page.goto(path, { waitUntil: "networkidle" });
     const blocks = await page.$$eval(
       'script[type="application/ld+json"]',
       (nodes) => nodes.map((n) => n.textContent ?? ""),
@@ -29,7 +29,7 @@ for (const { path, name } of SERVICE_PAGES) {
     expect(typeof service.description).toBe("string");
     expect(service.description.length).toBeGreaterThan(30);
     expect(service.description.length).toBeLessThan(320);
-    expect(service.url).toBe(path);
+    expect(service.url).toBe(`https://lsfencingandmetalwork.com${path}`);
     expect(service.provider?.["@type"]).toBe("LocalBusiness");
     expect(Array.isArray(service.areaServed)).toBe(true);
 

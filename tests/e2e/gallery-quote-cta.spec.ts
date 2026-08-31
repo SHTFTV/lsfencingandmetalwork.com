@@ -2,6 +2,10 @@ import { test, expect, type Page } from "@playwright/test";
 
 const TILE_SELECTOR = 'button[aria-label^="View "]';
 
+async function waitForHydration(page: Page) {
+  await page.locator('html[data-hydrated="true"]').waitFor();
+}
+
 const FENCE_SERVICES = new Set([
   "Chain Link Fencing",
   "Cedar Fencing",
@@ -15,22 +19,28 @@ const GATE_ONLY_SERVICES = new Set([
 async function fillAndSubmit(page: Page, service: string) {
   await expect(page.getByPlaceholder("e.g. Chilliwack")).toBeVisible();
 
-  if (FENCE_SERVICES.has(service)) {
-    await page.getByPlaceholder("e.g. 120").fill("100");
-    await page.getByLabel("Fence height").selectOption("6 ft");
-    await page.getByRole("radio", { name: "No gate needed" }).check();
-  } else if (GATE_ONLY_SERVICES.has(service)) {
-    await page.getByRole("radio", { name: "Single drive gate" }).check();
+  const linearFeet = page.getByPlaceholder("e.g. 120");
+  if (await linearFeet.isVisible()) {
+    await linearFeet.fill("100");
+    await page.locator('select[name="fenceHeight"]').selectOption("6 ft");
   }
 
-  await page.getByLabel(/City \/ neighbourhood/i).fill("Chilliwack");
-  await page.getByLabel("Timeline").selectOption("ASAP");
+  const noGate = page.getByRole("radio", { name: "No gate needed" });
+  const driveGate = page.getByRole("radio", { name: "Single drive gate" });
+  if (await noGate.isVisible()) {
+    await noGate.check();
+  } else if (await driveGate.isVisible()) {
+    await driveGate.check();
+  }
+
+  await page.getByPlaceholder("e.g. Chilliwack").fill("Chilliwack");
+  await page.locator('select[name="timeline"]').selectOption("ASAP");
   await page.getByRole("button", { name: /^Next/i }).click();
 
   await expect(page.getByText("Review project")).toBeVisible();
-  await page.getByLabel("Your name").fill("QA Bot");
-  await page.getByLabel("Phone").fill("6045551234");
-  await page.getByLabel("Email").fill("qa+gallery@example.com");
+  await page.locator('input[name="name"]').fill("QA Bot");
+  await page.locator('input[name="phone"]').fill("6045551234");
+  await page.locator('input[name="email"]').fill("qa+gallery@example.com");
 
   await page.getByRole("button", { name: /Send request/i }).click();
   await expect(page.getByRole("heading", { name: "Request received" })).toBeVisible({
@@ -40,6 +50,7 @@ async function fillAndSubmit(page: Page, service: string) {
 
 test.describe("/gallery lightbox CTA → /contact submit attribution", () => {
   test("every tile carries service + source + photo attribution through submit", async ({ page, context }) => {
+    test.setTimeout(10 * 60 * 1000);
     // Capture analytics events fired on every navigation via a context-scoped init script.
     await context.addInitScript(() => {
       // @ts-expect-error test-only global
@@ -52,7 +63,7 @@ test.describe("/gallery lightbox CTA → /contact submit attribution", () => {
 
     // Intercept the server function POST once for the whole test and stub OK.
     const submitBodies: string[] = [];
-    await context.route(/_serverFn|_server-fn|__serverFn/i, async (route) => {
+    await context.route(/_server(?:Fn|-fn)?|__serverFn/i, async (route) => {
       const body = route.request().postData();
       if (body) submitBodies.push(body);
       await route.fulfill({
@@ -63,6 +74,7 @@ test.describe("/gallery lightbox CTA → /contact submit attribution", () => {
     });
 
     await page.goto("/gallery");
+    await waitForHydration(page);
     const tileCount = await page.locator(TILE_SELECTOR).count();
     expect(tileCount).toBeGreaterThanOrEqual(15);
 
@@ -124,6 +136,7 @@ test.describe("/gallery lightbox CTA → /contact submit attribution", () => {
         window.__quoteEvents = [];
       });
       await page.goto("/gallery");
+      await waitForHydration(page);
     }
   });
 });

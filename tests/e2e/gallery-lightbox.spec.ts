@@ -4,7 +4,7 @@ const TILE_SELECTOR = 'button[aria-label^="View "]';
 
 test.describe("/gallery lightbox keyboard + focus trap", () => {
   test("opens with Enter, Escape closes and returns focus to tile", async ({ page }) => {
-    await page.goto("/gallery");
+    await page.goto("/gallery", { waitUntil: "networkidle" });
     const firstTile = page.locator(TILE_SELECTOR).first();
     await firstTile.focus();
     await page.keyboard.press("Enter");
@@ -22,7 +22,7 @@ test.describe("/gallery lightbox keyboard + focus trap", () => {
   });
 
   test("arrow keys navigate between tiles", async ({ page }) => {
-    await page.goto("/gallery");
+    await page.goto("/gallery", { waitUntil: "networkidle" });
     await page.locator(TILE_SELECTOR).first().click();
 
     const dialog = page.getByRole("dialog");
@@ -38,7 +38,7 @@ test.describe("/gallery lightbox keyboard + focus trap", () => {
   });
 
   test("every tile opens the lightbox and Escape returns focus to that same tile", async ({ page }) => {
-    await page.goto("/gallery");
+    await page.goto("/gallery", { waitUntil: "networkidle" });
     const tiles = page.locator(TILE_SELECTOR);
     const count = await tiles.count();
     expect(count).toBeGreaterThanOrEqual(15);
@@ -59,7 +59,7 @@ test.describe("/gallery lightbox keyboard + focus trap", () => {
   });
 
   test("tab and shift-tab traverse the grid in DOM order", async ({ page }) => {
-    await page.goto("/gallery");
+    await page.goto("/gallery", { waitUntil: "networkidle" });
     const tiles = page.locator(TILE_SELECTOR);
     const total = await tiles.count();
 
@@ -81,7 +81,7 @@ test.describe("/gallery lightbox keyboard + focus trap", () => {
   });
 
   test("Tab focus stays trapped inside the dialog for the last (newly added) tile", async ({ page }) => {
-    await page.goto("/gallery");
+    await page.goto("/gallery", { waitUntil: "networkidle" });
     const tiles = page.locator(TILE_SELECTOR);
     const last = tiles.last();
     await last.scrollIntoViewIfNeeded();
@@ -111,7 +111,7 @@ test.describe("/gallery lightbox keyboard + focus trap", () => {
   });
 
   test("lightbox 'Request quote for this' CTA pre-selects the matching service", async ({ page }) => {
-    await page.goto("/gallery");
+    await page.goto("/gallery", { waitUntil: "networkidle" });
     // Third tile is 8-ft galvanized enclosure (Chain Link) — deterministic.
     const tile = page.locator(TILE_SELECTOR).nth(2);
     await tile.scrollIntoViewIfNeeded();

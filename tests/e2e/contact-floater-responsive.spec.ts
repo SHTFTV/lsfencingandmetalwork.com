@@ -17,7 +17,7 @@ const widths = [
 for (const { name, width, height } of widths) {
   test(`floater shows Call/Text/Email/Reviews at ${name} (${width}px)`, async ({ page }) => {
     await page.setViewportSize({ width, height });
-    await page.goto("/");
+    await page.goto("/", { waitUntil: "networkidle" });
 
     const floater = page.getByRole("complementary", { name: /contact ls fencing/i });
     await expect(floater).toBeVisible();
