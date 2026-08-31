@@ -2,6 +2,10 @@ import { test, expect, type Page } from "@playwright/test";
 
 const TILE_SELECTOR = 'button[aria-label^="View "]';
 
+async function waitForHydration(page: Page) {
+  await page.locator('html[data-hydrated="true"]').waitFor();
+}
+
 const FENCE_SERVICES = new Set([
   "Chain Link Fencing",
   "Cedar Fencing",
@@ -70,6 +74,7 @@ test.describe("/gallery lightbox CTA → /contact submit attribution", () => {
     });
 
     await page.goto("/gallery");
+    await waitForHydration(page);
     const tileCount = await page.locator(TILE_SELECTOR).count();
     expect(tileCount).toBeGreaterThanOrEqual(15);
 
@@ -131,6 +136,7 @@ test.describe("/gallery lightbox CTA → /contact submit attribution", () => {
         window.__quoteEvents = [];
       });
       await page.goto("/gallery");
+      await waitForHydration(page);
     }
   });
 });
