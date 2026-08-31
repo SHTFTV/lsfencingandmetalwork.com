@@ -38,9 +38,9 @@ async function fillAndSubmit(page: Page, service: string) {
   await page.getByRole("button", { name: /^Next/i }).click();
 
   await expect(page.getByText("Review project")).toBeVisible();
-  await page.getByLabel("Your name").fill("QA Bot");
-  await page.getByLabel("Phone").fill("6045551234");
-  await page.getByLabel("Email").fill("qa+gallery@example.com");
+  await page.locator('input[name="name"]').fill("QA Bot");
+  await page.locator('input[name="phone"]').fill("6045551234");
+  await page.locator('input[name="email"]').fill("qa+gallery@example.com");
 
   await page.getByRole("button", { name: /Send request/i }).click();
   await expect(page.getByRole("heading", { name: "Request received" })).toBeVisible({
