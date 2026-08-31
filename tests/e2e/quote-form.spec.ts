@@ -55,8 +55,8 @@ test.describe("/contact multi-step quote validation", () => {
     await page.getByRole("radio", { name: "Welding / Repair" }).check();
     await expect(page.getByText(/No linear-feet or gate details needed/i)).toBeVisible();
 
-    await page.getByLabel(/City \/ neighbourhood/i).fill("Chilliwack");
-    await page.getByLabel("Timeline").selectOption("ASAP");
+    await page.getByPlaceholder("e.g. Chilliwack").fill("Chilliwack");
+    await page.getByRole("combobox").selectOption("ASAP");
     await page.getByRole("button", { name: /^Next/i }).click();
 
     await expect(page.getByText("Review project")).toBeVisible();
