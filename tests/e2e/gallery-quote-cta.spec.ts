@@ -59,7 +59,7 @@ test.describe("/gallery lightbox CTA → /contact submit attribution", () => {
 
     // Intercept the server function POST once for the whole test and stub OK.
     const submitBodies: string[] = [];
-    await context.route(/_serverFn|_server-fn|__serverFn/i, async (route) => {
+    await context.route(/_server(?:Fn|-fn)?|__serverFn/i, async (route) => {
       const body = route.request().postData();
       if (body) submitBodies.push(body);
       await route.fulfill({
