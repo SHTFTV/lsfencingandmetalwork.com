@@ -56,7 +56,7 @@ test.describe("/contact multi-step quote validation", () => {
     await expect(page.getByText(/No linear-feet or gate details needed/i)).toBeVisible();
 
     await page.getByPlaceholder("e.g. Chilliwack").fill("Chilliwack");
-    await page.getByRole("combobox").selectOption("ASAP");
+    await page.locator('select[name="timeline"]').selectOption("ASAP");
     await page.getByRole("button", { name: /^Next/i }).click();
 
     await expect(page.getByText("Review project")).toBeVisible();
