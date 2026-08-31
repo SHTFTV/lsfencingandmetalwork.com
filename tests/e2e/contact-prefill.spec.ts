@@ -32,7 +32,7 @@ test.describe("/contact prefill sanitization", () => {
     // rendered into the form or review UI.
     await expect(page.getByText("<img src=x>", { exact: false })).toHaveCount(0);
     await page.getByPlaceholder("e.g. Chilliwack").fill("Chilliwack");
-    await page.getByRole("combobox").selectOption("ASAP");
+    await page.locator('select[name="timeline"]').selectOption("ASAP");
     await page.getByRole("button", { name: /^Next/i }).click();
     await expect(page.getByText("Review project")).toBeVisible();
     await expect(page.locator("dl").first()).not.toContainText("from gallery photo:");
