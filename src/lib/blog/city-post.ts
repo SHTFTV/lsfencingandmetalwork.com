@@ -1,5 +1,11 @@
 import type { BlogPost, FaqItem, LinkRef } from "@/lib/blog";
 import { GALLERY_ITEMS } from "@/lib/gallery-items";
+import heroStrataParking from "@/assets/gallery/strata-parking-gate-security-fencing-abbotsford.jpg";
+import heroGalvBarb from "@/assets/gallery/6ft-galv-barb-abbotsford.jpeg";
+import heroIndustrialPerimeter from "@/assets/gallery/industrial-perimeter-security-chainlink-langley.png";
+import heroRecreationalCourt from "@/assets/gallery/galvanized-chainlink-recreational-court-gate.jpg";
+import heroBlackRailing from "@/assets/gallery/black-chainlink-railing-sports-facility-langley.png";
+import heroOrnamentalIron from "@/assets/gallery/ornamental-iron-gate-greenhouse-abbotsford.jpg";
 import { CITIES, type CityFact } from "./cities";
 
 // City-page hero photos are restricted to real LS Fencing chain link work.
@@ -11,12 +17,12 @@ interface CityHero {
 }
 
 const STATIC_BLOG_HEROES = new Set([
-  "/__l5e/assets-v1/5d8442f4-708e-466c-b510-56aac6813245/strata-parking-gate-security-fencing-abbotsford.jpg",
-  "/__l5e/assets-v1/c17f519b-6e1c-4e4b-9862-fc49c5d614f8/6ft-galv-barb-abbotsford.jpeg",
-  "/__l5e/assets-v1/37339657-d229-4758-a5e5-dbb446bddcba/industrial-perimeter-security-chainlink-langley.png",
-  "/__l5e/assets-v1/e839bc90-d5c0-45f1-a9f3-2e0fad756c6e/galvanized-chainlink-recreational-court-gate.jpg",
-  "/__l5e/assets-v1/0387aa99-dfba-42a9-89af-047c9366c9ad/black-chainlink-railing-sports-facility-langley.png",
-  "/__l5e/assets-v1/6167cad4-4634-4014-94f1-cc1c3dca39c7/ornamental-iron-gate-greenhouse-abbotsford.jpg",
+  heroStrataParking,
+  heroGalvBarb,
+  heroIndustrialPerimeter,
+  heroRecreationalCourt,
+  heroBlackRailing,
+  heroOrnamentalIron,
 ]);
 
 const CITY_HERO_POOL: CityHero[] = GALLERY_ITEMS
