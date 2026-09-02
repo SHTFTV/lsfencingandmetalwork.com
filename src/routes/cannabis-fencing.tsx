@@ -3,10 +3,10 @@ import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
 import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { serviceHead, type FaqItem } from "@/lib/service-schema";
-import heroImg from "@/assets/gallery/black-privacy-slat-chainlink-maple-ridge.jpg.asset.json";
+import heroImg from "@/assets/gallery/black-privacy-slat-chainlink-maple-ridge.jpg";
 
 const IMAGE = {
-  src: heroImg.url,
+  src: heroImg,
   alt: "6-foot black vinyl-coated chain link fence with full-height privacy slats — Health Canada style cannabis facility perimeter installed by LS Fencing",
   title: "Cannabis facility perimeter fencing — Fraser Valley, BC",
   caption: "Cannabis Facility · Privacy Slat Perimeter",

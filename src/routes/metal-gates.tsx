@@ -3,9 +3,9 @@ import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
 import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { serviceHead, type FaqItem } from "@/lib/service-schema";
-import heroImg from "@/assets/gallery/ornamental-storefront-gate-abbotsford.jpg.asset.json";
+import heroImg from "@/assets/gallery/ornamental-storefront-gate-abbotsford.jpg";
 
-const IMAGE = { src: heroImg.url, alt: "Black powder-coated ornamental steel storefront swing gate outside an Abbotsford commercial building", title: "Custom ornamental storefront metal gate — Abbotsford, BC", caption: "Custom Storefront Gate · Abbotsford, BC" };
+const IMAGE = { src: heroImg, alt: "Black powder-coated ornamental steel storefront swing gate outside an Abbotsford commercial building", title: "Custom ornamental storefront metal gate — Abbotsford, BC", caption: "Custom Storefront Gate · Abbotsford, BC" };
 
 const FAQ: FaqItem[] = [
   { q: "Do you install the gate operator too?", a: "We can supply and install popular residential and commercial operators, or coordinate with your preferred automation company." },

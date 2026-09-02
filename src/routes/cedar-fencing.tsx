@@ -3,9 +3,9 @@ import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
 import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { serviceHead, type FaqItem } from "@/lib/service-schema";
-import heroImg from "@/assets/gallery/custom-cedar-horizontal-slat.jpg.asset.json";
+import heroImg from "@/assets/gallery/custom-cedar-horizontal-slat.jpg";
 
-const IMAGE = { src: heroImg.url, alt: "Custom cedar privacy fence with horizontal slats along a stone-paver garden path in the Fraser Valley", title: "Custom horizontal-slat cedar privacy fence — Fraser Valley, BC", caption: "Horizontal Slat Cedar · Fraser Valley, BC" };
+const IMAGE = { src: heroImg, alt: "Custom cedar privacy fence with horizontal slats along a stone-paver garden path in the Fraser Valley", title: "Custom horizontal-slat cedar privacy fence — Fraser Valley, BC", caption: "Horizontal Slat Cedar · Fraser Valley, BC" };
 
 const FAQ: FaqItem[] = [
   { q: "Do you stain the fence?", a: "By default the cedar is left natural to age silver. We can apply a UV oil or stain on request for an added fee." },

@@ -2,9 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
 import { serviceHead, type FaqItem } from "@/lib/service-schema";
-import heroImg from "@/assets/gallery/galvanized-handrail-driveway.jpeg.asset.json";
+import heroImg from "@/assets/gallery/galvanized-handrail-driveway.jpeg";
 
-const IMAGE = { src: heroImg.url, alt: "Galvanized pipe MMCD-spec handrail installed along an accessible driveway ramp in Maple Ridge BC", title: "MMCD-spec galvanized handrail install — Maple Ridge, BC", caption: "MMCD-Spec Handrail · Maple Ridge, BC" };
+const IMAGE = { src: heroImg, alt: "Galvanized pipe MMCD-spec handrail installed along an accessible driveway ramp in Maple Ridge BC", title: "MMCD-spec galvanized handrail install — Maple Ridge, BC", caption: "MMCD-Spec Handrail · Maple Ridge, BC" };
 
 const FAQ: FaqItem[] = [
   { q: "Do you supply MMCD-spec drawings?", a: "Yes — our barrier gates and handrails are fabricated to MMCD standards and we can supply shop drawings on request." },

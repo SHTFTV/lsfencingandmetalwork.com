@@ -3,10 +3,10 @@ import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
 import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { serviceHead, type FaqItem } from "@/lib/service-schema";
-import heroImg from "@/assets/gallery/galv-perimeter-barbwire.jpeg.asset.json";
+import heroImg from "@/assets/gallery/galv-perimeter-barbwire.jpeg";
 
 const IMAGE = {
-  src: heroImg.url,
+  src: heroImg,
   alt: "Tall galvanized chain link perimeter fence with three-strand barbed wire topping — airfield-grade security perimeter installed by LS Fencing",
   title: "Airport & airfield perimeter fencing — Fraser Valley, BC",
   caption: "Airfield Perimeter · Galvanized + Barb",

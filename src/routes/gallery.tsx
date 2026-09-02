@@ -3,7 +3,7 @@ import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ArrowRight } from "lucide-react";
 import { GalleryTile, useLightbox } from "@/components/ImageLightbox";
 import { CATEGORIES, GALLERY_ITEMS } from "@/lib/gallery-items";
-import imgBlackSchool from "@/assets/gallery/black-vinyl-school-surrey.png.asset.json";
+import imgBlackSchool from "@/assets/gallery/black-vinyl-school-surrey.png";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -13,9 +13,9 @@ export const Route = createFileRoute("/gallery")({
       { property: "og:title", content: "Project Gallery — Fences, Gates & Metal Work" },
       { property: "og:description", content: "Proof of work across chain link, cedar, ornamental, gates and welding." },
       { property: "og:url", content: "/gallery" },
-      { property: "og:image", content: imgBlackSchool.url },
+      { property: "og:image", content: imgBlackSchool },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: imgBlackSchool.url },
+      { name: "twitter:image", content: imgBlackSchool },
     ],
     links: [{ rel: "canonical", href: "/gallery" }],
   }),
