@@ -3,10 +3,10 @@ import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
 import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { serviceHead, type FaqItem } from "@/lib/service-schema";
-import heroImg from "@/assets/gallery/high-security-cantilever-gate-farm.jpeg.asset.json";
+import heroImg from "@/assets/gallery/high-security-cantilever-gate-farm.jpeg";
 
 const IMAGE = {
-  src: heroImg.url,
+  src: heroImg,
   alt: "Galvanized cantilever driveway gate securing an industrial yard — port and marine terminal grade perimeter installed by LS Fencing",
   title: "Port & marine terminal fencing — Lower Mainland, BC",
   caption: "Marine Terminal · Cantilever Access",

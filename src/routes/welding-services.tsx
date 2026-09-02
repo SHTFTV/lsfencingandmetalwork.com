@@ -3,9 +3,9 @@ import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
 import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { serviceHead, type FaqItem } from "@/lib/service-schema";
-import heroImg from "@/assets/gallery/shop-welding-kubota-fabrication.jpg.asset.json";
+import heroImg from "@/assets/gallery/shop-welding-kubota-fabrication.jpg";
 
-const IMAGE = { src: heroImg.url, alt: "LS Fencing welder MIG welding a custom steel attachment on a Kubota skid steer inside the fabrication shop in Chilliwack", title: "Custom in-shop welding and fabrication — Chilliwack, BC", caption: "In-Shop Fabrication · Chilliwack, BC" };
+const IMAGE = { src: heroImg, alt: "LS Fencing welder MIG welding a custom steel attachment on a Kubota skid steer inside the fabrication shop in Chilliwack", title: "Custom in-shop welding and fabrication — Chilliwack, BC", caption: "In-Shop Fabrication · Chilliwack, BC" };
 
 const FAQ: FaqItem[] = [
   { q: "Can you weld aluminum?", a: "Yes — TIG on aluminum and stainless is available; call ahead so we bring the right rig." },

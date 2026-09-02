@@ -3,9 +3,9 @@ import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
 import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { serviceHead, type FaqItem } from "@/lib/service-schema";
-import heroImg from "@/assets/gallery/black-chainlink-hillside-chilliwack.jpg.asset.json";
+import heroImg from "@/assets/gallery/black-chainlink-hillside-chilliwack.jpg";
 
-const IMAGE = { src: heroImg.url, alt: "Black vinyl-coated chain link fence installed along a rock-wall hillside acreage in Chilliwack BC by LS Fencing", title: "Chain link fencing installation — Chilliwack, BC", caption: "Vinyl-Coated Chain Link · Chilliwack, BC" };
+const IMAGE = { src: heroImg, alt: "Black vinyl-coated chain link fence installed along a rock-wall hillside acreage in Chilliwack BC by LS Fencing", title: "Chain link fencing installation — Chilliwack, BC", caption: "Vinyl-Coated Chain Link · Chilliwack, BC" };
 
 const FAQ: FaqItem[] = [
   { q: "How long does a typical residential install take?", a: "Most 100–200 ft residential runs are installed in 1–2 days after posts have cured." },

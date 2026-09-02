@@ -3,9 +3,9 @@ import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
 import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { serviceHead, type FaqItem } from "@/lib/service-schema";
-import heroImg from "@/assets/gallery/ornamental-powdercoat-chilliwack.jpeg.asset.json";
+import heroImg from "@/assets/gallery/ornamental-powdercoat-chilliwack.jpeg";
 
-const IMAGE = { src: heroImg.url, alt: "Black powder-coated ornamental steel fence panels next to a stone column in Chilliwack BC", title: "Powder-coated ornamental steel fence — Chilliwack, BC", caption: "Powder-Coated Steel · Chilliwack, BC" };
+const IMAGE = { src: heroImg, alt: "Black powder-coated ornamental steel fence panels next to a stone column in Chilliwack BC", title: "Powder-coated ornamental steel fence — Chilliwack, BC", caption: "Powder-Coated Steel · Chilliwack, BC" };
 
 const FAQ: FaqItem[] = [
   { q: "Can it follow slope?", a: "Yes — our panels rack up to 20° without cutting, keeping picket tops level with grade." },

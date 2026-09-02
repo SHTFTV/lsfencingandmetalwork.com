@@ -3,9 +3,9 @@ import { PageShell, PageHero, CtaStrip } from "@/components/PageShell";
 import { ServiceContent } from "@/components/ServiceContent";
 import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { serviceHead, type FaqItem } from "@/lib/service-schema";
-import heroImg from "@/assets/gallery/kubota-kx033-excavator-post-line.jpg.asset.json";
+import heroImg from "@/assets/gallery/kubota-kx033-excavator-post-line.jpg";
 
-const IMAGE = { src: heroImg.url, alt: "Operator running an orange Kubota KX033-4 mini excavator digging a fence post line in a rural Fraser Valley pasture", title: "Excavation and post-line digging — Fraser Valley, BC", caption: "Kubota KX033 · Fraser Valley, BC" };
+const IMAGE = { src: heroImg, alt: "Operator running an orange Kubota KX033-4 mini excavator digging a fence post line in a rural Fraser Valley pasture", title: "Excavation and post-line digging — Fraser Valley, BC", caption: "Kubota KX033 · Fraser Valley, BC" };
 
 const FAQ: FaqItem[] = [
   { q: "Do you do excavation-only work?", a: "Yes — we're happy to price small excavation jobs that aren't tied to a fence install." },
