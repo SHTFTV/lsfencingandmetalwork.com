@@ -161,7 +161,7 @@ const legacyPosts: BlogPost[] = [
       "Everything a strata council needs to know — barrier arms, parkade rolling doors, cantilever gates, chain link and security fencing, access control, Canadian regulations, and 2026 costs.",
     date: "2026-07-30",
     readMinutes: 12,
-    ogImage: "/__l5e/assets-v1/5d8442f4-708e-466c-b510-56aac6813245/strata-parking-gate-security-fencing-abbotsford.jpg",
+    ogImage: "/gallery/strata-parking-gate-security-fencing-abbotsford.jpg",
     ogImageCaption:
       "Commercial galvanized chain-link compound with barbed wire topping and cantilever sliding gate securing a strata waste and compactor area in Abbotsford, BC.",
     tags: ["Commercial", "Gates", "Security", "Chain Link"],
@@ -176,7 +176,7 @@ const legacyPosts: BlogPost[] = [
     ],
     body: [
       { type: "p", text: "Unauthorized parking, vehicle theft, catalytic converter theft, tailgating, and unauthorized access to storage areas are persistent — and growing — problems across Canadian strata communities. Whether you manage a 12-unit townhouse complex in Langley or a 400-unit highrise parkade in downtown Vancouver, the challenges are remarkably similar: residents who forget to close gates, visitors who don\'t belong, and spaces that are genuinely difficult to secure with off-the-shelf solutions." },
-      { type: "image", src: "/__l5e/assets-v1/5d8442f4-708e-466c-b510-56aac6813245/strata-parking-gate-security-fencing-abbotsford.jpg", alt: "Galvanized chain link strata security compound with three-strand barbed wire topping and cantilever sliding gate enclosing waste bins and a compactor in Abbotsford BC", caption: "Commercial galvanized chain-link compound with barbed wire topping and cantilever sliding gate — a common security fencing application for strata utility areas, dumpster enclosures, and restricted parkade zones.", focusKeyword: "strata parking gate security fencing" },
+      { type: "image", src: "/gallery/strata-parking-gate-security-fencing-abbotsford.jpg", alt: "Galvanized chain link strata security compound with three-strand barbed wire topping and cantilever sliding gate enclosing waste bins and a compactor in Abbotsford BC", caption: "Commercial galvanized chain-link compound with barbed wire topping and cantilever sliding gate — a common security fencing application for strata utility areas, dumpster enclosures, and restricted parkade zones.", focusKeyword: "strata parking gate security fencing" },
       { type: "p", text: "A properly designed strata parking gate and fencing system solves these problems at the source. It deters opportunistic theft before it happens, creates a clear record of access for liability purposes, reduces resident complaints about stolen property, and — critically — can lower your strata\'s insurance premiums when properly documented." },
       { type: "p", text: "But not all gate and fencing systems are created equal. The difference between a $4,000 barrier arm that fails within 18 months and a $9,000 system that runs reliably for 15 years often comes down to specification quality, installation expertise, and matching the right product to the specific demands of your site." },
 
@@ -339,7 +339,7 @@ const legacyPosts: BlogPost[] = [
       "Heavy-gauge industrial perimeter security fencing for Langley BC — 6-gauge chain link, 358 anti-climb mesh, barbed and razor wire toppings, bylaw limits, footings and access control specs.",
     date: "2026-07-29",
     readMinutes: 12,
-    ogImage: "/__l5e/assets-v1/37339657-d229-4758-a5e5-dbb446bddcba/industrial-perimeter-security-chainlink-langley.png",
+    ogImage: "/gallery/industrial-perimeter-security-chainlink-langley.png",
     ogImageCaption:
       "Heavy-gauge galvanized chain link industrial perimeter security fence with three-strand barbed wire topping in Langley, BC.",
     tags: ["Chain Link", "Commercial", "Security"],
@@ -354,7 +354,7 @@ const legacyPosts: BlogPost[] = [
     ],
     body: [
       { type: "p", text: "Protecting high-value industrial inventory, heavy machinery, logistics hubs, and critical infrastructure requires physical security boundaries engineered to delay, detect, and deter forced entry. In high-density industrial hubs across Langley, BC — including Campbell Heights, Gloucester Industrial Estates, Port Kells, and Aldergrove — perimeter fencing is the primary physical barrier against trespass, copper theft, vehicle breach, and organized property crime." },
-      { type: "image", src: "/__l5e/assets-v1/37339657-d229-4758-a5e5-dbb446bddcba/industrial-perimeter-security-chainlink-langley.png", alt: "Heavy-gauge galvanized chain link industrial perimeter security fence with three-strand barbed wire topping securing a commercial building and fleet parking yard in Langley BC", caption: "Heavy-gauge galvanized industrial perimeter with barbed wire topping — Langley, BC.", focusKeyword: "industrial perimeter security fencing Langley BC" },
+      { type: "image", src: "/gallery/industrial-perimeter-security-chainlink-langley.png", alt: "Heavy-gauge galvanized chain link industrial perimeter security fence with three-strand barbed wire topping securing a commercial building and fleet parking yard in Langley BC", caption: "Heavy-gauge galvanized industrial perimeter with barbed wire topping — Langley, BC.", focusKeyword: "industrial perimeter security fencing Langley BC" },
       { type: "p", text: "This guide covers technical specifications, structural engineering requirements, municipal bylaw compliance, and integration protocols for deploying heavy-gauge perimeter fencing with topped security wire across industrial properties in the Fraser Valley." },
 
       { type: "h2", text: "1. Executive summary: core architectural specifications" },
@@ -481,7 +481,7 @@ const legacyPosts: BlogPost[] = [
       "CSA Z614 playground fencing, basketball and tennis court perimeters, and dog park airlock gates in Langley, Surrey, Abbotsford and the Fraser Valley — specs, costs, permits and FAQs.",
     date: "2026-07-27",
     readMinutes: 7,
-    ogImage: "/__l5e/assets-v1/e839bc90-d5c0-45f1-a9f3-2e0fad756c6e/galvanized-chainlink-recreational-court-gate.jpg",
+    ogImage: "/gallery/galvanized-chainlink-recreational-court-gate.jpg",
     ogImageCaption:
       "Galvanized commercial-grade chain link perimeter fence with walk-through gate around a private recreational court in the Fraser Valley.",
     tags: ["Chain Link", "Playgrounds", "Commercial"],
@@ -496,7 +496,7 @@ const legacyPosts: BlogPost[] = [
     ],
     body: [
       { type: "p", text: "The installation above is a chain link perimeter fence around a private recreational court in the Fraser Valley. Galvanized commercial-grade chain link, walk-through gate with self-latching hardware, clean corner posts. Built to last 25 years with zero maintenance beyond an occasional inspection." },
-      { type: "image", src: "/__l5e/assets-v1/e839bc90-d5c0-45f1-a9f3-2e0fad756c6e/galvanized-chainlink-recreational-court-gate.jpg", alt: "Galvanized commercial-grade chain link fence and walk-through gate enclosing a private basketball court in the Fraser Valley", caption: "Galvanized recreational court perimeter with self-latching walk-through gate — Fraser Valley, BC.", focusKeyword: "recreational chain link fencing Langley" },
+      { type: "image", src: "/gallery/galvanized-chainlink-recreational-court-gate.jpg", alt: "Galvanized commercial-grade chain link fence and walk-through gate enclosing a private basketball court in the Fraser Valley", caption: "Galvanized recreational court perimeter with self-latching walk-through gate — Fraser Valley, BC.", focusKeyword: "recreational chain link fencing Langley" },
       { type: "p", text: "Recreational fencing is one of the most misspecified categories in residential and municipal projects. The wrong gauge, the wrong post spacing, the wrong gate hardware — and you have a fence that looks fine for two years and fails on year three." },
       { type: "h2", text: "Recreational and playground fencing — getting the spec right" },
       { type: "p", text: "Whether it's a backyard basketball court, a school playground, a municipal park, or a strata amenity area — recreational fencing has specific requirements that standard residential chain link doesn't meet." },
@@ -566,7 +566,7 @@ const legacyPosts: BlogPost[] = [
       "Custom metal railing fabrication, commercial chain link fencing, and portable on-site welding in Langley, Surrey, Abbotsford and the Fraser Valley — specs, costs, permits and FAQs from LS Fencing & Metal Work.",
     date: "2026-07-27",
     readMinutes: 8,
-    ogImage: "/__l5e/assets-v1/0387aa99-dfba-42a9-89af-047c9366c9ad/black-chainlink-railing-sports-facility-langley.png",
+    ogImage: "/gallery/black-chainlink-railing-sports-facility-langley.png",
     ogImageCaption:
       "Black chain link fence with galvanized pipe top railing lining a concrete walkway at a government sports facility in Langley, BC.",
     tags: ["Railings", "Welding", "Chain Link"],
@@ -580,7 +580,7 @@ const legacyPosts: BlogPost[] = [
     ],
     body: [
       { type: "p", text: "The railing in the photo above was fabricated and installed by LS Fencing & Metal Work at a facility in the Fraser Valley. Hot-dip galvanized pipe. Installed at the edge of a walkway and drainage corridor where a standard wooden rail would have rotted within two seasons." },
-      { type: "image", src: "/__l5e/assets-v1/0387aa99-dfba-42a9-89af-047c9366c9ad/black-chainlink-railing-sports-facility-langley.png", alt: "Black chain link fence with galvanized pipe top railing running along a concrete walkway at a government sports facility in Langley BC", caption: "Chain link perimeter with galvanized pipe railing — public sports facility, Langley, BC.", focusKeyword: "metal railings Langley" },
+      { type: "image", src: "/gallery/black-chainlink-railing-sports-facility-langley.png", alt: "Black chain link fence with galvanized pipe top railing running along a concrete walkway at a government sports facility in Langley BC", caption: "Chain link perimeter with galvanized pipe railing — public sports facility, Langley, BC.", focusKeyword: "metal railings Langley" },
       { type: "p", text: "That's the difference between a fence company and a metal fabrication and fencing company. We don't just install — we build what needs to last." },
       { type: "h2", text: "Metal railings in Langley and the Fraser Valley" },
       { type: "p", text: "LS Fencing & Metal Work fabricates custom metal railings for residential, commercial, agricultural and industrial properties across Langley, Surrey, Abbotsford, Chilliwack and the Fraser Valley. Every railing starts in our metal shop. We cut, bend, weld and finish in-house — no outsourcing, no waiting on someone else's schedule. If you need a railing that matches an existing structure, fits an unusual grade change, or has to meet a specific load rating, we build it to spec." },
@@ -616,7 +616,7 @@ const legacyPosts: BlogPost[] = [
       { type: "quote", text: "If it's made of steel and it's broken — or needs to exist and doesn't yet — call us. We'll come to you." },
       { type: "h2", text: "Chain link fencing — commercial and industrial grade" },
       { type: "p", text: "Chain link is the workhorse of commercial perimeter security across the Fraser Valley. It's fast to install, cost-effective, and when specified correctly it's extremely durable." },
-      { type: "image", src: "/__l5e/assets-v1/d23d642f-105c-42dc-9924-3367fc801e85/black-chainlink-sports-field-perimeter.png", alt: "Black vinyl-coated chain link perimeter fence with privacy screening around a turf sports field in Langley BC", caption: "Black vinyl-coated chain link perimeter with screening — turf sports field, Langley, BC.", focusKeyword: "commercial chain link fencing Langley" },
+      { type: "image", src: "/gallery/black-chainlink-sports-field-perimeter.png", alt: "Black vinyl-coated chain link perimeter fence with privacy screening around a turf sports field in Langley BC", caption: "Black vinyl-coated chain link perimeter with screening — turf sports field, Langley, BC.", focusKeyword: "commercial chain link fencing Langley" },
       { type: "ul", items: [
         "Industrial yards and logistics facilities",
         "Construction site security",
@@ -661,7 +661,7 @@ const legacyPosts: BlogPost[] = [
       "Aluminum vs ornamental steel fencing for Chilliwack, Abbotsford, and Metro Vancouver — cost, durability, maintenance, and which one actually holds up in Fraser Valley weather.",
     date: "2026-07-26",
     readMinutes: 7,
-    ogImage: "/__l5e/assets-v1/6167cad4-4634-4014-94f1-cc1c3dca39c7/ornamental-iron-gate-greenhouse-abbotsford.jpg",
+    ogImage: "/gallery/ornamental-iron-gate-greenhouse-abbotsford.jpg",
     ogImageCaption:
       "Black ornamental iron swing gate with spear-top pickets and matching perimeter fence at an Abbotsford commercial greenhouse operation.",
     tags: ["Comparison", "Ornamental", "Aluminum"],
@@ -673,7 +673,7 @@ const legacyPosts: BlogPost[] = [
     ],
     body: [
       { type: "p", text: "Nine out of ten homeowners in Chilliwack and Abbotsford asking about a decorative metal fence are choosing between two materials: pressed aluminum and powder-coated ornamental steel. They look similar from the street. They perform very differently once you factor in cost, weight, security, and how they age in the Fraser Valley climate." },
-      { type: "image", src: "/__l5e/assets-v1/6167cad4-4634-4014-94f1-cc1c3dca39c7/ornamental-iron-gate-greenhouse-abbotsford.jpg", alt: "Black ornamental iron swing gate with spear-top pickets and matching perimeter fence securing a commercial greenhouse operation in Abbotsford BC", caption: "Powder-coated ornamental iron swing gate and matching perimeter fence — Abbotsford, BC greenhouse operation.", focusKeyword: "ornamental iron gate Abbotsford" },
+      { type: "image", src: "/gallery/ornamental-iron-gate-greenhouse-abbotsford.jpg", alt: "Black ornamental iron swing gate with spear-top pickets and matching perimeter fence securing a commercial greenhouse operation in Abbotsford BC", caption: "Powder-coated ornamental iron swing gate and matching perimeter fence — Abbotsford, BC greenhouse operation.", focusKeyword: "ornamental iron gate Abbotsford" },
       { type: "h2", text: "Quick comparison" },
       { type: "ul", items: [
         "Cost per linear foot: aluminum runs 20–35% cheaper than comparable ornamental steel.",
@@ -735,7 +735,7 @@ const legacyPosts: BlogPost[] = [
       "Commercial and industrial chain link fencing in Abbotsford, BC — gauges, heights, gate types, permit rules, costs, and neighbourhoods we serve. Free on-site quotes from LS Fencing & Metal Work.",
     date: "2026-07-14",
     readMinutes: 11,
-    ogImage: "/__l5e/assets-v1/c17f519b-6e1c-4e4b-9862-fc49c5d614f8/6ft-galv-barb-abbotsford.jpeg",
+    ogImage: "/gallery/6ft-galv-barb-abbotsford.jpeg",
     ogImageCaption:
       "6-foot galvanized chain link fence with barbed wire top on a commercial property in Abbotsford, BC installed by LS Fencing & Metal Work.",
     tags: ["Chain Link", "Abbotsford", "Commercial", "Local Guide"],
@@ -798,7 +798,7 @@ const legacyPosts: BlogPost[] = [
         "Corner and terminal assemblies: welded in our shop, not tension-banded — welded assemblies do not loosen over time and are the industry standard for cannabis LP and airport-adjacent work.",
       ] },
 
-      { type: "image", src: "/__l5e/assets-v1/2b9a8635-6b4c-46df-b729-f43837eb79c9/ornamental-storefront-gate-abbotsford.jpg", alt: "Powder-coated ornamental metal storefront gate installed on a commercial property in Abbotsford, BC by LS Fencing & Metal Work.", caption: "In-house welded ornamental storefront gate — Abbotsford commercial retail install.", focusKeyword: "commercial fence Abbotsford" },
+      { type: "image", src: "/gallery/ornamental-storefront-gate-abbotsford.jpg", alt: "Powder-coated ornamental metal storefront gate installed on a commercial property in Abbotsford, BC by LS Fencing & Metal Work.", caption: "In-house welded ornamental storefront gate — Abbotsford commercial retail install.", focusKeyword: "commercial fence Abbotsford" },
       { type: "h2", text: "Gates we fabricate for Abbotsford commercial clients" },
       { type: "p", text: "Every gate on our jobs is welded in our Chilliwack shop, hot-dip galvanized, and delivered to the site ready to hang. We do not order pre-fab residential gates for commercial perimeters — the hinges fail and the frames rack within a few years of daily use." },
       { type: "ul", items: [
@@ -823,7 +823,7 @@ const legacyPosts: BlogPost[] = [
       ] },
       { type: "p", text: "For a written quote based on your actual property, book a site visit — a five-minute walk-through gives us everything we need to price the job accurately. We do not quote sight-unseen off aerial imagery on commercial work; the details that move the price live at the site." },
 
-      { type: "image", src: "/__l5e/assets-v1/2f7eb8fd-87ac-4852-8a6c-01597275ee9f/8x16-cantilever-slat-gate-abbotsford.jpg", alt: "8 by 16 foot galvanized chain link cantilever slide gate with privacy slats installed on an Abbotsford industrial site by LS Fencing & Metal Work.", caption: "8×16 galvanized chain link cantilever slide gate with privacy slats — Abbotsford industrial perimeter.", focusKeyword: "chain link fencing Abbotsford BC" },
+      { type: "image", src: "/gallery/8x16-cantilever-slat-gate-abbotsford.jpg", alt: "8 by 16 foot galvanized chain link cantilever slide gate with privacy slats installed on an Abbotsford industrial site by LS Fencing & Metal Work.", caption: "8×16 galvanized chain link cantilever slide gate with privacy slats — Abbotsford industrial perimeter.", focusKeyword: "chain link fencing Abbotsford BC" },
       { type: "h2", text: "Neighbourhoods and industrial areas we work in most" },
       { type: "p", text: "Every neighbourhood in Abbotsford has its own fencing rhythm. What we install and why, by area:" },
       { type: "ul", items: [
