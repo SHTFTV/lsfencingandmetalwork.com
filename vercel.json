@@ -5,6 +5,17 @@
   "buildCommand": "pnpm run build",
   "redirects": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.lsfencingandmetalwork.com"
+        }
+      ],
+      "destination": "https://lsfencingandmetalwork.com/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [
         {
