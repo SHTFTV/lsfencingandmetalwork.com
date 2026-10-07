@@ -600,11 +600,11 @@ function ThankYou({ values, notified }: { values: FormValues; notified: boolean 
           <div className="inline-flex items-center justify-center h-14 w-14 rounded-full bg-primary text-primary-foreground mb-6">
             <Check className="h-6 w-6" />
           </div>
-          <h1 className="font-display uppercase text-4xl md:text-5xl">{notified ? "Request received" : "Request saved — please call"}</h1>
+          <h1 className="font-display uppercase text-4xl md:text-5xl">{notified ? "Request received" : "Request saved — contact us directly"}</h1>
           <p className="mt-4 text-muted-foreground text-lg">
             {notified
               ? `Thanks ${values.name?.split(" ")[0] || ""}. Your ${values.city} enquiry is saved and the notification was accepted for sending. We'll contact you at ${values.phone}.`
-              : "Your enquiry is safely saved, but we could not send the email notification. Please call us so we can follow up promptly. You do not need to submit the form again."}
+              : "Your enquiry is safely saved, but automatic email delivery is unavailable. Email your request directly using the button below, or call us. You do not need to fill in the form again."}
           </p>
           <div className="mt-8 border border-border rounded-sm bg-card p-6 text-sm space-y-2">
             <SummaryRow label="Service" value={values.service} />
@@ -613,6 +613,10 @@ function ThankYou({ values, notified }: { values: FormValues; notified: boolean 
             <SummaryRow label="Timeline" value={values.timeline} />
           </div>
           <div className="mt-8 flex flex-wrap gap-3">
+            {!notified && <a
+              href={`mailto:lsfencingandmetalwork@gmail.com?subject=${encodeURIComponent(`Website enquiry — ${values.service} in ${values.city}`)}&body=${encodeURIComponent(Object.entries(values).filter(([, value]) => value != null && value !== "").map(([key, value]) => `${key}: ${value}`).join("\n"))}`}
+              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 text-sm font-semibold uppercase tracking-wide rounded-sm"
+            ><Mail className="h-4 w-4" /> Email this request to LS Fencing</a>}
             <a href={SITE.phoneHref} className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 text-sm font-semibold uppercase tracking-wide rounded-sm">
               <Phone className="h-4 w-4" /> Call now — {SITE.phone}
             </a>
