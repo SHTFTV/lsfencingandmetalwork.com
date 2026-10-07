@@ -94,7 +94,7 @@ export const submitLead = createServerFn({ method: "POST" })
       throw new Error("Could not save request. Please call us instead.");
     }
 
-    // Send notification (up to 3 attempts, exponential backoff) and record outcome.
+    // Prepare the fixed-recipient notification only after durable storage succeeds.
     const tpl = await loadTemplate();
     const leadForEmail: LeadEmailData = {
       name: data.name,
@@ -110,32 +110,15 @@ export const submitLead = createServerFn({ method: "POST" })
       notes: data.notes ?? null,
       source: data.source ?? "contact-form",
     };
-    const result = await sendLeadNotification(tpl, leadForEmail, { maxAttempts: 3 });
-
-    await supabaseAdmin
-      .from("leads")
-      .update(
-        result.ok
-          ? {
-              delivery_status: "sent",
-              retry_count: result.attempts - 1,
-              delivered_at: new Date().toISOString(),
-              last_delivery_error: null,
-            }
-          : {
-              delivery_status: "failed",
-              retry_count: result.attempts,
-              last_delivery_error: result.error.slice(0, 500),
-            },
-      )
-      .eq("id", inserted.id);
-
-    // FormSubmit documents a browser AJAX integration. Offer that route only
-    // after a definite server rejection, never after an ambiguous timeout.
-    const browserEmail = !result.ok && result.error.startsWith("HTTP 403:")
-      ? { ...renderLeadEmail(tpl, leadForEmail), email: data.email, name: data.name }
-      : null;
-    return { ok: true as const, id: inserted.id, delivered: result.ok, browserEmail };
+    // Public forms use FormSubmit's documented browser integration. The lead
+    // remains pending until independently verified; a browser acknowledgement
+    // is not an inbox delivery receipt. Admin retries retain the server helper.
+    return {
+      ok: true as const,
+      id: inserted.id,
+      delivered: false,
+      browserEmail: { ...renderLeadEmail(tpl, leadForEmail), email: data.email, name: data.name },
+    };
   });
 
 export const listLeads = createServerFn({ method: "GET" })

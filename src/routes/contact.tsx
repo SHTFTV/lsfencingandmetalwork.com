@@ -290,8 +290,7 @@ function Contact() {
         },
       });
       if (!result.ok || !result.id) throw new Error("We could not confirm your request was saved. Please call us.");
-      const accepted = result.delivered === true ||
-        (result.browserEmail ? await sendBrowserNotification(result.browserEmail) : false);
+      const accepted = await sendBrowserNotification(result.browserEmail);
       setNotified(accepted);
       trackQuoteEvent({ name: "quote_submit_success", service: values.service, ...attribution });
       setDone(true);
