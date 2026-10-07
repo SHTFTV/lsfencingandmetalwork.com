@@ -23,6 +23,7 @@ export const NAV_PRIMARY = [
   { to: "/gallery", label: "Gallery" },
   { to: "/pricing", label: "Pricing" },
   { to: "/testimonial", label: "Testimonials" },
+  { to: "/guides", label: "Guides" },
   { to: "/blog", label: "Blog" },
   { to: "/career", label: "Careers" },
   { to: "/contact", label: "Contact" },

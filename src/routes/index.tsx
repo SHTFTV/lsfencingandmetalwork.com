@@ -1,3 +1,4 @@
+import { formatContentDate } from "@/lib/content-date";
 import { useCallback, useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell, CtaStrip } from "@/components/PageShell";
@@ -153,12 +154,12 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: "Fence, gate & metal fabrication crew serving the Fraser Valley & Lower Mainland, BC." },
       { property: "og:url", content: absoluteUrl("/") },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: commercialImg },
+      { property: "og:image", content: absoluteUrl(commercialImg) },
       { property: "og:image:alt", content: "8-foot galvanized chain link commercial security enclosure by LS Fencing in the Fraser Valley" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "LS Fencing & Metal Work" },
       { name: "twitter:description", content: "Fence, gate & metal fabrication crew serving the Fraser Valley." },
-      { name: "twitter:image", content: commercialImg },
+      { name: "twitter:image", content: absoluteUrl(commercialImg) },
       { name: "twitter:image:alt", content: "LS Fencing crew commercial chain link project" },
     ],
     links: [
@@ -458,6 +459,16 @@ function Home() {
         </div>
       </section>
 
+      <section className="border-t border-border bg-card/40">
+        <div className="container-industrial py-12 flex flex-wrap items-center justify-between gap-6">
+          <div className="max-w-2xl">
+            <div className="text-xs uppercase tracking-[0.3em] text-primary">Before you build</div>
+            <h2 className="font-display text-3xl uppercase mt-2">Fence & gate planning guides</h2>
+            <p className="text-muted-foreground mt-3">Compare materials, plan driveway access, prepare a strata scope and decide whether a damaged fence needs repair or replacement.</p>
+          </div>
+          <Link to="/guides" className="border border-primary px-6 py-3 text-primary font-semibold hover:bg-primary/10">Explore the guides →</Link>
+        </div>
+      </section>
       {/* Latest from the blog */}
       <section className="border-t border-border bg-background">
         <div className="container-industrial py-20">
@@ -492,7 +503,7 @@ function Home() {
                     <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-primary">
                       <Calendar className="h-3 w-3" />
                       <time dateTime={p.date}>
-                        {new Date(p.date).toLocaleDateString("en-CA", { year: "numeric", month: "short", day: "numeric" })}
+                        {formatContentDate(p.date, "short")}
                       </time>
                       <span className="text-muted-foreground normal-case tracking-normal">· {p.readMinutes} min read</span>
                     </div>

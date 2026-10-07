@@ -1,3 +1,4 @@
+import { formatContentDate } from "@/lib/content-date";
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 import { PageShell } from "@/components/PageShell";
 import { BlogImage } from "@/components/BlogImage";
@@ -29,7 +30,8 @@ export const Route = createFileRoute("/blog/$slug")({
       description: post.description,
       image: [image],
       datePublished: post.date,
-      dateModified: post.date,
+      dateModified: post.updated ?? post.date,
+      ...(post.cityName ? { spatialCoverage: { "@type": "Place", name: `${post.cityName}, BC` } } : {}),
       author: { "@type": "Organization", name: SITE.name, url: absoluteUrl("/") },
       publisher: {
         "@type": "Organization",
@@ -70,29 +72,6 @@ export const Route = createFileRoute("/blog/$slug")({
       });
     }
 
-    if (post.cityName) {
-      scripts.push({
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          "@id": absoluteUrl("/") + `#localbusiness-${post.cityName.toLowerCase().replace(/\s+/g, "-")}`,
-          name: SITE.name,
-          image: image,
-          telephone: SITE.phone,
-          email: SITE.email,
-          url: absoluteUrl("/"),
-          areaServed: { "@type": "City", name: `${post.cityName}, BC` },
-          priceRange: "$$",
-          address: {
-            "@type": "PostalAddress",
-            addressRegion: "BC",
-            addressCountry: "CA",
-            addressLocality: post.cityName,
-          },
-        }),
-      });
-    }
 
     return {
       meta: [
@@ -103,17 +82,16 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:type", content: "article" },
         { property: "og:url", content: url },
         { property: "og:image", content: image },
-        { property: "og:image:width", content: "1200" },
-        { property: "og:image:height", content: "630" },
         { property: "og:image:alt", content: imageAlt },
-        { property: "og:image:type", content: "image/jpeg" },
-        { name: "twitter:card", content: "summary_large_image" },
+                { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: post.title },
         { name: "twitter:description", content: post.description },
         { name: "twitter:image", content: image },
         { name: "twitter:image:alt", content: imageAlt },
 
         { property: "article:published_time", content: post.date },
+        { property: "article:modified_time", content: post.updated ?? post.date },
+        { name: "robots", content: "index, follow, max-image-preview:large" },
         { name: "author", content: SITE.name },
       ],
       links: [{ rel: "canonical", href: url }],
@@ -170,11 +148,17 @@ function Post() {
             </aside>
           )}
 
+          <nav aria-label="On this page" className="mb-10 border border-border p-5 rounded-sm">
+            <h2 className="font-display uppercase text-lg mb-3">On this page</h2>
+            <ul className="space-y-2 text-sm">
+              {post.body.map((block, i) => block.type === "h2" ? <li key={i}><a className="underline underline-offset-4 hover:text-primary" href={`#section-${i}`}>{block.text}</a></li> : null)}
+            </ul>
+          </nav>
           <div className="prose-industrial space-y-5">
             {post.body.map((block, i) => {
               switch (block.type) {
                 case "h2":
-                  return <h2 key={i} className="font-display uppercase text-2xl md:text-3xl mt-10 mb-2 text-primary">{block.text}</h2>;
+                  return <h2 key={i} id={`section-${i}`} style={{ scrollMarginTop: "8rem" }} className="font-display uppercase text-2xl md:text-3xl mt-10 mb-2 text-primary">{block.text}</h2>;
                 case "h3":
                   return <h3 key={i} className="font-display uppercase text-xl mt-6 mb-1">{block.text}</h3>;
                 case "p":
@@ -249,7 +233,7 @@ function Post() {
 
           {post.externalLinks && post.externalLinks.length > 0 && (
             <section className="mt-10" aria-labelledby="external-references">
-              <h2 id="external-references" className="font-display uppercase text-xl mb-4 text-primary">Bylaw & code references</h2>
+              <h2 id="external-references" className="font-display uppercase text-xl mb-4 text-primary">Sources & further reading</h2>
               <ul className="space-y-2">
                 {post.externalLinks.map((l) => (
                   <li key={l.to}>
@@ -269,6 +253,14 @@ function Post() {
           )}
         </div>
 
+        <section className="container-industrial max-w-3xl pb-12">
+          <div className="border border-primary/40 bg-card p-6">
+            <h2 className="font-display uppercase text-2xl">Plan your fence or gate project</h2>
+            <p className="mt-3 text-muted-foreground">Tell LS Fencing your location, the type of work and your preferred timing.</p>
+            <Link to="/contact" className="inline-block mt-4 bg-primary text-primary-foreground px-5 py-3 font-semibold">Request a quote</Link>
+            <Link to="/guides" className="inline-block ml-4 mt-4 underline">Browse all guides</Link>
+          </div>
+        </section>
         <RelatedPosts currentSlug={post.slug} />
       </article>
       
@@ -277,7 +269,10 @@ function Post() {
 }
 
 function RelatedPosts({ currentSlug }: { currentSlug: string }) {
-  const others = POSTS.filter((p) => p.slug !== currentSlug).slice(0, 3);
+  const current = getPost(currentSlug);
+  const score = (p: BlogPost) => p.tags.filter((tag) => current?.tags.includes(tag)).length;
+  const others = POSTS.filter((p) => p.slug !== currentSlug)
+    .sort((a, b) => score(b) - score(a) || b.date.localeCompare(a.date)).slice(0, 3);
   return (
     <section className="border-t border-border bg-card/40">
       <div className="container-industrial py-12">
@@ -295,6 +290,4 @@ function RelatedPosts({ currentSlug }: { currentSlug: string }) {
   );
 }
 
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-CA", { year: "numeric", month: "long", day: "numeric" });
-}
+function formatDate(iso: string) { return formatContentDate(iso); }

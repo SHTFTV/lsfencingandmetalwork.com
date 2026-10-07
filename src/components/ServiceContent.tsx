@@ -35,6 +35,7 @@ export function ServiceContent({
       <div className="grid lg:grid-cols-3 gap-10">
         <div className="lg:col-span-2 space-y-10">
           <p className="text-lg text-foreground/85 leading-relaxed">{intro}</p>
+          <p><Link to="/guides" className="text-primary underline underline-offset-4">Compare options and prepare your project with our planning guides →</Link></p>
 
           <figure className={`relative h-64 md:h-96 rounded-sm border border-border overflow-hidden ${image ? "bg-muted" : `bg-gradient-to-br ${swatch}`}`}>
             {image ? (

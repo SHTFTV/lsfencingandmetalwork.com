@@ -49,6 +49,7 @@ import { Route as DoubleCantileverGateCooperRentalsLangleyRouteImport } from './
 import { Route as ExcavationRouteImport } from './routes/excavation'
 import { Route as ExcavationServicesRouteImport } from './routes/excavation-services'
 import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as GuidesRouteImport } from './routes/guides'
 import { Route as MetalGateRouteImport } from './routes/metal-gate'
 import { Route as MetalGatesRouteImport } from './routes/metal-gates'
 import { Route as OrnamentalFencesRouteImport } from './routes/ornamental-fences'
@@ -294,6 +295,11 @@ const GalleryRoute = GalleryRouteImport.update({
   path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GuidesRoute = GuidesRouteImport.update({
+  id: '/guides',
+  path: '/guides',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MetalGateRoute = MetalGateRouteImport.update({
   id: '/metal-gate',
   path: '/metal-gate',
@@ -507,6 +513,7 @@ export interface FileRoutesByFullPath {
   '/excavation': typeof ExcavationRoute
   '/excavation-services': typeof ExcavationServicesRoute
   '/gallery': typeof GalleryRoute
+  '/guides': typeof GuidesRoute
   '/metal-gate': typeof MetalGateRoute
   '/metal-gates': typeof MetalGatesRoute
   '/ornamental-fences': typeof OrnamentalFencesRoute
@@ -580,6 +587,7 @@ export interface FileRoutesByTo {
   '/excavation': typeof ExcavationRoute
   '/excavation-services': typeof ExcavationServicesRoute
   '/gallery': typeof GalleryRoute
+  '/guides': typeof GuidesRoute
   '/metal-gate': typeof MetalGateRoute
   '/metal-gates': typeof MetalGatesRoute
   '/ornamental-fences': typeof OrnamentalFencesRoute
@@ -655,6 +663,7 @@ export interface FileRoutesById {
   '/excavation': typeof ExcavationRoute
   '/excavation-services': typeof ExcavationServicesRoute
   '/gallery': typeof GalleryRoute
+  '/guides': typeof GuidesRoute
   '/metal-gate': typeof MetalGateRoute
   '/metal-gates': typeof MetalGatesRoute
   '/ornamental-fences': typeof OrnamentalFencesRoute
@@ -730,6 +739,7 @@ export interface FileRouteTypes {
     | '/excavation'
     | '/excavation-services'
     | '/gallery'
+    | '/guides'
     | '/metal-gate'
     | '/metal-gates'
     | '/ornamental-fences'
@@ -803,6 +813,7 @@ export interface FileRouteTypes {
     | '/excavation'
     | '/excavation-services'
     | '/gallery'
+    | '/guides'
     | '/metal-gate'
     | '/metal-gates'
     | '/ornamental-fences'
@@ -877,6 +888,7 @@ export interface FileRouteTypes {
     | '/excavation'
     | '/excavation-services'
     | '/gallery'
+    | '/guides'
     | '/metal-gate'
     | '/metal-gates'
     | '/ornamental-fences'
@@ -952,6 +964,7 @@ export interface RootRouteChildren {
   ExcavationRoute: typeof ExcavationRoute
   ExcavationServicesRoute: typeof ExcavationServicesRoute
   GalleryRoute: typeof GalleryRoute
+  GuidesRoute: typeof GuidesRoute
   MetalGateRoute: typeof MetalGateRoute
   MetalGatesRoute: typeof MetalGatesRoute
   OrnamentalFencesRoute: typeof OrnamentalFencesRoute
@@ -1266,6 +1279,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/guides': {
+      id: '/guides'
+      path: '/guides'
+      fullPath: '/guides'
+      preLoaderRoute: typeof GuidesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/metal-gate': {
       id: '/metal-gate'
       path: '/metal-gate'
@@ -1552,6 +1572,7 @@ const rootRouteChildren: RootRouteChildren = {
   ExcavationRoute: ExcavationRoute,
   ExcavationServicesRoute: ExcavationServicesRoute,
   GalleryRoute: GalleryRoute,
+  GuidesRoute: GuidesRoute,
   MetalGateRoute: MetalGateRoute,
   MetalGatesRoute: MetalGatesRoute,
   OrnamentalFencesRoute: OrnamentalFencesRoute,

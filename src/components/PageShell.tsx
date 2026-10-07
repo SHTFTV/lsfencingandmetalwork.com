@@ -7,7 +7,7 @@ import { Phone } from "lucide-react";
 
 export function PageShell({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col pb-20 md:pb-0">
       <SiteHeader />
       <main className="flex-1">{children}</main>
       <SiteFooter />

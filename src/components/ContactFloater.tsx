@@ -34,6 +34,7 @@ const INITIAL: GoogleReviewsSummary = {
  */
 export function ContactFloater() {
   const [visible, setVisible] = useState(true);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const fetchReviews = useServerFn(getGoogleReviews);
 
   const { data: reviews } = useQuery({
@@ -62,13 +63,14 @@ export function ContactFloater() {
     if (!visible) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setVisible(false);
+        if (mobileOpen) setMobileOpen(false);
+        else setVisible(false);
         trackFloaterClick({ action: "dismiss", to: "keyboard:escape" });
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [visible]);
+  }, [visible, mobileOpen]);
 
   if (!visible) return null;
 
@@ -88,13 +90,20 @@ export function ContactFloater() {
   });
 
   return (
+    <>
+    <button type="button" onClick={() => setMobileOpen((value) => !value)}
+      aria-expanded={mobileOpen} aria-controls="ls-contact-panel"
+      className="md:hidden fixed right-4 bottom-4 z-40 rounded-full bg-primary text-primary-foreground px-5 py-3 font-semibold shadow-lg focus-visible:ring-2 focus-visible:ring-ring">
+      {mobileOpen ? "Close contact options" : "Contact LS Fencing"}
+    </button>
     <aside
+      id="ls-contact-panel"
       aria-label="Contact LS Fencing"
       data-testid="contact-floater"
-      className="fixed right-2 top-1/2 z-40 -translate-y-1/2 w-[230px] max-w-[calc(100vw-1rem)] rounded-2xl border border-border bg-background/95 shadow-2xl backdrop-blur supports-[backdrop-filter]:bg-background/80"
+      className={`${mobileOpen ? "block" : "hidden"} md:block fixed right-4 bottom-20 md:right-2 md:bottom-auto md:top-1/2 z-40 md:-translate-y-1/2 w-[230px] max-w-[calc(100vw-2rem)] max-h-[70vh] overflow-y-auto rounded-2xl border border-border bg-background/95 shadow-2xl backdrop-blur supports-[backdrop-filter]:bg-background/80`}
     >
       <FloaterBody
-        dismiss={dismiss}
+        dismiss={mobileOpen ? () => setMobileOpen(false) : dismiss}
         smsHref={smsHref}
         smsNumber={smsNumber}
         rating={rating}
@@ -106,6 +115,7 @@ export function ContactFloater() {
         breakdown={reviews.breakdown}
       />
     </aside>
+    </>
   );
 }
 
@@ -185,7 +195,7 @@ function FloaterBody({
         type="button"
         onClick={dismiss}
         aria-label="Hide contact panel"
-        className={`absolute -top-2 -right-2 inline-flex h-7 w-7 items-center justify-center rounded-full border border-border bg-background text-muted-foreground shadow-md hover:text-foreground hover:bg-muted ${focusRing}`}
+        className={`absolute top-1 right-1 inline-flex h-7 w-7 items-center justify-center rounded-full border border-border bg-background text-muted-foreground shadow-md hover:text-foreground hover:bg-muted ${focusRing}`}
       >
         <X className="h-3.5 w-3.5" />
       </button>

@@ -1,3 +1,4 @@
+import { formatContentDate } from "@/lib/content-date";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero } from "@/components/PageShell";
 import { BlogImage } from "@/components/BlogImage";
@@ -75,6 +76,7 @@ function Blog() {
     <PageShell>
       <PageHero eyebrow="Field Notes & Guides" title="Blog" intro="Practical writing from the crew — fencing, gates, welding, and what actually works in the Fraser Valley climate." />
       <section className="container-industrial py-16">
+        <p className="mb-8"><Link to="/guides" className="underline text-primary">Start with our fence and gate planning guides →</Link></p>
         <div className="grid gap-6 md:grid-cols-2">
           {[...POSTS]
             .sort((a, b) => b.date.localeCompare(a.date))
@@ -115,6 +117,4 @@ function Blog() {
   );
 }
 
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-CA", { year: "numeric", month: "long", day: "numeric" });
-}
+function formatDate(iso: string) { return formatContentDate(iso); }

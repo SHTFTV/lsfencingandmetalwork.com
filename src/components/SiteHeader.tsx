@@ -25,7 +25,7 @@ export function SiteHeader() {
           </div>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-6 text-sm">
+        <nav className="hidden xl:flex items-center gap-4 text-sm">
           {NAV_PRIMARY.map((n) => (
             <Link
               key={n.to}
@@ -48,9 +48,11 @@ export function SiteHeader() {
             <span className="sm:hidden">Call</span>
           </a>
           <button
-            className="lg:hidden inline-flex items-center justify-center rounded-sm border border-border p-2"
+            className="xl:hidden inline-flex items-center justify-center rounded-sm border border-border p-2"
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -58,7 +60,7 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <div className="lg:hidden border-t border-border bg-card">
+        <div id="mobile-navigation" className="xl:hidden border-t border-border bg-card">
           <div className="container-industrial py-4 grid gap-1">
             {NAV_PRIMARY.map((n) => (
               <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="py-2 text-sm uppercase tracking-wide">

@@ -1,3 +1,4 @@
+import { planningPosts } from "./blog/planning-guides";
 import { buildCityPosts } from "./blog/city-post";
 
 export interface FaqItem {
@@ -17,6 +18,7 @@ export interface BlogPost {
   title: string;
   description: string;
   date: string; // ISO
+  updated?: string; // Date of a substantive editorial update
   readMinutes: number;
   tags: string[];
   /** Absolute path (from /public) to the OpenGraph image, e.g. /og/foo.jpg */
@@ -718,8 +720,8 @@ const legacyPosts: BlogPost[] = [
     ],
     internalLinks: [
       { to: "/ornamental-fencing", label: "Ornamental Iron Fencing" },
-      { to: "/chilliwack", label: "Fencing in Chilliwack, BC" },
-      { to: "/abbotsford", label: "Fencing in Abbotsford, BC" },
+      { to: "/chilliwack-chain-link-fence-company", label: "Fencing in Chilliwack, BC" },
+      { to: "/abbotsford-chain-link-fence-contractor", label: "Fencing in Abbotsford, BC" },
       { to: "/metal-gates", label: "Custom Metal Gates" },
       { to: "/pricing", label: "Pricing Guide" },
     ],
@@ -888,7 +890,7 @@ const legacyPosts: BlogPost[] = [
   },
 ];
 
-export const POSTS: BlogPost[] = [...buildCityPosts(), ...legacyPosts].sort((a, b) =>
+export const POSTS: BlogPost[] = [...planningPosts, ...buildCityPosts(), ...legacyPosts].sort((a, b) =>
   b.date.localeCompare(a.date),
 );
 
