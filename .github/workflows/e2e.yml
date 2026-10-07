@@ -11,19 +11,21 @@ jobs:
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
         with:
-          bun-version: latest
+          node-version: 24
+          cache: pnpm
       - name: Install deps
-        run: bun install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
       - name: JSON-LD validator
-        run: bun run validate:jsonld
+        run: pnpm run validate:jsonld
       - name: Build
-        run: bun run build
+        run: pnpm run build
       - name: Install Playwright browsers
-        run: bunx playwright install --with-deps chromium
+        run: pnpm exec playwright install --with-deps chromium
       - name: Run Playwright tests
-        run: bun run test:e2e
+        run: pnpm run test:e2e
       - uses: actions/upload-artifact@v4
         if: always()
         with:

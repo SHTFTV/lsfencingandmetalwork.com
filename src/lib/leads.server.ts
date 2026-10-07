@@ -143,9 +143,21 @@ export async function sendLeadNotification(
           method: "POST",
           headers: { "Content-Type": "application/json", Accept: "application/json" },
           body: JSON.stringify(body),
+          signal: AbortSignal.timeout(10000),
         },
       );
-      if (res.ok) return { ok: true, attempts: attempt };
+      if (res.ok) {
+        const receipt = await res.json().catch(() => null);
+        if (receipt?.success === true || receipt?.success === "true") {
+          return { ok: true, attempts: attempt };
+        }
+        // An HTTP 200 can also be an activation request or provider rejection.
+        return {
+          ok: false,
+          attempts: attempt,
+          error: "Email provider did not confirm acceptance. Check recipient activation and delivery settings.",
+        };
+      }
       lastErr = `HTTP ${res.status}: ${(await res.text()).slice(0, 200)}`;
       // 4xx (except 429) won't get better on retry
       if (res.status >= 400 && res.status < 500 && res.status !== 429) {

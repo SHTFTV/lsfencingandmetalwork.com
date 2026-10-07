@@ -3,7 +3,7 @@ import { createFileRoute, redirect } from "@tanstack/react-router";
 // Legacy WordPress URL — permanent redirect to the consolidated route.
 export const Route = createFileRoute("/2016/06/07/consider-fencing-option")({
   beforeLoad: () => {
-    throw redirect({ to: "/blog/why-you-should-consider-fencing-as-an-option", statusCode: 301 });
+    throw redirect({ href: "/blog/why-you-should-consider-fencing-as-an-option", statusCode: 301 });
   },
   head: () => ({ meta: [{ name: "robots", content: "noindex" }] }),
   component: () => null,

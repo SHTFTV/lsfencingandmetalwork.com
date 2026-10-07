@@ -125,7 +125,7 @@ function LeadsAdmin() {
 
   const signOut = async () => {
     await supabase.auth.signOut();
-    router.navigate({ to: "/auth" });
+    router.navigate({ to: "/auth", search: { next: "/admin/leads" } });
   };
 
   const changeStatus = async (id: string, status: (typeof STATUSES)[number]) => {

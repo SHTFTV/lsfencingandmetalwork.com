@@ -23,10 +23,7 @@ export default defineConfig({
   webServer: process.env.PLAYWRIGHT_BASE_URL
     ? undefined
     : {
-        // The Lovable/TanStack Cloudflare preview adapter currently looks for
-        // a legacy dist/server/server.js file and returns HTTP 500. Test the
-        // same application through Vite's development server instead.
-        command: "bun run dev --host 127.0.0.1 --port " + PORT,
+        command: "pnpm run dev --host 127.0.0.1 --port " + PORT,
         url: BASE_URL,
         reuseExistingServer: !process.env.CI,
         timeout: 120_000,

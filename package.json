@@ -14,7 +14,7 @@
     "validate:jsonld": "node scripts/validate-jsonld.mjs",
     "test:e2e": "playwright test",
     "test:e2e:install": "playwright install --with-deps chromium",
-    "deploy:s3": "bash scripts/upload-dist-s3.sh"
+    "test:delivery": "node --experimental-strip-types --test tests/unit/lead-delivery.test.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -44,7 +44,7 @@
     "@radix-ui/react-toggle": "^1.1.10",
     "@radix-ui/react-toggle-group": "^1.1.11",
     "@radix-ui/react-tooltip": "^1.2.8",
-    "@supabase/supabase-js": "^2.110.1",
+    "@supabase/supabase-js": "2.117.2",
     "@tailwindcss/vite": "^4.2.1",
     "@tanstack/react-query": "^5.101.1",
     "@tanstack/react-router": "^1.170.16",
@@ -74,7 +74,6 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",
     "@eslint/js": "^9.32.0",
-    "@lovable.dev/vite-tanstack-config": "2.8.1",
     "@playwright/test": "^1.61.1",
     "@types/node": "^22.16.5",
     "@types/react": "^19.2.0",
@@ -91,5 +90,6 @@
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.56.1",
     "vite": "^8.0.16"
-  }
+  },
+  "packageManager": "pnpm@11.25.0"
 }

@@ -1,6 +1,8 @@
 import { createServerFn } from "@tanstack/react-start";
 import { getRequestHeader } from "@tanstack/react-start/server";
 import { z } from "zod";
+import type { SupabaseClient } from "@supabase/supabase-js";
+import type { Database } from "@/integrations/supabase/types";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import {
   SAMPLE_LEAD,
@@ -44,12 +46,11 @@ async function loadTemplate(): Promise<EmailTemplate> {
   return { subject: data.subject, intro: data.intro, footer: data.footer };
 }
 
-async function requireAdmin(context: { supabase: { rpc: Function }; userId: string }) {
-  const isAdmin = await context.supabase.rpc("has_role", {
-    _user_id: context.userId,
-    _role: "admin",
-  });
-  if (isAdmin.error || !isAdmin.data) throw new Error("Forbidden");
+async function requireAdmin(context: { supabase: SupabaseClient<Database>; userId: string }) {
+  // The role helper is private; query the role table through its existing RLS.
+  const { data, error } = await context.supabase.from("user_roles")
+    .select("id").eq("user_id", context.userId).eq("role", "admin").maybeSingle();
+  if (error || !data) throw new Error("Forbidden");
 }
 
 export const submitLead = createServerFn({ method: "POST" })

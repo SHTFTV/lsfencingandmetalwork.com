@@ -145,6 +145,7 @@ function Contact() {
   const [step, setStep] = useState<0 | 1 | 2>(0);
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
+  const [notified, setNotified] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const submit = useServerFn(submitLead);
 
@@ -271,7 +272,7 @@ function Contact() {
       const noteWithAttribution = prefill.photo
         ? `${values.notes ? values.notes + "\n\n" : ""}[from gallery photo: ${prefill.photo}]`
         : values.notes || null;
-      await submit({
+      const result = await submit({
         data: {
           service: values.service,
           linearFeet: Number.isFinite(values.linearFeet as number) ? Number(values.linearFeet) : null,
@@ -287,6 +288,8 @@ function Contact() {
           source: prefill.source ?? "contact-form",
         },
       });
+      if (!result.ok || !result.id) throw new Error("We could not confirm your request was saved. Please call us.");
+      setNotified(result.delivered === true);
       trackQuoteEvent({ name: "quote_submit_success", service: values.service, ...attribution });
       setDone(true);
     } catch (e) {
@@ -316,7 +319,7 @@ function Contact() {
     });
   };
 
-  if (done) return <ThankYou values={getValues()} />;
+  if (done) return <ThankYou values={getValues()} notified={notified} />;
 
   const progress = Math.round(((step + 1) / STEPS.length) * 100);
 
@@ -584,7 +587,7 @@ function FieldError({ msg }: { msg?: string }) {
   return <p className="mt-2 text-xs text-destructive">{msg}</p>;
 }
 
-function ThankYou({ values }: { values: FormValues }) {
+function ThankYou({ values, notified }: { values: FormValues; notified: boolean }) {
   const isFence = values.service ? FENCE_SERVICES.has(values.service) : false;
   const needsGate = values.service ? isFence || GATE_ONLY_SERVICES.has(values.service) : false;
   return (
@@ -594,10 +597,11 @@ function ThankYou({ values }: { values: FormValues }) {
           <div className="inline-flex items-center justify-center h-14 w-14 rounded-full bg-primary text-primary-foreground mb-6">
             <Check className="h-6 w-6" />
           </div>
-          <h1 className="font-display uppercase text-4xl md:text-5xl">Request received</h1>
+          <h1 className="font-display uppercase text-4xl md:text-5xl">{notified ? "Request received" : "Request saved — please call"}</h1>
           <p className="mt-4 text-muted-foreground text-lg">
-            Thanks {values.name?.split(" ")[0] || "—"}. We'll call {values.phone} within one business day
-            to walk your {values.city} project.
+            {notified
+              ? `Thanks ${values.name?.split(" ")[0] || ""}. Your ${values.city} enquiry is saved and the notification was accepted for sending. We'll contact you at ${values.phone}.`
+              : "Your enquiry is safely saved, but we could not send the email notification. Please call us so we can follow up promptly. You do not need to submit the form again."}
           </p>
           <div className="mt-8 border border-border rounded-sm bg-card p-6 text-sm space-y-2">
             <SummaryRow label="Service" value={values.service} />

@@ -1,10 +1,3 @@
-<!-- LOVABLE:BEGIN -->
-> [!IMPORTANT]
-> This project is connected to [Lovable](https://lovable.dev). Avoid rewriting
-> published git history — force pushing, or rebasing/amending/squashing commits
-> that are already pushed — as it rewrites history on Lovable's side and the
-> user will likely lose their project history.
->
-> Commits you push to the connected branch sync back to Lovable and show up in
-> the editor, so keep the branch in a working state.
-<!-- LOVABLE:END -->
+# LS Fencing production
+
+GitHub is the source of truth; Vercel hosts the application. Use the owner-controlled LS Fencing Supabase project in IAM. Preserve published history, client identity, content and the lead recipient. Never introduce hosted editor dependencies or place server secrets in browser variables or source control. Verify saved enquiries and notification receipt separately.

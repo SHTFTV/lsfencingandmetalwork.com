@@ -9,371 +9,82 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as WhyYouShouldConsiderFencingAsAnOptionRouteImport } from './routes/why-you-should-consider-fencing-as-an-option'
-import { Route as WereHiringApplyNowRouteImport } from './routes/were-hiring-apply-now'
-import { Route as WeldingServicesRouteImport } from './routes/welding-services'
-import { Route as WeldingRouteImport } from './routes/welding'
-import { Route as TestimonialRouteImport } from './routes/testimonial'
-import { Route as SnowRemovalRouteImport } from './routes/snow-removal'
-import { Route as SnowRouteImport } from './routes/snow'
-import { Route as ServicesRouteImport } from './routes/services'
-import { Route as ResidentialChainLinkFencingRouteImport } from './routes/residential-chain-link-fencing'
-import { Route as ResidentialChainLinkRouteImport } from './routes/residential-chain-link'
-import { Route as ProfessionalMmcdSpecRailingInstallationInMapleRidgeRouteImport } from './routes/professional-mmcd-spec-railing-installation-in-maple-ridge'
-import { Route as PricingRouteImport } from './routes/pricing'
-import { Route as Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRouteImport } from './routes/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack'
-import { Route as PortFencingRouteImport } from './routes/port-fencing'
-import { Route as OrnamentalIronRouteImport } from './routes/ornamental-iron'
-import { Route as OrnamentalFencingRouteImport } from './routes/ornamental-fencing'
-import { Route as OrnamentalFencesRouteImport } from './routes/ornamental-fences'
-import { Route as MetalGatesRouteImport } from './routes/metal-gates'
-import { Route as MetalGateRouteImport } from './routes/metal-gate'
-import { Route as GalleryRouteImport } from './routes/gallery'
-import { Route as ExcavationServicesRouteImport } from './routes/excavation-services'
-import { Route as ExcavationRouteImport } from './routes/excavation'
-import { Route as DoubleCantileverGateCooperRentalsLangleyRouteImport } from './routes/double-cantilever-gate-cooper-rentals-langley'
-import { Route as DifferencesBetweenChainLinkFenceAndWoodenFenceRouteImport } from './routes/differences-between-chain-link-fence-and-wooden-fence'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as CommercialChainLinkFencingRouteImport } from './routes/commercial-chain-link-fencing'
-import { Route as CommercialChainLinkRouteImport } from './routes/commercial-chain-link'
-import { Route as ChilliwackChainLinkFenceCompanyRouteImport } from './routes/chilliwack-chain-link-fence-company'
-import { Route as ChainLinkFencingRouteImport } from './routes/chain-link-fencing'
-import { Route as ChainLinkFencesRouteImport } from './routes/chain-link-fences'
-import { Route as ChainLinkRouteImport } from './routes/chain-link'
-import { Route as CedarFencingRouteImport } from './routes/cedar-fencing'
-import { Route as CedarFencesRouteImport } from './routes/cedar-fences'
-import { Route as CareerRouteImport } from './routes/career'
-import { Route as CannabisFencingRouteImport } from './routes/cannabis-fencing'
-import { Route as BestFencingOptionsAndTheirQualitiesRouteImport } from './routes/best-fencing-options-and-their-qualities'
-import { Route as BenefitsOfBarrierGatesRouteImport } from './routes/benefits-of-barrier-gates'
-import { Route as BarrierGatesHandRailsRouteImport } from './routes/barrier-gates-hand-rails'
-import { Route as BarrierGatesRouteImport } from './routes/barrier-gates'
-import { Route as AuthRouteImport } from './routes/auth'
-import { Route as AirportFencingRouteImport } from './routes/airport-fencing'
-import { Route as AboutUsRouteImport } from './routes/about-us'
-import { Route as AbbotsfordChainLinkFenceContractorRouteImport } from './routes/abbotsford-chain-link-fence-contractor'
-import { Route as Wood_FencingDotphpRouteImport } from './routes/Wood_Fencing[.]php'
-import { Route as Welding_ServicesDotphpRouteImport } from './routes/Welding_Services[.]php'
-import { Route as WeldingDotphpRouteImport } from './routes/Welding[.]php'
-import { Route as Snow_RemovalDotphpRouteImport } from './routes/Snow_Removal[.]php'
-import { Route as Residential_Chain_LinkDotphpRouteImport } from './routes/Residential_Chain_Link[.]php'
-import { Route as Ornamental_IronDotphpRouteImport } from './routes/Ornamental_Iron[.]php'
-import { Route as Ornamental_FencingDotphpRouteImport } from './routes/Ornamental_Fencing[.]php'
-import { Route as Metal_GatesDotphpRouteImport } from './routes/Metal_Gates[.]php'
-import { Route as ExcavationDotphpRouteImport } from './routes/Excavation[.]php'
-import { Route as Commercial_Chain_LinkDotphpRouteImport } from './routes/Commercial_Chain_Link[.]php'
-import { Route as Chain_Link_FencingDotphpRouteImport } from './routes/Chain_Link_Fencing[.]php'
-import { Route as Cedar_FencingDotphpRouteImport } from './routes/Cedar_Fencing[.]php'
-import { Route as Barrier_GatesDotphpRouteImport } from './routes/Barrier_Gates[.]php'
-import { Route as R10HighGalvanizedChainLinkFenceInstalledForHeatherbraeBuildersSurreyBcRouteImport } from './routes/10-high-galvanized-chain-link-fence-installed-for-heatherbrae-builders-surrey-bc'
-import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as R10HighGalvanizedChainLinkFenceInstalledForHeatherbraeBuildersSurreyBcRouteImport } from './routes/10-high-galvanized-chain-link-fence-installed-for-heatherbrae-builders-surrey-bc'
+import { Route as Barrier_GatesDotphpRouteImport } from './routes/Barrier_Gates[.]php'
+import { Route as Cedar_FencingDotphpRouteImport } from './routes/Cedar_Fencing[.]php'
+import { Route as Chain_Link_FencingDotphpRouteImport } from './routes/Chain_Link_Fencing[.]php'
+import { Route as Commercial_Chain_LinkDotphpRouteImport } from './routes/Commercial_Chain_Link[.]php'
+import { Route as ExcavationDotphpRouteImport } from './routes/Excavation[.]php'
+import { Route as Metal_GatesDotphpRouteImport } from './routes/Metal_Gates[.]php'
+import { Route as Ornamental_FencingDotphpRouteImport } from './routes/Ornamental_Fencing[.]php'
+import { Route as Ornamental_IronDotphpRouteImport } from './routes/Ornamental_Iron[.]php'
+import { Route as Residential_Chain_LinkDotphpRouteImport } from './routes/Residential_Chain_Link[.]php'
+import { Route as Snow_RemovalDotphpRouteImport } from './routes/Snow_Removal[.]php'
+import { Route as WeldingDotphpRouteImport } from './routes/Welding[.]php'
+import { Route as Welding_ServicesDotphpRouteImport } from './routes/Welding_Services[.]php'
+import { Route as Wood_FencingDotphpRouteImport } from './routes/Wood_Fencing[.]php'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AbbotsfordChainLinkFenceContractorRouteImport } from './routes/abbotsford-chain-link-fence-contractor'
+import { Route as AboutUsRouteImport } from './routes/about-us'
+import { Route as AirportFencingRouteImport } from './routes/airport-fencing'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as BarrierGatesRouteImport } from './routes/barrier-gates'
+import { Route as BarrierGatesHandRailsRouteImport } from './routes/barrier-gates-hand-rails'
+import { Route as BenefitsOfBarrierGatesRouteImport } from './routes/benefits-of-barrier-gates'
+import { Route as BestFencingOptionsAndTheirQualitiesRouteImport } from './routes/best-fencing-options-and-their-qualities'
+import { Route as CannabisFencingRouteImport } from './routes/cannabis-fencing'
+import { Route as CareerRouteImport } from './routes/career'
+import { Route as CedarFencesRouteImport } from './routes/cedar-fences'
+import { Route as CedarFencingRouteImport } from './routes/cedar-fencing'
+import { Route as ChainLinkRouteImport } from './routes/chain-link'
+import { Route as ChainLinkFencesRouteImport } from './routes/chain-link-fences'
+import { Route as ChainLinkFencingRouteImport } from './routes/chain-link-fencing'
+import { Route as ChilliwackChainLinkFenceCompanyRouteImport } from './routes/chilliwack-chain-link-fence-company'
+import { Route as CommercialChainLinkRouteImport } from './routes/commercial-chain-link'
+import { Route as CommercialChainLinkFencingRouteImport } from './routes/commercial-chain-link-fencing'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DifferencesBetweenChainLinkFenceAndWoodenFenceRouteImport } from './routes/differences-between-chain-link-fence-and-wooden-fence'
+import { Route as DoubleCantileverGateCooperRentalsLangleyRouteImport } from './routes/double-cantilever-gate-cooper-rentals-langley'
+import { Route as ExcavationRouteImport } from './routes/excavation'
+import { Route as ExcavationServicesRouteImport } from './routes/excavation-services'
+import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as MetalGateRouteImport } from './routes/metal-gate'
+import { Route as MetalGatesRouteImport } from './routes/metal-gates'
+import { Route as OrnamentalFencesRouteImport } from './routes/ornamental-fences'
+import { Route as OrnamentalFencingRouteImport } from './routes/ornamental-fencing'
+import { Route as OrnamentalIronRouteImport } from './routes/ornamental-iron'
+import { Route as PortFencingRouteImport } from './routes/port-fencing'
+import { Route as Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRouteImport } from './routes/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack'
+import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as ProfessionalMmcdSpecRailingInstallationInMapleRidgeRouteImport } from './routes/professional-mmcd-spec-railing-installation-in-maple-ridge'
+import { Route as ResidentialChainLinkRouteImport } from './routes/residential-chain-link'
+import { Route as ResidentialChainLinkFencingRouteImport } from './routes/residential-chain-link-fencing'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as SnowRouteImport } from './routes/snow'
+import { Route as SnowRemovalRouteImport } from './routes/snow-removal'
+import { Route as TestimonialRouteImport } from './routes/testimonial'
+import { Route as WeldingRouteImport } from './routes/welding'
+import { Route as WeldingServicesRouteImport } from './routes/welding-services'
+import { Route as WereHiringApplyNowRouteImport } from './routes/were-hiring-apply-now'
+import { Route as WhyYouShouldConsiderFencingAsAnOptionRouteImport } from './routes/why-you-should-consider-fencing-as-an-option'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
-import { Route as ProjectsRailingInstallationMapleRidgeRouteImport } from './routes/projects/railing-installation-maple-ridge'
-import { Route as ProjectsHeatherbraeBuildersSurreyRouteImport } from './routes/projects/heatherbrae-builders-surrey'
-import { Route as ProjectsCooperRentalsLangleyRouteImport } from './routes/projects/cooper-rentals-langley'
-import { Route as ProjectsCantileverGatesChilliwackRouteImport } from './routes/projects/cantilever-gates-chilliwack'
-import { Route as LocationsSlugRouteImport } from './routes/locations.$slug'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
-import { Route as AuthenticatedAdminLeadsRouteImport } from './routes/_authenticated/admin.leads'
+import { Route as LocationsSlugRouteImport } from './routes/locations.$slug'
+import { Route as ProjectsCantileverGatesChilliwackRouteImport } from './routes/projects/cantilever-gates-chilliwack'
+import { Route as ProjectsCooperRentalsLangleyRouteImport } from './routes/projects/cooper-rentals-langley'
+import { Route as ProjectsHeatherbraeBuildersSurreyRouteImport } from './routes/projects/heatherbrae-builders-surrey'
+import { Route as ProjectsRailingInstallationMapleRidgeRouteImport } from './routes/projects/railing-installation-maple-ridge'
 import { Route as AuthenticatedAdminGalleryLeadsRouteImport } from './routes/_authenticated/admin.gallery-leads'
-import { Route as R20170314BarrierGatesRouteImport } from './routes/2017/03/14/barrier-gates'
-import { Route as R20160607DifferencesChainLinkFenceWoodenFenceRouteImport } from './routes/2016/06/07/differences-chain-link-fence-wooden-fence'
-import { Route as R20160607ConsiderFencingOptionRouteImport } from './routes/2016/06/07/consider-fencing-option'
+import { Route as AuthenticatedAdminLeadsRouteImport } from './routes/_authenticated/admin.leads'
 import { Route as R20160607BestFencingOptionsQualitiesRouteImport } from './routes/2016/06/07/best-fencing-options-qualities'
+import { Route as R20160607ConsiderFencingOptionRouteImport } from './routes/2016/06/07/consider-fencing-option'
+import { Route as R20160607DifferencesChainLinkFenceWoodenFenceRouteImport } from './routes/2016/06/07/differences-chain-link-fence-wooden-fence'
+import { Route as R20170314BarrierGatesRouteImport } from './routes/2017/03/14/barrier-gates'
 
-const WhyYouShouldConsiderFencingAsAnOptionRoute =
-  WhyYouShouldConsiderFencingAsAnOptionRouteImport.update({
-    id: '/why-you-should-consider-fencing-as-an-option',
-    path: '/why-you-should-consider-fencing-as-an-option',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const WereHiringApplyNowRoute = WereHiringApplyNowRouteImport.update({
-  id: '/were-hiring-apply-now',
-  path: '/were-hiring-apply-now',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const WeldingServicesRoute = WeldingServicesRouteImport.update({
-  id: '/welding-services',
-  path: '/welding-services',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const WeldingRoute = WeldingRouteImport.update({
-  id: '/welding',
-  path: '/welding',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TestimonialRoute = TestimonialRouteImport.update({
-  id: '/testimonial',
-  path: '/testimonial',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SnowRemovalRoute = SnowRemovalRouteImport.update({
-  id: '/snow-removal',
-  path: '/snow-removal',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SnowRoute = SnowRouteImport.update({
-  id: '/snow',
-  path: '/snow',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ServicesRoute = ServicesRouteImport.update({
-  id: '/services',
-  path: '/services',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ResidentialChainLinkFencingRoute =
-  ResidentialChainLinkFencingRouteImport.update({
-    id: '/residential-chain-link-fencing',
-    path: '/residential-chain-link-fencing',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const ResidentialChainLinkRoute = ResidentialChainLinkRouteImport.update({
-  id: '/residential-chain-link',
-  path: '/residential-chain-link',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProfessionalMmcdSpecRailingInstallationInMapleRidgeRoute =
-  ProfessionalMmcdSpecRailingInstallationInMapleRidgeRouteImport.update({
-    id: '/professional-mmcd-spec-railing-installation-in-maple-ridge',
-    path: '/professional-mmcd-spec-railing-installation-in-maple-ridge',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const PricingRoute = PricingRouteImport.update({
-  id: '/pricing',
-  path: '/pricing',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRoute =
-  Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRouteImport.update({
-    id: '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack',
-    path: '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const PortFencingRoute = PortFencingRouteImport.update({
-  id: '/port-fencing',
-  path: '/port-fencing',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OrnamentalIronRoute = OrnamentalIronRouteImport.update({
-  id: '/ornamental-iron',
-  path: '/ornamental-iron',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OrnamentalFencingRoute = OrnamentalFencingRouteImport.update({
-  id: '/ornamental-fencing',
-  path: '/ornamental-fencing',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OrnamentalFencesRoute = OrnamentalFencesRouteImport.update({
-  id: '/ornamental-fences',
-  path: '/ornamental-fences',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MetalGatesRoute = MetalGatesRouteImport.update({
-  id: '/metal-gates',
-  path: '/metal-gates',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MetalGateRoute = MetalGateRouteImport.update({
-  id: '/metal-gate',
-  path: '/metal-gate',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GalleryRoute = GalleryRouteImport.update({
-  id: '/gallery',
-  path: '/gallery',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ExcavationServicesRoute = ExcavationServicesRouteImport.update({
-  id: '/excavation-services',
-  path: '/excavation-services',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ExcavationRoute = ExcavationRouteImport.update({
-  id: '/excavation',
-  path: '/excavation',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DoubleCantileverGateCooperRentalsLangleyRoute =
-  DoubleCantileverGateCooperRentalsLangleyRouteImport.update({
-    id: '/double-cantilever-gate-cooper-rentals-langley',
-    path: '/double-cantilever-gate-cooper-rentals-langley',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const DifferencesBetweenChainLinkFenceAndWoodenFenceRoute =
-  DifferencesBetweenChainLinkFenceAndWoodenFenceRouteImport.update({
-    id: '/differences-between-chain-link-fence-and-wooden-fence',
-    path: '/differences-between-chain-link-fence-and-wooden-fence',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CommercialChainLinkFencingRoute =
-  CommercialChainLinkFencingRouteImport.update({
-    id: '/commercial-chain-link-fencing',
-    path: '/commercial-chain-link-fencing',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const CommercialChainLinkRoute = CommercialChainLinkRouteImport.update({
-  id: '/commercial-chain-link',
-  path: '/commercial-chain-link',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ChilliwackChainLinkFenceCompanyRoute =
-  ChilliwackChainLinkFenceCompanyRouteImport.update({
-    id: '/chilliwack-chain-link-fence-company',
-    path: '/chilliwack-chain-link-fence-company',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const ChainLinkFencingRoute = ChainLinkFencingRouteImport.update({
-  id: '/chain-link-fencing',
-  path: '/chain-link-fencing',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ChainLinkFencesRoute = ChainLinkFencesRouteImport.update({
-  id: '/chain-link-fences',
-  path: '/chain-link-fences',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ChainLinkRoute = ChainLinkRouteImport.update({
-  id: '/chain-link',
-  path: '/chain-link',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CedarFencingRoute = CedarFencingRouteImport.update({
-  id: '/cedar-fencing',
-  path: '/cedar-fencing',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CedarFencesRoute = CedarFencesRouteImport.update({
-  id: '/cedar-fences',
-  path: '/cedar-fences',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CareerRoute = CareerRouteImport.update({
-  id: '/career',
-  path: '/career',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CannabisFencingRoute = CannabisFencingRouteImport.update({
-  id: '/cannabis-fencing',
-  path: '/cannabis-fencing',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BestFencingOptionsAndTheirQualitiesRoute =
-  BestFencingOptionsAndTheirQualitiesRouteImport.update({
-    id: '/best-fencing-options-and-their-qualities',
-    path: '/best-fencing-options-and-their-qualities',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const BenefitsOfBarrierGatesRoute = BenefitsOfBarrierGatesRouteImport.update({
-  id: '/benefits-of-barrier-gates',
-  path: '/benefits-of-barrier-gates',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BarrierGatesHandRailsRoute = BarrierGatesHandRailsRouteImport.update({
-  id: '/barrier-gates-hand-rails',
-  path: '/barrier-gates-hand-rails',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BarrierGatesRoute = BarrierGatesRouteImport.update({
-  id: '/barrier-gates',
-  path: '/barrier-gates',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AirportFencingRoute = AirportFencingRouteImport.update({
-  id: '/airport-fencing',
-  path: '/airport-fencing',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AboutUsRoute = AboutUsRouteImport.update({
-  id: '/about-us',
-  path: '/about-us',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AbbotsfordChainLinkFenceContractorRoute =
-  AbbotsfordChainLinkFenceContractorRouteImport.update({
-    id: '/abbotsford-chain-link-fence-contractor',
-    path: '/abbotsford-chain-link-fence-contractor',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const Wood_FencingDotphpRoute = Wood_FencingDotphpRouteImport.update({
-  id: '/Wood_Fencing.php',
-  path: '/Wood_Fencing.php',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const Welding_ServicesDotphpRoute = Welding_ServicesDotphpRouteImport.update({
-  id: '/Welding_Services.php',
-  path: '/Welding_Services.php',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const WeldingDotphpRoute = WeldingDotphpRouteImport.update({
-  id: '/Welding.php',
-  path: '/Welding.php',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const Snow_RemovalDotphpRoute = Snow_RemovalDotphpRouteImport.update({
-  id: '/Snow_Removal.php',
-  path: '/Snow_Removal.php',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const Residential_Chain_LinkDotphpRoute =
-  Residential_Chain_LinkDotphpRouteImport.update({
-    id: '/Residential_Chain_Link.php',
-    path: '/Residential_Chain_Link.php',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const Ornamental_IronDotphpRoute = Ornamental_IronDotphpRouteImport.update({
-  id: '/Ornamental_Iron.php',
-  path: '/Ornamental_Iron.php',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const Ornamental_FencingDotphpRoute =
-  Ornamental_FencingDotphpRouteImport.update({
-    id: '/Ornamental_Fencing.php',
-    path: '/Ornamental_Fencing.php',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const Metal_GatesDotphpRoute = Metal_GatesDotphpRouteImport.update({
-  id: '/Metal_Gates.php',
-  path: '/Metal_Gates.php',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ExcavationDotphpRoute = ExcavationDotphpRouteImport.update({
-  id: '/Excavation.php',
-  path: '/Excavation.php',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const Commercial_Chain_LinkDotphpRoute =
-  Commercial_Chain_LinkDotphpRouteImport.update({
-    id: '/Commercial_Chain_Link.php',
-    path: '/Commercial_Chain_Link.php',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const Chain_Link_FencingDotphpRoute =
-  Chain_Link_FencingDotphpRouteImport.update({
-    id: '/Chain_Link_Fencing.php',
-    path: '/Chain_Link_Fencing.php',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const Cedar_FencingDotphpRoute = Cedar_FencingDotphpRouteImport.update({
-  id: '/Cedar_Fencing.php',
-  path: '/Cedar_Fencing.php',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const Barrier_GatesDotphpRoute = Barrier_GatesDotphpRouteImport.update({
-  id: '/Barrier_Gates.php',
-  path: '/Barrier_Gates.php',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const R10HighGalvanizedChainLinkFenceInstalledForHeatherbraeBuildersSurreyBcRoute =
@@ -384,30 +95,323 @@ const R10HighGalvanizedChainLinkFenceInstalledForHeatherbraeBuildersSurreyBcRout
       getParentRoute: () => rootRouteImport,
     } as any,
   )
+const Barrier_GatesDotphpRoute = Barrier_GatesDotphpRouteImport.update({
+  id: '/Barrier_Gates.php',
+  path: '/Barrier_Gates.php',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Cedar_FencingDotphpRoute = Cedar_FencingDotphpRouteImport.update({
+  id: '/Cedar_Fencing.php',
+  path: '/Cedar_Fencing.php',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Chain_Link_FencingDotphpRoute =
+  Chain_Link_FencingDotphpRouteImport.update({
+    id: '/Chain_Link_Fencing.php',
+    path: '/Chain_Link_Fencing.php',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const Commercial_Chain_LinkDotphpRoute =
+  Commercial_Chain_LinkDotphpRouteImport.update({
+    id: '/Commercial_Chain_Link.php',
+    path: '/Commercial_Chain_Link.php',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ExcavationDotphpRoute = ExcavationDotphpRouteImport.update({
+  id: '/Excavation.php',
+  path: '/Excavation.php',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Metal_GatesDotphpRoute = Metal_GatesDotphpRouteImport.update({
+  id: '/Metal_Gates.php',
+  path: '/Metal_Gates.php',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Ornamental_FencingDotphpRoute =
+  Ornamental_FencingDotphpRouteImport.update({
+    id: '/Ornamental_Fencing.php',
+    path: '/Ornamental_Fencing.php',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const Ornamental_IronDotphpRoute = Ornamental_IronDotphpRouteImport.update({
+  id: '/Ornamental_Iron.php',
+  path: '/Ornamental_Iron.php',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Residential_Chain_LinkDotphpRoute =
+  Residential_Chain_LinkDotphpRouteImport.update({
+    id: '/Residential_Chain_Link.php',
+    path: '/Residential_Chain_Link.php',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const Snow_RemovalDotphpRoute = Snow_RemovalDotphpRouteImport.update({
+  id: '/Snow_Removal.php',
+  path: '/Snow_Removal.php',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WeldingDotphpRoute = WeldingDotphpRouteImport.update({
+  id: '/Welding.php',
+  path: '/Welding.php',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Welding_ServicesDotphpRoute = Welding_ServicesDotphpRouteImport.update({
+  id: '/Welding_Services.php',
+  path: '/Welding_Services.php',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Wood_FencingDotphpRoute = Wood_FencingDotphpRouteImport.update({
+  id: '/Wood_Fencing.php',
+  path: '/Wood_Fencing.php',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const AbbotsfordChainLinkFenceContractorRoute =
+  AbbotsfordChainLinkFenceContractorRouteImport.update({
+    id: '/abbotsford-chain-link-fence-contractor',
+    path: '/abbotsford-chain-link-fence-contractor',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AboutUsRoute = AboutUsRouteImport.update({
+  id: '/about-us',
+  path: '/about-us',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AirportFencingRoute = AirportFencingRouteImport.update({
+  id: '/airport-fencing',
+  path: '/airport-fencing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BarrierGatesRoute = BarrierGatesRouteImport.update({
+  id: '/barrier-gates',
+  path: '/barrier-gates',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BarrierGatesHandRailsRoute = BarrierGatesHandRailsRouteImport.update({
+  id: '/barrier-gates-hand-rails',
+  path: '/barrier-gates-hand-rails',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BenefitsOfBarrierGatesRoute = BenefitsOfBarrierGatesRouteImport.update({
+  id: '/benefits-of-barrier-gates',
+  path: '/benefits-of-barrier-gates',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BestFencingOptionsAndTheirQualitiesRoute =
+  BestFencingOptionsAndTheirQualitiesRouteImport.update({
+    id: '/best-fencing-options-and-their-qualities',
+    path: '/best-fencing-options-and-their-qualities',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CannabisFencingRoute = CannabisFencingRouteImport.update({
+  id: '/cannabis-fencing',
+  path: '/cannabis-fencing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CareerRoute = CareerRouteImport.update({
+  id: '/career',
+  path: '/career',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CedarFencesRoute = CedarFencesRouteImport.update({
+  id: '/cedar-fences',
+  path: '/cedar-fences',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CedarFencingRoute = CedarFencingRouteImport.update({
+  id: '/cedar-fencing',
+  path: '/cedar-fencing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChainLinkRoute = ChainLinkRouteImport.update({
+  id: '/chain-link',
+  path: '/chain-link',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChainLinkFencesRoute = ChainLinkFencesRouteImport.update({
+  id: '/chain-link-fences',
+  path: '/chain-link-fences',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChainLinkFencingRoute = ChainLinkFencingRouteImport.update({
+  id: '/chain-link-fencing',
+  path: '/chain-link-fencing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChilliwackChainLinkFenceCompanyRoute =
+  ChilliwackChainLinkFenceCompanyRouteImport.update({
+    id: '/chilliwack-chain-link-fence-company',
+    path: '/chilliwack-chain-link-fence-company',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CommercialChainLinkRoute = CommercialChainLinkRouteImport.update({
+  id: '/commercial-chain-link',
+  path: '/commercial-chain-link',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommercialChainLinkFencingRoute =
+  CommercialChainLinkFencingRouteImport.update({
+    id: '/commercial-chain-link-fencing',
+    path: '/commercial-chain-link-fencing',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DifferencesBetweenChainLinkFenceAndWoodenFenceRoute =
+  DifferencesBetweenChainLinkFenceAndWoodenFenceRouteImport.update({
+    id: '/differences-between-chain-link-fence-and-wooden-fence',
+    path: '/differences-between-chain-link-fence-and-wooden-fence',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const DoubleCantileverGateCooperRentalsLangleyRoute =
+  DoubleCantileverGateCooperRentalsLangleyRouteImport.update({
+    id: '/double-cantilever-gate-cooper-rentals-langley',
+    path: '/double-cantilever-gate-cooper-rentals-langley',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ExcavationRoute = ExcavationRouteImport.update({
+  id: '/excavation',
+  path: '/excavation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExcavationServicesRoute = ExcavationServicesRouteImport.update({
+  id: '/excavation-services',
+  path: '/excavation-services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MetalGateRoute = MetalGateRouteImport.update({
+  id: '/metal-gate',
+  path: '/metal-gate',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MetalGatesRoute = MetalGatesRouteImport.update({
+  id: '/metal-gates',
+  path: '/metal-gates',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrnamentalFencesRoute = OrnamentalFencesRouteImport.update({
+  id: '/ornamental-fences',
+  path: '/ornamental-fences',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrnamentalFencingRoute = OrnamentalFencingRouteImport.update({
+  id: '/ornamental-fencing',
+  path: '/ornamental-fencing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrnamentalIronRoute = OrnamentalIronRouteImport.update({
+  id: '/ornamental-iron',
+  path: '/ornamental-iron',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortFencingRoute = PortFencingRouteImport.update({
+  id: '/port-fencing',
+  path: '/port-fencing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRoute =
+  Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRouteImport.update({
+    id: '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack',
+    path: '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfessionalMmcdSpecRailingInstallationInMapleRidgeRoute =
+  ProfessionalMmcdSpecRailingInstallationInMapleRidgeRouteImport.update({
+    id: '/professional-mmcd-spec-railing-installation-in-maple-ridge',
+    path: '/professional-mmcd-spec-railing-installation-in-maple-ridge',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ResidentialChainLinkRoute = ResidentialChainLinkRouteImport.update({
+  id: '/residential-chain-link',
+  path: '/residential-chain-link',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResidentialChainLinkFencingRoute =
+  ResidentialChainLinkFencingRouteImport.update({
+    id: '/residential-chain-link-fencing',
+    path: '/residential-chain-link-fencing',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SnowRoute = SnowRouteImport.update({
+  id: '/snow',
+  path: '/snow',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SnowRemovalRoute = SnowRemovalRouteImport.update({
+  id: '/snow-removal',
+  path: '/snow-removal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TestimonialRoute = TestimonialRouteImport.update({
+  id: '/testimonial',
+  path: '/testimonial',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WeldingRoute = WeldingRouteImport.update({
+  id: '/welding',
+  path: '/welding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WeldingServicesRoute = WeldingServicesRouteImport.update({
+  id: '/welding-services',
+  path: '/welding-services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WereHiringApplyNowRoute = WereHiringApplyNowRouteImport.update({
+  id: '/were-hiring-apply-now',
+  path: '/were-hiring-apply-now',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WhyYouShouldConsiderFencingAsAnOptionRoute =
+  WhyYouShouldConsiderFencingAsAnOptionRouteImport.update({
+    id: '/why-you-should-consider-fencing-as-an-option',
+    path: '/why-you-should-consider-fencing-as-an-option',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/blog/',
   path: '/blog/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProjectsRailingInstallationMapleRidgeRoute =
-  ProjectsRailingInstallationMapleRidgeRouteImport.update({
-    id: '/projects/railing-installation-maple-ridge',
-    path: '/projects/railing-installation-maple-ridge',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const ProjectsHeatherbraeBuildersSurreyRoute =
-  ProjectsHeatherbraeBuildersSurreyRouteImport.update({
-    id: '/projects/heatherbrae-builders-surrey',
-    path: '/projects/heatherbrae-builders-surrey',
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LocationsSlugRoute = LocationsSlugRouteImport.update({
+  id: '/locations/$slug',
+  path: '/locations/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsCantileverGatesChilliwackRoute =
+  ProjectsCantileverGatesChilliwackRouteImport.update({
+    id: '/projects/cantilever-gates-chilliwack',
+    path: '/projects/cantilever-gates-chilliwack',
     getParentRoute: () => rootRouteImport,
   } as any)
 const ProjectsCooperRentalsLangleyRoute =
@@ -416,42 +420,33 @@ const ProjectsCooperRentalsLangleyRoute =
     path: '/projects/cooper-rentals-langley',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ProjectsCantileverGatesChilliwackRoute =
-  ProjectsCantileverGatesChilliwackRouteImport.update({
-    id: '/projects/cantilever-gates-chilliwack',
-    path: '/projects/cantilever-gates-chilliwack',
+const ProjectsHeatherbraeBuildersSurreyRoute =
+  ProjectsHeatherbraeBuildersSurreyRouteImport.update({
+    id: '/projects/heatherbrae-builders-surrey',
+    path: '/projects/heatherbrae-builders-surrey',
     getParentRoute: () => rootRouteImport,
   } as any)
-const LocationsSlugRoute = LocationsSlugRouteImport.update({
-  id: '/locations/$slug',
-  path: '/locations/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BlogSlugRoute = BlogSlugRouteImport.update({
-  id: '/blog/$slug',
-  path: '/blog/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthenticatedAdminLeadsRoute = AuthenticatedAdminLeadsRouteImport.update({
-  id: '/admin/leads',
-  path: '/admin/leads',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
+const ProjectsRailingInstallationMapleRidgeRoute =
+  ProjectsRailingInstallationMapleRidgeRouteImport.update({
+    id: '/projects/railing-installation-maple-ridge',
+    path: '/projects/railing-installation-maple-ridge',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AuthenticatedAdminGalleryLeadsRoute =
   AuthenticatedAdminGalleryLeadsRouteImport.update({
     id: '/admin/gallery-leads',
     path: '/admin/gallery-leads',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const R20170314BarrierGatesRoute = R20170314BarrierGatesRouteImport.update({
-  id: '/2017/03/14/barrier-gates',
-  path: '/2017/03/14/barrier-gates',
-  getParentRoute: () => rootRouteImport,
+const AuthenticatedAdminLeadsRoute = AuthenticatedAdminLeadsRouteImport.update({
+  id: '/admin/leads',
+  path: '/admin/leads',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const R20160607DifferencesChainLinkFenceWoodenFenceRoute =
-  R20160607DifferencesChainLinkFenceWoodenFenceRouteImport.update({
-    id: '/2016/06/07/differences-chain-link-fence-wooden-fence',
-    path: '/2016/06/07/differences-chain-link-fence-wooden-fence',
+const R20160607BestFencingOptionsQualitiesRoute =
+  R20160607BestFencingOptionsQualitiesRouteImport.update({
+    id: '/2016/06/07/best-fencing-options-qualities',
+    path: '/2016/06/07/best-fencing-options-qualities',
     getParentRoute: () => rootRouteImport,
   } as any)
 const R20160607ConsiderFencingOptionRoute =
@@ -460,12 +455,17 @@ const R20160607ConsiderFencingOptionRoute =
     path: '/2016/06/07/consider-fencing-option',
     getParentRoute: () => rootRouteImport,
   } as any)
-const R20160607BestFencingOptionsQualitiesRoute =
-  R20160607BestFencingOptionsQualitiesRouteImport.update({
-    id: '/2016/06/07/best-fencing-options-qualities',
-    path: '/2016/06/07/best-fencing-options-qualities',
+const R20160607DifferencesChainLinkFenceWoodenFenceRoute =
+  R20160607DifferencesChainLinkFenceWoodenFenceRouteImport.update({
+    id: '/2016/06/07/differences-chain-link-fence-wooden-fence',
+    path: '/2016/06/07/differences-chain-link-fence-wooden-fence',
     getParentRoute: () => rootRouteImport,
   } as any)
+const R20170314BarrierGatesRoute = R20170314BarrierGatesRouteImport.update({
+  id: '/2017/03/14/barrier-gates',
+  path: '/2017/03/14/barrier-gates',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -986,396 +986,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/why-you-should-consider-fencing-as-an-option': {
-      id: '/why-you-should-consider-fencing-as-an-option'
-      path: '/why-you-should-consider-fencing-as-an-option'
-      fullPath: '/why-you-should-consider-fencing-as-an-option'
-      preLoaderRoute: typeof WhyYouShouldConsiderFencingAsAnOptionRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/were-hiring-apply-now': {
-      id: '/were-hiring-apply-now'
-      path: '/were-hiring-apply-now'
-      fullPath: '/were-hiring-apply-now'
-      preLoaderRoute: typeof WereHiringApplyNowRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/welding-services': {
-      id: '/welding-services'
-      path: '/welding-services'
-      fullPath: '/welding-services'
-      preLoaderRoute: typeof WeldingServicesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/welding': {
-      id: '/welding'
-      path: '/welding'
-      fullPath: '/welding'
-      preLoaderRoute: typeof WeldingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/testimonial': {
-      id: '/testimonial'
-      path: '/testimonial'
-      fullPath: '/testimonial'
-      preLoaderRoute: typeof TestimonialRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/snow-removal': {
-      id: '/snow-removal'
-      path: '/snow-removal'
-      fullPath: '/snow-removal'
-      preLoaderRoute: typeof SnowRemovalRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/snow': {
-      id: '/snow'
-      path: '/snow'
-      fullPath: '/snow'
-      preLoaderRoute: typeof SnowRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/services': {
-      id: '/services'
-      path: '/services'
-      fullPath: '/services'
-      preLoaderRoute: typeof ServicesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/residential-chain-link-fencing': {
-      id: '/residential-chain-link-fencing'
-      path: '/residential-chain-link-fencing'
-      fullPath: '/residential-chain-link-fencing'
-      preLoaderRoute: typeof ResidentialChainLinkFencingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/residential-chain-link': {
-      id: '/residential-chain-link'
-      path: '/residential-chain-link'
-      fullPath: '/residential-chain-link'
-      preLoaderRoute: typeof ResidentialChainLinkRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/professional-mmcd-spec-railing-installation-in-maple-ridge': {
-      id: '/professional-mmcd-spec-railing-installation-in-maple-ridge'
-      path: '/professional-mmcd-spec-railing-installation-in-maple-ridge'
-      fullPath: '/professional-mmcd-spec-railing-installation-in-maple-ridge'
-      preLoaderRoute: typeof ProfessionalMmcdSpecRailingInstallationInMapleRidgeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/pricing': {
-      id: '/pricing'
-      path: '/pricing'
-      fullPath: '/pricing'
-      preLoaderRoute: typeof PricingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack': {
-      id: '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack'
-      path: '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack'
-      fullPath: '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack'
-      preLoaderRoute: typeof Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/port-fencing': {
-      id: '/port-fencing'
-      path: '/port-fencing'
-      fullPath: '/port-fencing'
-      preLoaderRoute: typeof PortFencingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/ornamental-iron': {
-      id: '/ornamental-iron'
-      path: '/ornamental-iron'
-      fullPath: '/ornamental-iron'
-      preLoaderRoute: typeof OrnamentalIronRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/ornamental-fencing': {
-      id: '/ornamental-fencing'
-      path: '/ornamental-fencing'
-      fullPath: '/ornamental-fencing'
-      preLoaderRoute: typeof OrnamentalFencingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/ornamental-fences': {
-      id: '/ornamental-fences'
-      path: '/ornamental-fences'
-      fullPath: '/ornamental-fences'
-      preLoaderRoute: typeof OrnamentalFencesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/metal-gates': {
-      id: '/metal-gates'
-      path: '/metal-gates'
-      fullPath: '/metal-gates'
-      preLoaderRoute: typeof MetalGatesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/metal-gate': {
-      id: '/metal-gate'
-      path: '/metal-gate'
-      fullPath: '/metal-gate'
-      preLoaderRoute: typeof MetalGateRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/gallery': {
-      id: '/gallery'
-      path: '/gallery'
-      fullPath: '/gallery'
-      preLoaderRoute: typeof GalleryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/excavation-services': {
-      id: '/excavation-services'
-      path: '/excavation-services'
-      fullPath: '/excavation-services'
-      preLoaderRoute: typeof ExcavationServicesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/excavation': {
-      id: '/excavation'
-      path: '/excavation'
-      fullPath: '/excavation'
-      preLoaderRoute: typeof ExcavationRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/double-cantilever-gate-cooper-rentals-langley': {
-      id: '/double-cantilever-gate-cooper-rentals-langley'
-      path: '/double-cantilever-gate-cooper-rentals-langley'
-      fullPath: '/double-cantilever-gate-cooper-rentals-langley'
-      preLoaderRoute: typeof DoubleCantileverGateCooperRentalsLangleyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/differences-between-chain-link-fence-and-wooden-fence': {
-      id: '/differences-between-chain-link-fence-and-wooden-fence'
-      path: '/differences-between-chain-link-fence-and-wooden-fence'
-      fullPath: '/differences-between-chain-link-fence-and-wooden-fence'
-      preLoaderRoute: typeof DifferencesBetweenChainLinkFenceAndWoodenFenceRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/commercial-chain-link-fencing': {
-      id: '/commercial-chain-link-fencing'
-      path: '/commercial-chain-link-fencing'
-      fullPath: '/commercial-chain-link-fencing'
-      preLoaderRoute: typeof CommercialChainLinkFencingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/commercial-chain-link': {
-      id: '/commercial-chain-link'
-      path: '/commercial-chain-link'
-      fullPath: '/commercial-chain-link'
-      preLoaderRoute: typeof CommercialChainLinkRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/chilliwack-chain-link-fence-company': {
-      id: '/chilliwack-chain-link-fence-company'
-      path: '/chilliwack-chain-link-fence-company'
-      fullPath: '/chilliwack-chain-link-fence-company'
-      preLoaderRoute: typeof ChilliwackChainLinkFenceCompanyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/chain-link-fencing': {
-      id: '/chain-link-fencing'
-      path: '/chain-link-fencing'
-      fullPath: '/chain-link-fencing'
-      preLoaderRoute: typeof ChainLinkFencingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/chain-link-fences': {
-      id: '/chain-link-fences'
-      path: '/chain-link-fences'
-      fullPath: '/chain-link-fences'
-      preLoaderRoute: typeof ChainLinkFencesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/chain-link': {
-      id: '/chain-link'
-      path: '/chain-link'
-      fullPath: '/chain-link'
-      preLoaderRoute: typeof ChainLinkRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/cedar-fencing': {
-      id: '/cedar-fencing'
-      path: '/cedar-fencing'
-      fullPath: '/cedar-fencing'
-      preLoaderRoute: typeof CedarFencingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/cedar-fences': {
-      id: '/cedar-fences'
-      path: '/cedar-fences'
-      fullPath: '/cedar-fences'
-      preLoaderRoute: typeof CedarFencesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/career': {
-      id: '/career'
-      path: '/career'
-      fullPath: '/career'
-      preLoaderRoute: typeof CareerRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/cannabis-fencing': {
-      id: '/cannabis-fencing'
-      path: '/cannabis-fencing'
-      fullPath: '/cannabis-fencing'
-      preLoaderRoute: typeof CannabisFencingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/best-fencing-options-and-their-qualities': {
-      id: '/best-fencing-options-and-their-qualities'
-      path: '/best-fencing-options-and-their-qualities'
-      fullPath: '/best-fencing-options-and-their-qualities'
-      preLoaderRoute: typeof BestFencingOptionsAndTheirQualitiesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/benefits-of-barrier-gates': {
-      id: '/benefits-of-barrier-gates'
-      path: '/benefits-of-barrier-gates'
-      fullPath: '/benefits-of-barrier-gates'
-      preLoaderRoute: typeof BenefitsOfBarrierGatesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/barrier-gates-hand-rails': {
-      id: '/barrier-gates-hand-rails'
-      path: '/barrier-gates-hand-rails'
-      fullPath: '/barrier-gates-hand-rails'
-      preLoaderRoute: typeof BarrierGatesHandRailsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/barrier-gates': {
-      id: '/barrier-gates'
-      path: '/barrier-gates'
-      fullPath: '/barrier-gates'
-      preLoaderRoute: typeof BarrierGatesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/airport-fencing': {
-      id: '/airport-fencing'
-      path: '/airport-fencing'
-      fullPath: '/airport-fencing'
-      preLoaderRoute: typeof AirportFencingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/about-us': {
-      id: '/about-us'
-      path: '/about-us'
-      fullPath: '/about-us'
-      preLoaderRoute: typeof AboutUsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/abbotsford-chain-link-fence-contractor': {
-      id: '/abbotsford-chain-link-fence-contractor'
-      path: '/abbotsford-chain-link-fence-contractor'
-      fullPath: '/abbotsford-chain-link-fence-contractor'
-      preLoaderRoute: typeof AbbotsfordChainLinkFenceContractorRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/Wood_Fencing.php': {
-      id: '/Wood_Fencing.php'
-      path: '/Wood_Fencing.php'
-      fullPath: '/Wood_Fencing.php'
-      preLoaderRoute: typeof Wood_FencingDotphpRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/Welding_Services.php': {
-      id: '/Welding_Services.php'
-      path: '/Welding_Services.php'
-      fullPath: '/Welding_Services.php'
-      preLoaderRoute: typeof Welding_ServicesDotphpRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/Welding.php': {
-      id: '/Welding.php'
-      path: '/Welding.php'
-      fullPath: '/Welding.php'
-      preLoaderRoute: typeof WeldingDotphpRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/Snow_Removal.php': {
-      id: '/Snow_Removal.php'
-      path: '/Snow_Removal.php'
-      fullPath: '/Snow_Removal.php'
-      preLoaderRoute: typeof Snow_RemovalDotphpRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/Residential_Chain_Link.php': {
-      id: '/Residential_Chain_Link.php'
-      path: '/Residential_Chain_Link.php'
-      fullPath: '/Residential_Chain_Link.php'
-      preLoaderRoute: typeof Residential_Chain_LinkDotphpRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/Ornamental_Iron.php': {
-      id: '/Ornamental_Iron.php'
-      path: '/Ornamental_Iron.php'
-      fullPath: '/Ornamental_Iron.php'
-      preLoaderRoute: typeof Ornamental_IronDotphpRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/Ornamental_Fencing.php': {
-      id: '/Ornamental_Fencing.php'
-      path: '/Ornamental_Fencing.php'
-      fullPath: '/Ornamental_Fencing.php'
-      preLoaderRoute: typeof Ornamental_FencingDotphpRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/Metal_Gates.php': {
-      id: '/Metal_Gates.php'
-      path: '/Metal_Gates.php'
-      fullPath: '/Metal_Gates.php'
-      preLoaderRoute: typeof Metal_GatesDotphpRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/Excavation.php': {
-      id: '/Excavation.php'
-      path: '/Excavation.php'
-      fullPath: '/Excavation.php'
-      preLoaderRoute: typeof ExcavationDotphpRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/Commercial_Chain_Link.php': {
-      id: '/Commercial_Chain_Link.php'
-      path: '/Commercial_Chain_Link.php'
-      fullPath: '/Commercial_Chain_Link.php'
-      preLoaderRoute: typeof Commercial_Chain_LinkDotphpRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/Chain_Link_Fencing.php': {
-      id: '/Chain_Link_Fencing.php'
-      path: '/Chain_Link_Fencing.php'
-      fullPath: '/Chain_Link_Fencing.php'
-      preLoaderRoute: typeof Chain_Link_FencingDotphpRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/Cedar_Fencing.php': {
-      id: '/Cedar_Fencing.php'
-      path: '/Cedar_Fencing.php'
-      fullPath: '/Cedar_Fencing.php'
-      preLoaderRoute: typeof Cedar_FencingDotphpRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/Barrier_Gates.php': {
-      id: '/Barrier_Gates.php'
-      path: '/Barrier_Gates.php'
-      fullPath: '/Barrier_Gates.php'
-      preLoaderRoute: typeof Barrier_GatesDotphpRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/10-high-galvanized-chain-link-fence-installed-for-heatherbrae-builders-surrey-bc': {
@@ -1385,6 +1000,97 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof R10HighGalvanizedChainLinkFenceInstalledForHeatherbraeBuildersSurreyBcRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/Barrier_Gates.php': {
+      id: '/Barrier_Gates.php'
+      path: '/Barrier_Gates.php'
+      fullPath: '/Barrier_Gates.php'
+      preLoaderRoute: typeof Barrier_GatesDotphpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/Cedar_Fencing.php': {
+      id: '/Cedar_Fencing.php'
+      path: '/Cedar_Fencing.php'
+      fullPath: '/Cedar_Fencing.php'
+      preLoaderRoute: typeof Cedar_FencingDotphpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/Chain_Link_Fencing.php': {
+      id: '/Chain_Link_Fencing.php'
+      path: '/Chain_Link_Fencing.php'
+      fullPath: '/Chain_Link_Fencing.php'
+      preLoaderRoute: typeof Chain_Link_FencingDotphpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/Commercial_Chain_Link.php': {
+      id: '/Commercial_Chain_Link.php'
+      path: '/Commercial_Chain_Link.php'
+      fullPath: '/Commercial_Chain_Link.php'
+      preLoaderRoute: typeof Commercial_Chain_LinkDotphpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/Excavation.php': {
+      id: '/Excavation.php'
+      path: '/Excavation.php'
+      fullPath: '/Excavation.php'
+      preLoaderRoute: typeof ExcavationDotphpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/Metal_Gates.php': {
+      id: '/Metal_Gates.php'
+      path: '/Metal_Gates.php'
+      fullPath: '/Metal_Gates.php'
+      preLoaderRoute: typeof Metal_GatesDotphpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/Ornamental_Fencing.php': {
+      id: '/Ornamental_Fencing.php'
+      path: '/Ornamental_Fencing.php'
+      fullPath: '/Ornamental_Fencing.php'
+      preLoaderRoute: typeof Ornamental_FencingDotphpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/Ornamental_Iron.php': {
+      id: '/Ornamental_Iron.php'
+      path: '/Ornamental_Iron.php'
+      fullPath: '/Ornamental_Iron.php'
+      preLoaderRoute: typeof Ornamental_IronDotphpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/Residential_Chain_Link.php': {
+      id: '/Residential_Chain_Link.php'
+      path: '/Residential_Chain_Link.php'
+      fullPath: '/Residential_Chain_Link.php'
+      preLoaderRoute: typeof Residential_Chain_LinkDotphpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/Snow_Removal.php': {
+      id: '/Snow_Removal.php'
+      path: '/Snow_Removal.php'
+      fullPath: '/Snow_Removal.php'
+      preLoaderRoute: typeof Snow_RemovalDotphpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/Welding.php': {
+      id: '/Welding.php'
+      path: '/Welding.php'
+      fullPath: '/Welding.php'
+      preLoaderRoute: typeof WeldingDotphpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/Welding_Services.php': {
+      id: '/Welding_Services.php'
+      path: '/Welding_Services.php'
+      fullPath: '/Welding_Services.php'
+      preLoaderRoute: typeof Welding_ServicesDotphpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/Wood_Fencing.php': {
+      id: '/Wood_Fencing.php'
+      path: '/Wood_Fencing.php'
+      fullPath: '/Wood_Fencing.php'
+      preLoaderRoute: typeof Wood_FencingDotphpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated': {
       id: '/_authenticated'
       path: ''
@@ -1392,11 +1098,305 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/abbotsford-chain-link-fence-contractor': {
+      id: '/abbotsford-chain-link-fence-contractor'
+      path: '/abbotsford-chain-link-fence-contractor'
+      fullPath: '/abbotsford-chain-link-fence-contractor'
+      preLoaderRoute: typeof AbbotsfordChainLinkFenceContractorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about-us': {
+      id: '/about-us'
+      path: '/about-us'
+      fullPath: '/about-us'
+      preLoaderRoute: typeof AboutUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/airport-fencing': {
+      id: '/airport-fencing'
+      path: '/airport-fencing'
+      fullPath: '/airport-fencing'
+      preLoaderRoute: typeof AirportFencingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/barrier-gates': {
+      id: '/barrier-gates'
+      path: '/barrier-gates'
+      fullPath: '/barrier-gates'
+      preLoaderRoute: typeof BarrierGatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/barrier-gates-hand-rails': {
+      id: '/barrier-gates-hand-rails'
+      path: '/barrier-gates-hand-rails'
+      fullPath: '/barrier-gates-hand-rails'
+      preLoaderRoute: typeof BarrierGatesHandRailsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/benefits-of-barrier-gates': {
+      id: '/benefits-of-barrier-gates'
+      path: '/benefits-of-barrier-gates'
+      fullPath: '/benefits-of-barrier-gates'
+      preLoaderRoute: typeof BenefitsOfBarrierGatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/best-fencing-options-and-their-qualities': {
+      id: '/best-fencing-options-and-their-qualities'
+      path: '/best-fencing-options-and-their-qualities'
+      fullPath: '/best-fencing-options-and-their-qualities'
+      preLoaderRoute: typeof BestFencingOptionsAndTheirQualitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cannabis-fencing': {
+      id: '/cannabis-fencing'
+      path: '/cannabis-fencing'
+      fullPath: '/cannabis-fencing'
+      preLoaderRoute: typeof CannabisFencingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/career': {
+      id: '/career'
+      path: '/career'
+      fullPath: '/career'
+      preLoaderRoute: typeof CareerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cedar-fences': {
+      id: '/cedar-fences'
+      path: '/cedar-fences'
+      fullPath: '/cedar-fences'
+      preLoaderRoute: typeof CedarFencesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cedar-fencing': {
+      id: '/cedar-fencing'
+      path: '/cedar-fencing'
+      fullPath: '/cedar-fencing'
+      preLoaderRoute: typeof CedarFencingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chain-link': {
+      id: '/chain-link'
+      path: '/chain-link'
+      fullPath: '/chain-link'
+      preLoaderRoute: typeof ChainLinkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chain-link-fences': {
+      id: '/chain-link-fences'
+      path: '/chain-link-fences'
+      fullPath: '/chain-link-fences'
+      preLoaderRoute: typeof ChainLinkFencesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chain-link-fencing': {
+      id: '/chain-link-fencing'
+      path: '/chain-link-fencing'
+      fullPath: '/chain-link-fencing'
+      preLoaderRoute: typeof ChainLinkFencingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chilliwack-chain-link-fence-company': {
+      id: '/chilliwack-chain-link-fence-company'
+      path: '/chilliwack-chain-link-fence-company'
+      fullPath: '/chilliwack-chain-link-fence-company'
+      preLoaderRoute: typeof ChilliwackChainLinkFenceCompanyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/commercial-chain-link': {
+      id: '/commercial-chain-link'
+      path: '/commercial-chain-link'
+      fullPath: '/commercial-chain-link'
+      preLoaderRoute: typeof CommercialChainLinkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/commercial-chain-link-fencing': {
+      id: '/commercial-chain-link-fencing'
+      path: '/commercial-chain-link-fencing'
+      fullPath: '/commercial-chain-link-fencing'
+      preLoaderRoute: typeof CommercialChainLinkFencingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/differences-between-chain-link-fence-and-wooden-fence': {
+      id: '/differences-between-chain-link-fence-and-wooden-fence'
+      path: '/differences-between-chain-link-fence-and-wooden-fence'
+      fullPath: '/differences-between-chain-link-fence-and-wooden-fence'
+      preLoaderRoute: typeof DifferencesBetweenChainLinkFenceAndWoodenFenceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/double-cantilever-gate-cooper-rentals-langley': {
+      id: '/double-cantilever-gate-cooper-rentals-langley'
+      path: '/double-cantilever-gate-cooper-rentals-langley'
+      fullPath: '/double-cantilever-gate-cooper-rentals-langley'
+      preLoaderRoute: typeof DoubleCantileverGateCooperRentalsLangleyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/excavation': {
+      id: '/excavation'
+      path: '/excavation'
+      fullPath: '/excavation'
+      preLoaderRoute: typeof ExcavationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/excavation-services': {
+      id: '/excavation-services'
+      path: '/excavation-services'
+      fullPath: '/excavation-services'
+      preLoaderRoute: typeof ExcavationServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/metal-gate': {
+      id: '/metal-gate'
+      path: '/metal-gate'
+      fullPath: '/metal-gate'
+      preLoaderRoute: typeof MetalGateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/metal-gates': {
+      id: '/metal-gates'
+      path: '/metal-gates'
+      fullPath: '/metal-gates'
+      preLoaderRoute: typeof MetalGatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ornamental-fences': {
+      id: '/ornamental-fences'
+      path: '/ornamental-fences'
+      fullPath: '/ornamental-fences'
+      preLoaderRoute: typeof OrnamentalFencesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ornamental-fencing': {
+      id: '/ornamental-fencing'
+      path: '/ornamental-fencing'
+      fullPath: '/ornamental-fencing'
+      preLoaderRoute: typeof OrnamentalFencingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ornamental-iron': {
+      id: '/ornamental-iron'
+      path: '/ornamental-iron'
+      fullPath: '/ornamental-iron'
+      preLoaderRoute: typeof OrnamentalIronRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/port-fencing': {
+      id: '/port-fencing'
+      path: '/port-fencing'
+      fullPath: '/port-fencing'
+      preLoaderRoute: typeof PortFencingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack': {
+      id: '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack'
+      path: '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack'
+      fullPath: '/premium-6x24-galvanized-chain-link-cantilever-gates-in-chilliwack'
+      preLoaderRoute: typeof Premium6x24GalvanizedChainLinkCantileverGatesInChilliwackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/professional-mmcd-spec-railing-installation-in-maple-ridge': {
+      id: '/professional-mmcd-spec-railing-installation-in-maple-ridge'
+      path: '/professional-mmcd-spec-railing-installation-in-maple-ridge'
+      fullPath: '/professional-mmcd-spec-railing-installation-in-maple-ridge'
+      preLoaderRoute: typeof ProfessionalMmcdSpecRailingInstallationInMapleRidgeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/residential-chain-link': {
+      id: '/residential-chain-link'
+      path: '/residential-chain-link'
+      fullPath: '/residential-chain-link'
+      preLoaderRoute: typeof ResidentialChainLinkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/residential-chain-link-fencing': {
+      id: '/residential-chain-link-fencing'
+      path: '/residential-chain-link-fencing'
+      fullPath: '/residential-chain-link-fencing'
+      preLoaderRoute: typeof ResidentialChainLinkFencingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/snow': {
+      id: '/snow'
+      path: '/snow'
+      fullPath: '/snow'
+      preLoaderRoute: typeof SnowRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/snow-removal': {
+      id: '/snow-removal'
+      path: '/snow-removal'
+      fullPath: '/snow-removal'
+      preLoaderRoute: typeof SnowRemovalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/testimonial': {
+      id: '/testimonial'
+      path: '/testimonial'
+      fullPath: '/testimonial'
+      preLoaderRoute: typeof TestimonialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/welding': {
+      id: '/welding'
+      path: '/welding'
+      fullPath: '/welding'
+      preLoaderRoute: typeof WeldingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/welding-services': {
+      id: '/welding-services'
+      path: '/welding-services'
+      fullPath: '/welding-services'
+      preLoaderRoute: typeof WeldingServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/were-hiring-apply-now': {
+      id: '/were-hiring-apply-now'
+      path: '/were-hiring-apply-now'
+      fullPath: '/were-hiring-apply-now'
+      preLoaderRoute: typeof WereHiringApplyNowRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/why-you-should-consider-fencing-as-an-option': {
+      id: '/why-you-should-consider-fencing-as-an-option'
+      path: '/why-you-should-consider-fencing-as-an-option'
+      fullPath: '/why-you-should-consider-fencing-as-an-option'
+      preLoaderRoute: typeof WhyYouShouldConsiderFencingAsAnOptionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -1406,32 +1406,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/projects/railing-installation-maple-ridge': {
-      id: '/projects/railing-installation-maple-ridge'
-      path: '/projects/railing-installation-maple-ridge'
-      fullPath: '/projects/railing-installation-maple-ridge'
-      preLoaderRoute: typeof ProjectsRailingInstallationMapleRidgeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/projects/heatherbrae-builders-surrey': {
-      id: '/projects/heatherbrae-builders-surrey'
-      path: '/projects/heatherbrae-builders-surrey'
-      fullPath: '/projects/heatherbrae-builders-surrey'
-      preLoaderRoute: typeof ProjectsHeatherbraeBuildersSurreyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/projects/cooper-rentals-langley': {
-      id: '/projects/cooper-rentals-langley'
-      path: '/projects/cooper-rentals-langley'
-      fullPath: '/projects/cooper-rentals-langley'
-      preLoaderRoute: typeof ProjectsCooperRentalsLangleyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/projects/cantilever-gates-chilliwack': {
-      id: '/projects/cantilever-gates-chilliwack'
-      path: '/projects/cantilever-gates-chilliwack'
-      fullPath: '/projects/cantilever-gates-chilliwack'
-      preLoaderRoute: typeof ProjectsCantileverGatesChilliwackRouteImport
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/locations/$slug': {
@@ -1441,19 +1420,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LocationsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blog/$slug': {
-      id: '/blog/$slug'
-      path: '/blog/$slug'
-      fullPath: '/blog/$slug'
-      preLoaderRoute: typeof BlogSlugRouteImport
+    '/projects/cantilever-gates-chilliwack': {
+      id: '/projects/cantilever-gates-chilliwack'
+      path: '/projects/cantilever-gates-chilliwack'
+      fullPath: '/projects/cantilever-gates-chilliwack'
+      preLoaderRoute: typeof ProjectsCantileverGatesChilliwackRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/admin/leads': {
-      id: '/_authenticated/admin/leads'
-      path: '/admin/leads'
-      fullPath: '/admin/leads'
-      preLoaderRoute: typeof AuthenticatedAdminLeadsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+    '/projects/cooper-rentals-langley': {
+      id: '/projects/cooper-rentals-langley'
+      path: '/projects/cooper-rentals-langley'
+      fullPath: '/projects/cooper-rentals-langley'
+      preLoaderRoute: typeof ProjectsCooperRentalsLangleyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/heatherbrae-builders-surrey': {
+      id: '/projects/heatherbrae-builders-surrey'
+      path: '/projects/heatherbrae-builders-surrey'
+      fullPath: '/projects/heatherbrae-builders-surrey'
+      preLoaderRoute: typeof ProjectsHeatherbraeBuildersSurreyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/railing-installation-maple-ridge': {
+      id: '/projects/railing-installation-maple-ridge'
+      path: '/projects/railing-installation-maple-ridge'
+      fullPath: '/projects/railing-installation-maple-ridge'
+      preLoaderRoute: typeof ProjectsRailingInstallationMapleRidgeRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin/gallery-leads': {
       id: '/_authenticated/admin/gallery-leads'
@@ -1462,18 +1455,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminGalleryLeadsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/2017/03/14/barrier-gates': {
-      id: '/2017/03/14/barrier-gates'
-      path: '/2017/03/14/barrier-gates'
-      fullPath: '/2017/03/14/barrier-gates'
-      preLoaderRoute: typeof R20170314BarrierGatesRouteImport
-      parentRoute: typeof rootRouteImport
+    '/_authenticated/admin/leads': {
+      id: '/_authenticated/admin/leads'
+      path: '/admin/leads'
+      fullPath: '/admin/leads'
+      preLoaderRoute: typeof AuthenticatedAdminLeadsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/2016/06/07/differences-chain-link-fence-wooden-fence': {
-      id: '/2016/06/07/differences-chain-link-fence-wooden-fence'
-      path: '/2016/06/07/differences-chain-link-fence-wooden-fence'
-      fullPath: '/2016/06/07/differences-chain-link-fence-wooden-fence'
-      preLoaderRoute: typeof R20160607DifferencesChainLinkFenceWoodenFenceRouteImport
+    '/2016/06/07/best-fencing-options-qualities': {
+      id: '/2016/06/07/best-fencing-options-qualities'
+      path: '/2016/06/07/best-fencing-options-qualities'
+      fullPath: '/2016/06/07/best-fencing-options-qualities'
+      preLoaderRoute: typeof R20160607BestFencingOptionsQualitiesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/2016/06/07/consider-fencing-option': {
@@ -1483,11 +1476,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof R20160607ConsiderFencingOptionRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/2016/06/07/best-fencing-options-qualities': {
-      id: '/2016/06/07/best-fencing-options-qualities'
-      path: '/2016/06/07/best-fencing-options-qualities'
-      fullPath: '/2016/06/07/best-fencing-options-qualities'
-      preLoaderRoute: typeof R20160607BestFencingOptionsQualitiesRouteImport
+    '/2016/06/07/differences-chain-link-fence-wooden-fence': {
+      id: '/2016/06/07/differences-chain-link-fence-wooden-fence'
+      path: '/2016/06/07/differences-chain-link-fence-wooden-fence'
+      fullPath: '/2016/06/07/differences-chain-link-fence-wooden-fence'
+      preLoaderRoute: typeof R20160607DifferencesChainLinkFenceWoodenFenceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/2017/03/14/barrier-gates': {
+      id: '/2017/03/14/barrier-gates'
+      path: '/2017/03/14/barrier-gates'
+      fullPath: '/2017/03/14/barrier-gates'
+      preLoaderRoute: typeof R20170314BarrierGatesRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -1594,3 +1594,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

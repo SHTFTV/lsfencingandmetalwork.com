@@ -1,6 +1,6 @@
 // Lightweight analytics dispatcher for the multi-step quote flow.
 // - Pushes to window.dataLayer so GTM / GA4 pick events up when configured.
-// - Also emits a CustomEvent("lovable:analytics") for any listener.
+// - Also emits a CustomEvent("lsfencing:analytics") for any listener.
 // - Console-logs in dev so you can watch drop-off without any provider wired up.
 //
 // No PII should ever be passed in. Only shape/step metadata + selected service.
@@ -139,7 +139,7 @@ function emit(event: QuoteAnalyticsEvent | GalleryAnalyticsEvent | NavClickEvent
     const w = window as DataLayerWindow;
     w.dataLayer = w.dataLayer || [];
     w.dataLayer.push(payload);
-    window.dispatchEvent(new CustomEvent("lovable:analytics", { detail: payload }));
+    window.dispatchEvent(new CustomEvent("lsfencing:analytics", { detail: payload }));
     if (import.meta.env.DEV) {
       // eslint-disable-next-line no-console
       console.debug("[analytics]", payload);

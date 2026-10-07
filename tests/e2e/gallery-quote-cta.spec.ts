@@ -55,7 +55,7 @@ test.describe("/gallery lightbox CTA → /contact submit attribution", () => {
     await context.addInitScript(() => {
       // @ts-expect-error test-only global
       window.__quoteEvents = [];
-      window.addEventListener("lovable:analytics", (e) => {
+      window.addEventListener("lsfencing:analytics", (e) => {
         // @ts-expect-error test-only global
         window.__quoteEvents.push((e as CustomEvent).detail);
       });
