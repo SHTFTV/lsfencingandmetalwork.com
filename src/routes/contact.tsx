@@ -3,6 +3,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { PageShell } from "@/components/PageShell";
 import { SITE } from "@/lib/site";
 import { submitLead } from "@/lib/leads.functions";
+import { sendBrowserNotification } from "@/lib/lead-browser-delivery";
 import { useEffect, useRef, useState } from "react";
 import { trackQuoteEvent } from "@/lib/analytics";
 import { useForm, type UseFormRegister, type FieldErrors, type UseFormWatch } from "react-hook-form";
@@ -289,7 +290,9 @@ function Contact() {
         },
       });
       if (!result.ok || !result.id) throw new Error("We could not confirm your request was saved. Please call us.");
-      setNotified(result.delivered === true);
+      const accepted = result.delivered === true ||
+        (result.browserEmail ? await sendBrowserNotification(result.browserEmail) : false);
+      setNotified(accepted);
       trackQuoteEvent({ name: "quote_submit_success", service: values.service, ...attribution });
       setDone(true);
     } catch (e) {

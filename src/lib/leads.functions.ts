@@ -130,7 +130,12 @@ export const submitLead = createServerFn({ method: "POST" })
       )
       .eq("id", inserted.id);
 
-    return { ok: true as const, id: inserted.id, delivered: result.ok };
+    // FormSubmit documents a browser AJAX integration. Offer that route only
+    // after a definite server rejection, never after an ambiguous timeout.
+    const browserEmail = !result.ok && result.error.startsWith("HTTP 403:")
+      ? { ...renderLeadEmail(tpl, leadForEmail), email: data.email, name: data.name }
+      : null;
+    return { ok: true as const, id: inserted.id, delivered: result.ok, browserEmail };
   });
 
 export const listLeads = createServerFn({ method: "GET" })
