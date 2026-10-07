@@ -32,6 +32,7 @@ export const NAV_PRIMARY = [
 export const SERVICES = [
   { to: "/chain-link-fencing", label: "Chain Link Fencing" },
   { to: "/commercial-chain-link-fencing", label: "Commercial Chain Link" },
+  { to: "/strata-fencing", label: "Strata Fencing & Gates" },
   { to: "/residential-chain-link-fencing", label: "Residential Chain Link" },
   { to: "/cedar-fencing", label: "Cedar Fencing" },
   { to: "/ornamental-fencing", label: "Ornamental Fencing" },

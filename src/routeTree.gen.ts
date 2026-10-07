@@ -64,6 +64,7 @@ import { Route as ResidentialChainLinkFencingRouteImport } from './routes/reside
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SnowRouteImport } from './routes/snow'
 import { Route as SnowRemovalRouteImport } from './routes/snow-removal'
+import { Route as StrataFencingRouteImport } from './routes/strata-fencing'
 import { Route as TestimonialRouteImport } from './routes/testimonial'
 import { Route as WeldingRouteImport } from './routes/welding'
 import { Route as WeldingServicesRouteImport } from './routes/welding-services'
@@ -373,6 +374,11 @@ const SnowRemovalRoute = SnowRemovalRouteImport.update({
   path: '/snow-removal',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StrataFencingRoute = StrataFencingRouteImport.update({
+  id: '/strata-fencing',
+  path: '/strata-fencing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TestimonialRoute = TestimonialRouteImport.update({
   id: '/testimonial',
   path: '/testimonial',
@@ -528,6 +534,7 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRoute
   '/snow': typeof SnowRoute
   '/snow-removal': typeof SnowRemovalRoute
+  '/strata-fencing': typeof StrataFencingRoute
   '/testimonial': typeof TestimonialRoute
   '/welding': typeof WeldingRoute
   '/welding-services': typeof WeldingServicesRoute
@@ -602,6 +609,7 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRoute
   '/snow': typeof SnowRoute
   '/snow-removal': typeof SnowRemovalRoute
+  '/strata-fencing': typeof StrataFencingRoute
   '/testimonial': typeof TestimonialRoute
   '/welding': typeof WeldingRoute
   '/welding-services': typeof WeldingServicesRoute
@@ -678,6 +686,7 @@ export interface FileRoutesById {
   '/services': typeof ServicesRoute
   '/snow': typeof SnowRoute
   '/snow-removal': typeof SnowRemovalRoute
+  '/strata-fencing': typeof StrataFencingRoute
   '/testimonial': typeof TestimonialRoute
   '/welding': typeof WeldingRoute
   '/welding-services': typeof WeldingServicesRoute
@@ -754,6 +763,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/snow'
     | '/snow-removal'
+    | '/strata-fencing'
     | '/testimonial'
     | '/welding'
     | '/welding-services'
@@ -828,6 +838,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/snow'
     | '/snow-removal'
+    | '/strata-fencing'
     | '/testimonial'
     | '/welding'
     | '/welding-services'
@@ -903,6 +914,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/snow'
     | '/snow-removal'
+    | '/strata-fencing'
     | '/testimonial'
     | '/welding'
     | '/welding-services'
@@ -979,6 +991,7 @@ export interface RootRouteChildren {
   ServicesRoute: typeof ServicesRoute
   SnowRoute: typeof SnowRoute
   SnowRemovalRoute: typeof SnowRemovalRoute
+  StrataFencingRoute: typeof StrataFencingRoute
   TestimonialRoute: typeof TestimonialRoute
   WeldingRoute: typeof WeldingRoute
   WeldingServicesRoute: typeof WeldingServicesRoute
@@ -1384,6 +1397,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SnowRemovalRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/strata-fencing': {
+      id: '/strata-fencing'
+      path: '/strata-fencing'
+      fullPath: '/strata-fencing'
+      preLoaderRoute: typeof StrataFencingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/testimonial': {
       id: '/testimonial'
       path: '/testimonial'
@@ -1589,6 +1609,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesRoute: ServicesRoute,
   SnowRoute: SnowRoute,
   SnowRemovalRoute: SnowRemovalRoute,
+  StrataFencingRoute: StrataFencingRoute,
   TestimonialRoute: TestimonialRoute,
   WeldingRoute: WeldingRoute,
   WeldingServicesRoute: WeldingServicesRoute,

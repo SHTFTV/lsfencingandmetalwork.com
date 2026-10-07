@@ -149,6 +149,7 @@ export const Route = createFileRoute("/")({
       },
       { name: "robots", content: "index, follow, max-image-preview:large" },
       { name: "googlebot", content: "index, follow, max-image-preview:large" },
+      { name: "msvalidate.01", content: "70767A9412CFD8C69E10E7549A921226" },
       { property: "og:site_name", content: SITE.name },
       { property: "og:title", content: "LS Fencing & Metal Work — Fraser Valley Fence & Gate Contractor" },
       { property: "og:description", content: "Fence, gate & metal fabrication crew serving the Fraser Valley & Lower Mainland, BC." },
@@ -235,8 +236,7 @@ function Home() {
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-            Commercial and residential chain link, cedar, ornamental steel,
-            custom gates, welding and site work — installed by a crew that shows up.
+            Commercial, industrial and strata fencing, gates and metal work across the Fraser Valley and Lower Mainland. Residential projects welcome too.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href={SITE.phoneHref} className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3.5 uppercase text-sm font-semibold tracking-wide rounded-sm shadow-[var(--shadow-weld)]">
@@ -247,6 +247,16 @@ function Home() {
             </Link>
           </div>
 
+          <div className="mt-8 grid sm:grid-cols-2 gap-4 max-w-3xl">
+            <a href="/commercial-chain-link-fencing" className="border border-border bg-card p-5 hover:border-primary rounded-sm">
+              <h2 className="font-display text-xl uppercase">Commercial & industrial fencing</h2>
+              <p className="mt-2 text-sm text-muted-foreground">Secure yards, warehouses and business properties. Plan vehicle access and a clear installation scope.</p>
+            </a>
+            <a href="/strata-fencing" className="border border-border bg-card p-5 hover:border-primary rounded-sm">
+              <h2 className="font-display text-xl uppercase">Strata fencing & gates</h2>
+              <p className="mt-2 text-sm text-muted-foreground">Repair and replacement planning for councils and property managers, with resident access in mind.</p>
+            </a>
+          </div>
           <div className="mt-14 grid sm:grid-cols-3 gap-4">
             {visibleFeatures.map((img, i) => (
               <Link

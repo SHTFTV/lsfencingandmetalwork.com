@@ -2,5 +2,18 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "tanstack-start",
   "installCommand": "pnpm install --frozen-lockfile",
-  "buildCommand": "pnpm run build"
+  "buildCommand": "pnpm run build",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.lsfencingandmetalwork.com"
+        }
+      ],
+      "destination": "https://lsfencingandmetalwork.com/:path*",
+      "permanent": true
+    }
+  ]
 }
