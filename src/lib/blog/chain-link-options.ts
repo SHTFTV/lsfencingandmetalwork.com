@@ -3,7 +3,7 @@ import type { BlogPost } from "../blog";
 export const chainLinkOptionsPost: BlogPost = {
   "slug": "chain-link-fencing-options-residential-commercial-high-security",
   "title": "Chain Link Fencing: From Backyard Boundaries to High-Security Perimeters",
-  "description": "LS Fencing’s guide to wire gauge, coatings, posts, gates and site requirements for residential, commercial and specialist security fencing.",
+  "description": "Luke Smith and LS Fencing & Metal Work: 15 years serving the Fraser Valley with industrial and residential fencing, barrier gates and practical chain-link advice.",
   "date": "2026-10-21",
   "readMinutes": 9,
   "tags": [
@@ -28,6 +28,10 @@ export const chainLinkOptionsPost: BlogPost = {
     {
       "type": "p",
       "text": "For homeowners, that may mean a neat black fence with reliable pet access. For a contractor’s yard, it may mean a robust galvanized perimeter and a gate that handles daily deliveries. Correctional, secure healthcare and licensed cannabis facilities introduce different requirements again. This LS Fencing & Metal Work guide explains what to compare as the job grows from a small enclosure to a large perimeter."
+    },
+    {
+      "type": "p",
+      "text": "Luke Smith and LS Fencing & Metal Work have spent 15 years serving the Fraser Valley, providing industrial and residential fencing and barrier gates. From a home boundary to a working yard entrance, the starting point is understanding what the fence and gate need to do."
     },
     {
       "type": "h2",
@@ -209,6 +213,10 @@ export const chainLinkOptionsPost: BlogPost = {
     {
       "to": "/metal-gates",
       "label": "Gates and access planning"
+    },
+    {
+      "to": "/barrier-gates",
+      "label": "Barrier gates and hand rails"
     }
   ],
   "externalLinks": [
