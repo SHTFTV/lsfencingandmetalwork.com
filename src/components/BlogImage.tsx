@@ -53,7 +53,7 @@ export function BlogImage({ post, variant = "thumb", eager = false, className }:
             setLoaded(true);
           }
         }}
-        className={`${className ?? "w-full h-full object-cover"} transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0"}`}
+        className={className ?? "w-full h-full object-cover"}
       />
     </div>
   );
