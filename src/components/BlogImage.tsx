@@ -20,7 +20,6 @@ interface Props {
 export function BlogImage({ post, variant = "thumb", eager = false, className }: Props) {
   const primary = getPostImage(post);
   const [src, setSrc] = useState(primary);
-  const [loaded, setLoaded] = useState(false);
   const alt = getPostImageAlt(post);
 
   const sizes =
@@ -30,12 +29,6 @@ export function BlogImage({ post, variant = "thumb", eager = false, className }:
 
   return (
     <div className="relative w-full h-full overflow-hidden bg-muted">
-      {!loaded && (
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-r from-muted via-muted-foreground/10 to-muted animate-pulse"
-        />
-      )}
       <img
         src={src}
         alt={alt}
@@ -45,12 +38,9 @@ export function BlogImage({ post, variant = "thumb", eager = false, className }:
         loading={eager ? "eager" : "lazy"}
         decoding="async"
         {...(eager ? { fetchPriority: "high" as const } : {})}
-        onLoad={() => setLoaded(true)}
         onError={() => {
           if (src !== DEFAULT_BLOG_IMAGE) {
             setSrc(DEFAULT_BLOG_IMAGE);
-          } else {
-            setLoaded(true);
           }
         }}
         className={className ?? "w-full h-full object-cover"}
