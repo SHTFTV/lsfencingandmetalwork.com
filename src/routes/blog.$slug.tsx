@@ -83,6 +83,7 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:url", content: url },
         { property: "og:image", content: image },
         { property: "og:image:alt", content: imageAlt },
+        ...(post.slug === "chain-link-fencing-options-residential-commercial-high-security" ? [{ property: "og:image:type", content: "image/jpeg" }, { property: "og:image:width", content: "1200" }, { property: "og:image:height", content: "630" }] : []),
                 { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: post.title },
         { name: "twitter:description", content: post.description },

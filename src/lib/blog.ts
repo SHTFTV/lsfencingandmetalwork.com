@@ -1,3 +1,4 @@
+import { chainLinkOptionsPost } from "./blog/chain-link-options";
 import { planningPosts } from "./blog/planning-guides";
 import { buildCityPosts } from "./blog/city-post";
 
@@ -890,7 +891,7 @@ const legacyPosts: BlogPost[] = [
   },
 ];
 
-export const POSTS: BlogPost[] = [...planningPosts, ...buildCityPosts(), ...legacyPosts].sort((a, b) =>
+export const POSTS: BlogPost[] = [chainLinkOptionsPost, ...planningPosts, ...buildCityPosts(), ...legacyPosts].sort((a, b) =>
   b.date.localeCompare(a.date),
 );
 
