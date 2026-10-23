@@ -51,6 +51,7 @@ function Page() {
           {GALLERY_ITEMS.map((it, i) => (
             <GalleryTile
               key={it.src}
+              id={GALLERY_ITEMS.findIndex(item => item.category === it.category) === i ? it.category.toLowerCase().replace(/\s+/g, "-") : undefined}
               item={it}
               onClick={() => lb.openAt(i)}
               refCallback={lb.registerTile(i)}

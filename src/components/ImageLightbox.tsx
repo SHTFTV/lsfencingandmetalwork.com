@@ -91,12 +91,14 @@ export function useLightbox(
 }
 
 export function GalleryTile({
+  id,
   item,
   onClick,
   refCallback,
   sizes = "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw",
   showOutcome = false,
 }: {
+  id?: string;
   item: GalleryItem;
   onClick: () => void;
   refCallback?: (el: HTMLButtonElement | null) => void;
@@ -105,6 +107,8 @@ export function GalleryTile({
 }) {
   return (
     <button
+      id={id}
+      style={{scrollMarginTop:110}}
       ref={refCallback}
       type="button"
       onClick={onClick}
