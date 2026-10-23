@@ -191,17 +191,11 @@ export const Route = createFileRoute("/")({
 function Home() {
   const rotating = SERVICES.map((s) => s.label);
   const [idx, setIdx] = useState(0);
-  const [featureStart, setFeatureStart] = useState(0);
   const [lightbox, setLightbox] = useState<Feature | null>(null);
   useEffect(() => {
     const id = setInterval(() => setIdx((i) => (i + 1) % rotating.length), 2200);
     return () => clearInterval(id);
   }, [rotating.length]);
-  useEffect(() => {
-    const id = setInterval(() => setFeatureStart((i) => (i + 3) % FEATURES.length), 4000);
-    return () => clearInterval(id);
-  }, []);
-  const visibleFeatures = Array.from({ length: 3 }, (_, i) => FEATURES[(featureStart + i) % FEATURES.length]);
 
   const openLightbox = useCallback((f: Feature) => setLightbox(f), []);
   const closeLightbox = useCallback(() => setLightbox(null), []);
@@ -261,36 +255,6 @@ function Home() {
               <p className="mt-2 text-sm text-muted-foreground">Repair and replacement planning for councils and property managers, with resident access in mind.</p>
             </a>
           </div>
-          <div className="mt-14 grid sm:grid-cols-3 gap-4">
-            {visibleFeatures.map((img, i) => (
-              <Link
-                key={`${featureStart}-${i}`}
-                to={img.to}
-                className="group relative block overflow-hidden border border-border rounded-sm bg-card aspect-[4/3] animate-in fade-in duration-700"
-              >
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  title={img.title}
-                  width={800}
-                  height={600}
-                  loading="lazy"
-                  decoding="async"
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/40 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <div className="text-xs uppercase tracking-[0.3em] text-primary">{img.sub}</div>
-                  <div className="font-display uppercase text-lg mt-1 leading-tight">{img.label}</div>
-                  <p className="mt-1.5 text-xs text-muted-foreground leading-snug line-clamp-2">{img.desc}</p>
-                </div>
-
-              </Link>
-            ))}
-          </div>
-
-
           <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl">
             {[
               { k: "15+", v: "Years in trade" },

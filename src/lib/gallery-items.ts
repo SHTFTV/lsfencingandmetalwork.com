@@ -125,4 +125,4 @@ export function itemsByCategory(category: GalleryCategory | GalleryCategory[]): 
 }
 
 // New delivery first; keep earlier photographs that are not the same view.
-export const GALLERY_ITEMS: GalleryItem[] = [...(lukePhotos as GalleryItem[]), ...EXISTING_GALLERY_ITEMS.filter(item => ![imgExcavation,imgBaseballBackstop,imgHighSecurityFarm,imgUtilityEnclosure,imgCantileverSlatGate,imgStrataCompound].includes(item.src))];
+export const GALLERY_ITEMS: GalleryItem[] = [...(lukePhotos as GalleryItem[]), ...EXISTING_GALLERY_ITEMS.filter(item => ![imgExcavation,imgBaseballBackstop,imgHighSecurityFarm,imgUtilityEnclosure,imgCantileverSlatGate,imgStrataCompound,imgCustomCedar,imgBarbTrailAbbotsford,imgBlackSchool].includes(item.src))];
