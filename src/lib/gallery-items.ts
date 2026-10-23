@@ -126,3 +126,11 @@ export function itemsByCategory(category: GalleryCategory | GalleryCategory[]): 
 
 // New delivery first; keep earlier photographs that are not the same view.
 export const GALLERY_ITEMS: GalleryItem[] = [...(lukePhotos as GalleryItem[]), ...EXISTING_GALLERY_ITEMS.filter(item => ![imgExcavation,imgBaseballBackstop,imgHighSecurityFarm,imgUtilityEnclosure,imgCantileverSlatGate,imgStrataCompound,imgCustomCedar,imgBarbTrailAbbotsford,imgBlackSchool].includes(item.src))];
+
+/** Same photograph, including earlier crops and re-encoded assets. */
+export function photoIdentity(src: string): string {
+  const aliases: [string, number][] = [[imgExcavation,10],[imgBaseballBackstop,51],[imgHighSecurityFarm,3],[imgUtilityEnclosure,50],[imgCantileverSlatGate,21],[imgStrataCompound,24],[imgCustomCedar,12],[imgBarbTrailAbbotsford,8],[img6ftBarb,8]];
+  const alias = aliases.find(([image]) => image === src);
+  const delivered = src.match(/luke-2026-10-23-(\d+)\.jpg/);
+  return alias ? `luke-${alias[1]}` : delivered ? `luke-${Number(delivered[1])}` : src;
+}

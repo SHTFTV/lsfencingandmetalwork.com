@@ -74,6 +74,7 @@ function Page() {
         ]}
       >
         <ProjectShowcase
+          excludeSrc={IMAGE.src}
           category="Excavation"
           eyebrow="Excavation case studies"
           title="Recent excavation work"

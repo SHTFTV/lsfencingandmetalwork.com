@@ -1,5 +1,5 @@
 import { GalleryTile, useLightbox } from "@/components/ImageLightbox";
-import { itemsByCategory, type GalleryCategory, type GalleryItem } from "@/lib/gallery-items";
+import { itemsByCategory, photoIdentity, type GalleryCategory, type GalleryItem } from "@/lib/gallery-items";
 
 type Props = {
   /** Filter by one or more gallery categories. Ignored when `items` is provided. */
@@ -8,6 +8,7 @@ type Props = {
   items?: GalleryItem[];
   /** Max cards to show. Defaults to 6. */
   limit?: number;
+  excludeSrc?: string;
   /** Heading + eyebrow copy. */
   eyebrow?: string;
   title?: string;
@@ -25,13 +26,14 @@ export function ProjectShowcase({
   category,
   items,
   limit = 6,
+  excludeSrc,
   eyebrow = "Recent work",
   title = "Case studies from the field",
   subtitle = "Tap any tile to see the full photo — every project links back to a quote request for that spec.",
   surface = "service-showcase",
 }: Props) {
   const source: GalleryItem[] = items ?? (category ? itemsByCategory(category) : []);
-  const shown = source.slice(0, limit);
+  const shown = source.filter((item, index) => (!excludeSrc || photoIdentity(item.src) !== photoIdentity(excludeSrc)) && source.findIndex(candidate => photoIdentity(candidate.src) === photoIdentity(item.src)) === index).slice(0, limit);
   const lb = useLightbox(shown, { surface });
 
   if (shown.length === 0) return null;

@@ -89,6 +89,7 @@ function Page() {
         ]}
       >
         <ProjectShowcase
+          excludeSrc={IMAGE.src}
           category="Gates"
           eyebrow="Terminal-grade case studies"
           title="Cantilever & perimeter installs"

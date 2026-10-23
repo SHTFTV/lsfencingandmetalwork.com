@@ -89,6 +89,7 @@ function Page() {
         ]}
       >
         <ProjectShowcase
+          excludeSrc={IMAGE.src}
           category="Chain Link"
           eyebrow="Airside-grade case studies"
           title="High-security perimeter installs"

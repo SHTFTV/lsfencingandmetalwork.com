@@ -74,6 +74,7 @@ function Page() {
         ]}
       >
         <ProjectShowcase
+          excludeSrc={IMAGE.src}
           category="Chain Link"
           eyebrow="Chain link case studies"
           title="Recent chain link installs"

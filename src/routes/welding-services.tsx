@@ -74,6 +74,7 @@ function Page() {
         ]}
       >
         <ProjectShowcase
+          excludeSrc={IMAGE.src}
           category="Welding"
           eyebrow="Welding & fabrication"
           title="From the shop and the field"

@@ -74,6 +74,7 @@ function Page() {
         ]}
       >
         <ProjectShowcase
+          excludeSrc={IMAGE.src}
           category="Gates"
           eyebrow="Gate case studies"
           title="Recent gate builds"
