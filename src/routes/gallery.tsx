@@ -30,10 +30,11 @@ function Page() {
       <PageHero
         eyebrow="Gallery"
         title="Proof of Work"
-        intro="Recent chain link, ornamental, gate, welding and excavation work across the Fraser Valley & Lower Mainland. Tap any photo to view it full-size."
+        intro="Fences, gates, handrails, workshop fabrication and site work photographed by LS Fencing & Metal Work. Tap a photo for a closer look."
       />
 
       <section className="container-industrial py-10">
+        <div id="luke-photo-update" className="mb-8 border-l-2 border-primary pl-5"><h2 className="font-display text-2xl uppercase">Photos from Luke</h2><p className="text-muted-foreground mt-2">50 distinct photographs supplied October 23, 2026, including cantilever gates, galvanized handrails and a baseball backstop. Photo credit: LS Fencing &amp; Metal Work. This delivery includes archive work; the delivery date is not the installation date. Locations appear only where supplied.</p></div>
         <div className="flex flex-wrap gap-2 mb-8">
           {CATEGORIES.map((c) => (
             <a

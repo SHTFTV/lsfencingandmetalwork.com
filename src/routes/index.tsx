@@ -1,3 +1,4 @@
+import lukePhotos from "@/lib/luke-photos.json";
 import { formatContentDate } from "@/lib/content-date";
 import { useCallback, useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -307,6 +308,7 @@ function Home() {
         </div>
       </section>
 
+<section className="container-industrial py-16" aria-labelledby="luke-delivery-title"><p className="text-xs uppercase tracking-widest text-primary">PHOTOGRAPHS FROM LUKE · OCTOBER 23, 2026</p><h2 id="luke-delivery-title" className="font-display text-3xl uppercase mt-2">Gates, fencing and the work behind them.</h2><p className="text-muted-foreground mt-3 mb-7">Real LS Fencing &amp; Metal Work photographs, including archive work. The photo-delivery date does not date an installation.</p><div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">{lukePhotos.filter(p=>[1,4,14,22,50,51].includes(p.id)).map(p=><figure key={p.id} className="border border-border rounded-sm overflow-hidden"><a href="/gallery#luke-photo-update"><img src={p.src} alt={p.alt} width={p.width} height={p.height} loading="lazy" className="w-full aspect-[4/3] object-cover"/></a><figcaption className="p-4 text-sm">{p.title}<span className="block text-xs text-muted-foreground mt-2">Photo: LS Fencing &amp; Metal Work.</span></figcaption></figure>)}</div><Link to="/gallery" className="inline-block mt-7 text-primary underline">Explore the project photographs →</Link></section>
       {/* Services */}
       <section className="container-industrial py-20">
         <div className="flex items-end justify-between flex-wrap gap-4 mb-10">

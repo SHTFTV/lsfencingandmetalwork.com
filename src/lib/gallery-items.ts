@@ -1,3 +1,4 @@
+import lukePhotos from "./luke-photos.json";
 import img4ftGalv from "@/assets/gallery/4ft-galv-residential.jpeg";
 import img6ftBarb from "@/assets/gallery/6ft-galv-barb-abbotsford.jpeg";
 import img8ftSecurity from "@/assets/gallery/8ft-galv-commercial-security.jpeg";
@@ -30,6 +31,7 @@ import imgIndustrialPerimeter from "@/assets/gallery/industrial-perimeter-securi
 import imgStrataCompound from "@/assets/gallery/strata-parking-gate-security-fencing-abbotsford.jpg";
 
 export type GalleryCategory =
+  | "Railings"
   | "Chain Link"
   | "Cedar"
   | "Ornamental"
@@ -49,6 +51,7 @@ export type GalleryItem = {
 
 export const CATEGORIES = [
   "All",
+  "Railings",
   "Chain Link",
   "Cedar",
   "Ornamental",
@@ -60,6 +63,7 @@ export const CATEGORIES = [
 // Map a gallery category to the matching value in the contact form's SERVICE_OPTIONS
 // so the CTA can pre-select it via ?service=…
 export const CATEGORY_TO_SERVICE: Record<string, string> = {
+  "Railings": "Barrier Gates & Railings",
   "Chain Link": "Chain Link Fencing",
   "Cedar": "Cedar Fencing",
   "Ornamental": "Ornamental Fencing",
@@ -82,7 +86,7 @@ export function quoteHrefFor(item: GalleryItem, source = "gallery-lightbox") {
   return `/contact?${params.toString()}`;
 }
 
-export const GALLERY_ITEMS: GalleryItem[] = [
+const EXISTING_GALLERY_ITEMS: GalleryItem[] = [
   { title: "Black vinyl-coated school perimeter", location: "Surrey, BC", category: "Chain Link", src: imgBlackSchool, alt: "Completed black vinyl-coated chain link perimeter fence at a school in Surrey BC", outcome: "6ft black vinyl chain link · school perimeter" },
   { title: "10-ft galvanized security fence with barb", location: "Vancouver, BC", category: "Chain Link", src: imgPerimeterBarb, alt: "Tall galvanized chain link perimeter fence with three-strand barbed wire", outcome: "10ft galvanized · 3-strand barb topping" },
   { title: "8-ft galvanized enclosure with roof", location: "Fraser Valley, BC", category: "Chain Link", src: img8ftSecurity, alt: "Tall galvanized chain link commercial security enclosure with covered top", outcome: "8ft galvanized · covered enclosure" },
@@ -119,3 +123,6 @@ export function itemsByCategory(category: GalleryCategory | GalleryCategory[]): 
   const cats = Array.isArray(category) ? category : [category];
   return GALLERY_ITEMS.filter((i) => cats.includes(i.category));
 }
+
+// New delivery first; keep earlier photographs that are not the same view.
+export const GALLERY_ITEMS: GalleryItem[] = [...(lukePhotos as GalleryItem[]), ...EXISTING_GALLERY_ITEMS.filter(item => ![imgExcavation,imgBaseballBackstop,imgHighSecurityFarm,imgUtilityEnclosure,imgCantileverSlatGate,imgStrataCompound].includes(item.src))];
