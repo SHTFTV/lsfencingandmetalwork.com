@@ -14,14 +14,14 @@ const FAQ: FaqItem[] = [
 ];
 
 const DESCRIPTION =
-  "Small-scale excavation for fence lines, post holes, drainage trenching and site prep across the Fraser Valley.";
+  "Abbotsford excavation enquiries for mini-excavator work, fence-post preparation, drainage trenching and site prep. Contact Luke at LS Fencing & Metal Work.";
 
 export const Route = createFileRoute("/excavation-services")({
   head: () => serviceHead({
-    title: "Excavation Services — Post Holes, Trenching, Grading | LS Fencing",
-    ogTitle: "Excavation Services — Post Holes, Trenching, Grading",
+    title: "Excavation Contractor Abbotsford | Mini Excavation | LS Fencing",
+    ogTitle: "Abbotsford Excavation Contractor — Mini Excavation & Post Work",
     description: DESCRIPTION,
-    ogDescription: "Mini-excavator work for fencing, drainage and site prep — Fraser Valley & Lower Mainland.",
+    ogDescription: "Discuss your Abbotsford site, access, post work and small-excavation scope directly with LS Fencing.",
     serviceName: "Excavation Services",
     path: "/excavation-services",
     image: { src: IMAGE.src, alt: IMAGE.alt, title: IMAGE.title },
@@ -35,12 +35,12 @@ function Page() {
     <PageShell>
       <PageHero
         eyebrow="Service"
-        title="Excavation Services"
-        intro="Mini-excavator work for fence lines, post holes, drainage trenching, and site prep across the Fraser Valley."
+        title="Excavation contractor for Abbotsford & the Fraser Valley"
+        intro="Mini-excavator work for Abbotsford fence lines, post holes, drainage trenching and site preparation, with service across the Fraser Valley."
       />
       <ServiceContent
         image={IMAGE}
-        intro="Fencing usually starts with digging. We run a compact excavator so we can get onto tight residential lots, dig clean post holes on rocky ground, trench in drainage, and grade the fence line before the crew shows up."
+        intro="For an Abbotsford excavation enquiry, start with the property location, access width and the work you need. Fencing usually starts with digging. We run a compact excavator so we can get onto tight residential lots, dig clean post holes on rocky ground, trench in drainage, and grade the fence line before the crew shows up."
         highlights={[
           "Mini-excavator (fits through 4-ft gates)",
           "Fence-line clearing & grading",
@@ -73,6 +73,14 @@ function Page() {
           { to: "/cannabis-fencing", label: "Cannabis facility fencing" },
         ]}
       >
+        <section className="my-10 rounded-xl border border-border bg-muted/30 p-6" aria-labelledby="abbotsford-excavation-brief">
+          <h2 id="abbotsford-excavation-brief" className="text-2xl font-bold">Planning excavation work in Abbotsford</h2>
+          <p className="mt-4">Tell Luke whether the work is a fence-post line, a small excavation, trenching or preparation beside an existing structure. Send the Abbotsford site address, wide photographs of the approach and work area, approximate dimensions, and whether spoil needs to leave the property. Confirm the actual scope, equipment access and timing directly before booking.</p>
+          <p className="mt-4">Ground conditions and utility-location arrangements belong in the site review. Do not assume a photographed machine will fit your access or that an archive photograph records an Abbotsford job. Existing equipment photographs show LS Fencing’s work; individual locations are stated only where supplied.</p>
+          <p className="mt-4"><a className="font-semibold underline" href="https://abbotsford.io/directory/excavation/lsfencing">See LS Fencing’s Abbotsford excavation and equipment profile →</a></p>
+          <p className="mt-3"><a className="font-semibold underline" href="/abbotsford-chain-link-fence-contractor">Need the fence installed as well? Abbotsford fencing →</a></p>
+          <p className="mt-4">Call <a className="font-semibold underline" href="tel:+16047580014">604-758-0014</a> or email <a className="font-semibold underline" href="mailto:lsfencingandmetalwork@gmail.com?subject=Abbotsford%20excavation%20enquiry">LS Fencing with your site details</a>.</p>
+        </section>
         <ProjectShowcase
           excludeSrc={IMAGE.src}
           category="Excavation"
