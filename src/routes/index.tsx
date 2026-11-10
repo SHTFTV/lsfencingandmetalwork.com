@@ -1,3 +1,4 @@
+import officialLogo from "@/assets/ls-fencing-logo.png";
 import lukePhotos from "@/lib/luke-photos.json";
 import { formatContentDate } from "@/lib/content-date";
 import { useCallback, useEffect, useState } from "react";
@@ -219,6 +220,16 @@ function Home() {
     <PageShell>
       {/* Hero */}
       <section className="relative border-b border-border grid-lines overflow-hidden">
+        <img
+          src={officialLogo}
+          alt=""
+          aria-hidden="true"
+          draggable={false}
+          width={512}
+          height={512}
+          decoding="async"
+          className="ls-hero-watermark"
+        />
         <div className="container-industrial py-20 md:py-32 relative">
           <div className="text-xs uppercase tracking-[0.3em] text-primary mb-5">
             Fraser Valley · Lower Mainland · Since 2011
@@ -577,4 +588,5 @@ function SmartImage({
     </>
   );
 }
+
 
