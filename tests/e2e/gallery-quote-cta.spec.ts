@@ -1,4 +1,4 @@
-import { test, expect, type Page } from "@playwright/test";
+import { test, expect, type Page, type BrowserContext } from "@playwright/test";
 
 const TILE_SELECTOR = 'button[aria-label^="View "]';
 
@@ -16,7 +16,7 @@ const GATE_ONLY_SERVICES = new Set([
   "Barrier Gates & Railings",
 ]);
 
-async function fillAndSubmit(page: Page, service: string) {
+async function fillAndSubmit(page: Page, service: string, acknowledged = true) {
   await expect(page.getByPlaceholder("e.g. Chilliwack")).toBeVisible();
 
   const linearFeet = page.getByPlaceholder("e.g. 120");
@@ -43,9 +43,36 @@ async function fillAndSubmit(page: Page, service: string) {
   await page.locator('input[name="email"]').fill("qa+gallery@example.com");
 
   await page.getByRole("button", { name: /Send request/i }).click();
-  await expect(page.getByRole("heading", { name: "Request received" })).toBeVisible({
+  await expect(page.getByRole("heading", { name: acknowledged ? "Request received" : "Request saved — contact us directly", exact: true })).toBeVisible({
     timeout: 15_000,
   });
+}
+
+async function stubIntake(context: BrowserContext, opts: { saved?: boolean; acknowledged?: boolean } = {}) {
+  const { saved = true, acknowledged = true } = opts;
+  const submitBodies: string[] = [];
+  const deliveryBodies: string[] = [];
+  await context.route(/_server(?:Fn|-fn)?|__serverFn/i, async (route) => {
+    if (route.request().method() !== "POST") return route.continue();
+    submitBodies.push(route.request().postData() ?? "");
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({ result: saved ? {
+        ok: true, id: "stub-saved-lead", delivered: false,
+        browserEmail: { subject: "QA enquiry", text: "QA notification fixture", email: "qa+gallery@example.com", name: "QA Bot" },
+      } : { ok: false } }),
+    });
+  });
+  await context.route("https://formsubmit.co/ajax/lsfencingandmetalwork%40gmail.com", async (route) => {
+    deliveryBodies.push(route.request().postData() ?? "");
+    await route.fulfill({
+      status: acknowledged ? 200 : 503,
+      contentType: "application/json",
+      body: JSON.stringify({ success: acknowledged, message: acknowledged ? "Accepted" : "Unavailable" }),
+    });
+  });
+  return { submitBodies, deliveryBodies };
 }
 
 test.describe("/gallery lightbox CTA → /contact submit attribution", () => {
@@ -61,17 +88,9 @@ test.describe("/gallery lightbox CTA → /contact submit attribution", () => {
       });
     });
 
-    // Intercept the server function POST once for the whole test and stub OK.
-    const submitBodies: string[] = [];
-    await context.route(/_server(?:Fn|-fn)?|__serverFn/i, async (route) => {
-      const body = route.request().postData();
-      if (body) submitBodies.push(body);
-      await route.fulfill({
-        status: 200,
-        contentType: "application/json",
-        body: JSON.stringify({ result: { ok: true, id: "stub", delivered: true } }),
-      });
-    });
+    // The fixture matches saved intake + the separate provider acknowledgement.
+    // All external delivery is intercepted; this test sends no real email.
+    const { submitBodies, deliveryBodies } = await stubIntake(context);
 
     await page.goto("/gallery");
     await waitForHydration(page);
@@ -80,6 +99,7 @@ test.describe("/gallery lightbox CTA → /contact submit attribution", () => {
 
     for (let i = 0; i < tileCount; i++) {
       const beforeBodies = submitBodies.length;
+      const beforeDeliveries = deliveryBodies.length;
       const tile = page.locator(TILE_SELECTOR).nth(i);
       await tile.scrollIntoViewIfNeeded();
       await tile.click();
@@ -125,10 +145,10 @@ test.describe("/gallery lightbox CTA → /contact submit attribution", () => {
 
       // Payload — at least one new body captured since iteration start includes attribution.
       const newBodies = submitBodies.slice(beforeBodies);
-      if (newBodies.length > 0) {
-        expect(newBodies.some((b) => b.includes(expectedPhoto))).toBe(true);
-        expect(newBodies.some((b) => b.includes("gallery-lightbox"))).toBe(true);
-      }
+      expect(newBodies.length, `tile #${i} never submitted intake`).toBe(1);
+      expect(newBodies[0]).toContain(expectedPhoto);
+      expect(newBodies[0]).toContain("gallery-lightbox");
+      expect(deliveryBodies.length - beforeDeliveries, `tile #${i} never attempted notification`).toBe(1);
 
       // Reset analytics + return to gallery for next tile
       await page.evaluate(() => {
@@ -139,4 +159,32 @@ test.describe("/gallery lightbox CTA → /contact submit attribution", () => {
       await waitForHydration(page);
     }
   });
+});
+
+test("saved enquiry gives a direct contact fallback when email is unavailable", async ({ page, context }) => {
+  const { submitBodies, deliveryBodies } = await stubIntake(context, { acknowledged: false });
+  await page.goto("/contact?service=Welding+%2F+Repair");
+  await waitForHydration(page);
+  await fillAndSubmit(page, "Welding / Repair", false);
+  expect(submitBodies).toHaveLength(1);
+  expect(deliveryBodies).toHaveLength(1);
+  await expect(page.getByRole("link", { name: "Email this request to LS Fencing" })).toHaveAttribute("href", /^mailto:lsfencingandmetalwork@gmail\.com\?/);
+  await expect(page.getByText("Your enquiry is safely saved", { exact: false })).toBeVisible();
+});
+
+test("unconfirmed storage never attempts an email or claims success", async ({ page, context }) => {
+  const { submitBodies, deliveryBodies } = await stubIntake(context, { saved: false });
+  await page.goto("/contact?service=Welding+%2F+Repair");
+  await waitForHydration(page);
+  await page.getByPlaceholder("e.g. Chilliwack").fill("Chilliwack");
+  await page.locator('select[name="timeline"]').selectOption("ASAP");
+  await page.getByRole("button", { name: /^Next/i }).click();
+  await page.locator('input[name="name"]').fill("QA Bot");
+  await page.locator('input[name="phone"]').fill("6045551234");
+  await page.locator('input[name="email"]').fill("qa+gallery@example.com");
+  await page.getByRole("button", { name: /Send request/i }).click();
+  await expect(page.getByText("We could not confirm your request was saved. Please call us.")).toBeVisible();
+  expect(submitBodies).toHaveLength(1);
+  expect(deliveryBodies).toHaveLength(0);
+  await expect(page.getByRole("heading", { name: /^Request (received|saved)/ })).toHaveCount(0);
 });

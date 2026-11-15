@@ -112,8 +112,8 @@ test.describe("/gallery lightbox keyboard + focus trap", () => {
 
   test("lightbox 'Request quote for this' CTA pre-selects the matching service", async ({ page }) => {
     await page.goto("/gallery", { waitUntil: "networkidle" });
-    // Third tile is 8-ft galvanized enclosure (Chain Link) — deterministic.
-    const tile = page.locator(TILE_SELECTOR).nth(2);
+    // Identify the actual fence photo; new deliveries can change tile order.
+    const tile = page.getByRole("button", { name: "View Chain-link security enclosure with covered top", exact: true });
     await tile.scrollIntoViewIfNeeded();
     await tile.click();
     const dialog = page.getByRole("dialog");
