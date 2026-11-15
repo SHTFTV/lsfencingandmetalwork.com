@@ -21,6 +21,11 @@ jobs:
       - name: JSON-LD validator
         run: pnpm run validate:jsonld
       - name: Build
+        # Non-secret fixture config lets global browser auth middleware create
+        # its client. Intake/provider requests remain intercepted by the tests.
+        env:
+          VITE_SUPABASE_URL: https://example.invalid
+          VITE_SUPABASE_PUBLISHABLE_KEY: sb_publishable_ci_fixture
         run: pnpm run build
       - name: Install Playwright browsers
         run: pnpm exec playwright install --with-deps chromium

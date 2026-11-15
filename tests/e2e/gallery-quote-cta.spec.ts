@@ -58,9 +58,12 @@ async function stubIntake(context: BrowserContext, opts: { saved?: boolean; ackn
       }
     });
   });
-  context.on("page", (page) => page.on("console", (message) => {
+  const attachDiagnostics = (page: Page) => page.on("console", (message) => {
     if (message.text().startsWith("[quote-check]")) console.info(message.text());
-  }));
+  });
+  context.pages().forEach(attachDiagnostics);
+  context.on("page", attachDiagnostics);
+  await context.route("https://example.invalid/**", (route) => route.abort("blockedbyclient"));
   const submitBodies: string[] = [];
   const deliveryBodies: string[] = [];
   await context.route(/_server(?:Fn|-fn)?|__serverFn/i, async (route) => {
