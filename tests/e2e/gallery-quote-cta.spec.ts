@@ -50,10 +50,22 @@ async function fillAndSubmit(page: Page, service: string, acknowledged = true) {
 
 async function stubIntake(context: BrowserContext, opts: { saved?: boolean; acknowledged?: boolean } = {}) {
   const { saved = true, acknowledged = true } = opts;
+  await context.addInitScript(() => {
+    window.addEventListener("lsfencing:analytics", (event) => {
+      const detail = (event as CustomEvent).detail;
+      if (["quote_validation_error", "quote_submit_attempt", "quote_submit_error"].includes(detail?.name)) {
+        console.info("[quote-check]", JSON.stringify(detail));
+      }
+    });
+  });
+  context.on("page", (page) => page.on("console", (message) => {
+    if (message.text().startsWith("[quote-check]")) console.info(message.text());
+  }));
   const submitBodies: string[] = [];
   const deliveryBodies: string[] = [];
   await context.route(/_server(?:Fn|-fn)?|__serverFn/i, async (route) => {
     if (route.request().method() !== "POST") return route.continue();
+    console.info("[fixture] intercepted intake", new URL(route.request().url()).pathname);
     submitBodies.push(route.request().postData() ?? "");
     await route.fulfill({
       status: 200,

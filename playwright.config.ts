@@ -23,7 +23,8 @@ export default defineConfig({
   webServer: process.env.PLAYWRIGHT_BASE_URL
     ? undefined
     : {
-        command: "pnpm run dev --host 127.0.0.1 --port " + PORT,
+        command: "node .output/server/index.mjs",
+        env: { PORT: String(PORT), HOST: "127.0.0.1", NODE_ENV: "production" },
         url: BASE_URL,
         reuseExistingServer: !process.env.CI,
         timeout: 120_000,
