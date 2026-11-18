@@ -1,6 +1,57 @@
 import type { BlogPost } from "../blog";
 
 export const planningPosts: BlogPost[] = [
+{
+  "slug": "abbotsford-chain-link-fence-repairs",
+  "title": "Chain-link fence repairs in Abbotsford: one damaged bay or a longer run?",
+  "description": "How to describe bent mesh, a bowed rail or a shifted gate post so your Abbotsford repair quote covers the right length of fence.",
+  "cityName": "Abbotsford",
+  "date": "2026-11-18",
+  "readMinutes": 2,
+  "tags": [
+    "Chain link",
+    "Repairs",
+    "Abbotsford"
+  ],
+  "ogImage": "/gallery/6ft-galv-barb-abbotsford.jpeg",
+  "ogImageCaption": "LS Fencing gallery: galvanized chain link in Abbotsford. Reference photo of the assembly.",
+  "body": [
+    {
+      "type": "p",
+      "text": "A delivery truck catches the top rail beside a driveway. The dent looks a metre wide, but the useful measurement for a repair estimate is often the distance between the posts on either side. Start with those two posts, then look one bay farther in each direction. That gives the estimator a way to distinguish torn fabric from a shifted fence line."
+    },
+    {
+      "type": "h2",
+      "text": "If the mesh tore but the posts still line up"
+    },
+    {
+      "type": "p",
+      "text": "Photograph the whole bay from the accessible side, then take a closer picture of the tear and its connection to the rail. Record the approximate fence height, mesh opening and finish. A patch may be practical for a small opening. A replacement section may give a more consistent appearance across an entrance. Ask the estimator to explain where the new fabric would meet the old."
+    },
+    {
+      "type": "h2",
+      "text": "If the rail bends near a gate"
+    },
+    {
+      "type": "p",
+      "text": "Include both gate posts in the frame. A gate that began rubbing or missing its latch after an impact is a clue worth reporting. Replacing mesh alone would leave a shifted support untouched. Tell the contractor what changed and whether that entrance must stay available to vehicles or pedestrians while the work is underway."
+    },
+    {
+      "type": "h2",
+      "text": "Compare the repair scopes"
+    },
+    {
+      "type": "p",
+      "text": "For an Abbotsford yard or loading area, ask each bidder to identify the first and last post in the proposed work. Have them separate fabric, top rail, fittings, post or footing work, disposal and any temporary closure. If a post base still needs inspection, ask how that allowance will be confirmed before work proceeds."
+    }
+  ],
+  "internalLinks": [
+    {
+      "to": "/chain-link-fencing",
+      "label": "Chain-link fencing services"
+    }
+  ]
+},
   {
     "slug": "fence-quote-checklist-fraser-valley",
     "title": "How to Compare Fence Quotes in the Fraser Valley",
